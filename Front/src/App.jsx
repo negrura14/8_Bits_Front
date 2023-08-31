@@ -1,20 +1,18 @@
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
-import Header from '../src/Components/LandingPage/LandingPage';
+import Landing from '../src/Components/LandingPage/LandingPage';
 import Home from '../src/Components/Home/Home';
-import DateTimeDisplay from './Components/Time/Time';
+import { ROUTES } from './Helpers/RoutesPath';
+
 
 function App() {
 
   return (
     <BrowserRouter>
       <div>
-        <div>
-          <DateTimeDisplay />
-        </div>
       <Routes>
-       <Route exact path = '/' element={<Header/>}/>
-       <Route exact path = '/home' element={<Home/>}/>
+       <Route exact path = {ROUTES.LANDING} element={<Landing/>}/>
+       <Route exact path = {ROUTES.HOME} element={<Home/>}/>
       </Routes>
       </div>
     </BrowserRouter>
