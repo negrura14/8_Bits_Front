@@ -1,46 +1,99 @@
+
 .landing-page {
-  background: url('../../Img/e4ff736f001112cb23ba9844337c2a4e.gif') no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+  text-align: center;
+  justify-content: center;
+  background: 
+     url("../../img/landing.jpg")
+        center no-repeat;
+      background-size: cover;
  }
 
-
- .btn-primary{
-  width: 20vw;
-  height: 5vh;
-  margin-top: 5vh;
-  margin-left: 0vw;
-  background-color: #245bf1;
-  color: rgb(184, 184, 184);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.651);
-  font-size: 1.5vw;
-  font-weight: bold;
-  cursor: pointer; 
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  text-decoration: none;
-  overflow: hidden;
-  transition: 0.2s;
-  &:hover{
-    color: #313131;
-    background-color: none;
-    box-shadow: 0 0 20px #AA76EE, 0 0 40px #AA76EE, 0 0 80px #AA76EE;
-    transition: 1.2s;
-    border: none;
-} 
-
+ .logo{
+  height: 20vh;
+    width: 20vh;
+    margin-top: 18vh;
  }
-
-  .content {
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    text-align: center;
-    z-index: 1;
-    color: white;
-  }
-
+ .logo {
+  --s: 40vh;   /* the size of the image */
+  --b: 1vh;     /* the border thickness*/
+  --g: 5vh;    /* the gap */
+  --c: #1FBA74; /* the color */
   
+  width: var(--s);
+  aspect-ratio: 1;
+  outline-offset: calc(var(--s)/-2);
+  cursor: pointer;
+  transition: .3s;
+}
+.logo:hover {
+  outline: var(--b) solid var(--c);
+  outline-offset: var(--g);
+}
+
+
+ .slogan{
+  margin: 10vh;
+  color:#f2f2f2;
+
+ }
+
+
+
+.btn-landing {
+  position: relative;
+  height: 50px;
+  padding: 0 30px;
+  border: 2px solid #ffffff;
+  background: #171a21;
+  color: white;
+  user-select: none;
+  white-space: nowrap;
+  transition: all .05s linear;
+  font-family: inherit;
+ }
+ 
+ .btn-landing:before, .btn-landing:after {
+  content: "";
+  position: absolute;
+  background: #171a21;
+  transition: all .2s linear;
+ }
+ 
+ .btn-landing:before {
+  width: calc(100% + 6px);
+  height: calc(100% - 16px);
+  top: 8px;
+  left: -3px;
+ }
+ 
+ .btn-landing:after {
+  width: calc(100% - 16px);
+  height: calc(100% + 6px);
+  top: -3px;
+  left: 8px;
+ }
+ 
+ .btn-landing:hover {
+  cursor: crosshair;
+ }
+ 
+ .btn-landing:active {
+  transform: scale(0.95);
+ }
+ 
+ .btn-landing:hover:before {
+  height: calc(100% - 32px);
+  top: 16px;
+ }
+ 
+ .btn-landing:hover:after {
+  width: calc(100% - 32px);
+  left: 16px;
+ }
+ 
+ .btn-landing span {
+  font-size: 15px;
+  z-index: 3;
+  position: relative;
+  font-weight: 600;
+ }
