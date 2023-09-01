@@ -1,10 +1,13 @@
 import './Home.css';
-
+import DateTimeDisplay from '../Time/Time'
 
 function Home() {
     return(
         <div className='home_container'>
-            <h1></h1>
+            <div>
+                <DateTimeDisplay />
+            </div>
+            <h1>Hola mundo</h1>
         </div>
     )
 }
