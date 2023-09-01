@@ -1,0 +1,67 @@
+.cardFLex {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 20px 9rem;
+}
+.botones {
+    width: 100%;
+    text-align: center;
+}
+.xBoton {
+    padding: 10px;
+    margin: 10px;
+    border: solid 2px #fff;
+    background: transparent;
+    color: #bababa;
+    width: 10rem;
+    font-size: 12px;
+    font-weight: 800;
+}
+.xSpan {
+    color: #fff;
+}
+.items {
+    color: grey
+}
+
+
+
+.paginationButton {
+    padding: 0.6rem 1rem;
+    border: 1px solid #979695;
+    border-radius: 5rem;
+    background-color: transparent;
+    color: blue;
+    font-size: 1.5rem;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 1px 3px rgba(0,0,0,.2);
+}
+/* .paginationButton:hover{
+    background-color: #e0811b;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#f0a100),to(#f70));
+    background-image: linear-gradient(#f0a100 10%,#f70 100%);
+} */
+.paginationButton[disabled] {
+    color: #52565600;
+    background-image: none;
+}
+
+.numeration {
+    font-size: 1.5rem;
+    margin: 1rem;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+}
+
+.activePage {
+    padding: 2px 10px 2px 10px;
+    color: blue;
+    border-radius: 3px;
+}
+.other{
+    margin: 2rem;
+}
