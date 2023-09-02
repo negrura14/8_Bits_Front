@@ -17,12 +17,10 @@ export const Card = () => {
     <div>
         {game&&game.map((elem, i)=>{
             return(
-               
                     <div key={i}>
                         <p>{elem.name}</p>
                         <img src={elem.image} alt={elem.name}/>
                     </div>
-                
             )
         })}
     </div>

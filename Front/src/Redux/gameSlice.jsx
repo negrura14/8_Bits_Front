@@ -12,10 +12,13 @@ export const gameSlice = createSlice({
         },
         getGameById: (state,action) => {
             state.detail = action.payload
+        },
+        getGameByName: (state,action) => {
+            state.detail = action.payload
         }
     }
 })
 
-export const {getAllGame, getGameById} = gameSlice.actions
+export const {getAllGame, getGameById, getGameByName} = gameSlice.actions
 
 export default gameSlice.reducer
