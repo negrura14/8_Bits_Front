@@ -14,15 +14,26 @@ export const Card = () => {
     },[])
 
   return (
-    <div>
+    <div className='containerF'>
         {game&&game.map((elem, i)=>{
             return(
-                    <div key={i}>
-                        <p>{elem.name}</p>
-                        <img src={elem.image} alt={elem.name}/>
-                    </div>
+                <div class="item" key={i}>
+    <div className="cardF" >
+      <div className="circle circle2"></div>
+      <div className="circle circle1"></div>
+      <img  className="imgF" src={elem.image} />
+    </div>
+    <div className="content">
+      <p>{elem.name}</p>
+    </div>
+    <span class="top"></span>
+      <span class="right"></span>
+      <span class="bottom"></span>
+      <span class="left"></span>
+  </div>
             )
         })}
+        
     </div>
   )
 }
