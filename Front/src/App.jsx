@@ -5,6 +5,7 @@ import Home from '../src/Components/Home/Home';
 import { ROUTES } from './Helpers/RoutesPath';
 import NotFound from './Components/NotFound/NotFound'
 import Detail from './Components/Detail/Detail'
+import Create from './Components/Create/Create';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
        <Route path = {ROUTES.HOME} element={<Home/>}/>
        <Route path = {ROUTES.DETAIL} element={<Detail/>}/>
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
+       <Route path = {ROUTES.CREATE} element = {<Create/>}/>
       </Routes>
       </div>
     </BrowserRouter>
