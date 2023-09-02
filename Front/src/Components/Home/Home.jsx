@@ -1,5 +1,7 @@
 import './Home.css';
 import DateTimeDisplay from '../Time/Time'
+import { Card } from '../Card/Card';
+
 
 
 function Home() {
@@ -7,11 +9,16 @@ function Home() {
         <div className='home_container'>
             <div>
                 <DateTimeDisplay />
+                <Card/>
             </div>
-            <h1>Hola mundo</h1>
+            
 
+            
         </div>
     )
+    
+
+    
 }
 
 export default Home;

@@ -5,6 +5,8 @@ import Home from '../src/Components/Home/Home';
 import { ROUTES } from './Helpers/RoutesPath';
 import NotFound from './Components/NotFound/NotFound'
 import Detail from './Components/Detail/Detail'
+import Create from './Components/Create/Create.jsx';
+import About from './Components/About/about';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>
        <Route path = {ROUTES.HOME} element={<Home/>}/>
        <Route path = {ROUTES.DETAIL} element={<Detail/>}/>
+       <Route path = {ROUTES.CREATE} element = {<Create />} />
+       <Route path = {ROUTES.ABOUT} element = {<About/>}/>
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
       </Routes>
       </div>
