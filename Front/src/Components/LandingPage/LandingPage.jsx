@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 const Landing = () => {
   return (
     <Container fluid className="landing-page">
-      <Row className="content">
+      <Row >
         <Col>
           <img className='logo' src={logo}></img>
         </Col>
