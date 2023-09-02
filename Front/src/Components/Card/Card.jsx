@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 
 
+
 function Card(props) {
    const{id, nombre, imagen, types}= props; //Estoy haciendo un distroctoring al props
     return (

@@ -19,9 +19,9 @@ function App() {
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>
        <Route path = {ROUTES.HOME} element={<Home/>}/>
        <Route path = {ROUTES.DETAIL} element={<Detail/>}/>
-       <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
        <Route path = {ROUTES.CREATE} element = {<Create />} />
        <Route path = {ROUTES.ABOUT} element = {<About/>}/>
+       <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
       </Routes>
       </div>
     </BrowserRouter>
