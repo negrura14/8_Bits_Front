@@ -21,7 +21,7 @@ export default function Detail() {
     return(
         <div>
             { 
-             Object.keys(detail).length>0&&<span>{detail.name}</span>
+             Object.keys(detail).length>0&&<span>{detail.id}</span>
             }
         </div>
     )
