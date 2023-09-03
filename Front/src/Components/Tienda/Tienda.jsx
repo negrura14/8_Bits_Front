@@ -15,6 +15,7 @@ function Tienda() {
   
 
   console.log("ESTO ES LO QUE ME MUESTRA EL TAMAÑO DE CARDS: ", filtDB);
+
   useEffect(() => {
     return async () => {
       try {
@@ -22,6 +23,7 @@ function Tienda() {
         const types = await axios("http://localhost:3001/pokemonsdb/types");
         setCards(data)
         setGender(types.data)
+
         } catch (error) {
             console.error("No se pudo obtener la información de los pokemons:", error);
         }
@@ -59,6 +61,7 @@ function Tienda() {
   }
 
 
+
   // Función para obtener los elementos correspondientes a la página actual.
   const getCurrentItems = () => {
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -82,6 +85,7 @@ function Tienda() {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
+
   const initial = ((currentPage * itemsPerPage)-itemsPerPage) + 1;
   const ending = (currentPage * itemsPerPage) < cards.length ? (currentPage * itemsPerPage) : cards.length;
   return (

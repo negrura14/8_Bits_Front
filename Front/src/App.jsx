@@ -1,20 +1,27 @@
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
-import Header from '../src/Components/LandingPage/LandingPage';
+import Landing from '../src/Components/LandingPage/LandingPage';
 import Home from '../src/Components/Home/Home';
-import DateTimeDisplay from './Components/Time/Time';
+import { ROUTES } from './Helpers/RoutesPath';
+import NotFound from './Components/NotFound/NotFound'
+import Detail from './Components/Detail/Detail'
+import Create from './Components/Create/Create.jsx';
+import About from './Components/About/about';
+
 
 function App() {
 
   return (
     <BrowserRouter>
       <div>
-        <div>
-          <DateTimeDisplay />
-        </div>
+        
       <Routes>
-       <Route exact path = '/' element={<Header/>}/>
-       <Route exact path = '/home' element={<Home/>}/>
+       <Route path = {ROUTES.LANDING} element={<Landing/>}/>
+       <Route path = {ROUTES.HOME} element={<Home/>}/>
+       <Route path = {ROUTES.DETAIL} element={<Detail/>}/>
+       <Route path = {ROUTES.CREATE} element = {<Create />} />
+       <Route path = {ROUTES.ABOUT} element = {<About/>}/>
+       <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
       </Routes>
       </div>
     </BrowserRouter>
