@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getGame } from '../../Redux/gameActions'
 
 
-export const Card = () => {
+function Card () {
     const dispatch = useDispatch()
     const {game} = useSelector(state=>state.game)
 
@@ -66,4 +66,4 @@ export const Card = () => {
 //         </div>
 //     );
 // };
-// export default Card;
+export default Card;
