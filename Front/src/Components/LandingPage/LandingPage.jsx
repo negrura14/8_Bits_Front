@@ -1,20 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {ROUTES} from '../../Helpers/RoutesPath'
 import './LandingPage.css'
+import logo from "../../Img/Logo.png"
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-const Header = () => {
+
+
+const Landing = () => {
   return (
-    <div className="landing-page">
-      <div className="fire"></div>
-      <div className="content">
-        <h1>8 - Bits </h1>
-        <p>Sumergete en el mundo Gamer</p>
-      <Link to={'/home'}>
-        <button className="btn-primary">START</button>
+    <Container fluid className="landing-page">
+      <Row >
+        <Col>
+          <img className='logo' src={logo}></img>
+        </Col>
+      </Row>
+      <Row>
+        <Col><p className='slogan'>Immerse yourself in the gaming world</p></Col>
+      </Row>
+      <Row>
+        <Col>
+        <Link to={ROUTES.HOME}>
+        <button className="btn-landing"><span> START
+  </span></button>
       </Link>
-      </div>
-    </div>
+      </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default Header;
+export default Landing;

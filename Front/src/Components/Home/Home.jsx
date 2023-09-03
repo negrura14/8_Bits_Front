@@ -1,12 +1,24 @@
 import './Home.css';
+import DateTimeDisplay from '../Time/Time'
+import { Card } from '../Card/Card';
+
 
 
 function Home() {
     return(
         <div className='home_container'>
-            <h1></h1>
+            <div>
+                <DateTimeDisplay />
+                <Card/>
+            </div>
+            
+
+            
         </div>
     )
+    
+
+    
 }
 
 export default Home;
