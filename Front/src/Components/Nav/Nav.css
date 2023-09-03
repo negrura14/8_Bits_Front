@@ -1,0 +1,22 @@
+.header {
+    background-color: #707070;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+}
+.navLink{
+    margin: 1rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.seachBar{
+    margin-right: 2rem;
+    margin-left: -2rem;
+}
+.imgNav{
+    width: 75px;
+    margin-right: -5rem;
+    margin-left: 1rem;
+}
