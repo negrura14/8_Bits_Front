@@ -1,6 +1,6 @@
 import './Home.css';
 import DateTimeDisplay from '../Time/Time'
-import { Card } from '../Card/Card';
+import Card from '../Card/Card';
 
 
 

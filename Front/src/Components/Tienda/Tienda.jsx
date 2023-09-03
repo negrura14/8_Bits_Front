@@ -14,12 +14,13 @@ function Tienda() {
   const [filtDB, setFiltDB ] = useState([])
   
 
+
   console.log("ESTO ES LO QUE ME MUESTRA EL TAMAÑO DE CARDS: ", filtDB);
 
   useEffect(() => {
     return async () => {
       try {
-        const {data}  = await axios("http://localhost:3001/pokemonsapi/pokemons");
+        const {data}  = await axios("http://localhost:3001/games");
         const types = await axios("http://localhost:3001/pokemonsdb/types");
         setCards(data)
         setGender(types.data)
