@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
-import {ROUTES} from '../../Helpers/RoutesPath';
 import { getGamesId } from "../../Redux/gameActions";
 import Loading from '../Loading/Loading'
 import './Detail.css';
@@ -9,9 +8,8 @@ import './Detail.css';
 
 export default function Detail() {
     const{id} = useParams();
-    console.log(id, "iddd");
     const dispatch = useDispatch()
-    const detail = useSelector(state => state.detail)
+    const detail = useSelector(state => state.game.detail)
     
     
 
@@ -22,7 +20,7 @@ export default function Detail() {
         // })
     },[dispatch, id])
     
-    
+    console.log(detail, "detaiiil");
     return(
         <div>
             
