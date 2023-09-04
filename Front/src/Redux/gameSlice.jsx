@@ -4,7 +4,7 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState:{
         game:[],
-        detail:{}
+        detail:[],
     },
     reducers:{
         getAllGame: (state, action) => {

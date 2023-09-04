@@ -20,7 +20,7 @@ function App() {
       <Routes>
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>
        <Route path = {ROUTES.HOME} element={<Home/>}/>
-       <Route path = {ROUTES.DETAIL} element={<Detail/>}/>
+       <Route path = "/detail/:id" element={<Detail/>}/>
        <Route path = {ROUTES.CREATE} element = {<Create />} />
        <Route path = {ROUTES.STORE} element = {<Tienda />} />
        <Route path = {ROUTES.ABOUT} element = {<About/>}/>
