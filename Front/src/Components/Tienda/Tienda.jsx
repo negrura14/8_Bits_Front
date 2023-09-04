@@ -64,7 +64,8 @@ function Tienda() {
       }
     }
     else {
-      setFiltDB([])
+      setCards(game);
+      console.log("esto pasa cuando presiono el boton: ", cards);
     }
   }
 
@@ -115,23 +116,18 @@ function Tienda() {
               </option>
           ))}
         </select>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'offer')}> 
-          <option value='' hidden> Sort By: Offer </option>
-          <option value="diezx">Hasta 10%</option>
-          <option value="quincex">Hata 15%</option>
-          <option value="veintex">Hasta 20%</option>
+        <select className='xBoton'onChange={(e) => handleOfChange(e, 'price')}> 
+          <option value='' hidden> Sort By: Price </option>
+          <option value="Asc">Ascendente</option>
+          <option value="Desc">Descendente</option>
         </select>
         <button className='xBoton'onClick={(e) => handleOfChange(e, 'todo')}>Show: <span className='xSpan'> 15 per page</span> </button>
       </div>
       <div className='cardFLex'>
                 {getCurrentItems().map((game) => {
                     return <CardT 
-                    game={game}
                     key={game.id}
-                    // id= {game.id} 
-                    // nombre= {game.name}
-                    // image= {game.image}
-                    // description= {game.description}
+                    game={game}
                     />
                 })}
             </div>

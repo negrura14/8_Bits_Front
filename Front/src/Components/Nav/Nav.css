@@ -11,9 +11,9 @@
     text-decoration: none;
     cursor: pointer;
 }
-.seachBar{
-    margin-right: 2rem;
-    margin-left: -2rem;
+.navContainer{
+    margin-right: -4rem;
+    margin-left: 4rem;
 }
 .imgNav{
     width: 75px;
