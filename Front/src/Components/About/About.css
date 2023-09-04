@@ -146,8 +146,10 @@
     color: #ba1f65;
 }
 
+
 .team-block{
     position:relative;
+    width: 60vh;
 }
 
 .team-block .inner-box{
@@ -349,12 +351,6 @@
   .wrapper::after {
     bottom: 0;
     opacity: 1;
-    background-image: linear-gradient(
-      to bottom,
-      transparent 46%,
-      rgba(12, 13, 19, 0.5) 68%,
-      rgba(12, 13, 19) 97%
-    );
     
     border-radius: 28px;
   }
@@ -372,12 +368,11 @@
     width: 100%;
     opacity: 0;
     transition: all 0.5s;
-    position: absolute;
     z-index: 1;
-    margin-top: -360px;
+    margin-top: -400px;
   }
   
   .cardRM:hover .character {
     opacity: 1;
-    transform: translate3d(0%, -30%, 100px);
+    transform: translate3d(0%, -40%, 0px);
   }
