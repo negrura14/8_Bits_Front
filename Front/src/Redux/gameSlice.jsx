@@ -5,6 +5,7 @@ export const gameSlice = createSlice({
     initialState:{
         game:[],
         detail:[],
+        filter: []
     },
     reducers:{
         getAllGame: (state, action) => {
@@ -13,12 +14,15 @@ export const gameSlice = createSlice({
         getGameById: (state,action) => {
             state.detail = action.payload
         },
-        getGameByName: (state,action) => {
+        getGameByName: (state, action) => {
             state.detail = action.payload
+        },
+        filterGames: (state, action) => {
+            state.filter = action.payload
         }
     }
 })
 
-export const {getAllGame, getGameById, getGameByName} = gameSlice.actions
+export const {getAllGame, getGameById, getGameByName, filterGames} = gameSlice.actions
 
 export default gameSlice.reducer
