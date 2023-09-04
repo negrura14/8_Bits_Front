@@ -14,7 +14,8 @@ export const getGame = () => async  (dispatch) =>{
   try {
       const response = await axios("http://localhost:3001/games");
       console.log("ESTO ES LO QUE ME ESTA TRAYENDO DESDE EL BACK: ", response.data);
-     return dispatch({type: getAllGame, payload: response.data});
+    //  return dispatch({type: getAllGame, payload: response.data});
+      return dispatch(getAllGame(response.data));
     } catch (error) {
       window.alert("Request failed:", error);
     }
