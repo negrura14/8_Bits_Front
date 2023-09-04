@@ -17,7 +17,7 @@ function Card () {
     <div className='containerF'>
         {game&&game.map((elem, i)=>{
             return(
-                <div class="item" key={i}>
+                <div className="item" key={i}>
     <div className="cardF" >
       <div className="circle circle2"></div>
       <div className="circle circle1"></div>
@@ -26,10 +26,10 @@ function Card () {
     <div className="content">
       <p>{elem.name}</p>
     </div>
-    <span class="top"></span>
-      <span class="right"></span>
-      <span class="bottom"></span>
-      <span class="left"></span>
+    <span className="top"></span>
+      <span className="right"></span>
+      <span className="bottom"></span>
+      <span className="left"></span>
   </div>
             )
         })}
