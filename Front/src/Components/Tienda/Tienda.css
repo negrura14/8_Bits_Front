@@ -1,8 +1,8 @@
 .cardFLex {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    margin: 20px 9rem;
+    gap: 0px;
+    margin: 20px 2rem;
 }
 .botones {
     width: 100%;
