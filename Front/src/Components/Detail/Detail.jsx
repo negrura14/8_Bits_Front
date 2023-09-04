@@ -8,14 +8,30 @@ import './Detail.css';
 
 export default function Detail() {
     const dispatch = useDispatch()
-    const {detail} = useSelector(state => state.game)
+    const detail = useSelector(state => state.game)
 
     useEffect(() =>{
-        dispatch(getGamesById())
-        // return(function cleanUp(){
-        //     dispatch(getGameById('clear'))
-        // })
-    },[])
+        dispatch(getGamesById(id))
+        return(function cleanUp(){
+            dispatch(getGamesById('clear'))
+        })
+    },[dispatch, id])
+
+    
+    // if (Object.keys(detail).length === 0) {
+    //     return <div>Loading...</div>;
+    // }
+
+    // // Desestructura los datos del juego que necesitas
+    // const { name, image } = detail;
+    // return (
+    //     <div>
+    //         <h2>{name}</h2>
+    //         <img src={image} alt={name} />
+
+    //         <Link to={ROUTES.HOME}>Back to Home</Link>
+    //     </div>
+    // )
 
 
     return(
@@ -23,6 +39,13 @@ export default function Detail() {
             { 
              Object.keys(detail).length>0&&<span>{detail.id}</span>
             }
+            <div>
+            <h2>{name}</h2>
+            <img src={image} alt={name} />
+
+            <Link to={ROUTES.HOME}>Back to Home</Link>
+        
+            </div>
         </div>
     )
 }
