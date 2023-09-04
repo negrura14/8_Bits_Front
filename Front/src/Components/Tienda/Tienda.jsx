@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import Card from '../Card/Card';
+// import axios from 'axios';
+import CardT from '../Card/CardT';
 import './Tienda.css';
 import Pagination from './Paginacion';
-
+import { useDispatch, useSelector } from 'react-redux'
+import { getGame } from '../../Redux/gameActions'
 
 function Tienda() {
   const [ cards, setCards] = useState([]);
@@ -12,24 +13,30 @@ function Tienda() {
   const [filteredGames, setFilteredGames] = useState([]);
   const itemsPerPage = 15;
   const [filtDB, setFiltDB ] = useState([])
-  
+  const dispatch = useDispatch()
+  const {game} = useSelector(state=>state.game)
 
-
-  console.log("ESTO ES LO QUE ME MUESTRA EL TAMAÑO DE CARDS: ", filtDB);
-
+  useEffect(()=>{
+      dispatch(getGame())
+  },[1])
   useEffect(() => {
-    return async () => {
-      try {
-        const {data}  = await axios("http://localhost:3001/games");
-        const types = await axios("http://localhost:3001/pokemonsdb/types");
-        setCards(data)
-        setGender(types.data)
+    setCards(game);
+  }, [game]);
 
-        } catch (error) {
-            console.error("No se pudo obtener la información de los pokemons:", error);
-        }
-    };
-  }, [] );
+
+  // useEffect(() => {
+  //   return async () => {
+  //     try {
+  //       const {data}  = await axios("http://localhost:3001/games");
+  //       const types = await axios("http://localhost:3001/pokemonsdb/types");
+  //       setCards(data)
+  //       setGender(types.data)
+
+  //       } catch (error) {
+  //           console.error("No se pudo obtener la información de los pokemons:", error);
+  //       }
+  //   };
+  // }, [] );
 
   useEffect(() => {
     setFilteredGames(cards);
@@ -118,12 +125,13 @@ function Tienda() {
       </div>
       <div className='cardFLex'>
                 {getCurrentItems().map((game) => {
-                    return <Card key={game.id}
-                    id= {game.id} 
-                    nombre= {game.nombre}
-                    tipo={game.types} 
-                    imagen= {game.imagen}
-                    types= {game.types}
+                    return <CardT 
+                    game={game}
+                    key={game.id}
+                    // id= {game.id} 
+                    // nombre= {game.name}
+                    // image= {game.image}
+                    // description= {game.description}
                     />
                 })}
             </div>
