@@ -3,7 +3,7 @@ const validate = (input,names) => {
     let errors = {};
 
     //name
-    let nameValidation = names.find((game) => game === input.name);
+    let nameValidation = names.find((game) => game.name.toLowerCase() === input.name.toLowerCase());
     if (nameValidation) {
         errors.name = "There is already a game with the same name, please choose another one!";
     }
