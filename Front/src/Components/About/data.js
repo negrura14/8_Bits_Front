@@ -1,5 +1,7 @@
 import avatar from "../../Img/avatarAC.png";
 import real from "../../Img/realAC.png";
+import GeraPx from "../../Img/GeraPx.png"
+import GeraPhoto from "../../Img/GeraPhoto.png"
 
 const data = [
 
@@ -34,7 +36,11 @@ const data = [
         
         "linkedIn": "https://www.linkedin.com/feed/",
         
-        "twitter": "null"
+        "twitter": "null",
+
+        "avPhoto": GeraPx,
+        
+        "rePhoto": GeraPhoto
         
         },
         
