@@ -15,19 +15,25 @@ function Card () {
     },[])
 
   return (
-    <Link className='link_card' to={ROUTES.DETAIL}>
+    
     
       <div className='containerF'>
           {game&&game.map((elem, i)=>{
               return(
                   <div className="item" key={i}>
+                  
+          <Link className='link_card' to={ROUTES.DETAIL}>
         <div className="cardF" >
             <div className="circle circle2"></div>
             <div className="circle circle1"></div>
             <img  className="imgF" src={elem.image} />
           </div>
+          </Link>
+          
           <div className="content">
             <p>{elem.name}</p>
+            
+    
           </div>
           <span className="top"></span>
             <span className="right"></span>
@@ -38,7 +44,6 @@ function Card () {
           })}
           
       </div>
-    </Link>
   )
 }
 

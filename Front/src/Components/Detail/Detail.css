@@ -1,0 +1,124 @@
+
+#banner {
+    background: center url(../../Img/detail.jpg);
+    background-size:contain;
+    width: 100%;
+    height: 91vh;
+    padding: 6.1em 0;
+  }
+  #banner_content_wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #banner_content_wrapper #poster {
+    width: 500px;
+    position: relative;
+    float: left;
+  }
+  #poster img {
+    max-width: 100%;
+    border-radius: 0.5em;
+  }
+  
+  #banner_content_wrapper .content {
+    float: left;
+    width: 500px;
+    max-width: 90%;
+    margin-left: 100px;
+  }
+  .contentD{
+    background: rgba(0,0,0,.8);
+    padding:1em;
+    margin-left:0px;
+    border-radius:7px;
+  }
+  .contentD .titleD {
+    display: inline;
+    font-size: 1.7em;
+    color: white;
+  }
+  .contentD .description {
+    color: #999;
+    font-size: 1em;
+    line-height: 2;
+  }
+  .bbar{
+    color: white;
+  }
+
+  .price{
+    color: #178654;
+    font-size: 1.4em;
+  }
+  .contentD .infoD {
+    color: #ba1f65;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-top: 2em;
+  }
+  .contentD .infoD span {
+    margin: 0.5em;
+  }
+  
+  .raw {
+    width: 100%;
+    margin: auto;
+  }
+  .raw .post {
+    width: 14%;
+    min-height: 260px;
+    float: left;
+    margin-right: 2.5%;
+  }
+  
+  .raw .post img {
+    width: 100%;
+    min-height: 260px;
+    max-width: 100%;
+    border-radius: 0.3em;
+  }
+  .raw .post .titleD {
+    font-size: 1.25em;
+    margin: 1em 0 0 0;
+    color: #333333;
+  }
+  .raw .post .post_info {
+    font-size: 0.75em;
+    color: #777;
+    margin: 0.5em 0;
+  }
+  #top_movies {
+    border-bottom: 1px solid #d4d4d4;
+  }
+  #top_movies,
+  #top_shows {
+    padding: 3em 0;
+  }
+  
+  #top_movies header h2,
+  #top_movies .view_more {
+    display: inline;
+  }
+  
+  #top_shows header h2,
+  #top_shows .view_more {
+    display: inline;
+  }
+  #top_movies header,
+  #top_shows header {
+    padding: 0 0 1.5em 0;
+  }
+  
+  #top_movies header h2,
+  #top_shows header h2 {
+    font-size: 1.7em;
+  }
+  #top_movies header .view_more,
+  #top_shows header .view_more {
+    float: right;
+    font-size: 0.8em;
+    margin: 1.7em 3.5% 0 0;
+  }
