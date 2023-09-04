@@ -1,64 +1,131 @@
-import React, { useEffect, useState } from 'react'
-// import axios from 'axios';
-import CardT from '../Card/CardT';
-import './Tienda.css';
-import Pagination from './Paginacion';
-import { useDispatch, useSelector } from 'react-redux'
-import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions'
+// import React, { useEffect, useState } from 'react'
+// // import axios from 'axios';
+// import CardT from '../Card/CardT';
+// import './Tienda.css';
+// import Pagination from './Paginacion';
+// import { useDispatch, useSelector } from 'react-redux'
+// import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions'
 
-function Tienda() {
-  const [ cards, setCards] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filteredGames, setFilteredGames] = useState([]);
-  const itemsPerPage = 15;
-  const [filtDB, setFiltDB ] = useState([])
-  const dispatch = useDispatch()
-  const {game} = useSelector(state=>state.game)
-  const {genre} = useSelector((state) => state.gender);
-  const url = [...filtDB];
-console.log("ESTO ES LO QUE MUESTRA GENDER:", [...filtDB]);
+// function Tienda() {
+//   const [ cards, setCards] = useState([]);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [filteredGames, setFilteredGames] = useState([]);
+//   const itemsPerPage = 15;
+//   const [filtDB, setFiltDB ] = useState([])
+//   const dispatch = useDispatch()
+//   const {game} = useSelector(state=>state.game)
+//   const {genre} = useSelector((state) => state.gender);
+//   const url = [...filtDB];
+// console.log("ESTO ES LO QUE MUESTRA GENDER:", [...filtDB]);
 
-  useEffect(()=>{
-      dispatch(getGame())
-      dispatch(getGenders())
-      dispatch(filterGamesAction(url))
-      setCards(game);
-      setFilteredGames(cards);
-      setCurrentPage(1); // Restablecer la página a 1 al cambiar los Pokémon filtrados.
-  },[game, cards, url])
+//   useEffect(()=>{
+//       dispatch(getGame())
+//       dispatch(getGenders())
+//       dispatch(filterGamesAction(url))
+//       setCards(game);
+//       setFilteredGames(cards);
+//       setCurrentPage(1); // Restablecer la página a 1 al cambiar los Pokémon filtrados.
+//   },[game, cards, url])
   
 
  
 
-  const handleOfChange = (e, buttonFiler) => {
-    if(buttonFiler !== 'todo'){
-      const indiceAReemplazar = filtDB.findIndex((str) => str.includes(buttonFiler));
-      if(filtDB.length === 0){
-        setFiltDB([...filtDB, `${buttonFiler}=${e.target.value}`])
-      }
-      else if(indiceAReemplazar !== -1){
-        const newFiltDB = [...filtDB];
-        if(indiceAReemplazar === 0){
-          newFiltDB[indiceAReemplazar] = `${buttonFiler}=${e.target.value}`;
-        }
-        else{
-          newFiltDB[indiceAReemplazar] = `&${buttonFiler}=${e.target.value}`;
-        }
-        setFiltDB(newFiltDB);
-      }
-      else {
-        setFiltDB([...filtDB, `&${buttonFiler}=${e.target.value}`]);
-      }
-    }
-    else {
-      setCards(game);
-      console.log("esto pasa cuando presiono el boton: ", cards);
-    }
-  }
+//   const handleOfChange = (e, buttonFiler) => {
+//     if(buttonFiler !== 'todo'){
+//       const indiceAReemplazar = filtDB.findIndex((str) => str.includes(buttonFiler));
+//       if(filtDB.length === 0){
+//         setFiltDB([...filtDB, `${buttonFiler}=${e.target.value}`])
+//       }
+//       else if(indiceAReemplazar !== -1){
+//         const newFiltDB = [...filtDB];
+//         if(indiceAReemplazar === 0){
+//           newFiltDB[indiceAReemplazar] = `${buttonFiler}=${e.target.value}`;
+//         }
+//         else{
+//           newFiltDB[indiceAReemplazar] = `&${buttonFiler}=${e.target.value}`;
+//         }
+//         setFiltDB(newFiltDB);
+//       }
+//       else {
+//         setFiltDB([...filtDB, `&${buttonFiler}=${e.target.value}`]);
+//       }
+//     }
+//     else {
+//       setCards(game);
+//       console.log("esto pasa cuando presiono el boton: ", cards);
+//     }
+//   }
 
 
 
-  // Función para obtener los elementos correspondientes a la página actual.
+//   // Función para obtener los elementos correspondientes a la página actual.
+//   const getCurrentItems = () => {
+//     const indexOfLastItem = currentPage * itemsPerPage;
+//     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+//     return filteredGames.slice(indexOfFirstItem, indexOfLastItem);
+//   };
+
+//   const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
+
+
+//   // Función para cambiar a la siguiente página.
+//   const nextPage = () => {
+//     if (currentPage < totalPages) {
+//       setCurrentPage((prevPage) => prevPage + 1);
+//     }
+//   };
+
+//   // Función para cambiar a la página anterior.
+//   const prevPage = () => {
+//     if (currentPage > 1) {
+//       setCurrentPage((prevPage) => prevPage - 1);
+//     }
+//   };
+
+//   const initial = ((currentPage * itemsPerPage)-itemsPerPage) + 1;
+//   const ending = (currentPage * itemsPerPage) < cards.length ? (currentPage * itemsPerPage) : cards.length;
+ 
+import React, { useEffect, useState } from 'react';
+import CardT from '../Card/CardT';
+import './Tienda.css';
+import Pagination from './Paginacion';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
+
+function Tienda() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+  const [filtDB, setFiltDB] = useState([]);
+
+  const dispatch = useDispatch();
+  const { game } = useSelector((state) => state.game);
+  const { genre } = useSelector((state) => state.gender);
+
+  useEffect(() => {
+    dispatch(getGame());
+    dispatch(getGenders());
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Filtrar los juegos basados en filtDB y almacenarlos en filteredGames.
+    const filteredGames = game.filter((gameItem) => {
+      // Lógica de filtrado aquí en función de filtDB.
+      // Puedes modificar esta lógica según tus necesidades.
+      return true;
+    });
+
+    // Establecer el estado de filteredGames y currentPage.
+    setFilteredGames(filteredGames);
+    setCurrentPage(1);
+  }, [game, filtDB]);
+
+  const [filteredGames, setFilteredGames] = useState([]);
+
+  const handleOfChange = (e, buttonFilter) => {
+    // Lógica para actualizar filtDB en función de los filtros seleccionados.
+    // Asegúrate de actualizar filtDB de manera adecuada.
+  };
+
   const getCurrentItems = () => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -67,23 +134,22 @@ console.log("ESTO ES LO QUE MUESTRA GENDER:", [...filtDB]);
 
   const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
 
-
-  // Función para cambiar a la siguiente página.
   const nextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
-  // Función para cambiar a la página anterior.
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
-  const initial = ((currentPage * itemsPerPage)-itemsPerPage) + 1;
-  const ending = (currentPage * itemsPerPage) < cards.length ? (currentPage * itemsPerPage) : cards.length;
+  const initial = ((currentPage * itemsPerPage) - itemsPerPage) + 1;
+  const ending = (currentPage * itemsPerPage) < filteredGames.length ? (currentPage * itemsPerPage) : filteredGames.length;
+
+
   return (
     <>
       <div className='botones'>

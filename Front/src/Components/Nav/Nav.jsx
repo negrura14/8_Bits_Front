@@ -11,6 +11,7 @@ function Nav() {
             <NavLink className='navLink' to='/home'>Home</NavLink>
             <NavLink className='navLink' to='/store'>Store</NavLink>
             <NavLink className='navLink' to='/About'>About us</NavLink>
+            <NavLink className='navLink' to='/create'>Create</NavLink>
         </nav>
         <SearchBar ></SearchBar>
     </div>

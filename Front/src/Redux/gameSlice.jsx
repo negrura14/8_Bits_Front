@@ -5,6 +5,7 @@ export const gameSlice = createSlice({
     initialState:{
         game:[],
         detail:[],
+        filter:[]
     },
     reducers:{
         getAllGame: (state, action) => {
