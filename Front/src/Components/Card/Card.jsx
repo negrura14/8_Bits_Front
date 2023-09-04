@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGame } from '../../Redux/gameActions'
+import { ROUTES } from '../../Helpers/RoutesPath'
 
 
 function Card () {
@@ -14,27 +15,30 @@ function Card () {
     },[])
 
   return (
-    <div className='containerF'>
-        {game&&game.map((elem, i)=>{
-            return(
-                <div className="item" key={i}>
-    <div className="cardF" >
-      <div className="circle circle2"></div>
-      <div className="circle circle1"></div>
-      <img  className="imgF" src={elem.image} />
-    </div>
-    <div className="content">
-      <p>{elem.name}</p>
-    </div>
-    <span className="top"></span>
-      <span className="right"></span>
-      <span className="bottom"></span>
-      <span className="left"></span>
-  </div>
-            )
-        })}
-        
-    </div>
+    <Link className='link_card' to={ROUTES.DETAIL}>
+    
+      <div className='containerF'>
+          {game&&game.map((elem, i)=>{
+              return(
+                  <div className="item" key={i}>
+        <div className="cardF" >
+            <div className="circle circle2"></div>
+            <div className="circle circle1"></div>
+            <img  className="imgF" src={elem.image} />
+          </div>
+          <div className="content">
+            <p>{elem.name}</p>
+          </div>
+          <span className="top"></span>
+            <span className="right"></span>
+            <span className="bottom"></span>
+            <span className="left"></span>
+        </div>
+              )
+          })}
+          
+      </div>
+    </Link>
   )
 }
 
