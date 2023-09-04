@@ -22,7 +22,7 @@ function Card () {
               return(
                   <div className="item" key={i}>
                   
-          <Link className='link_card' to={ROUTES.DETAIL}>
+          <Link className='link_card' to={`${ROUTES.DETAIL}/${elem.id}`}>
         <div className="cardF" >
             <div className="circle circle2"></div>
             <div className="circle circle1"></div>

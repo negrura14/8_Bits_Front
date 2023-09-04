@@ -20,7 +20,7 @@ export const getGame = () => async  (dispatch) =>{
     }
 }
 
-export const getGamesById = (id) => async (dispatch) =>{ 
+export const getGamesId = (id) => async (dispatch) =>{ 
     try {
         const response = await axios(`http://localhost:3001/games/${id}`);
         return dispatch(getGameById(response.data));

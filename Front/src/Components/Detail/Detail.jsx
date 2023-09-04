@@ -2,45 +2,50 @@ import React, {useEffect} from "react";
 import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import {ROUTES} from '../../Helpers/RoutesPath';
-import { getGamesById } from "../../Redux/gameActions";
+import { getGamesId } from "../../Redux/gameActions";
 import Loading from '../Loading/Loading'
 import './Detail.css';
 
 
-export default function Detail({id}) {
+export default function Detail() {
+    const{id} = useParams();
+    console.log(id, "iddd");
     const dispatch = useDispatch()
-    const {game} = useSelector(state => state.game)
+    const detail = useSelector(state => state.detail)
+    
+    
 
     useEffect(() =>{
-        dispatch(getGamesById(id))
+        dispatch(getGamesId(id))
         // return(function cleanUp(){
         //     dispatch(getGamesById('clear'))
         // })
     },[dispatch, id])
-
+    
+    
     return(
         <div>
             
-            { game ? 
+            { detail ? 
                 <section id="banner" class="clearfix">
       <div id="banner_content_wrapper">
         <div id="poster">
           <img
             class="featured_image"
-            src={game[0].image}
+            src={detail.image}
           />
         </div>
         <div class="contentD">
-          <h2 class="titleD">{game[0].name}</h2>
+          <h2 class="titleD">{detail.name}</h2>
           <p class="infoD">
-          {game[0].review} <span className="bbar">|</span>  <span className="price">Price: {game[0].price} $</span>
+          {detail.review} <span className="bbar">|</span>  <span className="price">Price: {detail.price} $</span>
           </p>
           
           <p class="description">
-          {game[0].description}
+          {detail.description}
           </p>
           <p class="infoD">
-          {game[0].releaseDate} <span className="bbar">|</span>{game[0].genre} <span className="bbar">|</span>{game[0].supportedPlatforms}
+          {detail.releaseDate} <span className="bbar">|</span>{detail.genre} <span className="bbar">|</span>{detail.supportedPlatforms}
           </p>
         </div>
       </div>
