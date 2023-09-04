@@ -36,6 +36,22 @@
     transform-origin: center;
     animation: glowing_401 5s linear infinite;
   }
+  .link_card{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+  padding: 20px;
+  cursor: pointer;
+  }
   .cardF {
     
     position: absolute;

@@ -22,25 +22,29 @@ export default function Detail({id}) {
         <div>
             
             { game ? 
-                <div className="container">
-                    <div className="details_container">
-                        <div className="header">
-                            <img className="img "src={game[0].image} alt='img'></img>
-                            <h2 className="title">{game[0].name}</h2>
-                        </div>
-
-
-                        <div className="description">
-                            <h3>{game[0].description}</h3>
-                            <h3>{game[0].releaseDate}</h3>
-                            <h3>{game[0].supportedPlatforms}</h3>
-                            <h3>{game[0].genre}</h3>
-                            <h3>{game[0].price}</h3>
-                            <h3>{game[0].review}</h3>
-                            <Link to={ROUTES.HOME}><button className="button_home">Back to Home</button></Link>
-                        </div>
-                    </div>
-                </div>
+                <section id="banner" class="clearfix">
+      <div id="banner_content_wrapper">
+        <div id="poster">
+          <img
+            class="featured_image"
+            src={game[0].image}
+          />
+        </div>
+        <div class="contentD">
+          <h2 class="titleD">{game[0].name}</h2>
+          <p class="infoD">
+          {game[0].review} <span className="bbar">|</span>  <span className="price">Price: {game[0].price} $</span>
+          </p>
+          
+          <p class="description">
+          {game[0].description}
+          </p>
+          <p class="infoD">
+          {game[0].releaseDate} <span className="bbar">|</span>{game[0].genre} <span className="bbar">|</span>{game[0].supportedPlatforms}
+          </p>
+        </div>
+      </div>
+    </section>
                 :  (<Loading/>) 
             }
         </div>
