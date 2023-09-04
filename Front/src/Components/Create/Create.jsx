@@ -141,7 +141,7 @@ export default function Create() {
         
         
         return(
-            <div>
+            <div className="basicStyle">
             <h1>Create Game</h1>
 
             <form onSubmit={(event) => sumbitHandler(event)}>
