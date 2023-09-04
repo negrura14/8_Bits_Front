@@ -13,12 +13,16 @@ export const gameSlice = createSlice({
         getGameById: (state,action) => {
             state.detail = action.payload
         },
+        clearDetail: (state) => {
+            state.detail = []; // Establece detail en un objeto vacío al llamar a clearDetail
+        },
+        
         getGameByName: (state,action) => {
             state.detail = action.payload
         }
     }
 })
 
-export const {getAllGame, getGameById, getGameByName} = gameSlice.actions
+export const {getAllGame, getGameById, getGameByName, clearDetail} = gameSlice.actions
 
 export default gameSlice.reducer
