@@ -1,13 +1,13 @@
 import './Card.css'
 import {Link} from 'react-router-dom'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getGame } from '../../Redux/gameActions'
+import React from 'react'
+import {  useSelector } from 'react-redux'
+// import { getGame } from '../../Redux/gameActions'
 import { ROUTES } from '../../Helpers/RoutesPath'
 
 
 function Card () {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const {game} = useSelector(state=>state.game)
 
     // useEffect(()=>{
