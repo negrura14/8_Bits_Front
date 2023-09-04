@@ -5,11 +5,15 @@ import Card from '../Card/Card';
 
 
 function Home() {
+    useEffect(()=>{
+        dispatch(getGame())
+      },[]) 
     return(
         <div className='home_container'>
             <div>
                 <DateTimeDisplay />
                 <Card/>
+             
             </div>
             
 

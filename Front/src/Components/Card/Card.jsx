@@ -10,9 +10,9 @@ function Card () {
     const dispatch = useDispatch()
     const {game} = useSelector(state=>state.game)
 
-    useEffect(()=>{
-        dispatch(getGame())
-    },[])
+    // useEffect(()=>{
+    //     dispatch(getGame())
+    // },[])
 
   return (
     

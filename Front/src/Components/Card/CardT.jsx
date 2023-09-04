@@ -6,11 +6,13 @@ import { ROUTES } from '../../Helpers/RoutesPath'
 
 function Card (props) {
 const {game} = props;
+// console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game.id);
     return (    
         <div className='containerF'>
                 {/* {game&&game.map((elem, i)=>{ */}
                     {/* return( */}
             <div className="item" key={game.id}>
+                    <Link className='link_card' to={ROUTES.DETAIL + "/" + game.id}>
                 <div className="cardF" >
                     <div className="circle circle2"></div>
                     <div className="circle circle1"></div>
@@ -23,6 +25,7 @@ const {game} = props;
                 <span className="right"></span>
                 <span className="bottom"></span>
                 <span className="left"></span>
+            </Link>
             </div>
                 {/* ) */}
             {/* })} */}

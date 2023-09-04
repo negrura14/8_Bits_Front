@@ -4,44 +4,31 @@ import CardT from '../Card/CardT';
 import './Tienda.css';
 import Pagination from './Paginacion';
 import { useDispatch, useSelector } from 'react-redux'
-import { getGame } from '../../Redux/gameActions'
+import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions'
 
 function Tienda() {
   const [ cards, setCards] = useState([]);
-  const [ gender, setGender ] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredGames, setFilteredGames] = useState([]);
   const itemsPerPage = 15;
   const [filtDB, setFiltDB ] = useState([])
   const dispatch = useDispatch()
   const {game} = useSelector(state=>state.game)
+  const {genre} = useSelector((state) => state.gender);
+  const url = [...filtDB];
+console.log("ESTO ES LO QUE MUESTRA GENDER:", [...filtDB]);
 
   useEffect(()=>{
       dispatch(getGame())
-  },[1])
-  useEffect(() => {
-    setCards(game);
-  }, [game]);
+      dispatch(getGenders())
+      dispatch(filterGamesAction(url))
+      setCards(game);
+      setFilteredGames(cards);
+      setCurrentPage(1); // Restablecer la página a 1 al cambiar los Pokémon filtrados.
+  },[game, cards, url])
+  
 
-
-  // useEffect(() => {
-  //   return async () => {
-  //     try {
-  //       const {data}  = await axios("http://localhost:3001/games");
-  //       const types = await axios("http://localhost:3001/pokemonsdb/types");
-  //       setCards(data)
-  //       setGender(types.data)
-
-  //       } catch (error) {
-  //           console.error("No se pudo obtener la información de los pokemons:", error);
-  //       }
-  //   };
-  // }, [] );
-
-  useEffect(() => {
-    setFilteredGames(cards);
-    setCurrentPage(1); // Restablecer la página a 1 al cambiar los Pokémon filtrados.
-  }, [cards]);
+ 
 
   const handleOfChange = (e, buttonFiler) => {
     if(buttonFiler !== 'todo'){
@@ -110,7 +97,7 @@ function Tienda() {
         <select className='xBoton'onChange={(e) => handleOfChange(e, 'gender')}>
           <option value='' hidden> Sort By: Gender</option>
           <option value="allRating">Todos los Tipos</option>
-          {gender && gender.map(type => (
+          {genre && genre.map(type => (
               <option key={type.id} value={type.name}> 
                   {type.name}
               </option>
