@@ -4,6 +4,8 @@ import GeraPx from "../../Img/GeraPx.png"
 import GeraPhoto from "../../Img/GeraPhoto.png"
 import VicPhoto from "../../Img/VicPhoto.png"
 import VicPx from "../../Img/VicPx.png"
+import Emanuelpx from '../../Img/Emanuelpx.png'
+import emanuelPhoto from '../../Img/EmanuelPhoto.png'
 
 const data = [
 
@@ -78,6 +80,26 @@ const data = [
         
         "rePhoto": VicPhoto
             
-            }]
+            },
+            {
+
+                "name": "Emanuel Nieto",
+                
+                "about": "Hello! I'm Emanuel Nieto, a 32 year old from Argentina I do contact sports, I like to spend time with my family, I like the gamer world",
+                
+                "github": "https://github.com/negrura14 ",
+                
+                "instragram": "https://www.instagram.com/el.negro.nieto ",
+                
+                "linkedIn": "https://www.linkedin.com/in/emanuel-nieto-230aab264/",
+                
+                "twitter": "null",
+                "avPhoto": Emanuelpx,
+            
+            "rePhoto": emanuelPhoto
+                
+                }
+        
+        ]
 
 export default data;
