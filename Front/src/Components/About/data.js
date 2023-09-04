@@ -2,6 +2,8 @@ import avatar from "../../Img/avatarAC.png";
 import real from "../../Img/realAC.png";
 import GeraPx from "../../Img/GeraPx.png"
 import GeraPhoto from "../../Img/GeraPhoto.png"
+import VicPhoto from "../../Img/VicPhoto.png"
+import VicPx from "../../Img/VicPx.png"
 
 const data = [
 
@@ -58,6 +60,24 @@ const data = [
         
         "twitter": "null"
         
-        }]
+        },
+        {
+
+            "name": "Victor Canchis",
+            
+            "about": "Hello! I'm Víctor Canchis, a 23 year old from Venezuela with a passion for both football and programming. I'm enthusiastic about continuously expanding my knowledge and skills in the field of programming.",
+            
+            "github": "https://github.com/VictorC1707 ",
+            
+            "instragram": "https://instagram.com/victorcanchis7?igshid=ZGUzMzM3NWJiOQ== ",
+            
+            "linkedIn": "https://www.linkedin.com/in/victor-canchis-0055b91b0",
+            
+            "twitter": "null",
+            "avPhoto": VicPx,
+        
+        "rePhoto": VicPhoto
+            
+            }]
 
 export default data;
