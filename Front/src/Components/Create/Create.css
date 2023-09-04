@@ -1,3 +1,4 @@
+
 .login-box {
     position: absolute;
     top: 20%;
@@ -310,4 +311,4 @@ option {
   .custom-checkbox:checked ~ .checkmark:after {
     animation: checkAnim 0.2s forwards;
   }
-  
+

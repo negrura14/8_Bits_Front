@@ -12,14 +12,11 @@ import Nav from './Components/Nav/Nav.jsx'
 
 
 function App() {
-  // const {pathname} = useLocation();
-  // const isLoginPage = location.pathname === '/';
+  const location = useLocation();
+  const main = location.pathname === '/';
   return (
-    <BrowserRouter>
-      <div>
-      {/* {!isLoginPage && <Nav/>} */}
-      {/* { pathname !== '/' && <Nav/>} */}
-      <Nav/>
+    <div>
+      {!main && <Nav/>}
       <Routes>
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>
        <Route path = {ROUTES.HOME} element={<Home/>}/>
@@ -29,9 +26,7 @@ function App() {
        <Route path = {ROUTES.ABOUT} element = {<About/>}/>
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
       </Routes>
-      </div>
-    </BrowserRouter>
-     
+    </div>
   )
 }
 
