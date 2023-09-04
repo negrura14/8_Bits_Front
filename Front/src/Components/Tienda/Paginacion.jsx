@@ -8,8 +8,8 @@ const Pagination = ({ currentPage, totalPages, onNextPage, onPrevPage }) => {
   
   
   return (
-    <div className='container'>
-      <button className='paginationButton' onClick={onPrevPage} disabled={currentPage === 1}>A</button>
+    <div className='data-pagination'>
+      <button className='paginationButton' onClick={onPrevPage} disabled={currentPage === 1}><i class="fa-solid fa-chevron-left"></i></button>
       <span className='numeration'>
         {/* {currentPage} de {totalPages} */}
         {pageNumbers.map((pageNumber) => (
@@ -18,7 +18,7 @@ const Pagination = ({ currentPage, totalPages, onNextPage, onPrevPage }) => {
           </span>
         ))}
       </span>
-      <button className='paginationButton' onClick={onNextPage} disabled={currentPage === totalPages}>S</button>
+      <button className='paginationButton' onClick={onNextPage} disabled={currentPage === totalPages}><i class="fa-solid fa-chevron-right"></i></button>
     </div>
   );
 };

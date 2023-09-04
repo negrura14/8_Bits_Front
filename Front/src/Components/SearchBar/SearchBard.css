@@ -1,0 +1,85 @@
+
+
+.input_searchBar {
+    padding: 2px;
+    margin-right: 2px;
+    border: 2px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+    color: #555;
+    outline: none;
+  }
+  .input_searchBar:focus {
+    
+    border-color: #178654;
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 153, 0.25);
+  }
+
+
+   .btn_searchBar {
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #090909;
+    padding: 3px;
+    font-size: 16px;
+    border-radius: 0em 0.5em 0.5em 0em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+  }
+  
+   .btn_searchBar:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5,
+               inset -4px -4px 12px #ffffff;
+  }
+  
+   .btn_searchBar:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+  }
+  
+   .btn_searchBar:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color:  #178654;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+  }
+  
+   .btn_searchBar:hover {
+    color: #ffffff;
+    border: 1px solid  #178654;
+  }
+  
+   .btn_searchBar:hover:before {
+    top: -35%;
+    background-color:  #178654;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+  }
+  
+   .btn_searchBar:hover:after {
+    top: -45%;
+    background-color:  #178654;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+  }
+  
