@@ -8,25 +8,27 @@ import Emanuelpx from '../../Img/Emanuelpx.png'
 import emanuelPhoto from '../../Img/EmanuelPhoto.png'
 import Stevenspx from '../../Img/Stevenspx.png'
 import StevensPhoto from '../../Img/StevensPhoto.png'
+import AleTReal from '../../Img/AleTReal.png'
+import AleT from '../../Img/AleT.png'
 
 const data = [
 
     {
     
-    "name": "Agustin Camuzzi",
-    
-    "about": "I am from San Luis, Argentina and I have 25 years old, currently working in a frozen and processed food company. I also practice kickboxing and MMA, wich is my biggest passion in my life",
-    
-    "github": "https://github.com/Camuzzi ",
-    
-    "instragram":"https://www.instagram.com/aguscamuzzi/ ",
-    
-    "linkedIn":"www.linkedin.com/in/agustin-camuzzi-3a9b81272",
-    
-    "twitter": "null",
+        "name": "Agustin Camuzzi",
+        
+        "about": "I am from San Luis, Argentina and I have 25 years old, currently working in a frozen and processed food company. I also practice kickboxing and MMA, wich is my biggest passion in my life",
+        
+        "github": "https://github.com/Camuzzi ",
+        
+        "instragram":"https://www.instagram.com/aguscamuzzi/ ",
+        
+        "linkedIn":"www.linkedin.com/in/agustin-camuzzi-3a9b81272",
+        
+        "twitter": "null",
 
-    "avPhoto": avatar,
-    "rePhoto": real
+        "avPhoto": avatar,
+        "rePhoto": real
 
     
     },
@@ -48,64 +50,83 @@ const data = [
         
         "rePhoto": GeraPhoto
         
-        },
+    },
         
-        {
+    {
         
-            "name": "Stevens Fajardo",
-        
-            "about": "I am from Venezuela, but actually livin in Spain, I have 38 year old, work in  of delivery man . I want continue learning in the field of programming and technology,   I like trainning in the gym, watch movies, enjoy the nature, and create good memories with my family.",
-        
-            "github": " https://github.com/SteveFaj ",
-        
-            "instragram": "https://www.instagram.com/fajardo_steve/ ",
-        
-            "linkedIn": "www.linkedin.com/in/stevens-fajardo-a32144248",
-        
-            "twitter": "null", 
+        "name": "Stevens Fajardo",
+    
+        "about": "I am from Venezuela, but actually livin in Spain, I have 38 year old, work in  of delivery man . I want continue learning in the field of programming and technology,   I like trainning in the gym, watch movies, enjoy the nature, and create good memories with my family.",
+    
+        "github": " https://github.com/SteveFaj ",
+    
+        "instragram": "https://www.instagram.com/fajardo_steve/ ",
+    
+        "linkedIn": "www.linkedin.com/in/stevens-fajardo-a32144248",
+    
+        "twitter": "null", 
 
-            "avPhoto": Stevenspx,
+        "avPhoto": Stevenspx,
         
         "rePhoto": StevensPhoto
         
-        },
-        {
+    },
+    {
 
-            "name": "Victor Canchis",
-            
-            "about": "Hello! I'm Víctor Canchis, a 23 year old from Venezuela with a passion for both football and programming. I'm enthusiastic about continuously expanding my knowledge and skills in the field of programming.",
-            
-            "github": "https://github.com/VictorC1707 ",
-            
-            "instragram": "https://instagram.com/victorcanchis7?igshid=ZGUzMzM3NWJiOQ== ",
-            
-            "linkedIn": "https://www.linkedin.com/in/victor-canchis-0055b91b0",
-            
-            "twitter": "null",
-            "avPhoto": VicPx,
+        "name": "Victor Canchis",
+        
+        "about": "Hello! I'm Víctor Canchis, a 23 year old from Venezuela with a passion for both football and programming. I'm enthusiastic about continuously expanding my knowledge and skills in the field of programming.",
+        
+        "github": "https://github.com/VictorC1707 ",
+        
+        "instragram": "https://instagram.com/victorcanchis7?igshid=ZGUzMzM3NWJiOQ== ",
+        
+        "linkedIn": "https://www.linkedin.com/in/victor-canchis-0055b91b0",
+        
+        "twitter": "null",
+        "avPhoto": VicPx,
         
         "rePhoto": VicPhoto
             
-            },
-            {
+        },
+        {
 
-                "name": "Emanuel Nieto",
-                
-                "about": "Hello! I'm Emanuel Nieto, a 32 year old from Argentina I do contact sports, I like to spend time with my family, I like the gamer world",
-                
-                "github": "https://github.com/negrura14 ",
-                
-                "instragram": "https://www.instagram.com/el.negro.nieto ",
-                
-                "linkedIn": "https://www.linkedin.com/in/emanuel-nieto-230aab264/",
-                
-                "twitter": "null",
-                "avPhoto": Emanuelpx,
+            "name": "Emanuel Nieto",
+            
+            "about": "Hello! I'm Emanuel Nieto, a 32 year old from Argentina I do contact sports, I like to spend time with my family, I like the gamer world",
+            
+            "github": "https://github.com/negrura14 ",
+            
+            "instragram": "https://www.instagram.com/el.negro.nieto ",
+            
+            "linkedIn": "https://www.linkedin.com/in/emanuel-nieto-230aab264/",
+            
+            "twitter": "null",
+            "avPhoto": Emanuelpx,
             
             "rePhoto": emanuelPhoto
                 
-                }
+        },
+        {
+
+            "name": "Alejandro Tarico",
+            
+            "about": "Hello! I'm Alejandro, 35 years old from San Juan - Argentina, I currently work for the Ministry of Education, I like to program and spend my free time with friends.",
+            
+            "github": "https://github.com/AlejandroTarico",
+            
+            "instragram": "https://www.instagram.com/alejotarico/",
+            
+            "linkedIn": "https://www.linkedin.com/in/alejandro-tarico-4935b5232/",
+            
+            "facebook": "https://www.facebook.com/alejoche/",
+            
+            "avPhoto": AleT,
         
-        ]
+            "rePhoto": AleTReal
+                    
+        }
+        
+    ]
 
 export default data;
