@@ -18,10 +18,10 @@ export default function About() {
 
             <div className="team">
             
-<div className="row clearfix" >
+<div className="row clearfix " >
             {data.map((element) => (
 
-  <div className="team-block col-lg-4 col-md-6 col-sm-12 " key={element.name}>
+  <div className="team-block col-lg-4 col-md-4 col-sm-12  " key={element.name}>
     <div
       className="inner-box wow fadeInLeft"
       data-wow-delay="0ms"
@@ -77,11 +77,6 @@ export default function About() {
 </div>
 
             </div>
-
-
-
-
-
           </div>
         </section>
       </section>

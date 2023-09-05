@@ -67,6 +67,16 @@
     background: transparent;
   }
   
+  .login-box button:disabled:hover {
+    background: transparent;
+    color: #178654;
+    border-radius: 5px;
+    box-shadow: 0 0 0px #178654,
+                0 0 0px #178654,
+                0 0 0px #178654,
+                0 0 0px #178654;
+  }
+
   .login-box button:hover {
     background: #178654;
     color: #000000;
@@ -312,3 +322,6 @@ option {
     animation: checkAnim 0.2s forwards;
   }
 
+.error-message{
+  color:red;
+}
