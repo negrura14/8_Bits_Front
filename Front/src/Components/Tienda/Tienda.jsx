@@ -98,6 +98,7 @@ function Tienda() {
   const [filtDB, setFiltDB] = useState([]);
 
   const dispatch = useDispatch();
+  const [aux, setAux] = useState(false);
   const { game } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.gender);
 
@@ -121,7 +122,26 @@ function Tienda() {
 
   const [filteredGames, setFilteredGames] = useState([]);
 
-  const handleOfChange = (e, buttonFilter) => {
+  let url = '';
+  const handleOfChange = (event) => {
+    const filter = event.target.value;
+    
+    console.log(filtDB.length + 'filtDBasd');
+    console.log(filtDB + 'filtDB');
+    if(filtDB.length > 0) {
+      setFiltDB(filtDB + '&' + filter); 
+      console.log(filtDB);
+      dispatch(filterGamesAction(filtDB));
+      setAux(!aux);
+    } else {
+      setFiltDB(filter)
+      console.log(filtDB)
+      dispatch(filterGamesAction(filtDB));
+      setAux(!aux);
+    }
+    // console.log(filtDB + 'posta');
+    // dispatch(filterGamesAction(filtDB));
+    // setAux(!aux);
     // Lógica para actualizar filtDB en función de los filtros seleccionados.
     // Asegúrate de actualizar filtDB de manera adecuada.
   };
@@ -154,25 +174,25 @@ function Tienda() {
     <>
       <div className='botones'>
         <span className='items'>items {initial}-{ending}</span>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'rating')}> 
+        <select className='xBoton'onChange={handleOfChange}> 
           <option value='' hidden> Sort By: Rating </option>
           <option value="tres">Tres Estrellas</option>
           <option value="cuatro">Cuatro Estrellas</option>
           <option value="cinco">Cinco Estrellas</option>
         </select>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'gender')}>
+        <select className='xBoton'onChange={handleOfChange}>
           <option value='' hidden> Sort By: Gender</option>
           <option value="allRating">Todos los Tipos</option>
           {genre && genre.map(type => (
-              <option key={type.id} value={type.name}> 
+              <option key={type.id} value={'genre='+type.name}> 
                   {type.name}
               </option>
           ))}
         </select>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'price')}> 
+        <select className='xBoton'onChange={handleOfChange}> 
           <option value='' hidden> Sort By: Price </option>
-          <option value="Asc">Ascendente</option>
-          <option value="Desc">Descendente</option>
+          <option value="price=Asc">Ascendente</option>
+          <option value="price=Desc">Descendente</option>
         </select>
         <button className='xBoton'onClick={(e) => handleOfChange(e, 'todo')}>Show: <span className='xSpan'> 15 per page</span> </button>
       </div>

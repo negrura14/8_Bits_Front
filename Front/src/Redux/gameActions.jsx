@@ -50,7 +50,7 @@ export const getGenders = () => async (dispatch) =>{
 
 export const filterGamesAction = (url) => async(dispatch) =>{
   try {
-    const response = await axios.post(`http://localhost:3001/games/filter?=${url}`);
+    const response = await axios.get(`http://localhost:3001/games/filter?${url}`);
     return dispatch(filterGames(response.data));
   } catch (error) {
     window.alert("Request failed:", error);

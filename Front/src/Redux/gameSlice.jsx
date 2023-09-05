@@ -4,8 +4,7 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState:{
         game:[],
-        detail:[],
-        filter:[]
+        detail:[]
     },
     reducers:{
         getAllGame: (state, action) => {
@@ -14,16 +13,14 @@ export const gameSlice = createSlice({
         getGameById: (state,action) => {
             state.detail = action.payload
         },
-
         clearDetail: (state) => {
             state.detail = []; // Establece detail en un objeto vacío al llamar a clearDetail
         },
-        
         getGameByName: (state,action) => {
             state.detail = action.payload
         },
         filterGames: (state, action) => {
-            state.filter = action.payload
+            state.game = action.payload
         }
     }
 })
