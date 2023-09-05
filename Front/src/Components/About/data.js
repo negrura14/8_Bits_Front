@@ -12,6 +12,8 @@ import AleTReal from '../../Img/AleTReal.png'
 import AleT from '../../Img/AleT.png'
 import BrianPhoto from '../../Img/BrianPhoto.png'
 import BrianPx from '../../Img/BrianPx.png'
+import YessPhoto from "../../Img/YessPhoto.png"
+import YessPx from "../../Img/YessPx.png"
 
 const data = [
 
@@ -147,6 +149,26 @@ const data = [
             "rePhoto": BrianPhoto,
             
             },
+
+            {
+
+                "name": "Yessica Castro Cruz",
+                
+                "about": "I'm Yessica, I'm 26 years old and I'm from Colombia. My passion is programming, I am a chemist, I like to read horror stories, I love the beach and my favorite sport is skating.",
+                
+                "github": " https://github.com/yessi06 ",
+                
+                "instragram": " https://www.instagram.com/yessica0cruz/ ",
+                
+                "linkedIn": "https://www.linkedin.com/in/yessica-castro-a04875230/",
+                
+                "twitter": "null",
+
+                "avPhoto": YessPx,
+    
+                "rePhoto": YessPhoto,
+                
+                }
         
     ]
 

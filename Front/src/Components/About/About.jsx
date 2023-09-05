@@ -29,23 +29,23 @@ export default function About() {
     >
       <ul className="social-icons">
         <li>
-          <a href={element.github}>
-            <i className="fab fa-github"></i>
+          <a href={element.github} target="_blank">
+            <i className="fab fa-github" ></i>
           </a>
         </li>
         <li>
-          <a href={element.instragram}>
+          <a href={element.instragram} target="_blank">
             <i className="fab fa-instagram"></i>
           </a>
         </li>
         <li>
-          <a href={element.twitter}>
+          <a href={element.twitter} target="_blank">
             <i className="fab fa-twitter"></i>
           </a>
         </li>
 
         <li>
-          <a href={element.linkedIn}>
+          <a href={element.linkedIn} target="_blank">
             <i className="fab fa-linkedin-in"></i>
           </a>
         </li>
@@ -66,7 +66,7 @@ export default function About() {
       </div>
       <div className="lower-content">
         <h3>
-          <a href="#">{element.name}</a>
+          <p >{element.name}</p>
         </h3>
         <div className="designation">{element.about}</div>
       </div>
