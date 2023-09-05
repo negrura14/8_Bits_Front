@@ -17,8 +17,13 @@ export const gameSlice = createSlice({
             state.detail = []; // Establece detail en un objeto vacío al llamar a clearDetail
         },
         getGameByName: (state,action) => {
-
-            state.game = action.payload
+            console.log("ESTO ES LO QUE LLEGA AL ACTION DE GAME NAME: ", typeof(action.payload));
+            if(typeof(action.payload) === 'object'){
+                state.game = action.payload
+            }
+            else{
+                alert("This game is not available");
+            }
         },
         filterGames: (state, action) => {
             state.game = action.payload
