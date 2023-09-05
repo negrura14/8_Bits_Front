@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { getAllGame, getGameById, getGameByName } from './gameSlice';
+import { getAllGame, getGameById, getGameByName, filterGames } from './gameSlice';
+import { getAllGenders } from './genderSlice';
 
 // export const getGame = () => async  (dispatch) =>{
 //     try {
@@ -38,3 +39,20 @@ export const getGamesName = (name) => async (dispatch) =>{
     }
 }
 
+export const getGenders = () => async (dispatch) =>{ 
+  try {
+      const response = await axios("http://localhost:3001/gender");
+      return dispatch(getAllGenders(response.data));
+    } catch (error) {
+      window.alert("Request failed:", error);
+    }
+}
+
+export const filterGamesAction = (url) => async(dispatch) =>{
+  try {
+    const response = await axios.post(`http://localhost:3001/games/filter?=${url}`);
+    return dispatch(filterGames(response.data));
+  } catch (error) {
+    window.alert("Request failed:", error);
+  }
+}

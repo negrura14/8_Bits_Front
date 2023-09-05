@@ -1,30 +1,38 @@
 import "./Create.css";
 
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import validate from "./validate";
+import {getGame,getGenders} from "../../Redux/gameActions"
 
 export default function Create() {
-  //const dispatch = useDispatch();
-  // acá tendríamos que traer a todos los videojuegos para luego validar si estamos cargando uno con el mismo nombre
+  const dispatch = useDispatch();
+  const {game} = useSelector((state) => state.game);
+  const {genre} = useSelector((state) => state.gender); 
 
-  //arrays de prueba
-  const names = [
-    "GTA",
-    "Mario",
-    "Need for Speed",
-    "Call of Duty",
-    "Battlefield",
-  ];
+  useEffect(() =>{
+    dispatch(getGame());
+    dispatch(getGenders());
+  }, [dispatch]);
 
-  const initialPlatforms = ["PC", "PS3", "PS2", "XBOX"];
-  const initialGenres = [
-    "Action",
-    "Adventure",
-    "RPG",
-    "Puzzle",
-    "First-Person Shooter",
-  ];
+  console.log(game,"games");
+  console.log(genre,"genders");
+
+
+  //funcionalidad para traer todas las plataformas que tenemos hasta el momento
+  const uniquePlatforms = game.reduce((platformsSet, game) => {
+    game.supportedPlatforms.forEach((platform) => {
+      platformsSet.add(platform);
+    });
+    return platformsSet;
+  }, new Set());
+  
+
+  const allPlatforms = Array.from(uniquePlatforms);
+  
+  console.log(allPlatforms);
+  
 
   const [termsAccepted, setTermsAccepted] = useState(false);
 
@@ -117,7 +125,7 @@ export default function Create() {
           ...input,
           [e.target.name]: e.target.value,
         },
-        names
+        game
       )
     );
   }
@@ -155,8 +163,25 @@ export default function Create() {
     } else if (!noErrors) {
       alert("There is some error in the fields!!");
     } else {
-      //aqui va el dispatch al back
+
+      axios.post("http://localhost:3001/games",input)
+      .then(res => res, alert("Game created successfully!"))
+      .catch(err=>alert(err))
+
+      setInput({
+        name: "",
+        image: "",
+        description: "",
+        releaseDate: "",
+        supportedPlatforms: [],
+        genre: [],
+        price: "",
+        stock: "",
+        review: "",
+      });
     }
+
+    //dispatch(getGame());
   }
 
   return (
@@ -230,7 +255,7 @@ export default function Create() {
               onChange={(event) => setSelectedPlatform(event.target.value)}
             >
               <option value="">Select Platform</option>
-              {initialPlatforms.map((platform) => (
+              {allPlatforms.map((platform) => (
                 <option key={platform} value={platform}>
                   {platform}
                 </option>
@@ -266,9 +291,9 @@ export default function Create() {
               onChange={(event) => setSelectedGenre(event.target.value)}
             >
               <option value="">Select Genre</option>
-              {initialGenres.map((genre) => (
-                <option key={genre} value={genre}>
-                  {genre}
+              {genre?.map((genre) => (
+                <option key={genre.id} value={genre.name}>
+                  {genre.name}
                 </option>
               ))}
             </select>
@@ -339,14 +364,14 @@ export default function Create() {
 
           <div className="term-box">
             <label className="select-user">Terms and conditions</label>
-            <label class="checkbox-container">
+            <label className="checkbox-container">
             <input
             className="custom-checkbox"
               type="checkbox"
               checked={termsAccepted}
               onChange={(event) => setTermsAccepted(event.target.checked)}
             />
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
             </label>
             
           </div>

@@ -32,41 +32,61 @@
 
 
 
-.paginationButton {
-    padding: 0.6rem 1rem;
-    border: 1px solid #979695;
-    border-radius: 5rem;
-    background-color: transparent;
-    color: blue;
-    font-size: 1.5rem;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 1px 3px rgba(0,0,0,.2);
-}
-/* .paginationButton:hover{
-    background-color: #e0811b;
-    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#f0a100),to(#f70));
-    background-image: linear-gradient(#f0a100 10%,#f70 100%);
-} */
-.paginationButton[disabled] {
-    color: #52565600;
-    background-image: none;
-}
 
-.numeration {
-    font-size: 1.5rem;
-    margin: 1rem;
-    color: #fff;
+.data-pagination,
+.data-pagination *,
+.data-pagination *:before,
+.data-pagination *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
 }
-
-.container {
-    text-align: center;
+.data-pagination {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  -webkit-text-size-adjust: 100%;
+  margin: 1em auto;
+  text-align: center;
+  transition: font-size .2s ease-in-out;
 }
-
-.activePage {
-    padding: 2px 10px 2px 10px;
-    color: blue;
-    border-radius: 3px;
+.data-pagination span {
+  list-style-type: none;
+  display: inline;
+  font-size: 100%;
+  margin: 0;
+  padding: .5em;
+  color:#a1a1a1;
 }
-.other{
-    margin: 2rem;
+.data-pagination button {
+  display: inline-block;
+  font-size: 100%;
+  width: auto;
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+  
+  color: #ffffff;
+  padding: .5em;
+}
+.data-pagination button:hover {
+    color: #f60;
+    
+}
+.data-pagination span .activePage {
+  color: #f60;
+}
+.data-pagination span span .current {
+  background: rgba(0,0,0,.1)
+}
+/* Disabled & Hidden Styles */
+.data-pagination .disabled,
+.data-pagination [hidden],
+.data-pagination [disabled] {
+  opacity: .5;
+  pointer-events: none;
 }
