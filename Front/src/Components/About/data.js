@@ -6,6 +6,8 @@ import VicPhoto from "../../Img/VicPhoto.png"
 import VicPx from "../../Img/VicPx.png"
 import Emanuelpx from '../../Img/Emanuelpx.png'
 import emanuelPhoto from '../../Img/EmanuelPhoto.png'
+import Stevenspx from '../../Img/Stevenspx.png'
+import StevensPhoto from '../../Img/StevensPhoto.png'
 
 const data = [
 
@@ -50,17 +52,21 @@ const data = [
         
         {
         
-        "name": "Stevens Fajardo",
+            "name": "Stevens Fajardo",
         
-        "about": "i am from venezuela, but actually livin in spain, i have 38 year old, i work in  of delivery man . i like trainning in the gym, watch movies, enjoy the nature, and create memories with my family.",
+            "about": "I am from Venezuela, but actually livin in Spain, I have 38 year old, work in  of delivery man . I want continue learning in the field of programming and technology,   I like trainning in the gym, watch movies, enjoy the nature, and create good memories with my family.",
         
-        "github": " https://github.com/SteveFaj ",
+            "github": " https://github.com/SteveFaj ",
         
-        "instragram": "https://www.instagram.com/fajardo_steve/ ",
+            "instragram": "https://www.instagram.com/fajardo_steve/ ",
         
-        "linkedIn": "www.linkedin.com/in/stevens-fajardo-a32144248",
+            "linkedIn": "www.linkedin.com/in/stevens-fajardo-a32144248",
         
-        "twitter": "null"
+            "twitter": "null", 
+
+            "avPhoto": Stevenspx,
+        
+        "rePhoto": StevensPhoto
         
         },
         {
