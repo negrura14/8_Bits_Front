@@ -30,10 +30,10 @@ export const getGamesId = (id) => async (dispatch) =>{
       }
 }
 
-export const getGamesByName = (name) => async (dispatch) =>{ 
+export const getGamesName = (name) => async (dispatch) =>{ 
   try {
-      let response = await axios.get(`http://localhost:3001/games?=${name}`);
-      dispatch(getGameByName(response.data));
+      let response = await axios.get(`http://localhost:3001/games/?name=${name}`);
+      return dispatch(getGameByName(response.data));
     } catch (error) {
       window.alert("Request failed:", error);
     }

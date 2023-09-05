@@ -20,10 +20,12 @@ export const gameSlice = createSlice({
         },
         
         getGameByName: (state,action) => {
-            state.detail = action.payload
+
+            state.game = action.payload
         },
         filterGames: (state, action) => {
             state.filter = action.payload
+
         }
     }
 })
