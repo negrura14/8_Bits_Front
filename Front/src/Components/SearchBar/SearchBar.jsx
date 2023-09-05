@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import './SearchBard.css';
-import { getGamesByName } from "../../Redux/gameActions";
+import { getGamesName } from "../../Redux/gameActions";
 
 export default function SearchBar(){
 
@@ -10,16 +10,12 @@ export default function SearchBar(){
 
 
     function handleChange(event){
-        event.preventDefault()
         setState(event.target.value)
-        if(event.target.value === ''){
-            dispatch(getGamesByName(''))
-        }
     };
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(getGamesByName(state))
+        dispatch(getGamesName(state))
         setState('');
     };
 

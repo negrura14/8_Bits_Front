@@ -14,7 +14,7 @@ export const gameSlice = createSlice({
             state.detail = action.payload
         },
         getGameByName: (state,action) => {
-            state.detail = action.payload
+            state.game = action.payload
         }
     }
 })
