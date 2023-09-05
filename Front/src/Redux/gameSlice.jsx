@@ -17,10 +17,12 @@ export const gameSlice = createSlice({
             state.detail = []; // Establece detail en un objeto vacío al llamar a clearDetail
         },
         getGameByName: (state,action) => {
-            state.detail = action.payload
+
+            state.game = action.payload
         },
         filterGames: (state, action) => {
             state.game = action.payload
+            state.filter = action.payload
         }
     }
 })
