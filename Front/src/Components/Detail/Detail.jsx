@@ -12,8 +12,6 @@ export default function Detail() {
     const dispatch = useDispatch()
     const detail = useSelector(state => state.game.detail)
     
-    
-
     useEffect(() =>{
         dispatch(getGamesId(id))
 
@@ -28,26 +26,29 @@ export default function Detail() {
     return(
         <div>
             
-            { detail.length > 0 ? 
+            { Object.keys(detail).length > 0 ? 
                 <section id="banner" class="clearfix">
       <div id="banner_content_wrapper">
         <div id="poster">
           <img
             class="featured_image"
-            src={detail[0].image}
+            src={detail.image}
           />
         </div>
         <div class="contentD">
-          <h2 class="titleD">{detail[0].name}</h2>
+          <h2 class="titleD">{detail.name}</h2>
           <p class="infoD">
-          {detail[0].review} <span className="bbar">|</span>  <span className="price">Price: {detail[0].price} $</span>
+          {detail.review} <span className="bbar">|</span>  <span className="price">Price: {detail.price} $</span>
           </p>
           
           <p class="description">
-          {detail[0].description}
+          {detail.description}
           </p>
           <p class="infoD">
-          {detail[0].releaseDate} <span className="bbar">|</span>{detail[0].genre} <span className="bbar">|</span>{detail[0].supportedPlatforms}
+          {detail.releaseDate} <span className="bbar">|</span>{detail.genre} <span className="bbar">|</span>{detail.supportedPlatforms}
+          </p>
+          <p class="infoD">
+           Stock: <span class="description">{detail.stock} Available</span> 
           </p>
         </div>
       </div>
