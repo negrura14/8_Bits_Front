@@ -10,6 +10,8 @@ import Stevenspx from '../../Img/Stevenspx.png'
 import StevensPhoto from '../../Img/StevensPhoto.png'
 import AleTReal from '../../Img/AleTReal.png'
 import AleT from '../../Img/AleT.png'
+import BrianPhoto from '../../Img/BrianPhoto.png'
+import BrianPx from '../../Img/BrianPx.png'
 
 const data = [
 
@@ -125,7 +127,26 @@ const data = [
         
             "rePhoto": AleTReal
                     
-        }
+        },
+        {
+
+            "name": "Brian Silva",
+            
+            "about": "I am from the city of Buenos Aires, I am 34 years old. I currently work as an accounting analyst. I like programming, playing soccer and basketball.",
+            
+            "github": "https://github.com/TwilightMaster23",
+            
+            "instragram": "https://www.instagram.com/brians.30/?igshid=OGQ5ZDc2ODk2ZA%3D%3D",
+            
+            "linkedIn": "https://www.linkedin.com/in/brian-silva-/",
+            
+            "twitter": "briansilva1705",
+
+            "avPhoto": BrianPx,
+
+            "rePhoto": BrianPhoto,
+            
+            },
         
     ]
 
