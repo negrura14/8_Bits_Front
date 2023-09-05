@@ -7,44 +7,53 @@ import { ROUTES } from '../../Helpers/RoutesPath'
 
 
 function Card () {
-    // const dispatch = useDispatch()
+    
     const {game} = useSelector(state=>state.game)
 
-    // useEffect(()=>{
-    //     dispatch(getGame())
-    // },[])
+    
+    if(typeof(game) === 'string'){
+      return (
+        <div>
+          <div className='dontMatch' key="dontMatch">
+                <h4 className='letras'>{game}</h4>
+            </div>
+        </div>
+
+      )
+  }else{
 
   return (
     
     
-      <div className='containerF'>
-          {game&&game.map((elem, i)=>{
-              return(
-                  <div className="item" key={i}>
-                  
-          <Link className='link_card' to={`${ROUTES.DETAIL}/${elem.id}`}>
-        <div className="cardF" >
-            <div className="circle circle2"></div>
-            <div className="circle circle1"></div>
-            <img  className="imgF" src={elem.image} />
-          </div>
-          </Link>
-          
-          <div className="content">
-            <p>{elem.name}</p>
-            
-    
-          </div>
-          <span className="top"></span>
-            <span className="right"></span>
-            <span className="bottom"></span>
-            <span className="left"></span>
+    <div className='containerF'>
+        {game&&game.map((elem, i)=>{
+            return(
+                <div className="item" key={i}>
+                
+        <Link className='link_card' to={`${ROUTES.DETAIL}/${elem.id}`}>
+      <div className="cardF" >
+          <div className="circle circle2"></div>
+          <div className="circle circle1"></div>
+          <img  className="imgF" src={elem.image} />
         </div>
-              )
-          })}
+        </Link>
+        
+        <div className="content">
+          <p>{elem.name}</p>
           
+  
+        </div>
+        <span className="top"></span>
+          <span className="right"></span>
+          <span className="bottom"></span>
+          <span className="left"></span>
       </div>
-  )
+            )
+        })}
+        
+    </div>
+)
+}
 }
 
 
