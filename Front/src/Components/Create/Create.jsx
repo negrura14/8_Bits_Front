@@ -3,11 +3,14 @@ import "./Create.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom";
+
 import validate from "./validate";
 import {getGame,getGenders} from "../../Redux/gameActions"
 
 export default function Create() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {game} = useSelector((state) => state.game);
   const {genre} = useSelector((state) => state.gender); 
 
@@ -15,10 +18,6 @@ export default function Create() {
     dispatch(getGame());
     dispatch(getGenders());
   }, [dispatch]);
-
-  console.log(game,"games");
-  console.log(genre,"genders");
-
 
   //funcionalidad para traer todas las plataformas que tenemos hasta el momento
   const uniquePlatforms = game.reduce((platformsSet, game) => {
@@ -30,8 +29,6 @@ export default function Create() {
   
 
   const allPlatforms = Array.from(uniquePlatforms);
-  
-  console.log(allPlatforms);
   
 
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -92,20 +89,22 @@ export default function Create() {
   function handleAddGenre() {
     if (selectedGenre && !selectedGenres.includes(selectedGenre)) {
       setSelectedGenres([...selectedGenres, selectedGenre]);
+
       setInput({
         ...input,
-        genre: selectedGenre, // Agregar a la propiedad genre
+        genre: input.genre ? input.genre + "-" + selectedGenre : selectedGenre,
       });
+  
       setSelectedGenre("");
     }
-  }
+  }  
 
   function handleRemoveGenre(genre) {
     const updatedGenres = selectedGenres.filter((g) => g !== genre);
     setSelectedGenres(updatedGenres);
     setInput({
       ...input,
-      genre: updatedGenres, // Actualizar la propiedad genre
+      genre: updatedGenres.join("\n"), // Une los géneros con saltos de línea
     });
   }
 
@@ -130,9 +129,30 @@ export default function Create() {
     );
   }
 
+  function formatFields(){
+    const releaseDateParts = input.releaseDate.split("-");
+    const month = new Date(
+      releaseDateParts[0] + "/" + releaseDateParts[1] + "/" + releaseDateParts[2]
+    ).toLocaleString("en-US", { month:"short" });
+    const formattedDate = `${month} ${releaseDateParts[2]}, ${releaseDateParts[0]}`;
+
+    // Formatear el campo de revisión
+    const formattedReview = `Metacritic Score - ${input.review}/100`;
+
+    const updatedInput = {
+      ...input,
+      releaseDate: formattedDate,
+      review: formattedReview,
+    };
+
+    return updatedInput;
+  }
+
+
   function sumbitHandler(e) {
     e.preventDefault();
 
+    //validación de errores y de que no falten campos por completar
     const requiredFields = [
       "name",
       "image",
@@ -158,13 +178,15 @@ export default function Create() {
     // Verifica si el estado de errores está vacío
     const noErrors = Object.values(errors).every((error) => error === "");
 
+    //fin de validación de errores y campos por completar
+
     if (!allFieldsComplete) {
       alert("You have to complete all fields!!");
     } else if (!noErrors) {
       alert("There is some error in the fields!!");
     } else {
 
-      axios.post("http://localhost:3001/games/postGame",input)
+      axios.post("http://localhost:3001/games/postGame",formatFields())
       .then(res => res, alert("Game created successfully!"))
       .catch(err=>alert(err))
 
@@ -179,9 +201,11 @@ export default function Create() {
         stock: "",
         review: "",
       });
+
+      navigate("/home");
     }
 
-    //dispatch(getGame());
+    
   }
 
   return (
@@ -304,18 +328,18 @@ export default function Create() {
             
             
             <div className="removes">
-              {selectedGenres.map((genre) => (
-                <div className="remove-div" key={genre}>
-                  <span>{genre}</span>
-                  <a
-                  className="remove-button"
-                    type="button"
-                    onClick={() => handleRemoveGenre(genre)}
-                  >
-                    X
-                  </a>
-                </div>
-              ))}
+            {selectedGenres.map((genre) => (
+            <div className="remove-div" key={genre}>
+              <span>{genre}</span>
+              <a
+                className="remove-button"
+                type="button"
+                onClick={() => handleRemoveGenre(genre)}
+              >
+                X
+              </a>
+            </div>
+          ))}
             </div>
           </div>
 
