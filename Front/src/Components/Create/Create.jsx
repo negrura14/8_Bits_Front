@@ -44,7 +44,7 @@ export default function Create() {
     description: "",
     releaseDate: "",
     supportedPlatforms: [],
-    genre: [],
+    genre: "",
     price: "",
     stock: "",
     review: "",
@@ -56,7 +56,7 @@ export default function Create() {
     description: "",
     releaseDate: "",
     supportedPlatforms: [],
-    genre: [],
+    genre: "",
     price: "",
     stock: "",
     review: "",
@@ -94,7 +94,7 @@ export default function Create() {
       setSelectedGenres([...selectedGenres, selectedGenre]);
       setInput({
         ...input,
-        genre: [...input.genre, selectedGenre], // Agregar a la propiedad genre
+        genre: selectedGenre, // Agregar a la propiedad genre
       });
       setSelectedGenre("");
     }
@@ -164,7 +164,7 @@ export default function Create() {
       alert("There is some error in the fields!!");
     } else {
 
-      axios.post("http://localhost:3001/games",input)
+      axios.post("http://localhost:3001/games/postGame",input)
       .then(res => res, alert("Game created successfully!"))
       .catch(err=>alert(err))
 
@@ -174,7 +174,7 @@ export default function Create() {
         description: "",
         releaseDate: "",
         supportedPlatforms: [],
-        genre: [],
+        genre: "",
         price: "",
         stock: "",
         review: "",
