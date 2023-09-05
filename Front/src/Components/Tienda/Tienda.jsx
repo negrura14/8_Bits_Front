@@ -263,7 +263,7 @@ function Tienda() {
           <option value="Asc">Ascendente</option>
           <option value="Desc">Descendente</option>
         </select>
-        <button className='xBoton'onClick={(e) => handleOfChange(e, 'todo')}>Show: <span className='xSpan'> 15 per page</span> </button>
+        <button className='xBoton'onClick={(e) => handleOfChange(e, 'todo')}>Show: <span className='xSpan'> All games</span> </button>
       </div>
       <div className='cardFLex'>
                 {getCurrentItems().map((game) => {
