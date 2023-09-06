@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import './Nav.css';
 
@@ -8,7 +8,9 @@ function Nav() {
   const detail = /^\/Detail\/\d+$/i.test(location.pathname);
   return (
     <div className='header'>
-        <img className={detail ? 'imgCenter' :'imgNav'} src="../../../public/Imagen1.png" alt="" />
+      <Link className={detail ? 'imgCenter' :'imgNav'} to="/">
+        <img  src="../../../public/Imagen1.png" alt="" />
+      </Link>
         <nav className={detail ? 'navCenter' : 'navContainer'}>
             <NavLink className='navLink' to='/home'>Home</NavLink>
             <NavLink className='navLink' to='/store'>Store</NavLink>

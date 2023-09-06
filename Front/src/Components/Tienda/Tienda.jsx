@@ -251,7 +251,6 @@ function Tienda() {
         </select>
         <select className='xBoton'onChange={(e) => handleOfChange(e, 'genre')}>
           <option value='' hidden> Sort By: Gender</option>
-          <option value="allRating">Todos los Tipos</option>
           {genre && genre.map(type => (
               <option key={type.id} value={type.name}> 
                   {type.name}
@@ -265,6 +264,12 @@ function Tienda() {
         </select>
         <button className='xBoton'onClick={(e) => handleOfChange(e, 'todo')}>Show: <span className='xSpan'> All games</span> </button>
       </div>
+      <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onNextPage={nextPage}
+                onPrevPage={prevPage}
+            />
       <div className='cardFLex'>
                 {getCurrentItems().map((game) => {
                     return <CardT 
