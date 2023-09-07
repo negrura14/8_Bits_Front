@@ -6,7 +6,7 @@ import VicPhoto from "../../Img/VicPhoto.png"
 import VicPx from "../../Img/VicPx.png"
 import Emanuelpx from '../../Img/Emanuelpx.png'
 import emanuelPhoto from '../../Img/EmanuelPhoto.png'
-import Stevenspx from '../../Img/Stevenspx.png'
+import Stevenspx from '../../Img/StevensPx.png'
 import StevensPhoto from '../../Img/StevensPhoto.png'
 import AleTReal from '../../Img/AleTReal.png'
 import AleT from '../../Img/AleT.png'
