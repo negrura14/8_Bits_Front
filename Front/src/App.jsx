@@ -9,6 +9,7 @@ import Create from './Components/Create/Create.jsx';
 import About from './Components/About/about';
 import Tienda from './Components/Tienda/Tienda.jsx'
 import Nav from './Components/Nav/Nav.jsx'
+import Footer from './Components/Footer/Footer.jsx';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
        <Route path = {ROUTES.ABOUT} element = {<About/>}/>
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
       </Routes>
+      {!main && <Footer/>}
     </div>
   )
 }
