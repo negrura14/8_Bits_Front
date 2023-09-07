@@ -13,14 +13,7 @@ const validate = (input,names) => {
         errors.description = "Description too long";
     }
 
-    //image
-    let regexImage = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
-    if (!regexImage.test(input.image)){
-        errors.image = "Please enter a valid url";
-    }
-
     return errors;
-
 
 }
 

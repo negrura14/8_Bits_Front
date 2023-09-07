@@ -11,10 +11,13 @@ import Tienda from './Components/Tienda/Tienda.jsx'
 import Nav from './Components/Nav/Nav.jsx'
 import Footer from './Components/Footer/Footer.jsx';
 
+import {Cloudinary} from "@cloudinary/url-gen";
 
 function App() {
   const location = useLocation();
   const main = location.pathname === '/';
+  const cld = new Cloudinary({cloud: {cloudName: 'bits8'}})
+
   return (
     <div>
       {!main && <Nav/>}

@@ -8,6 +8,8 @@ import {useNavigate} from "react-router-dom";
 import validate from "./validate";
 import {getGame,getGenders} from "../../Redux/gameActions"
 
+import UploadWidget from "../../Helpers/UploadWidget";
+
 export default function Create() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -128,6 +130,21 @@ export default function Create() {
       )
     );
   }
+
+  //cloudinary 
+
+  const [selectedImage, setSelectedImage] = useState("");
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+
+  function onImageUpload(imageUrl) {
+    setInput({
+      ...input,
+      image: imageUrl,
+    });
+    setSelectedImage(imageUrl);
+  }
+
+  //---------//
 
   function formatFields(){
     const releaseDateParts = input.releaseDate.split("-");
@@ -374,15 +391,13 @@ export default function Create() {
           </div>
 
           <div className="user-box">
-            <input
-              placeholder="Url link jpg or png"
-              type="text"
-              name="image"
-              value={input.image}
-              onChange={(event) => handleChange(event)}
-              // className={errors.name ? 'error' : ''}
+          <UploadWidget
+                onImageUpload={onImageUpload}
+                setIsUploadingImage={setIsUploadingImage}
+                selectedImage={selectedImage}
+                setSelectedImage={setSelectedImage}
+                isUploadingImage={isUploadingImage}
             />
-            {errors.image && <p className="error-message">{errors.image}</p>}
             <label>Upload files</label> {/*en desarrollo */}
           </div>
 
