@@ -1,31 +1,9 @@
-.header {
-    background-color: #364355;
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 1rem;
-    width: 100%;
+.nav-bar{
+    background: #364355;
 }
-.navLink{
-    margin: 1rem 2rem;
-    color: #d9d9d9;
-    padding: 2px;
-    text-decoration: none;
-    cursor: pointer;
+.nav-link{
+    color:white;
 }
-.navContainer{
-    margin-right: -4rem;
-    margin-left: 4rem;
-}
-.navCenter{
-    width: 55rem;
-}
-.imgNav{
-    width: 75px;
-    margin-right: -5rem;
-    margin-left: 1rem;
-}
-.imgCenter {
-    width: 75px;
-    margin-right: 10rem;
-    margin-left: 1rem;
+.nav-link:hover{
+    color: #2cffa0;
 }

@@ -20,8 +20,8 @@ export default function SearchBar(){
     };
 
     return(
-        <form className="form_searchBar" onSubmit={event => handleSubmit(event)}>
-            <input className="input_searchBar" type = 'text' placeholder="Enter Name" value = {state} onChange={handleChange}/>
+        <form className=" d-flex" onSubmit={event => handleSubmit(event)}>
+            <input className="input_searchBar " type = 'text' placeholder="Enter Name" value = {state} onChange={handleChange}/>
             <button className="btn_searchBar" type="submit"><i class="fas fa-search"></i></button>
         </form>
     )
