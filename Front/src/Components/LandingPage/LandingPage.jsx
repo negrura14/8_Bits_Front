@@ -18,7 +18,7 @@ const Landing = () => {
         </Col>
       </Row>
       <Row>
-        <Col><p className='slogan'>Immerse yourself in the gaming world</p></Col>
+        <Col><p className='slogan'>Immerse yourself in the gaming world!</p></Col>
       </Row>
       <Row>
         <Col>
