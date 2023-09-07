@@ -17,7 +17,6 @@ function Home() {
       return(
         <div className='home_container'>
             <div>
-                <DateTimeDisplay />
                 <Card/>
              
             </div>
