@@ -6,7 +6,7 @@ import { ROUTES } from './Helpers/RoutesPath';
 import NotFound from './Components/NotFound/NotFound'
 import Detail from './Components/Detail/Detail'
 import Create from './Components/Create/Create.jsx';
-import About from './Components/About/about';
+import About from './Components/About/About';
 import Tienda from './Components/Tienda/Tienda.jsx'
 import Nav from './Components/Nav/Nav.jsx'
 
