@@ -22,6 +22,7 @@ function Nav() {
         <li class="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         <li class="nav-item"><NavLink className='nav-link' to={ROUTES.ABOUT}>About us</NavLink></li>
         <li class="nav-item"><NavLink className='nav-link' to={ROUTES.CREATE}>Create</NavLink></li>
+        <li class="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>
         <li class="nav-item">
       <DateTimeDisplay /></li>
       </ul>
