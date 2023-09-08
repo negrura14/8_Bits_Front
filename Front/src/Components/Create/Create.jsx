@@ -3,20 +3,20 @@ import "./Create.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import validate from "./validate";
-import {getGame,getGenders} from "../../Redux/gameActions"
+import { getGame, getGenders } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
 
 export default function Create() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {game} = useSelector((state) => state.game);
-  const {genre} = useSelector((state) => state.gender); 
+  const { game } = useSelector((state) => state.game);
+  const { genre } = useSelector((state) => state.gender);
 
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(getGame());
     dispatch(getGenders());
   }, [dispatch]);
@@ -28,10 +28,8 @@ export default function Create() {
     });
     return platformsSet;
   }, new Set());
-  
 
   const allPlatforms = Array.from(uniquePlatforms);
-  
 
   const [termsAccepted, setTermsAccepted] = useState(false);
 
@@ -96,10 +94,10 @@ export default function Create() {
         ...input,
         genre: input.genre ? input.genre + "-" + selectedGenre : selectedGenre,
       });
-  
+
       setSelectedGenre("");
     }
-  }  
+  }
 
   function handleRemoveGenre(genre) {
     const updatedGenres = selectedGenres.filter((g) => g !== genre);
@@ -131,7 +129,7 @@ export default function Create() {
     );
   }
 
-  //cloudinary 
+  //cloudinary
 
   const [selectedImage, setSelectedImage] = useState("");
   const [isUploadingImage, setIsUploadingImage] = useState(false);
@@ -146,11 +144,15 @@ export default function Create() {
 
   //---------//
 
-  function formatFields(){
+  function formatFields() {
     const releaseDateParts = input.releaseDate.split("-");
     const month = new Date(
-      releaseDateParts[0] + "/" + releaseDateParts[1] + "/" + releaseDateParts[2]
-    ).toLocaleString("en-US", { month:"short" });
+      releaseDateParts[0] +
+        "/" +
+        releaseDateParts[1] +
+        "/" +
+        releaseDateParts[2]
+    ).toLocaleString("en-US", { month: "short" });
     const formattedDate = `${month} ${releaseDateParts[2]}, ${releaseDateParts[0]}`;
 
     // Formatear el campo de revisión
@@ -164,7 +166,6 @@ export default function Create() {
 
     return updatedInput;
   }
-
 
   function sumbitHandler(e) {
     e.preventDefault();
@@ -202,10 +203,10 @@ export default function Create() {
     } else if (!noErrors) {
       alert("There is some error in the fields!!");
     } else {
-
-      axios.post("http://localhost:3001/games/postGame",formatFields())
-      .then(res => res, alert("Game created successfully!"))
-      .catch(err=>alert(err))
+      axios
+        .post("http://localhost:3001/games/postGame", formatFields())
+        .then((res) => res, alert("Game created successfully!"))
+        .catch((err) => alert(err));
 
       setInput({
         name: "",
@@ -221,211 +222,223 @@ export default function Create() {
 
       navigate("/home");
     }
-
-    
   }
 
   return (
-    <div>
-      <div className="login-box">
-        <h2>Create Game</h2>
+    <>
+      <div className="text-primary px-4 m-5 login-box">
+        <h2 className="text-center text-white">Create Game</h2>
 
         <form onSubmit={(event) => sumbitHandler(event)}>
-          <div className="user-box">
+          <div className="mb-3">
+            <label className="form-label">Name</label>
             <input
               placeholder="Enter Name"
               type="text"
               name="name"
               value={input.name}
               onChange={(event) => handleChange(event)}
+              className="form-control bg-transparent"
               // className={errors.name ? 'error' : ''}
             />
             {errors.name && <p className="error-message">{errors.name}</p>}
-            <label>Name</label>
           </div>
 
-          <div className="user-box">
-            <input
+          <div className=" mb-3">
+            <label className="form-label">Description</label>
+            <textarea
               placeholder="Enter Description"
               type="text"
               name="description"
               value={input.description}
               onChange={(event) => handleChange(event)}
+              className="form-control bg-transparent"
               // className={errors.description ? 'error' : ''}
             />
             {errors.description && (
               <p className="error-message">{errors.description}</p>
             )}
-
-            <label>Description</label>
           </div>
 
-          <div className="user-box">
+          <div className="row">
+          <div className="mb-3 col-md-6  col-sm-12">
+            <label className="form-label">Price</label>
             <input
               placeholder="Enter Price"
               type="number"
               name="price"
               value={input.price}
               onChange={(event) => handleChange(event)}
+              className="form-control bg-transparent"
               // className={errors.price ? 'error' : ''}
             />
-
-            <label>Price</label>
           </div>
-
-          <div className="user-box">
+          <div className="mb-3 col-md-6  col-sm-12">
+            <label className="form-label">Release Date</label>
             <input
               placeholder="Enter Date"
               type="date"
               name="releaseDate"
               value={input.releaseDate}
               onChange={(event) => handleChange(event)}
+              className="form-control bg-transparent"
               // className={errors.releaseDate ? 'error' : ''}
             />
+          </div>
 
-            <label>Release Date</label>
           </div>
 
           
-          <div className="select-box">
-          
-          <label className="select-user">Supported Platforms</label>
-          <div className="select-div">
-          <select
-              value={selectedPlatform}
-              onChange={(event) => setSelectedPlatform(event.target.value)}
-            >
-              <option value="">Select Platform</option>
-              {allPlatforms.map((platform) => (
-                <option key={platform} value={platform}>
-                  {platform}
-                </option>
-              ))}
-            </select>
-            <button type="button" onClick={handleAddPlatform}>
-              Add
-            </button>
-          </div>
-           
-            <div  className="removes" >
-              {selectedPlatforms.map((platform) => (
-                <div className="remove-div" key={platform}>
-                  <span>{platform}</span>
-                  <a
-                  className="remove-button"
-                    type="button"
-                    onClick={() => handleRemovePlatform(platform)}
+
+         
+          <div class="row ">
+            <div className="col-md-6  col-sm-12">
+              <label className="form-label">Supported Platforms</label>
+              <div className=" bg-transparent row">
+                <div className="col">
+                  <select
+                    class="form-select bg-transparent text-white-50"
+                    value={selectedPlatform}
+                    onChange={(event) =>
+                      setSelectedPlatform(event.target.value)
+                    }
                   >
-                    X
-                  </a>
+                    <option value="">Select Platform</option>
+                    {allPlatforms.map((platform) => (
+                      <option key={platform} value={platform}>
+                        {platform}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-              ))}
+                <div className="col">
+                  <button type="button" onClick={handleAddPlatform}>
+                    Add
+                  </button>
+                </div>
+              </div>
+
+              <div className="removes mb-3">
+                {selectedPlatforms.map((platform) => (
+                  <div className=" remove-div mb-1 " key={platform}>
+                    <span className="remove-span">{platform}</span>
+                    <a
+                      className="remove-button"
+                      type="button"
+                      onClick={() => handleRemovePlatform(platform)}
+                    >
+                      X
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
+            <div className="col-md-6  col-sm-12">
+              <label className="form-label"> Genre</label>
+              <div className=" bg-transparent row">
+                <div className="col ">
+                  <select
+                    class="form-select bg-transparent text-white-50"
+                    value={selectedGenre}
+                    onChange={(event) => setSelectedGenre(event.target.value)}
+                  >
+                    <option value="">Select Genre</option>
+                    {genre?.map((genre) => (
+                      <option key={genre.id} value={genre.name}>
+                        {genre.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="col">
+                  <button type="button" onClick={handleAddGenre}>
+                    Add
+                  </button>
+                </div>
+              </div>
 
-          </div>
-
-          <div className="select-box">
-          <label className="select-user"> Genre</label>
-          <div className="select-div">
-          <select
-              value={selectedGenre}
-              onChange={(event) => setSelectedGenre(event.target.value)}
-            >
-              <option value="">Select Genre</option>
-              {genre?.map((genre) => (
-                <option key={genre.id} value={genre.name}>
-                  {genre.name}
-                </option>
-              ))}
-            </select>
-            <button type="button" onClick={handleAddGenre}>
-              Add
-            </button>
-          </div>
-            
-            
-            <div className="removes">
-            {selectedGenres.map((genre) => (
-            <div className="remove-div" key={genre}>
-              <span>{genre}</span>
-              <a
-                className="remove-button"
-                type="button"
-                onClick={() => handleRemoveGenre(genre)}
-              >
-                X
-              </a>
+              <div className="removes">
+                {selectedGenres.map((genre) => (
+                  <div className="remove-div mb-1" key={genre}>
+                    <span className="remove-span">{genre}</span>
+                    <a
+                      className="remove-button"
+                      type="button"
+                      onClick={() => handleRemoveGenre(genre)}
+                    >
+                      X
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
+
+          <div class="row mb-3">
+            <div className="col">
+              <label className="form-label">Review</label>
+              <input
+                placeholder="0/100"
+                type="number"
+                name="review"
+                value={input.review}
+                onChange={(event) => handleChange(event)}
+                min="0"
+                max="100"
+                className="form-control bg-transparent"
+                // className={errors.name ? 'error' : ''}
+              />
+            </div>
+            <div className="col quantity">
+              <label className="form-label">Stock</label>
+              <input
+                placeholder="Stock"
+                id="typeNumber"
+                type="number"
+                name="stock"
+                value={input.stock}
+                onChange={(event) => handleChange(event)}
+                min="0"
+                max="100"
+                className="form-control bg-transparent"
+                // className={errors.name ? 'error' : ''}
+              />
             </div>
           </div>
 
-          <div className="user-box">
-            <input
-              placeholder="0/100"
-              type="number"
-              name="review"
-              value={input.review}
-              onChange={(event) => handleChange(event)}
-              min="0"
-              max="100"
-              // className={errors.name ? 'error' : ''}
+          <div className="mb-3">
+            <label className="form-label">Upload files</label> {/*en desarrollo */}
+            <UploadWidget
+              onImageUpload={onImageUpload}
+              setIsUploadingImage={setIsUploadingImage}
+              selectedImage={selectedImage}
+              setSelectedImage={setSelectedImage}
+              isUploadingImage={isUploadingImage}
             />
-
-            <label>Review</label>
           </div>
 
-          <div className="user-box">
+          <div class="mb-3 form-check">
             <input
-              placeholder="Stock"
-              type="number"
-              name="stock"
-              value={input.stock}
-              onChange={(event) => handleChange(event)}
-              min="0"
-              max="100"
-              // className={errors.name ? 'error' : ''}
-            />
-
-            <label>Stock</label>
-          </div>
-
-          <div className="user-box">
-          <UploadWidget
-                onImageUpload={onImageUpload}
-                setIsUploadingImage={setIsUploadingImage}
-                selectedImage={selectedImage}
-                setSelectedImage={setSelectedImage}
-                isUploadingImage={isUploadingImage}
-            />
-            <label>Upload files</label> {/*en desarrollo */}
-          </div>
-
-          <div className="term-box">
-            <label className="select-user">Terms and conditions</label>
-            <label className="checkbox-container">
-            <input
-            className="custom-checkbox"
               type="checkbox"
               checked={termsAccepted}
               onChange={(event) => setTermsAccepted(event.target.checked)}
+              class="form-check-input bg-transparent"
+              id="exampleCheck1"
             />
-            <span className="checkmark"></span>
+            <label class="form-check-label" for="exampleCheck1">
+              Terms and conditions
             </label>
-            
           </div>
 
-          <div>
-            <button type="sumbit" disabled={!termsAccepted}>
+          <button type="sumbit" disabled={!termsAccepted}>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-              UPLOAD
-            </button>
-          </div>
+            UPLOAD
+          </button>
         </form>
       </div>
-    </div>
+    </>
   );
 }
