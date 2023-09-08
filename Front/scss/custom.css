@@ -2152,7 +2152,7 @@ progress {
   opacity: 1;
 }
 .form-control::placeholder {
-  color: var(--bs-secondary-color);
+  color: rgba(255, 255, 255, 0.522);
   opacity: 1;
 }
 .form-control:disabled {
