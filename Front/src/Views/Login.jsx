@@ -1,7 +1,7 @@
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { LoginSocialGoogle } from 'reactjs-social-login'
 
-export default function login() {
+export default function Login() {
     return (
         <div>
             <LoginSocialGoogle
