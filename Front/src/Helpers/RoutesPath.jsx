@@ -7,5 +7,6 @@ export const ROUTES = {
     STORE:'/Store',
     CREATE:'/Create',
     ERROR: '*',
+    LOGIN: '/Login',
    
 }
