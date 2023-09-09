@@ -1,0 +1,22 @@
+.shop {
+    font-size: 95px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    transition: all 300ms ease-in-out;
+    visibility: hidden;
+}
+.subCont {
+    position: fixed;
+    background-color: red;
+    height: 100%;
+    width: 25rem;
+    left: 60%;
+    overflow: auto;
+    transition: all 300ms ease-in-out;
+}
+.scroll {
+    color: grey;
+}
