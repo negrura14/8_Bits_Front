@@ -10,6 +10,7 @@ const {game} = props;
     return ( <>
     <div class="col-md-4 col-sm-6 mb-5 " key={game.id}>
         <div class="product-grid card-st">
+        <span class="badge">{game.name}</span>
             <div class="product-image">
                 <a href="#" class="image">
                     <img class="pic-1" src={game.image}/>
