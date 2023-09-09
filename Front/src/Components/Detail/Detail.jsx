@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import { getGamesId } from "../../Redux/gameActions";
 import { clearDetail } from '../../Redux/gameSlice'
-import Loading from '../Loading/Loading'
+import { addToCart } from '../../Redux/cartSlice';
+import Loading from '../Loading/Loading';
 import './Detail.css';
 
 
@@ -14,13 +15,22 @@ export default function Detail() {
     
     useEffect(() =>{
         dispatch(getGamesId(id))
-
+        
         return () => {
           dispatch(clearDetail()); // Llama a la acción para borrar el detalle
       }
 
     },[dispatch, id])
     
+    const handleChangeOnClic = () => {
+      dispatch(addToCart(detail))
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      cart.push(detail);
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
     
     
     return(
@@ -47,9 +57,12 @@ export default function Detail() {
           <p class="infoD">
           {detail.releaseDate} <span className="bbar">|</span>{detail.genre} <span className="bbar">|</span>{detail.supportedPlatforms}
           </p>
-          <p class="infoD">
-           Stock: <span class="description">{detail.stock} Available</span> 
-          </p>
+          <div className="buttonCart">
+            <p class="infoD">
+            Stock: <span class="description">{detail.stock} Available</span> 
+            </p>
+            <button className="buttonFlex" onClick={handleChangeOnClic}>Agregar al carrito</button>
+          </div>
         </div>
       </div>
     </section>
