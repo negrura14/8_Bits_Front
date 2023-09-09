@@ -1,6 +1,9 @@
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
+import dontMatch from "../../Img/dontMatch.jpg";
+
+
 
 
 function Search(){
@@ -9,9 +12,15 @@ function Search(){
     if(typeof(dataByName)=== "string"){
         return (
             <div>
-              <div className='dontMatch' key="dontMatch">
-                    <h4 className='letras'>{dataByName}</h4>
+                <div>
+                <div>
+                <img src={dontMatch} width="200px" height="250"/> 
                 </div>
+                </div>
+              <div className='dontMatch' key="dontMatch">
+              <h3 className='letras'>{dataByName}</h3>
+                   
+                </div>  
             </div>
     
           )  
@@ -31,6 +40,7 @@ function Search(){
                         </div>
                     )
                 })}
+                
             </div>
         )
     }
