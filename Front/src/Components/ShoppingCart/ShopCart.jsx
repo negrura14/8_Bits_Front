@@ -15,4 +15,5 @@ export const ShopCart = () => {
         </div>
     </div>
   )
+  
 }
