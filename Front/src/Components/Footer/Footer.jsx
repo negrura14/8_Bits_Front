@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink} from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
+import logo from '../../../public/Imagen1.png'
 
 function Footer() {
   return (
@@ -9,7 +10,7 @@ function Footer() {
     <p class="col-md-4 mb-0 text-white">© 2023 8Bits, Inc</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-    <img  src="../../../public/Imagen1.png" width="80px" alt="" />
+    <img  src={logo} width="80px" alt="" />
     </a>
 
     <ul class="nav col-md-4 justify-content-end">

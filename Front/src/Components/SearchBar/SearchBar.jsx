@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import './SearchBard.css';
 import { getGamesName } from "../../Redux/gameActions";
+import {useNavigate} from "react-router-dom";
+import { ROUTES } from "../../Helpers/RoutesPath";
 
 export default function SearchBar(){
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [state, setState] = useState('');
 
@@ -15,7 +17,8 @@ export default function SearchBar(){
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(getGamesName(state))
+        dispatch(getGamesName(state));
+        navigate(`${ROUTES.SEARCH}`);
         setState('');
     };
 

@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
-import Imagen1 from '../../../public/Imagen1.png';
+import Imagen from '../../../public/Imagen1.png';
 import './Nav.css';
 
 function Nav() {
@@ -14,7 +14,7 @@ function Nav() {
     <div class="container-fluid nav-bar">
     <nav class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img  src={Imagen1} width="80px" alt="" />
+      <img  src={Imagen} width="80px" alt="" />
       </a>
 
       <ul class="nav nav-pills">
@@ -28,6 +28,7 @@ function Nav() {
         <li class="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         <li class="nav-item"><NavLink className='nav-link' to={ROUTES.ABOUT}>About us</NavLink></li>
         <li class="nav-item"><NavLink className='nav-link' to={ROUTES.CREATE}>Create</NavLink></li>
+        <li class="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>
         <li class="nav-item">
       <DateTimeDisplay /></li>
       </ul>
