@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
-import Imagen1 from '../../../public/Imagen1.png';
+import Imagen from '../../../public/Imagen1.png';
 import { ShopCart } from '../ShoppingCart/ShopCart.jsx';
 import './Nav.css';
 
@@ -15,7 +15,7 @@ function Nav() {
     <div class="container-fluid nav-bar">
     <nav class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img  src={Imagen1} width="80px" alt="" />
+      <img  src={Imagen} width="80px" alt="" />
       </a>
 
       <ul class="nav nav-pills">
