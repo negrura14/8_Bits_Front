@@ -5,7 +5,7 @@ import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
 import Imagen from '../../../public/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../Redux/cartSlice';
+import { addToCart } from '../../Redux/cartSlice';
 import './Nav.css';
 
 function Nav() {
@@ -15,7 +15,7 @@ function Nav() {
   const dispatch = useDispatch();
 
   const handleCartClick = () => {
-    dispatch(toggleCart());
+    dispatch(addToCart());
   }
 
   return (
