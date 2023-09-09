@@ -12,6 +12,7 @@ import Nav from './Components/Nav/Nav.jsx'
 import Footer from './Components/Footer/Footer.jsx';
 
 import {Cloudinary} from "@cloudinary/url-gen";
+import { ShopCart } from './Components/ShoppingCart/ShopCart';
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
   return (
     <div>
       {!main && <Nav/>}
+      <ShopCart></ShopCart>
       <Routes>
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>
        <Route path = {ROUTES.HOME} element={<Home/>}/>
