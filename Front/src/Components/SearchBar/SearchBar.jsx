@@ -16,9 +16,9 @@ export default function SearchBar(){
     };
 
     function handleSubmit(event){
-        navigate(`${ROUTES.SEARCH}`);
         event.preventDefault();
-        dispatch(getGamesName(state))
+        dispatch(getGamesName(state));
+        navigate(`${ROUTES.SEARCH}`);
         setState('');
     };
 
