@@ -9,14 +9,15 @@
 }
 .color {
     color: #fff;
-    margin-top: 2px;
+    margin-top: 10px;
 }
-.item_count {
+.item-count {
     display: inline-flex;
     position: absolute;
     font-weight: 600;
     font-size: 13px;
     justify-content: center;
+    color: #fff;
     top: 2rem;
     border-radius: 50%;
     width: 1.4rem;
@@ -24,5 +25,5 @@
     background-color: red;
 }
 .margCart {
-    padding-left: 2rem;
+    padding-left: 1rem;
 }
