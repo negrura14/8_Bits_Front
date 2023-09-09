@@ -136,7 +136,7 @@ import './Tienda.css';
 import Pagination from './Paginacion';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
-const itemsPerPage = 10;
+const itemsPerPage = 12;
 
 function Tienda() {
   const [currentPage, setCurrentPage] = useState(1);

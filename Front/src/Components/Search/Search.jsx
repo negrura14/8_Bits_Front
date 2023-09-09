@@ -1,40 +1,64 @@
-import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
+import "./Search.css"
 
+function Search() {
+  const dataByName = useSelector((state) => state.game.search);
+  console.log(dataByName, "dataaaa");
+  
+  const [isTableVisible, setTableVisibility] = useState(false);
+  const productClasses =  isTableVisible ? 'products products-table' : 'products';
 
-function Search(){
-    const dataByName = useSelector(state=>state.game.search);
-    console.log(dataByName, "dataaaa");
-    if(typeof(dataByName)=== "string"){
-        return (
-            <div>
-              <div className='dontMatch' key="dontMatch">
-                    <h4 className='letras'>{dataByName}</h4>
+  const toggleTable = () => {
+    setTableVisibility(!isTableVisible);
+  }
+  if (typeof dataByName === "string") {
+    return (
+      <div>
+        <div className="dontMatch" key="dontMatch">
+          <h4 className="letras">{dataByName}</h4>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        
+        <div class="tools">
+        
+            <h2 className="searchTitle">All items</h2>
+          <div class="settings">
+            <button className="buttonView" id="view" onClick={toggleTable}><span>Switch View</span></button>
+          </div>
+        </div>
+        <div className={productClasses}>
+        {dataByName &&
+          dataByName.map((elem, i) => {
+            return (
+              <div class="product">
+                <div class="product-img">
+                  <img src={elem.image} />
                 </div>
-            </div>
-    
-          )  
-    }else{
-        return(
-            <div>
-                {dataByName&&dataByName.map((elem, i)=>{
-                    return(
-                        <div>
-                            <Link to={`${ROUTES.DETAIL}/${elem.id}`}>
-                                <div>
-                                    <img src={elem.image} width="250px" height="200"/>
-                                    <h3>{elem.name}</h3>
-                                </div>
-                            </Link>
+                <div class="product-content">
+                  <Link to={`${ROUTES.DETAIL}/${elem.id}`}>
+                    <h3>
+                      {elem.name}
+                    </h3>
+                  </Link>
+                      <small>{elem.releaseDate}</small>
 
-                        </div>
-                    )
-                })}
-            </div>
-        )
-    }
-    
-};
+                  <p class="product-text price">{elem.price}$</p>
+                  <p class="product-text genre">{elem.genre}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Search;
