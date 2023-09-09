@@ -4,7 +4,6 @@ import SearchBar from '../SearchBar/SearchBar.jsx'
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
 import Imagen from '../../../public/Imagen1.png';
-import { ShopCart } from '../ShoppingCart/ShopCart.jsx';
 import './Nav.css';
 
 function Nav() {
