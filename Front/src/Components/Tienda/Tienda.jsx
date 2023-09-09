@@ -171,9 +171,35 @@ function Tienda() {
   // const updateFiltersAndFetch = (newFilters) => {
   //   setFiltDB(newFilters);
   //   dispatch(filterGamesAction(filtDB.join('')));
-  // };  
+  // };
 
 
+//** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
+  
+  //funcionalidad para traer todas las plataformas que tenemos hasta el momento
+  const uniquePlatforms = game.reduce((platformsSet, game) => {
+    game.supportedPlatforms.forEach((platform) => {
+      platformsSet.add(platform);
+    });
+    return platformsSet;
+  }, new Set());
+
+  const allPlatforms = Array.from(uniquePlatforms);
+
+  //console.log(allPlatforms);
+
+  //funcionalidad para mostrar únicamente los géneros que tienen los juegos
+  
+  const uniqueGenres = game.reduce((genresSet,game) => {
+    let gameGenres = game.genre.split("-");
+    gameGenres.forEach((genre) => {
+      genresSet.add(genre);
+    });
+    return genresSet;
+  }, new Set());
+
+  const allGenres = Array.from(uniqueGenres);
+  console.log(allGenres);
 //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
 
@@ -244,16 +270,21 @@ function Tienda() {
         <span className='items'>items {initial}-{ending}</span>
         <select className='xBoton'onChange={(e) => handleOfChange(e, 'supportedPlatforms')}> 
           <option value='' hidden> Sort By: Platforms </option>
-          <option value="Nintendo"> Nintendo Switch </option>
+          {/* <option value="Nintendo"> Nintendo Switch </option>
           <option value="Wii"> Wii U </option>
           <option value="PlayStation"> PlayStation 4 </option>
-          <option value="PC"> PC </option>
+          <option value="PC"> PC </option> */}
+          {allPlatforms.map((platform) => (
+                      <option key={platform} value={platform}>
+                        {platform}
+                      </option>
+                    ))}
         </select>
         <select className='xBoton'onChange={(e) => handleOfChange(e, 'genre')}>
           <option value='' hidden> Sort By: Gender</option>
-          {genre && genre.map(type => (
-              <option key={type.id} value={type.name}> 
-                  {type.name}
+          {genre && allGenres.map(type => (
+              <option key={type} value={type}> 
+                  {type}
               </option>
           ))}
         </select>
