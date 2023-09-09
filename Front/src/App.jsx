@@ -10,6 +10,8 @@ import About from './Components/About/About';
 import Tienda from './Components/Tienda/Tienda.jsx'
 import Nav from './Components/Nav/Nav.jsx'
 import Footer from './Components/Footer/Footer.jsx';
+import Login from './Views/Login';
+import Search from './Components/Search/Search';
 
 import {Cloudinary} from "@cloudinary/url-gen";
 import { ShopCart } from './Components/ShoppingCart/ShopCart';
@@ -31,6 +33,8 @@ function App() {
        <Route path = {ROUTES.STORE} element = {<Tienda />} />
        <Route path = {ROUTES.ABOUT} element = {<About/>}/>
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
+       <Route path = {ROUTES.LOGIN} element = {<Login/>}/>
+       <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
       </Routes>
       {!main && <Footer/>}
     </div>

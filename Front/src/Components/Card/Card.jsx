@@ -10,18 +10,6 @@ function Card () {
     
     const {game} = useSelector(state=>state.game)
 
-    
-    if(typeof(game) === 'string'){
-      return (
-        <div>
-          <div className='dontMatch' key="dontMatch">
-                <h4 className='letras'>{game}</h4>
-            </div>
-        </div>
-
-      )
-  }else{
-
   return (
     
     
@@ -54,7 +42,7 @@ function Card () {
     </div>
 )
 }
-}
+
 
 
 
