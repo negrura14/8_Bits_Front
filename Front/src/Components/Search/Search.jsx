@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
 import {clearSearch } from "../../Redux/gameSlice/";
 
-import "./Search.css"
+import "./Search.css"import dontMatch from "../../Img/dontMatch.jpg";
+
+
+
 
 function Search() {
   const dispatch = useDispatch();
