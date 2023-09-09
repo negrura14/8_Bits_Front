@@ -7,29 +7,23 @@ import { ROUTES } from '../../Helpers/RoutesPath'
 function Card (props) {
 const {game} = props;
 // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game.id);
-    return (    
-        <div className='containerF'>
-                {/* {game&&game.map((elem, i)=>{ */}
-                    {/* return( */}
-            <div className="item" key={game.id}>
-                    <Link className='link_card' to={ROUTES.DETAIL + "/" + game.id}>
-                <div className="cardF" >
-                    <div className="circle circle2"></div>
-                    <div className="circle circle1"></div>
-                    <img  className="imgF" src={game.image} />
-                </div>
-                <div className="content">
-                    <p>{game.name}</p>
-                </div>
-                <span className="top"></span>
-                <span className="right"></span>
-                <span className="bottom"></span>
-                <span className="left"></span>
-            </Link>
+    return ( <>
+    <div class="col-md-4 col-sm-6 mb-5 " key={game.id}>
+        <div class="product-grid card-st">
+            <div class="product-image">
+                <a href="#" class="image">
+                    <img class="pic-1" src={game.image}/>
+                </a>
+                <ul class="product-links">
+                    
+                    <li> <Link to={ROUTES.DETAIL + "/" + game.id}><a href="" data-tip="Details"><i class="fa fa-search"></i></a></Link></li>
+                    <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-bag"></i></a></li>
+                </ul>
+                <div class="price">{game.price}$</div>
             </div>
-                {/* ) */}
-            {/* })} */}
         </div>
+    </div>
+    </>
     )
 }
 
