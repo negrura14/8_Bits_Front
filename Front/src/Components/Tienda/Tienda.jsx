@@ -239,7 +239,7 @@ function Tienda() {
 
 
   return (
-    <>
+    <div className='container'>
       <div className='botones'>
         <span className='items'>items {initial}-{ending}</span>
         <select className='xBoton'onChange={(e) => handleOfChange(e, 'supportedPlatforms')}> 
@@ -270,7 +270,7 @@ function Tienda() {
                 onNextPage={nextPage}
                 onPrevPage={prevPage}
             />
-      <div className='cardFLex'>
+      <div className=' cardFLex row'>
                 {getCurrentItems().map((game) => {
                     return <CardT 
                     key={game.id}
@@ -284,7 +284,7 @@ function Tienda() {
                 onNextPage={nextPage}
                 onPrevPage={prevPage}
             />
-    </>
+    </div>
   )
 }
 

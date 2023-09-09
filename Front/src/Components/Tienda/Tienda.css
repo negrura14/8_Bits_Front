@@ -1,9 +1,4 @@
-.cardFLex {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0px;
-    margin: 20px 2rem;
-}
+
 .botones {
     width: 100%;
     text-align: center;
