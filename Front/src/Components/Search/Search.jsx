@@ -1,14 +1,26 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
-import "./Search.css"
+import {clearSearch } from "../../Redux/gameSlice/";
+
+import "./Search.css"import dontMatch from "../../Img/dontMatch.jpg";
+
+
+
 
 function Search() {
+  const dispatch = useDispatch();
   const dataByName = useSelector((state) => state.game.search);
-  console.log(dataByName, "dataaaa");
   
-  const [isTableVisible, setTableVisibility] = useState(false);
+   useEffect(()=>{
+    
+    return()=>{
+      dispatch(clearSearch())
+    }
+   }, []);
+   const [isTableVisible, setTableVisibility] = useState(false);
   const productClasses =  isTableVisible ? 'products products-table' : 'products';
 
   const toggleTable = () => {

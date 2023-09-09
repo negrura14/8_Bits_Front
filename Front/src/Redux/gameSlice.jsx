@@ -20,13 +20,9 @@ export const gameSlice = createSlice({
         getGameByName: (state,action) => {
 
             state.search = action.payload
-            // console.log("ESTO ES LO QUE LLEGA AL ACTION DE GAME NAME: ", typeof(action.payload));
-            // if(typeof(action.payload) === 'object'){
-            //     state.search = action.payload
-            // }
-            // else{
-            //     alert("This game is not available");
-            // }
+        },
+        clearSearch: (state)=>{
+            state.search = [];
         },
         filterGames: (state, action) => {
             state.game = action.payload
@@ -35,6 +31,6 @@ export const gameSlice = createSlice({
     }
 })
 
-export const {getAllGame, getGameById, getGameByName, clearDetail, filterGames } = gameSlice.actions
+export const {getAllGame, getGameById, getGameByName, clearDetail, clearSearch, filterGames } = gameSlice.actions
 
 export default gameSlice.reducer
