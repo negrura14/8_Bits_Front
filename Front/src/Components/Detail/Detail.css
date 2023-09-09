@@ -122,3 +122,14 @@
     font-size: 0.8em;
     margin: 1.7em 3.5% 0 0;
   }
+
+  .buttonCart {
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    margin-top: -10px;
+    margin-bottom: 15px;
+  }
+  .buttonFlex {
+    margin-top: 1.1rem;
+  }
