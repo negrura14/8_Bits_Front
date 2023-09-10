@@ -1,4 +1,4 @@
-import "./Create.css";
+import "./CreateGame.css";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -10,7 +10,7 @@ import { getGame, getGenders } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
 
-export default function Create() {
+export default function CreateGame() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { game } = useSelector((state) => state.game);
@@ -41,7 +41,7 @@ export default function Create() {
     description: "",
     releaseDate: "",
     supportedPlatforms: [],
-    genre: "",
+    genre: [],
     price: "",
     stock: "",
     review: "",
@@ -53,7 +53,7 @@ export default function Create() {
     description: "",
     releaseDate: "",
     supportedPlatforms: [],
-    genre: "",
+    genre: [],
     price: "",
     stock: "",
     review: "",
@@ -92,7 +92,7 @@ export default function Create() {
 
       setInput({
         ...input,
-        genre: input.genre ? input.genre + "-" + selectedGenre : selectedGenre,
+        genre: [...input.genre,selectedGenre]
       });
 
       setSelectedGenre("");
@@ -104,7 +104,7 @@ export default function Create() {
     setSelectedGenres(updatedGenres);
     setInput({
       ...input,
-      genre: updatedGenres.join("\n"), // Une los géneros con saltos de línea
+      genre: updatedGenres, // Une los géneros con saltos de línea
     });
   }
 
@@ -214,7 +214,7 @@ export default function Create() {
         description: "",
         releaseDate: "",
         supportedPlatforms: [],
-        genre: "",
+        genre: [],
         price: "",
         stock: "",
         review: "",
@@ -223,7 +223,7 @@ export default function Create() {
       navigate("/home");
     }
   }
-
+  
   return (
     <>
       <div className="text-primary px-4 m-5 login-box">
@@ -425,7 +425,7 @@ export default function Create() {
               class="form-check-input bg-transparent"
               id="exampleCheck1"
             />
-            <label class="form-check-label" for="exampleCheck1">
+            <label class="form-check-label" htmlFor="exampleCheck1">
               Terms and conditions
             </label>
           </div>
