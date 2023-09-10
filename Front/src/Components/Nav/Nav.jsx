@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
-import Imagen from '../../../public/Imagen1.png';
+import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from '../../Redux/cartSlice';
 import './Nav.css';

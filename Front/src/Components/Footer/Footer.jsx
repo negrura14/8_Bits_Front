@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink} from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
-import logo from '../../../public/Imagen1.png'
+import logo from '../../Img/Imagen1.png'
 
 function Footer() {
   return (
