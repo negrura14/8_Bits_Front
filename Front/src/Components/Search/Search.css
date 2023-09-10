@@ -151,6 +151,8 @@
   }
 }
 
+
+
 /* TABLE VIEW */
 @media screen and (min-width:401px) {
   .settings {
@@ -187,3 +189,33 @@
     margin: 0;
   }
 }
+.dont{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+.dontMatch {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  display:flex;
+  align-items:center;
+  margin: 0px auto;
+  text-align: center;
+  border-radius: 20px;
+  background: #000814;
+  width: 350px;
+  height: 200px;
+}
+.letras{
+  color: aqua;
+  font-size: 15px;
+  font-family: monospace;
+  margin-top: 40px;
+}
+.imgDont{
+  width:150px;
+  height:100px;
+}
+

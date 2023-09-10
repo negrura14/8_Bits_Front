@@ -156,29 +156,6 @@
   height: 280px;
   }
 
-  .dontMatch {
-    display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-    font-size: 4vh;
-    font-weight: 600;
-    z-index:0;
-    display:flex;
-    align-items:center;
-    margin-top:10px;
-    height:88%;
-    text-align: center;
-    border-radius: 20px;
-  background: #000814;
-  width: 230px;
-  height: 280px;
-  }
-  .letras{
-    font-size: 30px;
-    font-family: cursive;
-  }
-
   @keyframes glowing_401 {
     0% {
       transform: rotate(0);
