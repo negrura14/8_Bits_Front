@@ -191,15 +191,15 @@ function Tienda() {
   //funcionalidad para mostrar únicamente los géneros que tienen los juegos
   
   const uniqueGenres = game.reduce((genresSet,game) => {
-    let gameGenres = game.genre.split("-");
-    gameGenres.forEach((genre) => {
+    game.genre.forEach((genre) => {
       genresSet.add(genre);
     });
     return genresSet;
   }, new Set());
 
   const allGenres = Array.from(uniqueGenres);
-  console.log(allGenres);
+  
+  
 //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
 

@@ -5,13 +5,14 @@ import Home from '../src/Components/Home/Home';
 import { ROUTES } from './Helpers/RoutesPath';
 import NotFound from './Components/NotFound/NotFound'
 import Detail from './Components/Detail/Detail'
-import Create from './Components/Create/Create.jsx';
+import CreateGame from './Components/Create Game/CreateGame.jsx';
 import About from './Components/About/About';
 import Tienda from './Components/Tienda/Tienda.jsx'
 import Nav from './Components/Nav/Nav.jsx'
 import Footer from './Components/Footer/Footer.jsx';
 import Login from './Views/Login';
 import Search from './Components/Search/Search';
+import CreateUser from './Components/Create User/CreateUser';
 
 import {Cloudinary} from "@cloudinary/url-gen";
 import { ShopCart } from './Components/ShoppingCart/ShopCart';
@@ -29,7 +30,8 @@ function App() {
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>
        <Route path = {ROUTES.HOME} element={<Home/>}/>
        <Route path = "/Detail/:id" element={<Detail/>}/>
-       <Route path = {ROUTES.CREATE} element = {<Create />} />
+       <Route path = {ROUTES.CREATEGAME} element = {<CreateGame />} />
+       <Route path = {ROUTES.CREATEUSER} element = {<CreateUser />} />
        <Route path = {ROUTES.STORE} element = {<Tienda />} />
        <Route path = {ROUTES.ABOUT} element = {<About/>}/>
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>

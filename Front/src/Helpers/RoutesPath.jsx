@@ -6,7 +6,8 @@ export const ROUTES = {
     NAME: '/Home/:name',
     ABOUT: '/About',
     STORE:'/Store',
-    CREATE:'/Create',
+    CREATEGAME:'/CreateGame',
+    CREATEUSER: "/CreateUser",
     ERROR: '*',
     LOGIN: '/Login',
    

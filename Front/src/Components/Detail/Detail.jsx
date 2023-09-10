@@ -55,7 +55,7 @@ export default function Detail() {
           {detail.description}
           </p>
           <p class="infoD">
-          {detail.releaseDate} <span className="bbar">|</span>{detail.genre} <span className="bbar">|</span>{detail.supportedPlatforms}
+          {detail.releaseDate} <span className="bbar">|</span>{detail.genre.join(" - ")} <span className="bbar">|</span>{detail.supportedPlatforms.join(" - ")}
           </p>
           <div className="buttonCart">
             <p class="infoD">
