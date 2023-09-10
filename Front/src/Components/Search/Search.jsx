@@ -4,9 +4,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
 import {clearSearch } from "../../Redux/gameSlice/";
-
 import "./Search.css"
-// import dontMatch from "../../Img/dontMatch.jpg";
+import gameOver from "../../Img/gameOver.gif"
 
 
 
@@ -29,10 +28,12 @@ function Search() {
   }
   if (typeof dataByName === "string") {
     return (
-      <div>
+      <div className="dont">
         <div className="dontMatch" key="dontMatch">
           <h4 className="letras">{dataByName}</h4>
+          <img  className="imgDont" src={gameOver} alt="imgDont" />
         </div>
+        
       </div>
     );
   } else {
