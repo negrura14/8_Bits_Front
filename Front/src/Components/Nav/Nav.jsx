@@ -44,7 +44,6 @@ function Nav() {
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>
         <li className="nav-item"><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></li>
-
         <li className="color p-1 me-5" onClick={handleCartClick}>
         <i className="fa fa-shopping-cart cart"></i>
           <span className="item-count">{totalGames}</span>
