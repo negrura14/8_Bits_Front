@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     listCart: [],
     isCartOpen: false,
+    cartUpdate: false,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -13,8 +14,11 @@ const cartSlice = createSlice({
     toggleCart: (state) => {
       state.isCartOpen = !state.isCartOpen;
     },
+    cartUpdate: (state) => {
+      state.cartUpdate = !state.cartUpdate;
+    }
   },
 });
 
-export const { addToCart, toggleCart } = cartSlice.actions;
+export const { addToCart, toggleCart, cartUpdate } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../Redux/cartSlice';
+import { toggleCart, cartUpdate} from '../../Redux/cartSlice';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -14,6 +14,7 @@ function Nav() {
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
+  const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   
 
 
@@ -30,6 +31,12 @@ function Nav() {
   const handleCartClick = () => {
     dispatch(toggleCart());
   }
+
+  useEffect(() => {
+    if (isCartUpdated){
+      dispatch(cartUpdate())
+    }
+  }, [isCartUpdated, dispatch])
 
   return (
 
