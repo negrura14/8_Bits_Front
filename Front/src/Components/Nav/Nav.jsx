@@ -43,16 +43,7 @@ function Nav() {
         <li className="nav-item margCart"><NavLink className='nav-link teal' to={ROUTES.HOME}>Home</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>
-        <NavDropdown
-              id="nav-dropdown-dark-example"
-              title="Create"
-              menuVariant="dark"
-            >
-              <NavDropdown.Item ><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></NavDropdown.Item>
-              <NavDropdown.Item >
-              <NavLink className="nav-link" to={ROUTES.CREATEUSER}>Create User</NavLink>
-              </NavDropdown.Item>
-            </NavDropdown>
+        <li className="nav-item"><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></li>
 
         <li className="color p-1 me-5" onClick={handleCartClick}>
         <i className="fa fa-shopping-cart cart"></i>
