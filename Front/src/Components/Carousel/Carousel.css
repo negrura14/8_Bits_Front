@@ -1,6 +1,16 @@
 .carousel-box {
-    width: 700px; /* Define el ancho deseado para el carrusel */
+    width: 80vw; /* Define el ancho deseado para el carrusel */
+    
     margin: 0 auto; /* Centra horizontalmente el carrusel */
+  }
+
+  .carousel-container{
+    height: 400px;
+  }
+
+  .carousel-item{
+    width: 80vw;
+    height: 400px;
   }
   
   .carousel-inner img {
