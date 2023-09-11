@@ -2,11 +2,27 @@ import './CardT.css'
 import {Link} from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { ROUTES } from '../../Helpers/RoutesPath'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../Redux/cartSlice';
+
 
 
 function Card (props) {
 const {game} = props;
-// console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game.id);
+const dispatch = useDispatch()
+
+
+const handleChangeOnClic = () => {
+    // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
+    dispatch(addToCart(game))
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart.push(game);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
     return ( <>
     <div class="col-md-4 col-sm-6 mb-5 " key={game.id}>
         <div class="product-grid card-st">
@@ -18,7 +34,7 @@ const {game} = props;
                 <ul class="product-links">
                     
                     <li> <Link to={ROUTES.DETAIL + "/" + game.id}><a href="" data-tip="Details"><i class="fa fa-search"></i></a></Link></li>
-                    <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i class="fa fa-shopping-bag"></i></a></li>
                 </ul>
                 <div class="price">{game.price}$</div>
             </div>
