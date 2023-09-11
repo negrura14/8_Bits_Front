@@ -3,6 +3,7 @@ import game from'./gameSlice';
 import gender from "./genderSlice";
 import cart from './cartSlice';
 import loadingReducer from './LoadingSlice'
+import user from './userSlice'
 
 export default configureStore({
     reducer:{
@@ -10,6 +11,7 @@ export default configureStore({
         gender: gender,
         cart: cart,
         loading: loadingReducer,
+        user: user,
 
     }
 })
