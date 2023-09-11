@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './ShopCart.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart} from '../../Redux/cartSlice';
+import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
+
+
+
 
 
 
@@ -57,7 +60,7 @@ export const ShopCart = () => {
     const removeFromCart = (itemId) => {
         const updatedCart = cart.filter(item => item.id !== itemId);
         setUpDateCart(updatedCart);
-        window.location.reload()
+        dispatch(cartUpdate())
     }
 
 

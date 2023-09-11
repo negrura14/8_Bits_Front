@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { ROUTES } from '../../Helpers/RoutesPath'
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../Redux/cartSlice';
+import { addToCart, cartUpdate} from '../../Redux/cartSlice';
 
 
 
@@ -19,11 +19,8 @@ const handleChangeOnClic = () => {
     cart.push(game);
 
     localStorage.setItem("cart", JSON.stringify(cart));
-
-
     dispatch(addToCart(cart))
-
-    window.location.reload()
+    dispatch(cartUpdate())
 
 }
 
