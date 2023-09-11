@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import SearchBar from '../SearchBar/SearchBar.jsx'
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
 import Imagen from '../../Img/Imagen1.png';
@@ -36,12 +35,11 @@ function Nav() {
         <li className="nav-item margCart"><NavLink className='nav-link teal' to={ROUTES.HOME}>Home</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.ABOUT}>About us</NavLink></li>
-        <li className="nav-item"><NavLink className='nav-link' to={ROUTES.CREATEGAME}>Create</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>
         <li className="nav-item">
       <DateTimeDisplay /></li>
       </ul>
-      {!detail && <SearchBar />}
+      
     </nav>
   </div>
   )

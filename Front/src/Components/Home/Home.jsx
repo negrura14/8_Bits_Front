@@ -1,10 +1,11 @@
 import './Home.css';
-import DateTimeDisplay from '../Time/Time'
 import Card from '../Card/Card';
+import Carousel from '../Carousel/Carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGame } from '../../Redux/gameActions';
 import React, { useEffect, useState } from 'react';
 import LoadingPage from '../Loading/Loading'
+import SmallNav from '../SmallNav/SmallNav';
 
 
 
@@ -13,6 +14,7 @@ function Home() {
     // const loading = useSelector((state) => state.loading);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
+    
     
     useEffect(()=>{
         dispatch(getGame())
@@ -24,10 +26,10 @@ function Home() {
             setLoading(false);
         })
       },[dispatch]) 
-    
+      
       if (loading){
         return(
-            <div>
+            <div> 
                 <LoadingPage/>
             </div>
         )
@@ -36,7 +38,12 @@ function Home() {
 
         
             <div className='home_container'> 
-                <Card/>
+                <SmallNav/>
+                <div className='carousel-box'>
+                    <p className='carousel-text'>Cheap Games</p>
+                    <Carousel/>
+                </div>
+                
             </div>
         )
       }

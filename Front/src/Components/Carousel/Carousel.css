@@ -1,0 +1,9 @@
+.carousel-box {
+    width: 700px; /* Define el ancho deseado para el carrusel */
+    margin: 0 auto; /* Centra horizontalmente el carrusel */
+  }
+  
+  .carousel-inner img {
+    max-width: 100%; /* Las imágenes se ajustarán al tamaño del carrusel */
+    height: auto;
+  }

@@ -1,0 +1,11 @@
+.carousel-box {
+    width: 40%; 
+    margin: 0 auto;   
+    padding: 20px; 
+  }
+
+  .carousel-text {
+    color: rgb(94, 105, 32);
+    font-size: 20px;
+    text-align: center;
+  }

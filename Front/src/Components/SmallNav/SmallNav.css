@@ -1,0 +1,21 @@
+.small-nav {
+    /* Asegura que SmallNav se muestre debajo de la barra de navegación principal */
+    position: relative;
+    left: 30%;
+    background-color: #20373897; /* Cambia esto al color de fondo deseado */
+    padding: 5px; /* Ajusta el espaciado según sea necesario */
+    border-radius: 1px solid #1f1e57d2; /* Cambia esto al estilo de borde deseado */
+    width: 800px;
+    height: 42px;
+
+   }
+
+.search-small-nav {
+    position: relative;
+    left: 60%;
+}
+
+
+
+
+
