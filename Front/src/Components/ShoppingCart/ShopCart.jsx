@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './ShopCart.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from '../../Redux/cartSlice';
+
+
+
+
+
+
+
 export const ShopCart = () => {
     const dispatch = useDispatch();
     const isCartOpen = useSelector(state => state.cart.isCartOpen);
@@ -14,6 +21,7 @@ export const ShopCart = () => {
     useEffect(() => {
         // Actualizar el carrito en el localStorage cada vez que cambie el estado del carrito
         localStorage.setItem('cart', JSON.stringify(upDatecart));
+
     }, [upDatecart]);
 
    
@@ -59,6 +67,7 @@ export const ShopCart = () => {
                     <span>Mi Carrito</span>
                     <span className="closeCart" onClick={handleCloseCart}>x</span>
                 </div>
+                {cart.length > 0 && (
                 <div className="container-target">
                     {   totalGames.map((element, index) => (
                             <div key={index} className="target">
@@ -83,9 +92,13 @@ export const ShopCart = () => {
                         ))
                     }                   
                 </div>
+                )}
+                {cart.length > 0 && (
                 <div>
                     <p>Total: $USD {totalPrice.toFixed(1)}</p>
+                    <button className='bottonBuy'>Buy</button>
                 </div>
+                )}
             </div>
         </div>
     )
