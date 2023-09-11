@@ -38,7 +38,6 @@ function Home() {
 
         
             <div className='home_container'> 
-                <SmallNav/>
                 <div className='carousel-box'>
                     <p className='carousel-text'>Cheap Games</p>
                     <Carousel/>

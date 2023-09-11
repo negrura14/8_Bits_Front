@@ -23,7 +23,7 @@ function App() {
   const cld = new Cloudinary({cloud: {cloudName: 'bits8'}})
 
   return (
-    <div>
+    <div className="d-flex flex-column min-vh-100">
       {!main && <Nav/>}
       <ShopCart></ShopCart>
       <Routes>
