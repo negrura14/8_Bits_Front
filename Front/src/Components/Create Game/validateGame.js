@@ -1,5 +1,5 @@
 
-const validate = (input,names) => {
+const validateGame = (input,names) => {
     let errors = {};
 
     //name
@@ -17,4 +17,4 @@ const validate = (input,names) => {
 
 }
 
-export default validate;
+export default validateGame;

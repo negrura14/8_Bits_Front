@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import validate from "./validate";
+import validateGame from "./validateGame";
 import { getGame, getGenders } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
@@ -119,7 +119,7 @@ export default function CreateGame() {
     });
 
     setErrors(
-      validate(
+      validateGame(
         {
           ...input,
           [e.target.name]: e.target.value,

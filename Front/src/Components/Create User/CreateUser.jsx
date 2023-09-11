@@ -5,7 +5,9 @@ import { useState,useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import UploadWidget from "../../Helpers/UploadWidget";
+import bcrypt from "bcryptjs-react";
+
+import validateUser from "./validateUser";
 
 export default function CreateUser() {
     // const dispatch = useDispatch();
@@ -15,12 +17,23 @@ export default function CreateUser() {
 
     //useEffect de los usuarios
 
+    const usersPrueba = [
+        {
+            "name": "Sujeto 1",
+            "lastname": "-",
+            "email": "prueba@gmail.com",
+            "password": "1234"
+        }
+    ]
+
+    //---------------------------//
 
     const [input,setInput] = useState({
         name: "",
         lastname: "",
         email: "",
         password: "",
+        confirmPassword: "",
         admin: false   
     });
 
@@ -29,15 +42,74 @@ export default function CreateUser() {
         lastname: "",
         email: "",
         password: "",
+        confirmPassword: "",
         admin: false
-    })
+    });
+
+    const [focusedField, setFocusedField] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
+
+    function handleBlur(e) {
+        setFocusedField(null);
+        // Resto de la lógica de onBlur
+      }
+
+      function handleFocus(e) {
+        setFocusedField(e.target.name);
+      }
+
+    function handleChange(e) {
+        e.preventDefault();
+
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value,
+        });
+
+        setErrors(
+            validateUser({
+                ...input,
+                [e.target.name]: e.target.value,
+            },
+            usersPrueba
+            )
+        );
+    }
+
+    function sumbitHandler(e) {
+        e.preventDefault();
+
+        const noErrors = Object.values(errors).every((error) => error === "");
+
+        if (input.password !== input.confirmPassword){
+            alert("Passwords do not match, try again")
+            return;
+        } else if (!noErrors){
+            alert("There is some error in the fields, please try again")
+            return;
+        } else if (input.name === "" || input.lastname === "" || input.email === "" || input.password === "") {
+            alert("You have to complete all fields")
+            return;
+        }
+
+        //Generación del hash para la contraseña
+        bcrypt.hash(input.password, 10, (err, hashedPassword) => {
+            if (err){
+                alert("Error hashing password",err);
+            } else {
+                //aqui va toda lo demás para para hacer el post
+                console.log("Hashed Password:",hashedPassword);
+            }
+        })
+
+    }
 
 
     return(
-        <div>
+        <div className="basicStyle">
             <h2>Create User</h2>
 
-            <form>
+            <form onSubmit={(event) => sumbitHandler(event)}>
 
                 <div>
                     <label>Name</label>
@@ -46,9 +118,11 @@ export default function CreateUser() {
                         type="text"
                         name="name"
                         value={input.name}
-                        //onChange
+                        onChange={(event) => handleChange(event)}
+                        onBlur={(event) => handleBlur(event)}
+                        onFocus={(event) => handleFocus(event)}
                     />
-                    {errors.name && <p>{errors.name}</p>}
+                    {focusedField === 'name' && errors.name && <p>{errors.name}</p>}
                 </div>
 
                 <div>
@@ -58,9 +132,11 @@ export default function CreateUser() {
                         type="text"
                         name="lastname"
                         value={input.lastname}
-                        //onChange
+                        onChange={(event) => handleChange(event)}
+                        onBlur={(event) => handleBlur(event)}
+                        onFocus={(event) => handleFocus(event)}
                     />
-                    {errors.lastname && <p>{errors.lastname}</p>}
+                    {focusedField === 'lastname' && errors.lastname && <p>{errors.lastname}</p>}
                 </div>
 
                 <div>
@@ -70,27 +146,50 @@ export default function CreateUser() {
                         type="text"
                         name="email"
                         value={input.email}
-                        //onChange
+                        onChange={(event) => handleChange(event)}
+                        onBlur={(event) => handleBlur(event)}
+                        onFocus={(event) => handleFocus(event)}
                     />
-                    {errors.email && <p>{errors.email}</p>}
+                    {focusedField === 'email' && errors.email && <p>{errors.email}</p>}
                 </div>
 
                 <div>
                     <label>Password</label>
                     <input 
                         placeholder="Enter your password"
-                        type="text"
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         value={input.password}
-                        //onChange
+                        onChange={(event) => handleChange(event)}
+                        onBlur={(event) => handleBlur(event)}
+                        onFocus={(event) => handleFocus(event)}
                     />
-                    {errors.password && <p>{errors.password}</p>}
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? "Hide" : "Show"}
+                    </button>
+                    {focusedField === 'password' && errors.password && <p>{errors.password}</p>}
                 </div>
 
-                <button>
+                <div>
+                    <label>Confirm password</label>
+                    <input 
+                        placeholder="Reenter your password"
+                        type={showPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        value={input.confirmPassword}
+                        onChange={(event) => handleChange(event)}
+                        onBlur={(event) => handleBlur(event)}
+                        onFocus={(event) => handleFocus(event)}
+                    />
+                    {focusedField === 'confirmPassword' && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+                </div>
+
+                <button type="sumbit">
                     UPLOAD
                 </button>
-
                 
 
             </form>
