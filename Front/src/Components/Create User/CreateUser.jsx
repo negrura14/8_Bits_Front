@@ -1,8 +1,8 @@
 import "./CreateUser.css";
 
 import axios from "axios";
-import { useState,useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import bcrypt from "bcryptjs-react";
@@ -10,216 +10,229 @@ import bcrypt from "bcryptjs-react";
 import validateUser from "./validateUser";
 
 export default function CreateUser() {
-    // const dispatch = useDispatch();
-    const navigate = useNavigate();
-    // const { user } = useSelector((state) => state.user);
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const { user } = useSelector((state) => state.user);
 
+  //useEffect de los usuarios
 
-    //useEffect de los usuarios
+  const usersPrueba = [
+    {
+      name: "Sujeto 1",
+      lastname: "-",
+      email: "prueba@gmail.com",
+      password: "1234",
+    },
+  ];
 
-    const usersPrueba = [
+  //---------------------------//
+
+  const [input, setInput] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    // admin: false
+  });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    // admin: false
+  });
+
+  const [focusedField, setFocusedField] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+
+  function handleBlur(e) {
+    setFocusedField(null);
+    // Resto de la lógica de onBlur
+  }
+
+  function handleFocus(e) {
+    setFocusedField(e.target.name);
+  }
+
+  function handleChange(e) {
+    e.preventDefault();
+
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors(
+      validateUser(
         {
-            "name": "Sujeto 1",
-            "lastname": "-",
-            "email": "prueba@gmail.com",
-            "password": "1234"
-        }
-    ]
+          ...input,
+          [e.target.name]: e.target.value,
+        },
+        usersPrueba
+      )
+    );
+  }
 
-    //---------------------------//
+  function sumbitHandler(e) {
+    e.preventDefault();
 
-    const [input,setInput] = useState({
-        name: "",
-        lastname: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        // admin: false   
-    });
+    const noErrors = Object.values(errors).every((error) => error === "");
 
-    const [errors,setErrors] = useState({
-        name: "",
-        lastname: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        // admin: false
-    });
+    if (input.password !== input.confirmPassword) {
+      alert("Passwords do not match, try again");
+      return;
+    } else if (!noErrors) {
+      alert("There is some error in the fields, please try again");
+      return;
+    } else if (
+      input.name === "" ||
+      input.lastname === "" ||
+      input.email === "" ||
+      input.password === ""
+    ) {
+      alert("You have to complete all fields");
+      return;
+    }
 
-    const [focusedField, setFocusedField] = useState(null);
-    const [showPassword, setShowPassword] = useState(false);
+    //Generación del hash para la contraseña
+    bcrypt.hash(input.password, 10, (err, hashedPassword) => {
+      if (err) {
+        alert("Error hashing password", err);
+      } else {
+        //aqui va toda lo demás para para hacer el post
+        console.log("Hashed Password:", hashedPassword);
+        const formatInput = {
+          name: input.name,
+          lastname: input.lastname,
+          email: input.email,
+          password: hashedPassword,
+        };
 
-    function handleBlur(e) {
-        setFocusedField(null);
-        // Resto de la lógica de onBlur
-      }
-
-      function handleFocus(e) {
-        setFocusedField(e.target.name);
-      }
-
-    function handleChange(e) {
-        e.preventDefault();
+        axios
+          .post("/user/signup", formatInput)
+          .then((res) => res, alert("User created successfully! Now login!"))
+          .catch((err) => alert(err));
 
         setInput({
-            ...input,
-            [e.target.name] : e.target.value,
+          name: "",
+          lastname: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
         });
 
-        setErrors(
-            validateUser({
-                ...input,
-                [e.target.name]: e.target.value,
-            },
-            usersPrueba
-            )
-        );
-    }
+        navigate("/login");
+      }
+    });
+  }
 
-    function sumbitHandler(e) {
-        e.preventDefault();
+  return (
+    <div className="text-primary px-4 m-5 login-box">
+      <h2>Create User</h2>
 
-        const noErrors = Object.values(errors).every((error) => error === "");
-
-        if (input.password !== input.confirmPassword){
-            alert("Passwords do not match, try again")
-            return;
-        } else if (!noErrors){
-            alert("There is some error in the fields, please try again")
-            return;
-        } else if (input.name === "" || input.lastname === "" || input.email === "" || input.password === "") {
-            alert("You have to complete all fields")
-            return;
-        }
-
-        //Generación del hash para la contraseña
-        bcrypt.hash(input.password, 10, (err, hashedPassword) => {
-            if (err){
-                alert("Error hashing password",err);
-            } else {
-                //aqui va toda lo demás para para hacer el post
-                console.log("Hashed Password:",hashedPassword);
-                const formatInput = {
-                    name: input.name,
-                    lastname: input.lastname,
-                    email: input.email,
-                    password: hashedPassword,
-                };
-
-                axios
-                    .post("/user/signup", formatInput)
-                    .then((res) => res, alert("User created successfully! Now login!"))
-                    .catch((err) => alert(err));
-
-                setInput({
-                    name: "",
-                    lastname: "",
-                    email: "",
-                    password: "",
-                    confirmPassword: "",
-                });
-
-                navigate('/login');
-
-            }
-            
-
-
-        })
-
-    }
-
-
-    return(
-        <div className="basicStyle">
-            <h2>Create User</h2>
-
-            <form onSubmit={(event) => sumbitHandler(event)}>
-
-                <div>
-                    <label>Name</label>
-                    <input 
-                        placeholder="Enter your name"
-                        type="text"
-                        name="name"
-                        value={input.name}
-                        onChange={(event) => handleChange(event)}
-                        onBlur={(event) => handleBlur(event)}
-                        onFocus={(event) => handleFocus(event)}
-                    />
-                    {focusedField === 'name' && errors.name && <p>{errors.name}</p>}
-                </div>
-
-                <div>
-                    <label>Lastname</label>
-                    <input 
-                        placeholder="Enter your lastname"
-                        type="text"
-                        name="lastname"
-                        value={input.lastname}
-                        onChange={(event) => handleChange(event)}
-                        onBlur={(event) => handleBlur(event)}
-                        onFocus={(event) => handleFocus(event)}
-                    />
-                    {focusedField === 'lastname' && errors.lastname && <p>{errors.lastname}</p>}
-                </div>
-
-                <div>
-                    <label>Email</label>
-                    <input 
-                        placeholder="Enter your email"
-                        type="text"
-                        name="email"
-                        value={input.email}
-                        onChange={(event) => handleChange(event)}
-                        onBlur={(event) => handleBlur(event)}
-                        onFocus={(event) => handleFocus(event)}
-                    />
-                    {focusedField === 'email' && errors.email && <p>{errors.email}</p>}
-                </div>
-
-                <div>
-                    <label>Password</label>
-                    <input 
-                        placeholder="Enter your password"
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={input.password}
-                        onChange={(event) => handleChange(event)}
-                        onBlur={(event) => handleBlur(event)}
-                        onFocus={(event) => handleFocus(event)}
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                    >
-                        {showPassword ? "Hide" : "Show"}
-                    </button>
-                    {focusedField === 'password' && errors.password && <p>{errors.password}</p>}
-                </div>
-
-                <div>
-                    <label>Confirm password</label>
-                    <input 
-                        placeholder="Reenter your password"
-                        type={showPassword ? "text" : "password"}
-                        name="confirmPassword"
-                        value={input.confirmPassword}
-                        onChange={(event) => handleChange(event)}
-                        onBlur={(event) => handleBlur(event)}
-                        onFocus={(event) => handleFocus(event)}
-                    />
-                    {focusedField === 'confirmPassword' && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-                </div>
-
-                <button type="sumbit">
-                    UPLOAD
-                </button>
-                
-
-            </form>
-
+      <form onSubmit={(event) => sumbitHandler(event)}>
+        <div className="mb-3">
+          <label className="form-label">Name</label>
+          <input
+            placeholder="Enter your name"
+            type="text"
+            name="name"
+            value={input.name}
+            onChange={(event) => handleChange(event)}
+            onBlur={(event) => handleBlur(event)}
+            onFocus={(event) => handleFocus(event)}
+            className="form-control bg-transparent text-white"
+          />
+          {focusedField === "name" && errors.name && <p>{errors.name}</p>}
         </div>
-    )
 
+        <div className="mb-3">
+          <label className="form-label">Lastname</label>
+          <input
+            placeholder="Enter your lastname"
+            type="text"
+            name="lastname"
+            value={input.lastname}
+            onChange={(event) => handleChange(event)}
+            onBlur={(event) => handleBlur(event)}
+            onFocus={(event) => handleFocus(event)}
+            className="form-control bg-transparent text-white"
+          />
+          {focusedField === "lastname" && errors.lastname && (
+            <p>{errors.lastname}</p>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input
+            placeholder="Enter your email"
+            type="text"
+            name="email"
+            value={input.email}
+            onChange={(event) => handleChange(event)}
+            onBlur={(event) => handleBlur(event)}
+            onFocus={(event) => handleFocus(event)}
+            className="form-control bg-transparent text-white"
+          />
+          {focusedField === "email" && errors.email && <p>{errors.email}</p>}
+        </div>
+
+        <div className="row">
+          <label className="form-label">Password</label>
+          <div className=" col-9">
+            <input
+              placeholder="Enter your password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={input.password}
+              onChange={(event) => handleChange(event)}
+              onBlur={(event) => handleBlur(event)}
+              onFocus={(event) => handleFocus(event)}
+              className="form-control bg-transparent text-white"
+            />
+          </div>
+          <div className=" col-3">
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+          {focusedField === "password" && errors.password && (
+              <p>{errors.password}</p>
+            )}
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Confirm password</label>
+          <input
+            placeholder="Reenter your password"
+            type={showPassword ? "text" : "password"}
+            name="confirmPassword"
+            value={input.confirmPassword}
+            onChange={(event) => handleChange(event)}
+            onBlur={(event) => handleBlur(event)}
+            onFocus={(event) => handleFocus(event)}
+            className="form-control bg-transparent text-white"
+          />
+          {focusedField === "confirmPassword" && errors.confirmPassword && (
+            <p>{errors.confirmPassword}</p>
+          )}
+        </div>
+
+        <button type="sumbit">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          UPLOAD
+        </button>
+      </form>
+    </div>
+  );
 }
