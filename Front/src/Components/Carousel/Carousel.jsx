@@ -17,6 +17,7 @@ function Carousel() {
     };
   
     const lowestPricedGames = getLowestPricedGames(4);
+    
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -40,7 +41,7 @@ function Carousel() {
           <div className="carousel-inner">
             {lowestPricedGames.map((game, index) => (
               <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`}>
-                <img className="d-block w-100 custom-image-size" src={game.image} alt={`Slide ${index}`} />
+                <img className="d-block  custom-image-size" src={game.image} alt={`Slide ${index}`} />
               </div>
             ))}
           </div>
