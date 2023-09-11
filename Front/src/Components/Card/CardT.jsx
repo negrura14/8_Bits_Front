@@ -21,6 +21,7 @@ const handleChangeOnClic = () => {
     cart.push(game);
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.reload()
 }
 
     return ( <>
@@ -42,6 +43,7 @@ const handleChangeOnClic = () => {
     </div>
     </>
     )
+
 }
 
 

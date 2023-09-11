@@ -58,6 +58,7 @@ export const ShopCart = () => {
     const removeFromCart = (itemId) => {
         const updatedCart = cart.filter(item => item.id !== itemId);
         setUpDateCart(updatedCart);
+        window.location.reload()
     }
 
     return (

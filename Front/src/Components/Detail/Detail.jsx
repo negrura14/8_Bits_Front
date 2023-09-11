@@ -30,6 +30,7 @@ export default function Detail() {
       cart.push(detail);
 
       localStorage.setItem("cart", JSON.stringify(cart));
+      window.location.reload()
     }
     
     
