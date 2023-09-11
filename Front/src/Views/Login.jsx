@@ -89,22 +89,13 @@ export default function Login() {
 
     return (
         <div>
-
-            <div>
+            <div className="text-primary px-4 m-5 login-box">
+            <h2>Login</h2>
                 <Form onSubmit={submitHandler}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Email address</Form.Label>
-                      <Form.Control type="email" placeholder="Enter email" value={form.email} onChange={changeHandler} name='email' onBlur={handleBlur} onFocus={handleFocus}/>
-                      <Form.Text className="text-muted">
-
-            <div className="text-primary px-4 m-5 login-box">
-            <h2>Login</h2>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control  className=" bg-transparent text-white" type="email" placeholder="Enter email" value={form.email} onChange={changeHandler} name='email' />
+                      <Form.Control  className=" bg-transparent text-white" type="email" placeholder="Enter email" value={form.email} onChange={changeHandler} name='email' onBlur={handleBlur} onFocus={handleFocus}/>
                       <Form.Text className="text-white-50 ">
-
                         We'll never share your email with anyone else.
                         {focusedField === 'email' && errors.email && <p>{errors.email}</p>}
                       </Form.Text>
@@ -112,18 +103,13 @@ export default function Login() {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                       <Form.Label>Password</Form.Label>
-
-                      <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" value={form.password} onChange={changeHandler} name='password' onBlur={handleBlur} onFocus={handleFocus}/>
+                      <Form.Control className=" bg-transparent text-white" type={showPassword ? "text" : "password"} placeholder="Password" value={form.password} onChange={changeHandler} name='password' onBlur={handleBlur} onFocus={handleFocus}/>
                       <Form.Text className="text-muted"> 
                         {focusedField === 'password' && errors.password && <p>{errors.password}</p>}
                       </Form.Text>    
                       <Button type='button' onClick={() => setShowPassword(!showPassword)}>
                        {showPassword ? "Hide" : "Show"}
                       </Button>
-
-                      <Form.Control 
-                className=" bg-transparent text-white" type="password" placeholder="Password" value={form.password} onChange={changeHandler} name='password'/>
-
                     </Form.Group>
                     <Button variant="primary" type="submit">
                       Submit
