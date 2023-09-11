@@ -10,7 +10,7 @@ import About from './Components/About/About';
 import Tienda from './Components/Tienda/Tienda.jsx'
 import Nav from './Components/Nav/Nav.jsx'
 import Footer from './Components/Footer/Footer.jsx';
-import Login from './Views/login';
+import Login from './Views/Login';
 import Search from './Components/Search/Search';
 import CreateUser from './Components/Create User/CreateUser';
 
