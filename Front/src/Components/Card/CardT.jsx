@@ -13,7 +13,7 @@ const dispatch = useDispatch()
 
 
 const handleChangeOnClic = () => {
-    console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
+    // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
     dispatch(addToCart(game))
 
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
