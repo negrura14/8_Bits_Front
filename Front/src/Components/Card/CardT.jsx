@@ -14,14 +14,14 @@ const dispatch = useDispatch()
 
 const handleChangeOnClic = () => {
     // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
-    dispatch(addToCart(game))
-
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     cart.push(game);
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch(addToCart(cart))
     dispatch(cartUpdate())
+
 }
 
     return ( <>

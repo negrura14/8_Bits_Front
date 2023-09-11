@@ -9,7 +9,8 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      state.listCart.push(action.payload);
+      state.listCart = action.payload;
+      console.log("SE LLAMO A ESTA FUNCION Y AHORA EL VALOR DE listCart ES: ", state.listCart);
     },
     toggleCart: (state) => {
       state.isCartOpen = !state.isCartOpen;
