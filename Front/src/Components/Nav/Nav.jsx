@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
+import SearchBar from '../SearchBar/SearchBar.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
