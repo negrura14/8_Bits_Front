@@ -39,9 +39,10 @@ function Home() {
         
             <div className='home_container'> 
                 <div className='carousel-box'>
-                    <p className='carousel-text'>Cheap Games</p>
+                    <h2 className="p-2 text-secondary">Cheap Games</h2>
                     <Carousel/>
                 </div>
+                
                 
             </div>
         )
