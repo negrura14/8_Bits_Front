@@ -105,7 +105,7 @@ const data = [
             
             "linkedIn": "https://www.linkedin.com/in/emanuel-nieto-230aab264/",
             
-            "twitter": "null",
+            
             "avPhoto": Emanuelpx,
             
             "rePhoto": emanuelPhoto
