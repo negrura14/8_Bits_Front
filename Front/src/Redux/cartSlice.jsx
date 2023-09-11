@@ -9,17 +9,27 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      state.listCart = action.payload;
-      console.log("SE LLAMO A ESTA FUNCION Y AHORA EL VALOR DE listCart ES: ", state.listCart);
+     return{
+      ...state,
+      listCart: [...state.listCart, action.payload],
+     }
     },
+    removeFromCart: (state, action) => {
+      // Filtra los elementos que no coincidan con el ID del juego a eliminar
+      state.listCart = state.listCart.filter((item) => item.id !== action.payload);
+    },
+
     toggleCart: (state) => {
-      state.isCartOpen = !state.isCartOpen;
+      return{
+        ...state,
+        isCartOpen: !state.isCartOpen,
+      }
     },
     cartUpdate: (state) => {
       state.cartUpdate = !state.cartUpdate;
-    }
+    },
   },
 });
 
-export const { addToCart, toggleCart, cartUpdate } = cartSlice.actions;
+export const { addToCart, toggleCart, removeFromCart, cartUpdate } = cartSlice.actions;
 export default cartSlice.reducer;

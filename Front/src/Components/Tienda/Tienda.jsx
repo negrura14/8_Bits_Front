@@ -137,12 +137,12 @@ import Pagination from './Paginacion';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
 import LoadingPage from '../Loading/Loading';
+
 const itemsPerPage = 12;
 
 function Tienda() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filtDB, setFiltDB] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [filteredGames, setFilteredGames] = useState([]);
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state.game);
@@ -153,7 +153,6 @@ function Tienda() {
   useEffect(() => {
     dispatch(getGame());
     dispatch(getGenders());
-    setIsLoading(false);
   }, [dispatch]);
 
   useEffect(() => {
@@ -269,10 +268,7 @@ function Tienda() {
 
   return (
     <div className='container'>
-      { isLoading ? (
-        <LoadingPage/>
-      ) : (
-        <div className='botones'>
+      <div className='botones'>
         <span className='items'>items {initial}-{ending}</span>
         <select className='xBoton'onChange={(e) => handleOfChange(e, 'supportedPlatforms')}> 
           <option value='' hidden> Sort By: Platforms </option>
@@ -301,9 +297,6 @@ function Tienda() {
         </select>
         <button className='xBoton'onClick={(e) => handleOfChange(e, 'todo')}>Show: <span className='xSpan'> All games</span> </button>
       </div>
-      )}
-      
-    
       <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
@@ -324,7 +317,7 @@ function Tienda() {
                 onNextPage={nextPage}
                 onPrevPage={prevPage}
             />
-    </div> // el primero
+    </div>
   )
 }
 
