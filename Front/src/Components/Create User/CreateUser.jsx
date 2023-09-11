@@ -11,7 +11,7 @@ import validateUser from "./validateUser";
 
 export default function CreateUser() {
     // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // const { user } = useSelector((state) => state.user);
 
 
@@ -34,7 +34,7 @@ export default function CreateUser() {
         email: "",
         password: "",
         confirmPassword: "",
-        admin: false   
+        // admin: false   
     });
 
     const [errors,setErrors] = useState({
@@ -43,7 +43,7 @@ export default function CreateUser() {
         email: "",
         password: "",
         confirmPassword: "",
-        admin: false
+        // admin: false
     });
 
     const [focusedField, setFocusedField] = useState(null);
@@ -99,7 +99,32 @@ export default function CreateUser() {
             } else {
                 //aqui va toda lo demás para para hacer el post
                 console.log("Hashed Password:",hashedPassword);
+                const formatInput = {
+                    name: input.name,
+                    lastname: input.lastname,
+                    email: input.email,
+                    password: hashedPassword,
+                };
+
+                axios
+                    .post("/user/signup", formatInput)
+                    .then((res) => res, alert("User created successfully! Now login!"))
+                    .catch((err) => alert(err));
+
+                setInput({
+                    name: "",
+                    lastname: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                });
+
+                navigate('/login');
+
             }
+            
+
+
         })
 
     }
