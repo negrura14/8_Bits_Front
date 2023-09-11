@@ -5,7 +5,10 @@ import App from './App.jsx'
 import { Provider } from 'react-redux'
 import store from './Redux/store.jsx'
 import axios from 'axios';
-import './index.css'
+import './index.css';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import '@sweetalert2/theme-dark/dark.css';
+
 
 //axios.defaults.baseURL= 'http://localhost:3001';
 axios.defaults.baseURL= 'https://eight-bits-back.onrender.com'
