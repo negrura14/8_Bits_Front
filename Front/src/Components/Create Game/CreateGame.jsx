@@ -9,12 +9,17 @@ import validateGame from "./validateGame";
 import { getGame, getGenders } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function CreateGame() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { game } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.gender);
+
+  //constante para sweet alert
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     dispatch(getGame());
@@ -199,9 +204,19 @@ export default function CreateGame() {
     //fin de validación de errores y campos por completar
 
     if (!allFieldsComplete) {
-      alert("You have to complete all fields!!");
+      //alert("You have to complete all fields!!");
+      MySwal.fire({
+        title: <strong>WARNING</strong>,
+        html: <i>You have to complete all fields</i>,
+        icon: 'warning', // Puedes cambiar el icono si lo deseas
+      });
     } else if (!noErrors) {
-      alert("There is some error in the fields!!");
+      //alert("There is some error in the fields!!");
+      MySwal.fire({
+        title: <strong>ERROR</strong>,
+        html: <i>There is some error in the fields, please try again</i>,
+        icon: 'error', // Puedes cambiar el icono si lo deseas
+      });
     } else {
       axios
         .post("/games/postGame", formatFields())
