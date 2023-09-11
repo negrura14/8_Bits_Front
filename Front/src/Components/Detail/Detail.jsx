@@ -61,7 +61,7 @@ export default function Detail() {
             <p class="infoD">
             Stock: <span class="description">{detail.stock} Available</span> 
             </p>
-            <button className="buttonFlex" onClick={handleChangeOnClic}>Agregar al carrito</button>
+            <button className="buttonFlex" onClick={handleChangeOnClic}>Add to Cart</button>
           </div>
         </div>
       </div>
