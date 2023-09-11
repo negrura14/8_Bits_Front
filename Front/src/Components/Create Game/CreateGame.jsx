@@ -204,7 +204,7 @@ export default function CreateGame() {
       alert("There is some error in the fields!!");
     } else {
       axios
-        .post("http://localhost:3001/games/postGame", formatFields())
+        .post("/games/postGame", formatFields())
         .then((res) => res, alert("Game created successfully!"))
         .catch((err) => alert(err));
 
