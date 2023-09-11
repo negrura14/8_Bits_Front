@@ -9,12 +9,17 @@ import validateGame from "./validateGame";
 import { getGame, getGenders } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function CreateGame() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { game } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.gender);
+
+  //constante para sweet alert
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     dispatch(getGame());
@@ -92,7 +97,7 @@ export default function CreateGame() {
 
       setInput({
         ...input,
-        genre: [...input.genre,selectedGenre]
+        genre: [...input.genre, selectedGenre],
       });
 
       setSelectedGenre("");
@@ -199,9 +204,19 @@ export default function CreateGame() {
     //fin de validación de errores y campos por completar
 
     if (!allFieldsComplete) {
-      alert("You have to complete all fields!!");
+      //alert("You have to complete all fields!!");
+      MySwal.fire({
+        title: <strong>WARNING</strong>,
+        html: <i>You have to complete all fields</i>,
+        icon: 'warning', // Puedes cambiar el icono si lo deseas
+      });
     } else if (!noErrors) {
-      alert("There is some error in the fields!!");
+      //alert("There is some error in the fields!!");
+      MySwal.fire({
+        title: <strong>ERROR</strong>,
+        html: <i>There is some error in the fields, please try again</i>,
+        icon: 'error', // Puedes cambiar el icono si lo deseas
+      });
     } else {
       axios
         .post("/games/postGame", formatFields())
@@ -223,7 +238,7 @@ export default function CreateGame() {
       navigate("/home");
     }
   }
-  
+
   return (
     <>
       <div className="text-primary px-4 m-5 login-box">
@@ -238,7 +253,7 @@ export default function CreateGame() {
               name="name"
               value={input.name}
               onChange={(event) => handleChange(event)}
-              className="form-control bg-transparent"
+              className="form-control bg-transparent text-white"
               // className={errors.name ? 'error' : ''}
             />
             {errors.name && <p className="error-message">{errors.name}</p>}
@@ -252,7 +267,7 @@ export default function CreateGame() {
               name="description"
               value={input.description}
               onChange={(event) => handleChange(event)}
-              className="form-control bg-transparent"
+              className="form-control bg-transparent text-white"
               // className={errors.description ? 'error' : ''}
             />
             {errors.description && (
@@ -261,43 +276,39 @@ export default function CreateGame() {
           </div>
 
           <div className="row">
-          <div className="mb-3 col-md-6  col-sm-12">
-            <label className="form-label">Price</label>
-            <input
-              placeholder="Enter Price"
-              type="number"
-              name="price"
-              value={input.price}
-              onChange={(event) => handleChange(event)}
-              className="form-control bg-transparent"
-              // className={errors.price ? 'error' : ''}
-            />
-          </div>
-          <div className="mb-3 col-md-6  col-sm-12">
-            <label className="form-label">Release Date</label>
-            <input
-              placeholder="Enter Date"
-              type="date"
-              name="releaseDate"
-              value={input.releaseDate}
-              onChange={(event) => handleChange(event)}
-              className="form-control bg-transparent"
-              // className={errors.releaseDate ? 'error' : ''}
-            />
+            <div className="mb-3 col-md-6  col-sm-12">
+              <label className="form-label">Price</label>
+              <input
+                placeholder="Enter Price"
+                type="number"
+                name="price"
+                value={input.price}
+                onChange={(event) => handleChange(event)}
+                className="form-control bg-transparent text-white"
+                // className={errors.price ? 'error' : ''}
+              />
+            </div>
+            <div className="mb-3 col-md-6  col-sm-12">
+              <label className="form-label">Release Date</label>
+              <input
+                placeholder="Enter Date"
+                type="date"
+                name="releaseDate"
+                value={input.releaseDate}
+                onChange={(event) => handleChange(event)}
+                className="form-control bg-transparent text-white"
+                // className={errors.releaseDate ? 'error' : ''}
+              />
+            </div>
           </div>
 
-          </div>
-
-          
-
-         
-          <div class="row ">
+          <div className="row ">
             <div className="col-md-6  col-sm-12">
               <label className="form-label">Supported Platforms</label>
               <div className=" bg-transparent row">
                 <div className="col">
                   <select
-                    class="form-select bg-transparent text-white-50"
+                    className="form-select bg-transparent text-white-50"
                     value={selectedPlatform}
                     onChange={(event) =>
                       setSelectedPlatform(event.target.value)
@@ -338,7 +349,7 @@ export default function CreateGame() {
               <div className=" bg-transparent row">
                 <div className="col ">
                   <select
-                    class="form-select bg-transparent text-white-50"
+                    className="form-select bg-transparent text-white-50"
                     value={selectedGenre}
                     onChange={(event) => setSelectedGenre(event.target.value)}
                   >
@@ -374,7 +385,7 @@ export default function CreateGame() {
             </div>
           </div>
 
-          <div class="row mb-3">
+          <div className="row mb-3">
             <div className="col">
               <label className="form-label">Review</label>
               <input
@@ -385,7 +396,7 @@ export default function CreateGame() {
                 onChange={(event) => handleChange(event)}
                 min="0"
                 max="100"
-                className="form-control bg-transparent"
+                className="form-control bg-transparent text-white"
                 // className={errors.name ? 'error' : ''}
               />
             </div>
@@ -400,14 +411,15 @@ export default function CreateGame() {
                 onChange={(event) => handleChange(event)}
                 min="0"
                 max="100"
-                className="form-control bg-transparent"
+                className="form-control bg-transparent text-white"
                 // className={errors.name ? 'error' : ''}
               />
             </div>
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Upload files</label> {/*en desarrollo */}
+            <label className="form-label">Upload files</label>{" "}
+            {/*en desarrollo */}
             <UploadWidget
               onImageUpload={onImageUpload}
               setIsUploadingImage={setIsUploadingImage}
@@ -417,15 +429,15 @@ export default function CreateGame() {
             />
           </div>
 
-          <div class="mb-3 form-check">
+          <div className="mb-3 form-check">
             <input
               type="checkbox"
               checked={termsAccepted}
               onChange={(event) => setTermsAccepted(event.target.checked)}
-              class="form-check-input bg-transparent"
+              className="form-check-input bg-transparent"
               id="exampleCheck1"
             />
-            <label class="form-check-label" htmlFor="exampleCheck1">
+            <label className="form-check-label" htmlFor="exampleCheck1">
               Terms and conditions
             </label>
           </div>

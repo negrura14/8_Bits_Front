@@ -7,10 +7,16 @@
 .nav-link:hover{
     color: #2cffa0;
 }
+.cart:hover{
+    color: #2cffa0; 
+}
 .color {
     color: #fff;
     margin-top: 5px;
     cursor: pointer;
+}
+.time{
+    display: fixed;
 }
 .item-count {
     display: inline-flex;
@@ -20,10 +26,9 @@
     justify-content: center;
     top: 2rem;
     border-radius: 50%;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1rem;
+    height: 1rem;
     background-color: red;
-    padding-top: 0.1rem;
 }
 .margCart {
     padding-left: 1rem;

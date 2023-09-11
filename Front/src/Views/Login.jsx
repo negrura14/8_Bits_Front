@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { LoginSocialGoogle } from 'reactjs-social-login';
+import { validateLogin } from './validateLogin';
+import { useNavigate, Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+
 
 
 
@@ -13,6 +17,10 @@ export default function Login() {
     const clientID = '133571718056-qbem0tdcv46v6pk03e7v7qgmdpsvtg8p.apps.googleusercontent.com';
     const [provider, setProvider] = useState([])
     const [dataLog, setDataLog] = useState([])
+    const [showPassword, setShowPassword] = useState(false)
+    const [focusedField, setFocusedField] = useState(null);
+    const navigate = useNavigate();
+    
     
     const [form, setForm] = useState({
         email:'',
@@ -24,42 +32,104 @@ export default function Login() {
         password:''
     });
 
+
+    function handleBlur(event) {
+      setFocusedField(null);
+      // Resto de la lógica de onBlur
+    }
+
+    function handleFocus(event) {
+      setFocusedField(event.target.name);
+    }
+
     const changeHandler = (event) => {
-        const nombre = event.target.name;
-        const valor = event.target.value;
-        console.log(nombre, valor);
+        const name = event.target.name;
+        const value = event.target.value;
+        console.log(name, value);
 
-        // validate({...form,[nombre]:valor}, errors);
-        setForm({...form,[nombre]:valor});
+        setErrors(validateLogin({...form,[name]:value}));
+        setForm({...form,[name]:value});
     }
 
-    const validate = (form, errors) =>{
+    function submitHandler(event) {
+
+      const noErrors = Object.values(errors).every((error) => error === "");
+
+      if (!noErrors){
+        alert("There is some error in the fields, please try again")
+        return;
+      } else if (form.email === "" || form.password === "") {
+        alert("You have to complete all fields")
+        return;
+      }
+
+      // console.log("Hashed Password:",password);
+      // const formatInput = {
+      //     email: form.email,
+      //     password: form.password,
+      //   };
+
+          axios
+          .post("/user/login", form)
+          .then((res) => res, alert('asd'))
+          .catch((err) => alert(err));
+
+          setForm({
+            email:'',
+            password:''
+        });
+
+        navigate('/store');
+
         
-        
+
     }
 
+  
 
     return (
         <div>
+
             <div>
+                <Form onSubmit={submitHandler}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Email address</Form.Label>
+                      <Form.Control type="email" placeholder="Enter email" value={form.email} onChange={changeHandler} name='email' onBlur={handleBlur} onFocus={handleFocus}/>
+                      <Form.Text className="text-muted">
+
+            <div className="text-primary px-4 m-5 login-box">
+            <h2>Login</h2>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Email address</Form.Label>
-                      <Form.Control type="email" placeholder="Enter email" value={form.email} onChange={changeHandler} name='email' />
-                      <Form.Text className="text-muted">
+                      <Form.Control  className=" bg-transparent text-white" type="email" placeholder="Enter email" value={form.email} onChange={changeHandler} name='email' />
+                      <Form.Text className="text-white-50 ">
+
                         We'll never share your email with anyone else.
+                        {focusedField === 'email' && errors.email && <p>{errors.email}</p>}
                       </Form.Text>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                       <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" value={form.password} onChange={changeHandler} name='password'/>
+
+                      <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" value={form.password} onChange={changeHandler} name='password' onBlur={handleBlur} onFocus={handleFocus}/>
+                      <Form.Text className="text-muted"> 
+                        {focusedField === 'password' && errors.password && <p>{errors.password}</p>}
+                      </Form.Text>    
+                      <Button type='button' onClick={() => setShowPassword(!showPassword)}>
+                       {showPassword ? "Hide" : "Show"}
+                      </Button>
+
+                      <Form.Control 
+                className=" bg-transparent text-white" type="password" placeholder="Password" value={form.password} onChange={changeHandler} name='password'/>
+
                     </Form.Group>
                     <Button variant="primary" type="submit">
                       Submit
                     </Button>
                 </Form>
-
+                <p>You do not have an account? create it <Link to={'/createuser'}>here</Link></p>
                 <p>-----or-----</p>
 
                 <LoginSocialGoogle

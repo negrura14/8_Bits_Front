@@ -20,29 +20,33 @@ const handleChangeOnClic = () => {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
+
     dispatch(addToCart(cart))
+
+    window.location.reload()
 
 }
 
     return ( <>
-    <div class="col-md-4 col-sm-6 mb-5 " key={game.id}>
-        <div class="product-grid card-st">
-        <span class="badge">{game.name}</span>
-            <div class="product-image">
-                <a href="#" class="image">
-                    <img class="pic-1" src={game.image}/>
+    <div className="col-md-4 col-sm-6 mb-5 " key={game.id}>
+        <div className="product-grid card-st">
+        <span className="badge">{game.name}</span>
+            <div className="product-image">
+                <a href="#" className="image">
+                    <img className="pic-1" src={game.image}/>
                 </a>
-                <ul class="product-links">
+                <ul className="product-links">
                     
-                    <li> <Link to={ROUTES.DETAIL + "/" + game.id}><a href="" data-tip="Details"><i class="fa fa-search"></i></a></Link></li>
-                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li> <Link to={ROUTES.DETAIL + "/" + game.id}><a href="" data-tip="Details"><i className="fa fa-search"></i></a></Link></li>
+                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i className="fa fa-shopping-bag"></i></a></li>
                 </ul>
-                <div class="price">{game.price}$</div>
+                <div className="price">{game.price}$</div>
             </div>
         </div>
     </div>
     </>
     )
+
 }
 
 

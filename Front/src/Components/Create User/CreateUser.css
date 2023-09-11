@@ -1,6 +1,16 @@
-.basicStyle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
+
+.login-box {
+    padding: 40px;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+
+  .login-box h2 {
+    margin: 0 0 0px;
+    height: 40px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
