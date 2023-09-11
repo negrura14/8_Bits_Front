@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ShopCart.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../Redux/cartSlice';
-
-
-
-
+import { toggleCart} from '../../Redux/cartSlice';
 
 
 
@@ -13,16 +9,19 @@ export const ShopCart = () => {
     const dispatch = useDispatch();
     const isCartOpen = useSelector(state => state.cart.isCartOpen);
     const cartOpen = isCartOpen ? 'shop show' : 'shop';
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    // console.log("DENTRO DEL COMPONENTE SHOPCART EL RESULTADO DE LA VARIABLE GLOBAL ES: ", cart);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
     
-    const [upDatecart, setUpDateCart] = useState(cart);
     
-    useEffect(() => {
-        // Actualizar el carrito en el localStorage cada vez que cambie el estado del carrito
-        localStorage.setItem('cart', JSON.stringify(upDatecart));
+    const removeFromCart = (itemId) => {
+        const updatedCart = cart.filter(item => item.id !== itemId);
 
-    }, [upDatecart]);
+        // Actualizar el estado local del carrito
+        setCart(updatedCart);
+
+        // Actualizar el carrito en el localStorage
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+    
 
    
     const totalGames = [] ;
@@ -31,7 +30,6 @@ export const ShopCart = () => {
 
     for (const element of cart) {
         totalPrice = totalPrice + Number(element.price);
-        // console.log("TOTAL DE PRECIOS: ", totalPrice.toFixed(2) + "ELEMENTO: ", element.price);
         if (!uniqueIds[element.id]) {
             uniqueIds[element.id] = true;
             totalGames.push({
@@ -55,10 +53,6 @@ export const ShopCart = () => {
         dispatch(toggleCart());
     }
 
-    const removeFromCart = (itemId) => {
-        const updatedCart = cart.filter(item => item.id !== itemId);
-        setUpDateCart(updatedCart);
-    }
 
     return (
         <div className={cartOpen}>
