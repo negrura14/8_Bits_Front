@@ -22,3 +22,16 @@ export const  getUsersAct = () => async (dispatch) =>{
 export const swAuth = (sw) => (dispatch) =>{
     return dispatch(switchAut(sw));
 };
+
+export const googleLoginAct = (token) => async (dispatch) => {
+    const tokenObj = {
+        token: token
+    };
+    
+    try{
+        const response = await axios.post('google/auth', tokenObj);
+        return dispatch(userLogin(response.data));
+    } catch (error) {
+        window.alert("Request failed:", error);
+    }
+}

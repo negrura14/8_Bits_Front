@@ -4,10 +4,10 @@ import { GoogleLoginButton } from 'react-social-login-buttons';
 import { LoginSocialGoogle } from 'reactjs-social-login';
 import { validateLogin } from './validateLogin';
 import { useNavigate, Link } from 'react-router-dom';
-import { userLoginAct, swAuth } from '../Redux/userActions';
+import { userLoginAct, googleLoginAct } from '../Redux/userActions';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+
 
 
 
@@ -16,8 +16,7 @@ import axios from 'axios';
 
 export default function Login() {
     const clientID = '133571718056-qbem0tdcv46v6pk03e7v7qgmdpsvtg8p.apps.googleusercontent.com';
-    const [provider, setProvider] = useState([])
-    const [dataLog, setDataLog] = useState([])
+    // const [providers, setProviders] = useState([])
     const [showPassword, setShowPassword] = useState(false)
     const [focusedField, setFocusedField] = useState(null);
     const navigate = useNavigate();
@@ -25,8 +24,9 @@ export default function Login() {
     // const { auth } = useSelector((state) => state.user);
 
     
-    
-    const [form, setForm] = useState({
+    // const [dataLog, setDataLog] = useState([])
+
+      const [form, setForm] = useState({
         email:'',
         password:''
     });
@@ -82,6 +82,15 @@ export default function Login() {
 
     }
 
+    // const resolveHandler = async ({provider, data}) =>{
+    //   setProviders(provider);
+    //   console.log(data.access_token)
+    //   console.log(providers)
+    //   setDataLog(data);
+    //   console.log(dataLog)
+    //   navigate('/store');
+    // }
+
   
 
     return (
@@ -122,10 +131,12 @@ export default function Login() {
                     // discoveryDocs="claims_supported"
                     // access_type="offline"
                     onResolve={async({ provider, data }) => {
-                      setProvider(provider);
-                      setDataLog(data.access_token);
-                      console.log(dataLog)
-                      dispatch(swAuth(!auth));
+                      // setProviders(provider);
+                      // console.log(data.access_token)
+                      // console.log(providers)
+                      dispatch(googleLoginAct(data.access_token)),
+                      // setDataLog({token: 'asd'});
+                      // console.log(dataLog)
                       navigate('/store');
                     }}
                     onReject={(err) => {
