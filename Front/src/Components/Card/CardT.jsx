@@ -10,7 +10,7 @@ import { addToCart, removeFromCart, cartUpdate } from '../../Redux/cartSlice';
 function Card (props) {
 const {game} = props;
 const dispatch = useDispatch()
-const cart = useSelector((state) => state.cart.listCart)
+// const cart = useSelector((state) => state.cart.listCart)
 
 
 const handleChangeOnClic = () => {
@@ -21,6 +21,7 @@ const handleChangeOnClic = () => {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     dispatch(addToCart(cart))
+    
     dispatch(cartUpdate())
 
 }
