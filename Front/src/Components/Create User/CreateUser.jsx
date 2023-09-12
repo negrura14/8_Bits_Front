@@ -9,10 +9,14 @@ import bcrypt from "bcryptjs-react";
 
 import validateUser from "./validateUser";
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 export default function CreateUser() {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
   // const { user } = useSelector((state) => state.user);
+  
 
   //useEffect de los usuarios
 
@@ -26,6 +30,20 @@ export default function CreateUser() {
   ];
 
   //---------------------------//
+
+  const MySwal = withReactContent(Swal);
+
+  const Toast = MySwal.mixin({  
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   const [input, setInput] = useState({
     name: "",
@@ -82,10 +100,22 @@ export default function CreateUser() {
     const noErrors = Object.values(errors).every((error) => error === "");
 
     if (input.password !== input.confirmPassword) {
-      alert("Passwords do not match, try again");
+      MySwal.fire({
+        title: <strong>ERROR</strong>,
+        html: <i>Passwords do not match, try again</i>,
+        icon: 'error',
+        background : "#1d1d1d",
+      });
       return;
     } else if (!noErrors) {
-      alert("There is some error in the fields, please try again");
+      MySwal.fire({
+        title: <strong>ERROR</strong>,
+        html: <i>There is some error in {
+            errors.name ? "name" : errors.lastname ? "lastname" : "email" 
+          }</i>,
+        icon: 'error',
+        background : "#1d1d1d",
+      });
       return;
     } else if (
       input.name === "" ||
@@ -93,7 +123,15 @@ export default function CreateUser() {
       input.email === "" ||
       input.password === ""
     ) {
-      alert("You have to complete all fields");
+      MySwal.fire({
+        title: <strong>WARNING</strong>,
+        html: <i>You have to complete all fields</i>,
+        icon: 'warning',     
+        background : "#1d1d1d",
+        customClass:{
+          container: 'custom-alert-container',
+        }
+      });
       return;
     }
 
@@ -113,7 +151,16 @@ export default function CreateUser() {
 
         axios
           .post("/user/signup", formatInput)
-          .then((res) => res, alert("User created successfully! Now login!"))
+          .then((res) => res, 
+          Toast.fire({
+            icon: 'success',
+            iconColor: "white",
+            title: <strong>Signed in successfully</strong>,
+            html: <i>Now you have to login!</i>,
+            color: "#fff",
+            background : "#333",
+          })
+          )
           .catch((err) => alert(err));
 
         setInput({

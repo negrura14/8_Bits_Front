@@ -18,8 +18,22 @@ export default function CreateGame() {
   const { game } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.gender);
 
-  //constante para sweet alert
+  //constantes para sweet alert//
   const MySwal = withReactContent(Swal);
+
+  const Toast = MySwal.mixin({  
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  //----------------------------//
 
   useEffect(() => {
     dispatch(getGame());
@@ -204,23 +218,38 @@ export default function CreateGame() {
     //fin de validación de errores y campos por completar
 
     if (!allFieldsComplete) {
-      //alert("You have to complete all fields!!");
       MySwal.fire({
         title: <strong>WARNING</strong>,
         html: <i>You have to complete all fields</i>,
-        icon: 'warning', // Puedes cambiar el icono si lo deseas
+        icon: 'warning',     
+        background : "#1d1d1d",
+        customClass:{
+          container: 'custom-alert-container',
+        }
       });
     } else if (!noErrors) {
-      //alert("There is some error in the fields!!");
       MySwal.fire({
         title: <strong>ERROR</strong>,
         html: <i>There is some error in the fields, please try again</i>,
-        icon: 'error', // Puedes cambiar el icono si lo deseas
+        icon: 'error',
+        background : "#1d1d1d",
+        customClass:{
+          container: 'custom-alert-container',
+        }
       });
     } else {
       axios
         .post("/games/postGame", formatFields())
-        .then((res) => res, alert("Game created successfully!"))
+        .then((res) => res, 
+        Toast.fire({
+          icon: 'success',
+          iconColor: "white",
+          title: <strong>Game created successfully!</strong>,
+          html: <i>You are being redirected to home</i>,
+          color: "#fff",
+          background : "#333",
+        })
+        )
         .catch((err) => alert(err));
 
       setInput({
@@ -242,9 +271,19 @@ export default function CreateGame() {
   return (
     <>
       <div className="text-primary px-4 m-5 login-box">
+        {/* <button type="button" onClick={() => Toast.fire(
+          {icon: 'success',
+          iconColor: "white",
+          title: <strong>Signed in successfully!</strong>,
+          html: <i>You are being redirected to home</i>,
+          color: "#fff",
+          background : "#333",}
+        )}
+        >click</button> */}
         <h2 className="text-center text-white">Create Game</h2>
 
         <form onSubmit={(event) => sumbitHandler(event)}>
+          
           <div className="mb-3">
             <label className="form-label">Name</label>
             <input
@@ -426,6 +465,7 @@ export default function CreateGame() {
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
               isUploadingImage={isUploadingImage}
+              isImageUpload = {input.image}
             />
           </div>
 

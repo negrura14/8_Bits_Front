@@ -1,4 +1,6 @@
-
+.custom-alert-container {
+  border: 2px solid white;
+}
 
 .login-box {
     padding: 40px;
