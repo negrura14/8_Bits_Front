@@ -9,9 +9,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-
-
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 
 export default function Login() {
@@ -24,7 +23,23 @@ export default function Login() {
     const dispatch = useDispatch();
     // const { auth } = useSelector((state) => state.user);
 
+
+    //--------------------sweet alert---------------------------//
+    const MySwal = withReactContent(Swal);
     
+    const Toast = MySwal.mixin({  
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    //--------------------sweet alert---------------------------//
     
     const [form, setForm] = useState({
         email:'',
@@ -56,20 +71,45 @@ export default function Login() {
     }
 
     function submitHandler(event) {
+      event.preventDefault();
 
       const noErrors = Object.values(errors).every((error) => error === "");
 
       if (!noErrors){
-        alert("There is some error in the fields, please try again")
+        MySwal.fire({
+          title: <strong>ERROR</strong>,
+          html: <i>There is some error in the fields, please try again</i>,
+          icon: 'error',
+          background : "#1d1d1d",
+          customClass:{
+            container: 'custom-alert-container',
+          }
+        });
         return;
       } else if (form.email === "" || form.password === "") {
-        alert("You have to complete all fields")
+        MySwal.fire({
+          title: <strong>WARNING</strong>,
+          html: <i>You have to complete all fields</i>,
+          icon: 'warning',     
+          background : "#1d1d1d",
+          customClass:{
+            container: 'custom-alert-container',
+          }
+        });
         return;
       }
       
       dispatch(userLoginAct(form));
       // dispatch(swAuth(!auth));
 
+      Toast.fire({
+        icon: 'success',
+        iconColor: "white",
+        title: <strong>Login successfully!</strong>,
+        html: <i>You are being redirected to the store</i>,
+        color: "#fff",
+        background : "#333",
+      })
 
           setForm({
             email:'',
