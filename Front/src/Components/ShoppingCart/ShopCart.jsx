@@ -1,35 +1,54 @@
 import React, { useEffect, useState } from 'react'
 import './ShopCart.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
+import { toggleCart, UpdateList } from '../../Redux/cartSlice';
 
 
 export const ShopCart = () => {
     const dispatch = useDispatch();
     const isCartOpen = useSelector(state => state.cart.isCartOpen);
     const cartOpen = isCartOpen ? 'shop show' : 'shop';
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-    // console.log("DENTRO DEL COMPONENTE SHOPCART EL RESULTADO DE LA VARIABLE GLOBAL ES: ", cart);
-    
+    const cartRedux = useSelector(state => state.cart.listCart);
+
 
     useEffect(() => {
         if(isCartOpen) {
-            setCart(JSON.parse(localStorage.getItem('cart')))
+            dispatch(UpdateList())
         }
     }, [isCartOpen])
-    
+        
 
     const removeFromCart = (itemId) => {
-        const updatedCart = cart.filter(item => item.id !== itemId);
+        const updatedCart = cartRedux.filter(item => item.id !== itemId);
 
-        // Actualizar el estado local del carrito
-        setCart(updatedCart);
-
-        // Actualizar el carrito en el localStorage
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        dispatch(cartUpdate())
+        dispatch(UpdateList())
     }
     
+    const AddOrSubClick = (itemId, addSub) => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        if(addSub === 'add'){
+            for(const element of cartRedux){
+                if(element.id === itemId){
+                    cart.push(element)
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    dispatch(UpdateList())
+                    break;
+                }
+            }
+        }
+        else if(addSub === 'sub'){
+            for (let i = cartRedux.length - 1; i > -1; i--) {
+                if (cartRedux[i].id === itemId) {
+                  cart.splice(i, 1); 
+                  localStorage.setItem('cart', JSON.stringify(cart));
+                  dispatch(UpdateList());
+                  break; 
+                }
+            }
+        }
+    }
    
 
    
@@ -37,9 +56,8 @@ export const ShopCart = () => {
     const uniqueIds = {};
     let totalPrice = 0;
 
-    for (const element of cart) {
+    for (const element of cartRedux) {
         totalPrice = totalPrice + Number(element.price);
-        // console.log("TOTAL DE PRECIOS: ", totalPrice.toFixed(2) + "ELEMENTO: ", element.price);
         if (!uniqueIds[element.id]) {
             uniqueIds[element.id] = true;
             totalGames.push({
@@ -81,9 +99,9 @@ export const ShopCart = () => {
                                     <div className="price-cant">
                                         <p className="scroll space">$USD {element.price}</p>
                                         <div className="space">
-                                            <span className="scroll">&lt;</span>
+                                            <span className="scroll addSub-pointer" onClick={() => AddOrSubClick(element.id, 'sub')}>&lt;</span>
                                             <span className="scroll count">{element.cant} units</span>
-                                            <span className="scroll">&gt;</span>
+                                            <span className="scroll addSub-pointer" onClick={() => AddOrSubClick(element.id, 'add')}>&gt;</span>
                                         </div>
                                     </div>
                                     <div className="close-target" onClick={() => removeFromCart(element.id)}>
@@ -96,9 +114,12 @@ export const ShopCart = () => {
                         ))
                     }                   
                 </div>
-                <div>
+                {totalGames.length > 0 ?
+                <div className="TotalBuy">
                     <p>Total: $USD {totalPrice.toFixed(1)}</p>
+                    <button className="buy-button">Buy</button>
                 </div>
+                 : '' }
             </div>
         </div>
     )

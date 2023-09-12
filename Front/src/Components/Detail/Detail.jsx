@@ -3,7 +3,7 @@ import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import { getGamesId } from "../../Redux/gameActions";
 import { clearDetail } from '../../Redux/gameSlice'
-import { addToCart, cartUpdate } from '../../Redux/cartSlice';
+import { UpdateList } from '../../Redux/cartSlice';
 import Loading from '../Loading/Loading';
 import './Detail.css';
 
@@ -23,15 +23,14 @@ export default function Detail() {
     },[dispatch, id])
     
     const handleChangeOnClic = () => {
-      dispatch(addToCart(detail))
-
+      // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+  
       cart.push(detail);
-
+  
       localStorage.setItem("cart", JSON.stringify(cart));
-      dispatch(cartUpdate())
-    }
+      dispatch(UpdateList())  
+  }
     
     
     return(
