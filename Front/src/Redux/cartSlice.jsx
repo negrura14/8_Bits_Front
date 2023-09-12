@@ -11,7 +11,7 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
      return{
       ...state,
-      listCart: [...state.listCart, action.payload],
+      listCart: action.payload,
      }
     },
     removeFromCart: (state, action) => {
@@ -28,8 +28,14 @@ const cartSlice = createSlice({
     cartUpdate: (state) => {
       state.cartUpdate = !state.cartUpdate;
     },
+    UpdateList: (state) => {
+      return {
+        ...state,
+        listCart: JSON.parse(localStorage.getItem('cart')),
+      }
+    }
   },
 });
 
-export const { addToCart, toggleCart, removeFromCart, cartUpdate } = cartSlice.actions;
+export const { addToCart, toggleCart, removeFromCart, cartUpdate, UpdateList } = cartSlice.actions;
 export default cartSlice.reducer;

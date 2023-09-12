@@ -4,7 +4,7 @@ import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
+import { toggleCart } from '../../Redux/cartSlice';
 import './Nav.css';
 
 function Nav() {
@@ -13,8 +13,8 @@ function Nav() {
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
-  const isCartUpdated = useSelector(state => state.cart.cartUpdate)
-  
+  // const isCartUpdated = useSelector(state => state.cart.cartUpdate)
+  const cartRedux = useSelector(state => state.cart.listCart)
 
 
   const uniqueIds = {};
@@ -31,11 +31,11 @@ function Nav() {
     dispatch(toggleCart());
   }
 
-  useEffect(() => {
-    if (isCartUpdated){
-      dispatch(cartUpdate())
-    }
-  }, [isCartUpdated, dispatch])
+  // useEffect(() => {
+  //   if (isCartUpdated){
+  //     dispatch(cartUpdate())
+  //   }
+  // }, [isCartUpdated, dispatch])
 
   return (
 

@@ -72,6 +72,9 @@
 .space {
     margin-top: 9px;
 }
+.addSub-pointer{
+    cursor: pointer;
+}
 .count {
     padding: 1rem 0.5rem;
 }
@@ -80,7 +83,7 @@
     margin-top: 1rem;
     cursor: pointer;
 }
-.bottonBuy {
+.buy-button {
     width: 7rem;
     border-radius: 10px 0px 10px 0px;
     background-color: #ba1f74;
