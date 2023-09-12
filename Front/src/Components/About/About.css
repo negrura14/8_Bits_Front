@@ -199,19 +199,19 @@
     width:81%;
 }
 
-.team-block .inner-box .social-icons{
+.team-block .inner-box .social-iconsA{
     position:absolute;
     right:25px;
     top:100px;
     z-index:1;
 }
 
-.team-block .inner-box .social-icons li{
+.team-block .inner-box .social-iconsA li{
     position:relative;
     margin-bottom:20px;
 }
 
-.team-block .inner-box .social-icons li a{
+.team-block .inner-box .social-iconsA li a{
     position:relative;
     color:#178654;
     font-size:18px;
@@ -222,7 +222,7 @@
 }
 
 .team-block .inner-box:hover .lower-content h3 a,
-.team-block .inner-box:hover .social-icons li a,
+.team-block .inner-box:hover .social-iconsA li a,
 .team-block .inner-box:hover .lower-content .designation{
     color:#000814;
 }
@@ -273,12 +273,12 @@
 }
 
 .team-block.style-two .inner-box .lower-content h3 a,
-.team-block.style-two .inner-box .social-icons li a{
+.team-block.style-two .inner-box .social-iconsA li a{
     color:#ba1f65;
 }
 
 .team-block.style-two .inner-box:hover .lower-content h3 a,
-.team-block.style-two .inner-box:hover .social-icons li a{
+.team-block.style-two .inner-box:hover .social-iconsA li a{
     color:#000814;
 }
 
