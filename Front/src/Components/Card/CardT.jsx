@@ -5,12 +5,30 @@ import { ROUTES } from '../../Helpers/RoutesPath'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, cartUpdate } from '../../Redux/cartSlice';
 
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 function Card (props) {
 const {game} = props;
 const dispatch = useDispatch()
 // const cart = useSelector((state) => state.cart.listCart)
+
+//--------------------sweet alert---------------------------//
+const MySwal = withReactContent(Swal);
+    
+const Toast = MySwal.mixin({  
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+//--------------------sweet alert---------------------------//
 
 
 const handleChangeOnClic = () => {
@@ -23,6 +41,13 @@ const handleChangeOnClic = () => {
     dispatch(addToCart(cart))
     
     dispatch(cartUpdate())
+    Toast.fire({
+        icon: 'success',
+        iconColor: "white",
+        title: <strong>Game added to cart!</strong>,
+        color: "#fff",
+        background : "#333",
+      })
 
 }
 
