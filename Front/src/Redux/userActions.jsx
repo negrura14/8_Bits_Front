@@ -6,7 +6,7 @@ export const userLoginAct = (user) => async (dispatch) =>{
         const response = await axios.post('user/login', user);
         return dispatch(userLogin(response.data));
     } catch (error) {
-        window.alert("Request failed:", error);
+        window.alert(error.response.data.message);
     }
 };
 
