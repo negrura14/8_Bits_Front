@@ -56,11 +56,11 @@ function Nav() {
     dispatch(swAuth(!auth));
   }
   
-  useEffect(() => {
-    if (isCartUpdated){
-      dispatch(cartUpdate())
-    }
-  }, [isCartUpdated, dispatch])
+  // useEffect(() => {
+  //   if (isCartUpdated){
+  //     dispatch(cartUpdate())
+  //   }
+  // }, [isCartUpdated, dispatch])
 
 
   return (
