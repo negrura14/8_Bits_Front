@@ -161,3 +161,6 @@
       position: absolute;
       padding: 10px;
     }
+    .sb{
+        cursor: pointer;
+    }

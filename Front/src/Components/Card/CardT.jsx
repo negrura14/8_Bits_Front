@@ -57,12 +57,15 @@ const handleChangeOnClic = () => {
         <span className="badge">{game.name}</span>
             <div className="product-image">
                 <a href="#" className="image">
-                    <img className="pic-1" src={game.image}/>
+                <Link to={ROUTES.DETAIL + "/" + game.id}>
+                <img className="pic-1" src={game.image}/>
+                </Link>
+                    
                 </a>
                 <ul className="product-links">
                     
-                    <li> <Link to={ROUTES.DETAIL + "/" + game.id}><a href="" data-tip="Details"><i className="fa fa-search"></i></a></Link></li>
-                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i className="fa fa-shopping-bag"></i></a></li>
+                    <li> </li>
+                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i className="fa fa-shopping-bag sb"></i></a></li>
                 </ul>
                 <div className="price">{game.price}$</div>
             </div>
