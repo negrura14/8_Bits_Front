@@ -45,7 +45,7 @@ export default function About() {
 <div className="row clearfix " >
             {data.map((element) => (
 
-  <div className="team-block col-lg-4 col-md-4 col-sm-12  " key={element.name}>
+  <div className="team-block col-xl-4 col-lg-4 col-md-4 col-sm-12  " key={element.name}>
     <div
       className="inner-box wow fadeInLeft"
       data-wow-delay="0ms"

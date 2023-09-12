@@ -177,11 +177,13 @@ export default function CreateUser() {
   }
 
   return (
-    <div className="text-primary px-4 m-5 login-box">
+    <div className="row justify-content-center">
+
+    <div className="text-primary px-4 m-5 login-box  col-md-6 col-sm-10">
       <h2>Create User</h2>
 
       <form onSubmit={(event) => sumbitHandler(event)}>
-        <div className="mb-3">
+        <div className="mb-3 ">
           <label className="form-label">Name</label>
           <input
             placeholder="Enter your name"
@@ -193,7 +195,7 @@ export default function CreateUser() {
             onFocus={(event) => handleFocus(event)}
             className="form-control bg-transparent text-white"
           />
-          {focusedField === "name" && errors.name && <p>{errors.name}</p>}
+          {focusedField === "name" && errors.name && <p className="text-danger">{errors.name}</p>}
         </div>
 
         <div className="mb-3">
@@ -209,7 +211,7 @@ export default function CreateUser() {
             className="form-control bg-transparent text-white"
           />
           {focusedField === "lastname" && errors.lastname && (
-            <p>{errors.lastname}</p>
+            <p className="text-danger">{errors.lastname}</p>
           )}
         </div>
 
@@ -225,10 +227,10 @@ export default function CreateUser() {
             onFocus={(event) => handleFocus(event)}
             className="form-control bg-transparent text-white"
           />
-          {focusedField === "email" && errors.email && <p>{errors.email}</p>}
+          {focusedField === "email" && errors.email && <p className="text-danger">{errors.email}</p>}
         </div>
 
-        <div className="row">
+        <div className="row mb-3">
           <label className="form-label">Password</label>
           <div className=" col-9">
             <input
@@ -242,16 +244,20 @@ export default function CreateUser() {
               className="form-control bg-transparent text-white"
             />
           </div>
-          <div className=" col-3">
-            <button
+          <div className="mb-3 col-3 p-1">
+            <a
               type="button"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "Hide" : "Show"}
-            </button>
+              {showPassword ? (
+                <i className="fa-regular fa-eye-slash text-secondary"></i>
+              ) : (
+                <i className="fa-regular fa-eye "></i>
+              )}
+            </a>
           </div>
           {focusedField === "password" && errors.password && (
-              <p>{errors.password}</p>
+              <p className="text-danger">{errors.password}</p>
             )}
         </div>
 
@@ -268,7 +274,7 @@ export default function CreateUser() {
             className="form-control bg-transparent text-white"
           />
           {focusedField === "confirmPassword" && errors.confirmPassword && (
-            <p>{errors.confirmPassword}</p>
+            <p className="text-danger">{errors.confirmPassword}</p>
           )}
         </div>
 
@@ -280,6 +286,7 @@ export default function CreateUser() {
           UPLOAD
         </button>
       </form>
+    </div>
     </div>
   );
 }
