@@ -41,7 +41,7 @@ function Search() {
     }
    }, []);
    const [isTableVisible, setTableVisibility] = useState(false);
-  const productClasses =  isTableVisible ? 'products products-table' : 'products';
+  const productClasses =  isTableVisible ? 'products' : 'products products-table';
 
   const toggleTable = () => {
     setTableVisibility(!isTableVisible);
