@@ -6,23 +6,24 @@ import { LoginSocialGoogle } from "reactjs-social-login";
 import { validateLogin } from "./validateLogin";
 import { useNavigate, Link } from "react-router-dom";
 import { userLoginAct, swAuth } from "../Redux/userActions";
+import { userLoginAct, googleLoginAct } from '../Redux/userActions';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+
+
+
+
+
 export default function Login() {
-  const clientID =
-    "133571718056-qbem0tdcv46v6pk03e7v7qgmdpsvtg8p.apps.googleusercontent.com";
-  const [provider, setProvider] = useState([]);
-  const [dataLog, setDataLog] = useState([]);
+  const clientID ="133571718056-qbem0tdcv46v6pk03e7v7qgmdpsvtg8p.apps.googleusercontent.com";
   const [showPassword, setShowPassword] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { auth } = useSelector((state) => state.user);
+
 
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
@@ -96,6 +97,7 @@ export default function Login() {
         },
       });
       return;
+
     }
 
     dispatch(userLoginAct(form));
@@ -200,10 +202,7 @@ export default function Login() {
           // discoveryDocs="claims_supported"
           // access_type="offline"
           onResolve={async ({ provider, data }) => {
-            setProvider(provider);
-            setDataLog(data.access_token);
-            console.log(dataLog);
-            dispatch(swAuth(!auth));
+            dispatch(googleLoginAct(data.access_token)),
             navigate("/store");
           }}
           onReject={(err) => {
@@ -212,15 +211,11 @@ export default function Login() {
         >
           <a type="button" className="icon"><i className="fa-brands fa-google p-3 "></i></a>
         </LoginSocialGoogle>
-
-        
-  </div>
+      </div>
   <p className="signup">
           You do not have an account? create it{" "}
           <Link to={"/createuser"}>here</Link>
         </p>
-
-        
         </div>
           
         </Form>
@@ -229,10 +224,3 @@ export default function Login() {
     </div>
   );
 }
-
-// https://www.googleapis.com/oauth2/v3/userinfo
-// let response = await axios.get(`${URL_API}/api/users/me`, {
-//           headers: {
-//             Authorization: `Bearer ${responseJwt}`,
-//           },
-//         });

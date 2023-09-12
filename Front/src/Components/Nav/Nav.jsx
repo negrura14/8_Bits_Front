@@ -5,7 +5,7 @@ import DateTimeDisplay from '../Time/Time.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../Redux/cartSlice';
+import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/userSlice.jsx'
@@ -18,11 +18,6 @@ function Nav() {
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
-
-  
-  // const isCartUpdated = useSelector(state => state.cart.cartUpdate)
-  const cartRedux = useSelector(state => state.cart.listCart)
-
   const { user, auth } = useSelector((state) => state.user)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   
@@ -44,24 +39,16 @@ function Nav() {
   }
 
 
-  // useEffect(() => {
-  //   if (isCartUpdated){
-  //     dispatch(cartUpdate())
-  //   }
-  // }, [isCartUpdated, dispatch])
-
-
   const handlerSw = () => {
     dispatch(clearUser());
     dispatch(swAuth(!auth));
   }
   
-  // useEffect(() => {
-  //   if (isCartUpdated){
-  //     dispatch(cartUpdate())
-  //   }
-  // }, [isCartUpdated, dispatch])
-
+  useEffect(() => {
+    if (isCartUpdated){
+      dispatch(cartUpdate())
+    }
+  }, [isCartUpdated, dispatch])
 
   return (
 
