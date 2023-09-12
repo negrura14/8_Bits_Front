@@ -5,12 +5,30 @@ import { ROUTES } from '../../Helpers/RoutesPath'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, cartUpdate } from '../../Redux/cartSlice';
 
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 function Card (props) {
 const {game} = props;
 const dispatch = useDispatch()
 // const cart = useSelector((state) => state.cart.listCart)
+
+//--------------------sweet alert---------------------------//
+const MySwal = withReactContent(Swal);
+    
+const Toast = MySwal.mixin({  
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+//--------------------sweet alert---------------------------//
 
 
 const handleChangeOnClic = () => {
@@ -23,6 +41,13 @@ const handleChangeOnClic = () => {
     dispatch(addToCart(cart))
     
     dispatch(cartUpdate())
+    Toast.fire({
+        icon: 'success',
+        iconColor: "white",
+        title: <strong>Game added to cart!</strong>,
+        color: "#fff",
+        background : "#333",
+      })
 
 }
 
@@ -32,12 +57,15 @@ const handleChangeOnClic = () => {
         <span className="badge">{game.name}</span>
             <div className="product-image">
                 <a href="#" className="image">
-                    <img className="pic-1" src={game.image}/>
+                <Link to={ROUTES.DETAIL + "/" + game.id}>
+                <img className="pic-1" src={game.image}/>
+                </Link>
+                    
                 </a>
                 <ul className="product-links">
                     
-                    <li> <Link to={ROUTES.DETAIL + "/" + game.id}><a href="" data-tip="Details"><i className="fa fa-search"></i></a></Link></li>
-                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i className="fa fa-shopping-bag"></i></a></li>
+                    <li> </li>
+                    <li onClick={handleChangeOnClic}><a data-tip="Add to Cart"><i className="fa fa-shopping-bag sb"></i></a></li>
                 </ul>
                 <div className="price">{game.price}$</div>
             </div>

@@ -7,11 +7,31 @@ import { UpdateList } from '../../Redux/cartSlice';
 import Loading from '../Loading/Loading';
 import './Detail.css';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 
 export default function Detail() {
     const {id} = useParams();
     const dispatch = useDispatch()
     const detail = useSelector(state => state.game.detail)
+
+    //--------------------sweet alert---------------------------//
+    const MySwal = withReactContent(Swal);
+        
+    const Toast = MySwal.mixin({  
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    //--------------------sweet alert---------------------------//
     
     useEffect(() =>{
         dispatch(getGamesId(id))
@@ -30,6 +50,13 @@ export default function Detail() {
   
       localStorage.setItem("cart", JSON.stringify(cart));
       dispatch(UpdateList())  
+      Toast.fire({
+        icon: 'success',
+        iconColor: "white",
+        title: <strong>Game added to cart!</strong>,
+        color: "#fff",
+        background : "#333",
+      })
   }
     
     
@@ -61,7 +88,13 @@ export default function Detail() {
             <p class="infoD">
             Stock: <span class="description">{detail.stock} Available</span> 
             </p>
-            <button className="buttonFlex" onClick={handleChangeOnClic}>Add to Cart</button>
+            <button class="bookmarkBtn" onClick={handleChangeOnClic}>
+  <span class="IconContainerDB"> 
+  <i className="fa fa-shopping-cart"></i>
+  </span>
+  <p class="textDB">Add</p>
+</button>
+            
           </div>
         </div>
       </div>

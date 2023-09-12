@@ -269,8 +269,8 @@ export default function CreateGame() {
   }
 
   return (
-    <>
-      <div className="text-primary px-4 m-5 login-box">
+    <div className="row justify-content-center">
+      <div className="text-primary px-4 m-5 login-box col-md-6 col-sm-10">
         {/* <button type="button" onClick={() => Toast.fire(
           {icon: 'success',
           iconColor: "white",
@@ -491,6 +491,6 @@ export default function CreateGame() {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }

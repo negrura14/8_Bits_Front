@@ -133,3 +133,65 @@
   .buttonFlex {
     margin-top: 1.1rem;
   }
+
+  .bookmarkBtn {
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.349);
+    background-color: rgb(12, 12, 12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+  }
+  
+  .IconContainerDB {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(to bottom, #178654,white,#ba1f65);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+    transition-duration: .3s;
+  }
+  
+  .iconDB {
+    border-radius: 1px;
+  }
+  
+  .textDB {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    padding-top: 12px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1;
+    transition-duration: .3s;
+    font-size: 1.04em;
+  }
+  
+  .bookmarkBtn:hover .IconContainerDB {
+    width: 90px;
+    border-radius: 40px;
+    transition-duration: .3s;
+  }
+  
+  .bookmarkBtn:hover .textDB {
+    transform: translate(10px);
+    width: 0;
+    font-size: 0;
+    transition-duration: .3s;
+  }
+  
+  .bookmarkBtn:active {
+    transform: scale(0.95);
+    transition-duration: .3s;
+  }

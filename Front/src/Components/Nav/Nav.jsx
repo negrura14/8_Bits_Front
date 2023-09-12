@@ -53,17 +53,24 @@ function Nav() {
   return (
 
     <div className="container-fluid nav-bar">
-    <nav className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+    <nav className="d-flex flex-wrap justify-content-between py-3 mb-2 border-bottom">
+    <div className="d-flex flex-wrap justify-content-between mb-2">
+
+    <div  >
+    <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <img  src={Imagen} width="80px" alt="" />
       </a>
-      {!Array.isArray(userData) && <span>Welcome {user.user.name}</span>}
-      <ul className="nav nav-pills">
+    </div>
+      <div className='text-left align-self-end px-2'>
+      {!Array.isArray(userData) && <span className='text-white'>Welcome, {user.user.name}</span>}</div>
+    </div>
+      <div className="d-flex flex-wrap justify-content-center mb-1">
+      <ul className="nav nav-pills mb-1">
         <li className="nav-item margCart"><NavLink className='nav-link teal' to={ROUTES.HOME}>Home</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         {auth === false && <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>}
         {auth === true && <li className="nav-item"><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></li>}
-        {auth === true && <li className="nav-item"><NavLink className='nav-link' onClick={handlerSw}>Logout</NavLink></li>}
+        {auth === true && <li className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></li>}
         
         {/* <NavDropdown
               id="nav-dropdown-dark-example"
@@ -77,13 +84,15 @@ function Nav() {
             </NavDropdown> */}
 
 
-        <li className="color p-1 me-5" onClick={handleCartClick}>
+        <li className="color ps-3 pt-1 me-5" onClick={handleCartClick}>
         <i className="fa fa-shopping-cart cart"></i>
           <span className="item-count">{totalGames}</span>
         </li>
 
       </ul>
       <SearchBar />
+      </div>
+      
       
     </nav>
   </div>
