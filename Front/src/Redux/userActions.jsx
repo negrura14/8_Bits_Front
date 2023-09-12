@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {userLogin, getUsers} from './userSlice';
+import {userLogin, getUsers, switchAut} from './userSlice';
 
 export const userLoginAct = (user) => async (dispatch) =>{
     try{
@@ -17,4 +17,8 @@ export const  getUsersAct = () => async (dispatch) =>{
     } catch (error) {
         window.alert("Request failed:", error);
     }
-} 
+};
+
+export const swAuth = (sw) => (dispatch) =>{
+    return dispatch(switchAut(sw));
+};

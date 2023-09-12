@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from '../../Redux/cartSlice';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { clearUser } from '../../Redux/userSlice.jsx'
+import { swAuth } from '../../Redux/userActions.jsx';
 
 function Nav() {
   const location = useLocation();
@@ -14,8 +16,10 @@ function Nav() {
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
+  const { user, auth } = useSelector((state) => state.user)
   
-
+  const userData = user;
+ 
 
   const uniqueIds = {};
   let totalGames = 0;
@@ -31,6 +35,11 @@ function Nav() {
     dispatch(toggleCart());
   }
 
+  const handlerSw = () => {
+    dispatch(clearUser());
+    dispatch(swAuth(!auth));
+  }
+
   return (
 
     <div className="container-fluid nav-bar">
@@ -38,12 +47,15 @@ function Nav() {
       <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <img  src={Imagen} width="80px" alt="" />
       </a>
-
+      {!Array.isArray(userData) && <span>Welcome {user.user.name}</span>}
       <ul className="nav nav-pills">
         <li className="nav-item margCart"><NavLink className='nav-link teal' to={ROUTES.HOME}>Home</NavLink></li>
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
-        <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>
-        <NavDropdown
+        {auth === false && <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>}
+        {auth === true && <li className="nav-item"><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></li>}
+        {auth === true && <li className="nav-item"><NavLink className='nav-link' onClick={handlerSw}>Logout</NavLink></li>}
+        
+        {/* <NavDropdown
               id="nav-dropdown-dark-example"
               title="Create"
               menuVariant="dark"
@@ -52,7 +64,7 @@ function Nav() {
               <NavDropdown.Item >
               <NavLink className="nav-link" to={ROUTES.CREATEUSER}>Create User</NavLink>
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
 
         <li className="color p-1 me-5" onClick={handleCartClick}>
         <i className="fa fa-shopping-cart cart"></i>

@@ -4,6 +4,7 @@ import { GoogleLoginButton } from 'react-social-login-buttons';
 import { LoginSocialGoogle } from 'reactjs-social-login';
 import { validateLogin } from './validateLogin';
 import { useNavigate, Link } from 'react-router-dom';
+import { userLoginAct, swAuth } from '../Redux/userActions';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -20,6 +21,9 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false)
     const [focusedField, setFocusedField] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { auth } = useSelector((state) => state.user);
+
     
     
     const [form, setForm] = useState({
@@ -62,17 +66,10 @@ export default function Login() {
         alert("You have to complete all fields")
         return;
       }
+      
+      dispatch(userLoginAct(form));
+      dispatch(swAuth(!auth));
 
-      // console.log("Hashed Password:",password);
-      // const formatInput = {
-      //     email: form.email,
-      //     password: form.password,
-      //   };
-
-          axios
-          .post("/user/login", form)
-          .then((res) => res, alert('asd'))
-          .catch((err) => alert(err));
 
           setForm({
             email:'',
@@ -125,9 +122,11 @@ export default function Login() {
                     // discoveryDocs="claims_supported"
                     // access_type="offline"
                     onResolve={async({ provider, data }) => {
-                      console.log(data.access_token);
                       setProvider(provider);
                       setDataLog(data.access_token);
+                      console.log(dataLog)
+                      dispatch(swAuth(!auth));
+                      navigate('/store');
                     }}
                     onReject={(err) => {
                       console.log(err);
@@ -142,7 +141,6 @@ export default function Login() {
 
 
 // https://www.googleapis.com/oauth2/v3/userinfo
-// Alexander Susa18:06
 // let response = await axios.get(`${URL_API}/api/users/me`, {
 //           headers: {
 //             Authorization: `Bearer ${responseJwt}`,
