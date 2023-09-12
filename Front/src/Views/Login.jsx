@@ -22,7 +22,7 @@ export default function Login() {
     const [focusedField, setFocusedField] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { auth } = useSelector((state) => state.user);
+    // const { auth } = useSelector((state) => state.user);
 
     
     
@@ -68,7 +68,7 @@ export default function Login() {
       }
       
       dispatch(userLoginAct(form));
-      dispatch(swAuth(!auth));
+      // dispatch(swAuth(!auth));
 
 
           setForm({
