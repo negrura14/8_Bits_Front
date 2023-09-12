@@ -11,13 +11,13 @@ export const ShopCart = () => {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
     // console.log("DENTRO DEL COMPONENTE SHOPCART EL RESULTADO DE LA VARIABLE GLOBAL ES: ", cart);
     
-    const [upDatecart, setUpDateCart] = useState(cart);
 
     useEffect(() => {
-        // Actualizar el carrito en el localStorage cada vez que cambie el estado del carrito
-        localStorage.setItem('cart', JSON.stringify(upDatecart));
-        
-    }, [upDatecart]);
+        if(isCartOpen) {
+            setCart(JSON.parse(localStorage.getItem('cart')))
+        }
+    }, [isCartOpen])
+    
 
     const removeFromCart = (itemId) => {
         const updatedCart = cart.filter(item => item.id !== itemId);
