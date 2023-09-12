@@ -5,7 +5,6 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import { LoginSocialGoogle } from "reactjs-social-login";
 import { validateLogin } from "./validateLogin";
 import { useNavigate, Link } from "react-router-dom";
-import { userLoginAct, swAuth } from "../Redux/userActions";
 import { userLoginAct, googleLoginAct } from '../Redux/userActions';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
