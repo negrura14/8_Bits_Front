@@ -51,7 +51,7 @@ export default function About() {
       data-wow-delay="0ms"
       data-wow-duration="1500ms"
     >
-      <ul className="social-icons">
+      <ul className="social-iconsA">
         <li>
           <a href={element.github} target="_blank">
             <i className="fab fa-github" ></i>

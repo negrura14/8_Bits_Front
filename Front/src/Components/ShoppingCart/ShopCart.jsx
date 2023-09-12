@@ -87,12 +87,17 @@ export const ShopCart = () => {
     return (
         <div className={cartOpen}>
             <div className="subCont">
-                <div className="headerCart">
-                    <span>Mi Carrito</span>
-                    <span className="closeCart" onClick={handleCloseCart}>x</span>
+
+            <div class="order_summary">
+            <div className="headerCart">
+            <h2 className='titleOrder'>Order Summary</h2>
+            <span className="closeCart" onClick={handleCloseCart}><i class="fa-solid fa-xmark"></i></span>
                 </div>
-                <div className="container-target">
-                    {   totalGames.map((element, index) => (
+    
+    
+    <div class="summary_card">
+    {   totalGames.map((element, index) => (<>{/*
+
                             <div key={index} className="target">
                                 <p className="title-target">{element.name}</p>
                                 <div className="img-price-cant">
@@ -111,16 +116,53 @@ export const ShopCart = () => {
                                         </svg>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*/}
+
+
+                            <div key={index} class="card_item">
+        <div class="product_img">
+          <img src={element.image} alt="" />
+        </div>
+        <div class="product_info">
+          <h3>{element.name}</h3>
+          <div class="close-btn">
+          <a onClick={() => removeFromCart(element.id)}>
+            <i class="fa fa-close closeItem"></i>
+          </a>
+          </div>
+          <div class="product_rate_info">
+            <h3>$ {element.price}</h3>
+            <span class="pqt-minus" onClick={() => AddOrSubClick(element.id, 'sub')}>-</span>
+            <span class="pqt">{element.cant}</span>
+            <span class="pqt-plus" onClick={() => AddOrSubClick(element.id, 'add')}>+</span>
+          </div>
+        </div>
+      </div>
+    </>
+
+                            
+
                         ))
-                    }                   
-                </div>
-                {totalGames.length > 0 ?
-                <div className="TotalBuy">
-                    <p>Total: $USD {totalPrice.toFixed(1)}</p>
-                    <button className="buy-button">Buy</button>
-                </div>
+                    }  
+      
+      <hr />
+      {totalGames.length > 0 ?
+      <>
+        <div class="order_total">
+        <p>Total Amount</p>
+        <h4>${totalPrice.toFixed(1)}</h4>
+      </div>
+      <button class="Btn">
+  Pay
+  <i class="fa-regular fa-credit-card"></i>
+</button>
+      </>
+               
                  : '' }
+      
+    </div>
+  </div>
+
             </div>
         </div>
     )
