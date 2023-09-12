@@ -138,6 +138,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
 import LoadingPage from '../Loading/Loading';
 
+
 const itemsPerPage = 12;
 
 function Tienda() {
@@ -161,6 +162,7 @@ function Tienda() {
       // Lógica de filtrado aquí en función de filtDB.
       // Puedes modificar esta lógica según tus necesidades.
       return true;
+      
     });
 
     // Establecer el estado de filteredGames y currentPage.
@@ -223,6 +225,7 @@ function Tienda() {
           newFiltDB[indiceAReemplazar] = `&${buttonFiler}=${e.target.value}`;
         }
         newFilters = newFiltDB;
+        
         // setFiltDB(newFiltDB);
       }
       else {
@@ -234,6 +237,7 @@ function Tienda() {
     else {
       dispatch(getGame());
       setFiltDB([]); // seteo el estado donde almacenaba los estring para la url
+      
     }
   }
 

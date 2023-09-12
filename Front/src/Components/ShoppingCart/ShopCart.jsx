@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ShopCart.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart, UpdateList } from '../../Redux/cartSlice';
+import { toggleCart, UpdateList, cartUpdate } from '../../Redux/cartSlice';
 
 
 export const ShopCart = () => {
@@ -23,6 +23,7 @@ export const ShopCart = () => {
 
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         dispatch(UpdateList())
+        dispatch(cartUpdate())
     }
     
     const AddOrSubClick = (itemId, addSub) => {

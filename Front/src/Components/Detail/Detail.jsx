@@ -3,7 +3,7 @@ import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import { getGamesId } from "../../Redux/gameActions";
 import { clearDetail } from '../../Redux/gameSlice'
-import { UpdateList } from '../../Redux/cartSlice';
+import { UpdateList, cartUpdate} from '../../Redux/cartSlice';
 import Loading from '../Loading/Loading';
 import './Detail.css';
 
@@ -38,6 +38,7 @@ export default function Detail() {
         
         return () => {
           dispatch(clearDetail()); // Llama a la acción para borrar el detalle
+          
       }
 
     },[dispatch, id])
@@ -56,7 +57,7 @@ export default function Detail() {
         title: <strong>Game added to cart!</strong>,
         color: "#fff",
         background : "#333",
-      })
+      }, dispatch(cartUpdate()))
   }
     
     
