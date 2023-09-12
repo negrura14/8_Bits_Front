@@ -2,26 +2,27 @@ import './CardT.css'
 import {Link} from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { ROUTES } from '../../Helpers/RoutesPath'
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../Redux/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart, cartUpdate } from '../../Redux/cartSlice';
 
 
 
 function Card (props) {
 const {game} = props;
 const dispatch = useDispatch()
+const cart = useSelector((state) => state.cart.listCart)
 
 
 const handleChangeOnClic = () => {
     // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
-    dispatch(addToCart(game))
-
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     cart.push(game);
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    window.location.reload()
+    dispatch(addToCart(cart))
+    dispatch(cartUpdate())
+
 }
 
     return ( <>
@@ -43,7 +44,6 @@ const handleChangeOnClic = () => {
     </div>
     </>
     )
-
 }
 
 
@@ -51,27 +51,7 @@ const handleChangeOnClic = () => {
 
 
 
-// function Card(props) {
-//    const{id, nombre, imagen, types}= props; //Estoy haciendo un distroctoring al props
-//     return (
-//         <div className='cardPoke'>
-//             <Link className='namePoke' to={`/detail/${id}`}>
-//                 <h2 className='text'>{nombre}</h2>
-//             </Link>
-//             <img className='img' src={imagen} alt='' />
-//             <div className='{style.ss}'> 
-//                 <h2 className='typeText'>
-                    
-//                     {types && types.map((type, index) => (
-//                         <span key={index} className='type'>
-//                             {type.name}
-//                             {index !== types.length - 1 && 
-//                             <span className='typeSeparator'>{" "}-{" "}</span>}
-//                         </span>
-//                     ))}
-//                 </h2>
-//             </div>
-//         </div>
-//     );
-// };
+
+
 export default Card;
+

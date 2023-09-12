@@ -3,7 +3,7 @@ import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import { getGamesId } from "../../Redux/gameActions";
 import { clearDetail } from '../../Redux/gameSlice'
-import { addToCart } from '../../Redux/cartSlice';
+import { addToCart, cartUpdate } from '../../Redux/cartSlice';
 import Loading from '../Loading/Loading';
 import './Detail.css';
 
@@ -30,7 +30,7 @@ export default function Detail() {
       cart.push(detail);
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      window.location.reload()
+      dispatch(cartUpdate())
     }
     
     

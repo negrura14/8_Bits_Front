@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
-import Imagen from '../../Img/Imagen1.png';
+import DateTimeDisplay from '../Time/Time.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../Redux/cartSlice';
+import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/userSlice.jsx'
 import { swAuth } from '../../Redux/userActions.jsx';
+
 
 function Nav() {
   const location = useLocation();
@@ -17,6 +19,7 @@ function Nav() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
   const { user, auth } = useSelector((state) => state.user)
+  const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   
   const userData = user;
  
@@ -35,10 +38,17 @@ function Nav() {
     dispatch(toggleCart());
   }
 
+
   const handlerSw = () => {
     dispatch(clearUser());
     dispatch(swAuth(!auth));
   }
+  
+  useEffect(() => {
+    if (isCartUpdated){
+      dispatch(cartUpdate())
+    }
+  }, [isCartUpdated, dispatch])
 
   return (
 
@@ -66,10 +76,12 @@ function Nav() {
               </NavDropdown.Item>
             </NavDropdown> */}
 
+
         <li className="color p-1 me-5" onClick={handleCartClick}>
         <i className="fa fa-shopping-cart cart"></i>
           <span className="item-count">{totalGames}</span>
         </li>
+
       </ul>
       <SearchBar />
       

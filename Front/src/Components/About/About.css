@@ -35,7 +35,7 @@
 
 .sec-title .separator{
     position:relative;
-    width:40px;
+    width:30px;
     margin-top:16px !important;
 }
 
@@ -149,7 +149,7 @@
 
 .team-block{
     position:relative;
-    width: 59vh;
+    width: 57vh;
 }
 
 .team-block .inner-box{
@@ -376,3 +376,31 @@
     opacity: 1;
     transform: translate3d(0%, -40%, 0px);
   }
+
+  .featurette{
+    color: white;
+    box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.5), -4px -4px 16px rgba(255, 255, 255, 0.05);
+    background: #282c34;
+    transition: all 0.8s ease-in-out;
+  }
+  
+  .featurette:hover{
+    
+    transition: all 0.8s ease-in-out;
+    background: linear-gradient(-95deg, #ba1f65, #f2f2f2,#178654 );
+	background-size: 400% 400%;
+    color:#000814;
+	animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

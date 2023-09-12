@@ -136,6 +136,8 @@ import './Tienda.css';
 import Pagination from './Paginacion';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
+import LoadingPage from '../Loading/Loading';
+
 const itemsPerPage = 12;
 
 function Tienda() {
