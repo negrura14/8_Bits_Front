@@ -21,6 +21,7 @@ const handleChangeOnClic = () => {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     dispatch(addToCart(cart))
+    
     dispatch(cartUpdate())
 
 }
