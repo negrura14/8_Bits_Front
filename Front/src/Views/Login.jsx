@@ -106,7 +106,7 @@ export default function Login() {
       icon: "success",
       iconColor: "white",
       title: <strong>Login successfully!</strong>,
-      html: <i>You are being redirected to the store</i>,
+      html: <i>You are being redirected to the home</i>,
       color: "#fff",
       background: "#333",
     });
@@ -116,7 +116,7 @@ export default function Login() {
       password: "",
     });
 
-    navigate("/store");
+    navigate("/home");
   }
 
   return (
@@ -202,7 +202,15 @@ export default function Login() {
           // access_type="offline"
           onResolve={async ({ provider, data }) => {
             dispatch(googleLoginAct(data.access_token)),
-            navigate("/store");
+            Toast.fire({
+              icon: "success",
+              iconColor: "white",
+              title: <strong>Login successfully!</strong>,
+              html: <i>You are being redirected to the home</i>,
+              color: "#fff",
+              background: "#333",
+            });
+            navigate("/home");
           }}
           onReject={(err) => {
             console.log(err);

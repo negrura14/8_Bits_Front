@@ -11,6 +11,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/userSlice.jsx'
 import { swAuth } from '../../Redux/userActions.jsx';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 
 function Nav() {
   const location = useLocation();
@@ -22,7 +25,21 @@ function Nav() {
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   
   const userData = user;
- 
+
+  //---------------sweet alert-------------------//
+
+  const MySwal = withReactContent(Swal);
+
+  const swalWithBootstrapButtons = MySwal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+
+  //----------------------------------//
+  
 
   const uniqueIds = {};
   let totalGames = 0;
@@ -40,8 +57,38 @@ function Nav() {
 
 
   const handlerSw = () => {
-    dispatch(clearUser());
-    dispatch(swAuth(!auth));
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You are going to logout!",
+      icon: 'warning',
+      background: "#1d1d1d",
+      showCancelButton: true,
+      confirmButtonText: "Yes, I'm sure",
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Success!',
+          'You will be logged out',
+          'success'
+        )
+
+        dispatch(clearUser());
+        dispatch(swAuth(!auth));
+
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'You will remain logged in',
+          'error'
+        )
+      }
+    })
+ 
   }
   
   useEffect(() => {
