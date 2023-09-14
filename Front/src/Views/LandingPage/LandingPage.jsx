@@ -383,11 +383,16 @@ const Landing = () => {
           </Form.Group>
         </div>
 
-        <div className="row justify-content-center centered">
-        <Button className="mb-3 col-md-4 col-sm-6" variant="primary" type="submit">
+        <div className="row justify-content-center">
+        <Button className="mb-3 col-md-3 col-sm-5" variant="primary" type="submit">
             Submit
           </Button>
-          
+          <div className="col-md-2 col-sm-2">
+
+          </div>
+
+          <Link to={"/home"} className="btn  btn-secondary mb-3 col-md-3 col-sm-5"> Invitado
+          </Link>
         <div class="separator">
     <hr class="line"/>
     <span>Or</span>
@@ -508,7 +513,7 @@ const Landing = () => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label text-primary">Confirm password</label>
+          <label className="form-label">Confirm password</label>
           <input
             placeholder="Reenter your password"
             type={showPasswordR ? "text" : "password"}
