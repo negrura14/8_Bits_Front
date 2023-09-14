@@ -1,11 +1,11 @@
 import './Home.css';
-import Card from '../Card/Card';
-import Carousel from '../Carousel/Carousel';
+import Card from '../../Components/Card/Card';
+import Carousel from '../../Components/Carousel/Carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGame } from '../../Redux/gameActions';
 import React, { useEffect, useState } from 'react';
-import LoadingPage from '../Loading/Loading'
-import SmallNav from '../SmallNav/SmallNav';
+import LoadingPage from '../../Components/Loading/Loading'
+import SmallNav from '../../Components/SmallNav/SmallNav';
 
 
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Re
 import { getGamesId } from "../../Redux/gameActions";
 import { clearDetail } from '../../Redux/gameSlice'
 import { UpdateList, cartUpdate} from '../../Redux/cartSlice';
-import Loading from '../Loading/Loading';
+import Loading from '../../Components/Loading/Loading';
 import './Detail.css';
 
 import Swal from 'sweetalert2';
