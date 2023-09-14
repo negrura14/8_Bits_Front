@@ -182,27 +182,34 @@ function Tienda() {
   
   //funcionalidad para traer todas las plataformas que tenemos hasta el momento
   const uniquePlatforms = game.reduce((platformsSet, game) => {
-    game.supportedPlatforms.forEach((platform) => {
-      platformsSet.add(platform);
-    });
+    if (game && game.SupportedPlatforms) {
+      game.SupportedPlatforms.forEach((platform) => {
+        platformsSet.add(platform.name);
+      });
+    }
     return platformsSet;
   }, new Set());
 
   const allPlatforms = Array.from(uniquePlatforms);
+  console.log(game);
 
-  //console.log(allPlatforms);
+  console.log(allPlatforms);
 
   //funcionalidad para mostrar únicamente los géneros que tienen los juegos
   
   const uniqueGenres = game.reduce((genresSet,game) => {
-    game.genre.forEach((genre) => {
-      genresSet.add(genre);
-    });
+    if (game && game.Genders){
+      game.Genders.forEach((genre) => {
+        genresSet.add(genre.name);
+      });
+    }
     return genresSet;
   }, new Set());
 
   const allGenres = Array.from(uniqueGenres);
-  
+
+  console.log(allGenres);
+  console.log(filtDB);
   
 //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
@@ -274,7 +281,7 @@ function Tienda() {
     <div className='container'>
       <div className='botones'>
         <span className='items'>items {initial}-{ending}</span>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'supportedPlatforms')}> 
+        <select className='xBoton'onChange={(e) => handleOfChange(e, 'SupportedPlatforms')}> 
           <option value='' hidden> Sort By: Platforms </option>
           {/* <option value="Nintendo"> Nintendo Switch </option>
           <option value="Wii"> Wii U </option>
@@ -286,7 +293,7 @@ function Tienda() {
                       </option>
                     ))}
         </select>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'genre')}>
+        <select className='xBoton'onChange={(e) => handleOfChange(e, 'Genders')}>
           <option value='' hidden> Sort By: Gender</option>
           {genre && allGenres.map(type => (
               <option key={type} value={type}> 
