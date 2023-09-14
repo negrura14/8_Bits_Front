@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import validateGame from "./validateGame";
-import { getGame, getGenders } from "../../Redux/gameActions";
+import { getGame, getGenres } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
 import Swal from 'sweetalert2';
@@ -16,7 +16,7 @@ export default function CreateGame() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { game } = useSelector((state) => state.game);
-  const { genre } = useSelector((state) => state.gender);
+  const { genre } = useSelector((state) => state.genre);
 
   //constantes para sweet alert//
   const MySwal = withReactContent(Swal);
@@ -37,7 +37,7 @@ export default function CreateGame() {
 
   useEffect(() => {
     dispatch(getGame());
-    dispatch(getGenders());
+    dispatch(getGenres());
   }, [dispatch]);
 
   //funcionalidad para traer todas las plataformas que tenemos hasta el momento

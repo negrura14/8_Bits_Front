@@ -83,12 +83,12 @@ export default function Detail() {
           {detail.description}
           </p>
           <p class="infoD">
-          {/* {detail.releaseDate} <span className="bbar">|</span>{detail.Genders.join(" - ")} <span className="bbar">|</span>{detail.SupportedPlatforms.join(" - ")} */}
+          {/* {detail.releaseDate} <span className="bbar">|</span>{detail.Genres.join(" - ")} <span className="bbar">|</span>{detail.SupportedPlatforms.join(" - ")} */}
           {detail.releaseDate} <span className="bbar">|</span>
-          {detail.Genders.map((genre,index) => (
+          {detail.Genres.map((genre,index) => (
             <span>
               {genre.name}
-              {index < detail.Genders.length -1 && " -"}
+              {index < detail.Genres.length -1 && " -"}
             </span>
           ))} <span className="bbar">|</span>
           {/* {detail.SupportedPlatforms.map((platform) => platform.name)} */}

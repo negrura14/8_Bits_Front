@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getAllGame, getGameById, getGameByName, filterGames } from './gameSlice';
-import { getAllGenders } from './genderSlice';
+import { getAllGenres } from './genreSlice';
 
 
 export const getGame = () => async  (dispatch) =>{
@@ -31,10 +31,10 @@ export const getGamesName = (name) => async (dispatch) =>{
     }
 }
 
-export const getGenders = () => async (dispatch) =>{ 
+export const getGenres = () => async (dispatch) =>{ 
   try {
-      const response = await axios("/gender");
-      return dispatch(getAllGenders(response.data));
+      const response = await axios("/genre");
+      return dispatch(getAllGenres(response.data));
     } catch (error) {
       window.alert("Request failed:", error);
     }
