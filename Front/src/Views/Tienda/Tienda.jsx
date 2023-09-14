@@ -3,7 +3,7 @@
 // import './Tienda.css';
 // import Pagination from './Paginacion';
 // import { useDispatch, useSelector } from 'react-redux';
-// import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
+// import { getGame, getGenres, filterGamesAction } from '../../Redux/gameActions';
 
 // function Tienda() {
 //   const [currentPage, setCurrentPage] = useState(1);
@@ -13,11 +13,11 @@
 //   const dispatch = useDispatch();
 //   const [aux, setAux] = useState(false);
 //   const { game } = useSelector((state) => state.game);
-//   const { genre } = useSelector((state) => state.gender);
+//   const { genre } = useSelector((state) => state.genre);
 
 //   useEffect(() => {
 //     dispatch(getGame());
-//     dispatch(getGenders());
+//     dispatch(getGenres());
 //   }, [dispatch]);
 
 //   useEffect(() => {
@@ -94,7 +94,7 @@
 //           <option value="cinco">Cinco Estrellas</option>
 //         </select>
 //         <select className='xBoton'onChange={handleOfChange}>
-//           <option value='' hidden> Sort By: Gender</option>
+//           <option value='' hidden> Sort By: Genre</option>
 //           <option value="allRating">Todos los Tipos</option>
 //           {genre && genre.map(type => (
 //               <option key={type.id} value={'genre='+type.name}> 
@@ -135,7 +135,7 @@ import CardT from '../../Components/Card/CardT';
 import './Tienda.css';
 import Pagination from './Paginacion';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
+import { getGame, getGenres, filterGamesAction } from '../../Redux/gameActions';
 import LoadingPage from '../../Components/Loading/Loading';
 
 
@@ -147,13 +147,13 @@ function Tienda() {
   const [filteredGames, setFilteredGames] = useState([]);
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state.game);
-  const { genre } = useSelector((state) => state.gender);
+  const { genre } = useSelector((state) => state.genre);
 
   // console.log("ESTO SE CARGA A LA VARIABLE FILTDB: ", game[3]);
 
   useEffect(() => {
     dispatch(getGame());
-    dispatch(getGenders());
+    dispatch(getGenres());
   }, [dispatch]);
 
   useEffect(() => {
@@ -198,8 +198,8 @@ function Tienda() {
   //funcionalidad para mostrar únicamente los géneros que tienen los juegos
   
   const uniqueGenres = game.reduce((genresSet,game) => {
-    if (game && game.Genders){
-      game.Genders.forEach((genre) => {
+    if (game && game.Genres){
+      game.Genres.forEach((genre) => {
         genresSet.add(genre.name);
       });
     }
@@ -293,8 +293,8 @@ function Tienda() {
                       </option>
                     ))}
         </select>
-        <select className='xBoton'onChange={(e) => handleOfChange(e, 'Genders')}>
-          <option value='' hidden> Sort By: Gender</option>
+        <select className='xBoton'onChange={(e) => handleOfChange(e, 'Genres')}>
+          <option value='' hidden> Sort By: Genre</option>
           {genre && allGenres.map(type => (
               <option key={type} value={type}> 
                   {type}
