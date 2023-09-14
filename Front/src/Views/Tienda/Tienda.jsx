@@ -131,12 +131,12 @@
 
 
 import React, { useEffect, useState } from 'react';
-import CardT from '../Card/CardT';
+import CardT from '../../Components/Card/CardT';
 import './Tienda.css';
 import Pagination from './Paginacion';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenders, filterGamesAction } from '../../Redux/gameActions';
-import LoadingPage from '../Loading/Loading';
+import LoadingPage from '../../Components/Loading/Loading';
 
 
 const itemsPerPage = 12;
