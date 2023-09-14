@@ -391,7 +391,7 @@ const Landing = () => {
 
           </div>
 
-          <Link to={"/home"} className="btn  btn-secondary mb-3 col-md-3 col-sm-5"> Invitado
+          <Link to={"/home"} className="btn  btn-secondary mb-3 col-md-3 col-sm-5"> Guest
           </Link>
         <div class="separator">
     <hr class="line"/>
