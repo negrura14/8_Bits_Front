@@ -83,7 +83,21 @@ export default function Detail() {
           {detail.description}
           </p>
           <p class="infoD">
-          {detail.releaseDate} <span className="bbar">|</span>{detail.genre.join(" - ")} <span className="bbar">|</span>{detail.supportedPlatforms.join(" - ")}
+          {/* {detail.releaseDate} <span className="bbar">|</span>{detail.Genders.join(" - ")} <span className="bbar">|</span>{detail.SupportedPlatforms.join(" - ")} */}
+          {detail.releaseDate} <span className="bbar">|</span>
+          {detail.Genders.map((genre,index) => (
+            <span>
+              {genre.name}
+              {index < detail.Genders.length -1 && " -"}
+            </span>
+          ))} <span className="bbar">|</span>
+          {/* {detail.SupportedPlatforms.map((platform) => platform.name)} */}
+          {detail.SupportedPlatforms.map((platform,index) => (
+            <span>
+              {platform.name}
+              {index < detail.SupportedPlatforms.length -1 && " -"}
+            </span>
+          ))}
           </p>
           <div className="buttonCart">
             <p class="infoD">
