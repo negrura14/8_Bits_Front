@@ -4,15 +4,12 @@ import { ROUTES } from "../../Helpers/RoutesPath";
 import "./LandingPage.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GoogleLoginButton } from "react-social-login-buttons";
 import { LoginSocialGoogle } from "reactjs-social-login";
 import { validateLogin } from "../validateLogin";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import { userLoginAct, googleLoginAct } from '../../Redux/userActions';
 import logo from "../../Img/Logo.png";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
@@ -301,21 +298,21 @@ const Landing = () => {
 
   return (
     <div className="m-0 row vh-100 justify-content-center align-items-center bgL">
-        <div class="col-6 m-5">
+        <div className="col-6 m-5">
           <img className='logo rounded mx-auto d-block' src={logo}></img>
         </div>
-        <div class="container row">
+        <div className="container row">
         
-        <div class="frame col-xl-5 col-md-5 col-sm-2 mb-5">
-          <div class="">
-            <ul class="nav">
-              <li class="nav-item signin-active">
-                <a class="nav-link" onClick={handleBtnClick}>
+        <div className="frame col-xl-5 col-md-6 col-sm-auto mb-5">
+          <div className="">
+            <ul className="nav">
+              <li className="nav-item signin-active">
+                <a className="nav-link" onClick={handleBtnClick}>
                   Existing User
                 </a>
               </li>
-              <li class="nav-item signup-inactive">
-                <a class="nav-link " onClick={handleBtnClick}>
+              <li className="nav-item signup-inactive">
+                <a className="nav-link " onClick={handleBtnClick}>
                   New User
                 </a>
               </li>
@@ -337,6 +334,7 @@ const Landing = () => {
               onBlur={handleBlur}
               onFocus={handleFocus}
             />
+            
             <Form.Text className="text-warning ">
               We'll never share your email with anyone else.
               {focusedField === "email" && errors.email && (
@@ -362,9 +360,10 @@ const Landing = () => {
                 onFocus={handleFocus}
               />
             </div>
+            <div className="mb-3 col-2 p-1">
             <a
               type="button"
-              className=" p-2 col-2"
+              className=" eyeL "
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
@@ -373,6 +372,8 @@ const Landing = () => {
                 <i className="fa-regular fa-eye "></i>
               )}
             </a>
+          </div>
+            
             <Form.Text className="text-danger">
               {focusedField === "password" && errors.password && (
                 <p>{errors.password}</p>
@@ -384,19 +385,27 @@ const Landing = () => {
         </div>
 
         <div className="row justify-content-center">
-        <Button className="mb-3 col-md-3 col-sm-5" variant="primary" type="submit">
+
+        <div className="mb-2 col-md-3 col-sm-5">
+        <Form.Label className="text-primary p-1">Login</Form.Label>
+        <Button  variant="primary" type="submit">
             Submit
           </Button>
+
+        </div>
+        
           <div className="col-md-2 col-sm-2">
 
           </div>
-
-          <Link to={"/home"} className="btn  btn-secondary mb-3 col-md-3 col-sm-5"> Guest
+           <div className="mb-2 col-md-3 col-sm-5">
+           <Form.Label className="text-secondary p-1">No account?</Form.Label>
+          <Link to={"/home"} className="btn  btn-secondary "> Guest
           </Link>
-        <div class="separator">
-    <hr class="line"/>
+           </div>       
+        <div className="separator">
+    <hr className="line"/>
     <span>Or</span>
-    <hr class="line"/>
+    <hr className="line"/>
   </div>
   <div className="social-icons">
   <LoginSocialGoogle
@@ -431,8 +440,8 @@ const Landing = () => {
         </div>
           
         </Form>
-        <form className="form-signup col-12" onSubmit={(event) => sumbitHandlerR(event)}>
-        <div class="row">
+        <form className="form-signup col-12 ms-5" onSubmit={(event) => sumbitHandlerR(event)}>
+        <div className="row">
 
         <div className="mb-3 col-6">
           <label className="form-label text-primary">Name</label>
