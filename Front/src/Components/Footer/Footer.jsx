@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink} from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import logo from '../../Img/Imagen1.png'
 
 function Footer() {
+
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
+
+    // Agregar un listener al botón en el montaje del componente
+    const button = document.getElementById('scrollToTopButton');
+    if (button) {
+      button.addEventListener('click', scrollToTop);
+    }
+
+    // Limpiar el listener cuando el componente se desmonta
+    return () => {
+      if (button) {
+        button.removeEventListener('click', scrollToTop);
+      }
+    };
+  }, []);
+  
   return (
     <div className="container-fluid nav-bar mt-auto">
   <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
@@ -14,9 +34,9 @@ function Footer() {
     </a>
 
     <ul className="nav col-md-4 justify-content-end">
-      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' to={ROUTES.HOME}>Home</NavLink></li>
-      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' to={ROUTES.STORE}>Store</NavLink></li>
-      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' to={ROUTES.ABOUT}>About us</NavLink></li>
+      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.HOME}>Home</NavLink></li>
+      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.STORE}>Store</NavLink></li>
+      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.ABOUT}>About us</NavLink></li>
     </ul>
   </footer>
 </div>
