@@ -31,7 +31,7 @@
 
 
  .frame {
-  max-height: 500px;
+  max-height: 550px;
   background: rgba(0,0,0,.5);
   background-size: cover;
   margin-left: auto;
@@ -68,6 +68,10 @@
   cursor: pointer
 }
 
+.eyeL{
+  z-index: 2;
+}
+
 .signin-inactive a {
   padding-bottom: 0;
   color: rgba(255, 255, 255, .3);
@@ -88,7 +92,7 @@
   cursor: pointer;
   color: rgba(255, 255, 255, .3);
   text-decoration: none;
-  transition: all .25s ease
+  transition: all .25s ease;
 }
 
 .form-signin {
@@ -100,7 +104,7 @@
 }
 
 .form-signin-left {
-  transform: translateX(-400px);
+  transform: translateX(-450px);
   opacity: .0
 }
 
@@ -116,8 +120,9 @@
 }
 
 .form-signup-left {
-  transform: translateX(-399px);
+  transform: translateX(-449px);
   opacity: 1
+  
 }
 
 .form-signup-down {
