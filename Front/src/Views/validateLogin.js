@@ -1,5 +1,5 @@
 
-export const validateLogin = (userData) => {
+export const validateLogin = (userData,users) => {
 
     const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -9,9 +9,14 @@ export const validateLogin = (userData) => {
     const errors = {};
     console.log(userData.email)
     
-    if(!regexEmail.test(userData.email)){
-        errors.email = "Please enter a correct email"
+    let emailValidation = users.find((user) => user.email === userData.email);
+
+    if(emailValidation){
+        errors.email = "There is already a email with the same name, please choose another one!";
+    } else if (!regexEmail.test(userData.email)) {
+        errors.email = "Please enter a correct email";
     }
+
 
     if(!userData.email) errors.email = 'Email is required'; 
 

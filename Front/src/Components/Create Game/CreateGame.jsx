@@ -42,9 +42,11 @@ export default function CreateGame() {
 
   //funcionalidad para traer todas las plataformas que tenemos hasta el momento
   const uniquePlatforms = game.reduce((platformsSet, game) => {
-    game.supportedPlatforms.forEach((platform) => {
-      platformsSet.add(platform);
-    });
+    if (game && game.SupportedPlatforms) {
+      game.SupportedPlatforms.forEach((platform) => {
+        platformsSet.add(platform.name);
+      });
+    }
     return platformsSet;
   }, new Set());
 
@@ -71,7 +73,7 @@ export default function CreateGame() {
     image: "",
     description: "",
     releaseDate: "",
-    supportedPlatforms: [],
+    supportedPlatform: [],
     genre: [],
     price: "",
     stock: "",
@@ -90,7 +92,7 @@ export default function CreateGame() {
       setSelectedPlatforms([...selectedPlatforms, selectedPlatform]);
       setInput({
         ...input,
-        supportedPlatforms: [...input.supportedPlatforms, selectedPlatform], // Agregar a la propiedad supportedPlatforms
+        supportedPlatform: [...input.supportedPlatform, selectedPlatform], // Agregar a la propiedad supportedPlatform
       });
       setSelectedPlatform("");
     }
@@ -101,7 +103,7 @@ export default function CreateGame() {
     setSelectedPlatforms(updatedPlatforms);
     setInput({
       ...input,
-      supportedPlatforms: updatedPlatforms, // Actualizar la propiedad supportedPlatforms
+      supportedPlatform: updatedPlatforms, // Actualizar la propiedad supportedPlatform
     });
   }
 
@@ -195,7 +197,7 @@ export default function CreateGame() {
       "image",
       "description",
       "releaseDate",
-      "supportedPlatforms",
+      "supportedPlatform",
       "genre",
       "price",
       "stock",
@@ -257,7 +259,7 @@ export default function CreateGame() {
         image: "",
         description: "",
         releaseDate: "",
-        supportedPlatforms: [],
+        supportedPlatform: [],
         genre: [],
         price: "",
         stock: "",

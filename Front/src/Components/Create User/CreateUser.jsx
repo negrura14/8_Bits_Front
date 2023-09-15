@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUsersAct } from "../../Redux/userActions";
 
 import bcrypt from "bcryptjs-react";
 
@@ -13,21 +14,18 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 export default function CreateUser() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { user } = useSelector((state) => state.user);
+  const { users }  = useSelector((state) => state.user);
   
 
   //useEffect de los usuarios
 
-  const usersPrueba = [
-    {
-      name: "Sujeto 1",
-      lastname: "-",
-      email: "prueba@gmail.com",
-      password: "1234",
-    },
-  ];
+  useEffect(() => {
+    dispatch(getUsersAct());
+  }, [dispatch]);
+
+  
 
   //---------------------------//
 
@@ -89,7 +87,7 @@ export default function CreateUser() {
           ...input,
           [e.target.name]: e.target.value,
         },
-        usersPrueba
+        users
       )
     );
   }

@@ -17,8 +17,11 @@ const validateUser = (input,users) => {
     }
 
     //email
-    if(!regexEmail.test(input.email)){
-        errors.email = "Please enter a correct email"
+    let emailValidation = users.find((user) => user.email === input.email);
+    if(emailValidation){
+        errors.email = "There is already a email with the same name, please choose another one!";
+    } else if (!regexEmail.test(input.email)) {
+        errors.email = "Please enter a correct email";
     }
 
     //password
