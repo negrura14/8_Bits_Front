@@ -45,6 +45,7 @@ export const ShopCart = () => {
                   cart.splice(i, 1); 
                   localStorage.setItem('cart', JSON.stringify(cart));
                   dispatch(UpdateList());
+                  dispatch(cartUpdate())
                   break; 
                 }
             }
