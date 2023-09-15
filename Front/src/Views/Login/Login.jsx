@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-
+import { getUsersAct } from "../../Redux/userActions";
 
 
 
@@ -22,8 +22,13 @@ export default function Login() {
   const [focusedField, setFocusedField] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { users }  = useSelector((state) => state.user);
+  
+  useEffect(() => {
+    dispatch(getUsersAct());
+  }, [dispatch])
 
-
+  console.log(users);
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
 
@@ -65,7 +70,7 @@ export default function Login() {
     const value = event.target.value;
     console.log(name, value);
 
-    setErrors(validateLogin({ ...form, [name]: value }));
+    setErrors(validateLogin({ ...form, [name]: value },users));
     setForm({ ...form, [name]: value });
   };
 
