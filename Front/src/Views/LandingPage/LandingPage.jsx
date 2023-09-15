@@ -399,8 +399,11 @@ const Landing = () => {
           </div>
            <div className="mb-2 col-md-3 col-sm-5">
            <Form.Label className="text-secondary p-1">No account?</Form.Label>
-          <Link to={"/home"} className="btn  btn-secondary "> Guest
-          </Link>
+          <Button className="btn  btn-secondary " variant="primary" type="submit" onClick={navigate('/home')}>
+            Guest
+          {/* <Link to={"/home"} className="btn  btn-secondary "> Guest
+          </Link> */}
+          </Button>
            </div>       
         <div className="separator">
     <hr className="line"/>
