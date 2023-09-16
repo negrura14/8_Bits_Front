@@ -13,7 +13,6 @@ import Footer from './Components/Footer/Footer.jsx';
 import Login from './Views/Login/Login';
 import Search from './Components/Search/Search';
 import CreateUser from './Components/Create User/CreateUser';
-
 import {Cloudinary} from "@cloudinary/url-gen";
 import { ShopCart } from './Components/ShoppingCart/ShopCart';
 
