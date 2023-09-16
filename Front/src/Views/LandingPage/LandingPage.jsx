@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
 import "./LandingPage.css";
 import { useEffect, useState } from "react";
@@ -320,7 +320,7 @@ const Landing = () => {
           </div>
         <div ng-app ng-init="checked = false" className="row">
         
-        <Form className="form-signin col-12" onSubmit={submitHandler}>
+        <Form className="form-signin col-12 " onSubmit={submitHandler}>
         <div className="row justify-content-center">
         <Form.Group className="mb-3 col-md-10 col-sm-12" controlId="formBasicEmail">
             <Form.Label className="text-primary" >Email address</Form.Label>
@@ -360,7 +360,7 @@ const Landing = () => {
                 onFocus={handleFocus}
               />
             </div>
-            <div className="mb-3 col-2 p-1">
+            <div className="mb-3 col-2 p-1 bGuest">
             <a
               type="button"
               className=" eyeL "
@@ -397,13 +397,10 @@ const Landing = () => {
           <div className="col-md-2 col-sm-2">
 
           </div>
-           <div className="mb-2 col-md-3 col-sm-5">
+           <div className="mb-2 col-md-3 col-sm-5 bGuest">
            <Form.Label className="text-secondary p-1">No account?</Form.Label>
-          <Button className="btn  btn-secondary " variant="primary" type="submit" onClick={navigate('/home')}>
-            Guest
-          {/* <Link to={"/home"} className="btn  btn-secondary "> Guest
-          </Link> */}
-          </Button>
+           <NavLink className='btn btn-secondary ' onClick={() => window.scrollTo(0, 0)} to={ROUTES.STORE}>Guest</NavLink>
+          
            </div>       
         <div className="separator">
     <hr className="line"/>
@@ -436,7 +433,7 @@ const Landing = () => {
           <a type="button" className="icon"><i className="fa-brands fa-google p-3 "></i></a>
         </LoginSocialGoogle>
       </div>
-  <p className="signup">
+  <p className="signup bGuest">
           You do not have an account? create it{" "}
           <Link to={"/createuser"}>here</Link>
         </p>

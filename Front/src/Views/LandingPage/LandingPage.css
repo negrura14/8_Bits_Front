@@ -28,7 +28,9 @@
 
  }
 
-
+.bGuest{
+  z-index: 5;
+}
 
  .frame {
   max-height: 550px;
@@ -68,8 +70,10 @@
   cursor: pointer
 }
 
+
+
 .eyeL{
-  z-index: 2;
+  z-index: 5;
 }
 
 .signin-inactive a {
