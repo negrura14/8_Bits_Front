@@ -4,3 +4,37 @@
     align-items: center;
     color: white;
 }
+
+.cardUP{
+    background-color: rgba(0, 0, 0, 0.327);
+}
+.rounded-top{
+background-image: url(../../Img/UserProfile/userProfile.jpeg);
+ height:200px;
+}
+
+.avatarU{
+    width: 150px;
+}
+
+.textU{
+    background: transparent;
+    height: 50px;
+}
+
+.thumbailU{
+    width: 150px; 
+    z-index: 1;
+    background-color: #00000076;
+}
+.btnUP{
+    z-index: 1;
+}
+
+.textsUP{
+    margin-top: 130px;
+}
+
+.descriptionUP{
+    background-color: #f8f9fa
+}
