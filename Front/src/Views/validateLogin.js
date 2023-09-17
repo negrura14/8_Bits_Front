@@ -9,11 +9,12 @@ export const validateLogin = (userData,users) => {
     const errors = {};
     console.log(userData.email)
     
-    let emailValidation = users.find((user) => user.email === userData.email);
+    // let emailValidation = users.find((user) => user.email === userData.email);
 
-    if(emailValidation){
-        errors.email = "There is already a email with the same name, please choose another one!";
-    } else if (!regexEmail.test(userData.email)) {
+    // if(emailValidation){
+    //     errors.email = "There is already a email with the same name, please choose another one!";
+    // } else 
+    if (!regexEmail.test(userData.email)) {
         errors.email = "Please enter a correct email";
     }
 
