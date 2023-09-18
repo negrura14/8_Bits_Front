@@ -5,11 +5,13 @@ export const gameSlice = createSlice({
     initialState:{
         game:[],
         detail:[],
-        search:[]
+        search:[],
+        auxGames: [],
     },
     reducers:{
         getAllGame: (state, action) => {
             state.game = action.payload
+            state.auxGames = action.payload
         },
         getGameById: (state,action) => {
             state.detail = action.payload
