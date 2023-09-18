@@ -21,10 +21,11 @@ function Nav() {
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
-  const { user, auth } = useSelector((state) => state.user)
+  const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   
   const userData = user;
+  console.log(user)
 
   //---------------sweet alert-------------------//
 
