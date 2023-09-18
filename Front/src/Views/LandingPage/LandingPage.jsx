@@ -15,7 +15,21 @@ import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+
+
 const Landing = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { auth } = useSelector((state) => state.user.userState)
+  
+
+  useEffect(() => {
+    if(auth === true) {
+      navigate("/home")
+    }
+  },[auth, navigate]);
+
   const handleBtnClick = () => {
     const formSignin = document.querySelector(".form-signin");
     const formSignup = document.querySelector(".form-signup");
@@ -39,8 +53,7 @@ const Landing = () => {
     "133571718056-qbem0tdcv46v6pk03e7v7qgmdpsvtg8p.apps.googleusercontent.com";
   const [showPassword, setShowPassword] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+
 
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
@@ -567,5 +580,6 @@ const Landing = () => {
     </div>
   );
 };
+
 
 export default Landing;
