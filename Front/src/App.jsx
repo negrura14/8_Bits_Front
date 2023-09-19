@@ -16,11 +16,27 @@ import CreateUser from './Components/Create User/CreateUser';
 import UserProfile from './Components/UserProfile/UserProfile';
 import {Cloudinary} from "@cloudinary/url-gen";
 import { ShopCart } from './Components/ShoppingCart/ShopCart';
+import { useDispatch } from 'react-redux';
+import { userDataFromCookie } from './Helpers/cookieUtils';
+import { useEffect } from 'react';
+import { updateFromCookie } from './Redux/userSlice';
+
 
 function App() {
   const location = useLocation();
   const main = location.pathname === '/';
   const cld = new Cloudinary({cloud: {cloudName: 'bits8'}})
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const miCookie = document.cookie;
+    const cookieData = userDataFromCookie(miCookie);
+
+    if (cookieData) {
+      dispatch(updateFromCookie(cookieData));
+    }
+  }, []);
 
   return (
     <div className="d-flex flex-column min-vh-100">
