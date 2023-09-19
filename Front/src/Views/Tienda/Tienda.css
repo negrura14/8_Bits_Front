@@ -86,3 +86,15 @@
   opacity: .5;
   pointer-events: none;
 }
+
+
+.notSearch {
+  background-image: url(../../Img/Store/notSearch.png);
+}
+.notFilterT{
+  font-size: 10px;
+}
+
+.notFilterST{
+  font-size: 10px;
+}
