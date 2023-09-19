@@ -9,7 +9,7 @@ import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/userSlice.jsx'
-import { swAuth } from '../../Redux/userActions.jsx';
+import { swAuth, userLogoutAct } from '../../Redux/userActions.jsx';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -74,9 +74,13 @@ function Nav() {
           'You will be logged out',
           'success'
         )
-
-        dispatch(clearUser());
-        dispatch(swAuth(!auth));
+        if(userData.authMethod === 'google'){  
+          dispatch(clearUser());
+          dispatch(swAuth(!auth));
+        } else if (userData.authMethod === 'local'){
+          dispatch(userLogoutAct())
+          document.cookie = 'miCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        }
 
       } else if (
         /* Read more about handling dismissals below */
