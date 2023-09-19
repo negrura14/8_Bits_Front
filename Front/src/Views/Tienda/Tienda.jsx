@@ -38,11 +38,11 @@
 //   let url = '';
 //   const handleOfChange = (event) => {
 //     const filter = event.target.value;
-    
+
 //     console.log(filtDB.length + 'filtDBasd');
 //     console.log(filtDB + 'filtDB');
 //     if(filtDB.length > 0) {
-//       setFiltDB(filtDB + '&' + filter); 
+//       setFiltDB(filtDB + '&' + filter);
 //       console.log(filtDB);
 //       dispatch(filterGamesAction(filtDB));
 //       setAux(!aux);
@@ -82,12 +82,11 @@
 //   const initial = ((currentPage * itemsPerPage) - itemsPerPage) + 1;
 //   const ending = (currentPage * itemsPerPage) < filteredGames.length ? (currentPage * itemsPerPage) : filteredGames.length;
 
-
 //   return (
 //     <>
 //       <div className='botones'>
 //         <span className='items'>items {initial}-{ending}</span>
-//         <select className='xBoton'onChange={handleOfChange}> 
+//         <select className='xBoton'onChange={handleOfChange}>
 //           <option value='' hidden> Sort By: Rating </option>
 //           <option value="tres">Tres Estrellas</option>
 //           <option value="cuatro">Cuatro Estrellas</option>
@@ -97,12 +96,12 @@
 //           <option value='' hidden> Sort By: Genre</option>
 //           <option value="allRating">Todos los Tipos</option>
 //           {genre && genre.map(type => (
-//               <option key={type.id} value={'genre='+type.name}> 
+//               <option key={type.id} value={'genre='+type.name}>
 //                   {type.name}
 //               </option>
 //           ))}
 //         </select>
-//         <select className='xBoton'onChange={handleOfChange}> 
+//         <select className='xBoton'onChange={handleOfChange}>
 //           <option value='' hidden> Sort By: Price </option>
 //           <option value="price=Asc">Ascendente</option>
 //           <option value="price=Desc">Descendente</option>
@@ -111,7 +110,7 @@
 //       </div>
 //       <div className='cardFLex'>
 //                 {getCurrentItems().map((game) => {
-//                     return <CardT 
+//                     return <CardT
 //                     key={game.id}
 //                     game={game}
 //                     />
@@ -129,15 +128,14 @@
 
 // export default Tienda
 
-
-import React, { useEffect, useState } from 'react';
-import CardT from '../../Components/Card/CardT';
-import './Tienda.css';
-import Pagination from './Paginacion';
-import { useDispatch, useSelector } from 'react-redux';
-import { getGame, getGenres, filterGamesAction } from '../../Redux/gameActions';
-import LoadingPage from '../../Components/Loading/Loading';
-
+import React, { useEffect, useState } from "react";
+import CardT from "../../Components/Card/CardT";
+import "./Tienda.css";
+import Pagination from "./Paginacion";
+import { useDispatch, useSelector } from "react-redux";
+import { getGame, getGenres, filterGamesAction } from "../../Redux/gameActions";
+import LoadingPage from "../../Components/Loading/Loading";
+import notSearch from "../../Img/Store/notSearch.png"
 
 const itemsPerPage = 12;
 
@@ -146,14 +144,14 @@ function Tienda() {
   const [filtDB, setFiltDB] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const dispatch = useDispatch();
-  const { game,auxGames } = useSelector((state) => state.game);
+  const { game, auxGames } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.genre);
 
-  const [selectedFilters,setSelectedFilters] = useState({
+  const [selectedFilters, setSelectedFilters] = useState({
     plat: "Sort By: Platforms",
     gen: "Sort By: Genre",
-    pric: "Sort By: Price"
-  })
+    pric: "Sort By: Price",
+  });
 
   // console.log("ESTO SE CARGA A LA VARIABLE FILTDB: ", game[3]);
 
@@ -168,7 +166,6 @@ function Tienda() {
       // Lógica de filtrado aquí en función de filtDB.
       // Puedes modificar esta lógica según tus necesidades.
       return true;
-      
     });
 
     // Establecer el estado de filteredGames y currentPage.
@@ -176,18 +173,17 @@ function Tienda() {
     setCurrentPage(1);
   }, [game, filtDB]);
 
-  console.log(game,"games");
-  console.log(auxGames,"auxGames");
-//** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
+  console.log(game, "games");
+  console.log(auxGames, "auxGames");
+  //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
   // const updateFiltersAndFetch = (newFilters) => {
   //   setFiltDB(newFilters);
   //   dispatch(filterGamesAction(filtDB.join('')));
   // };
 
+  //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
-//** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
-  
   //funcionalidad para traer todas las plataformas que tenemos hasta el momento
   const uniquePlatforms = auxGames.reduce((platformsSet, game) => {
     if (game && game.SupportedPlatforms) {
@@ -201,9 +197,9 @@ function Tienda() {
   const allPlatforms = Array.from(uniquePlatforms);
 
   //funcionalidad para mostrar únicamente los géneros que tienen los juegos
-  
-  const uniqueGenres = auxGames.reduce((genresSet,game) => {
-    if (game && game.Genres){
+
+  const uniqueGenres = auxGames.reduce((genresSet, game) => {
+    if (game && game.Genres) {
       game.Genres.forEach((genre) => {
         genresSet.add(genre.name);
       });
@@ -213,12 +209,10 @@ function Tienda() {
 
   const allGenres = Array.from(uniqueGenres);
 
-  
-//** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
-
+  //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
   const handleFilterChange = (e) => {
-    const {name,value} = e.target;
+    const { name, value } = e.target;
 
     setSelectedFilters((prevFilters) => ({
       ...prevFilters,
@@ -227,49 +221,43 @@ function Tienda() {
   };
 
   const handleOfChange = (e, buttonFiler) => {
-    if(buttonFiler !== 'todo'){
+    if (buttonFiler !== "todo") {
       let newFilters = [];
-      const indiceAReemplazar = filtDB.findIndex((str) => str.includes(buttonFiler));
-      if(filtDB.length === 0){
+      const indiceAReemplazar = filtDB.findIndex((str) =>
+        str.includes(buttonFiler)
+      );
+      if (filtDB.length === 0) {
         newFilters = [`${buttonFiler}=${e.target.value}`];
         // setFiltDB([...filtDB, `${buttonFiler}=${e.target.value}`])
-      }
-      else if(indiceAReemplazar !== -1){
+      } else if (indiceAReemplazar !== -1) {
         const newFiltDB = [...filtDB];
-        if(indiceAReemplazar === 0){
+        if (indiceAReemplazar === 0) {
           newFiltDB[indiceAReemplazar] = `${buttonFiler}=${e.target.value}`;
-        }
-        else{
+        } else {
           newFiltDB[indiceAReemplazar] = `&${buttonFiler}=${e.target.value}`;
         }
         newFilters = newFiltDB;
-        
+
         // setFiltDB(newFiltDB);
-      }
-      else {
+      } else {
         newFilters = [...filtDB, `&${buttonFiler}=${e.target.value}`];
       }
       setFiltDB((prevFiltDB) => newFilters);
-      dispatch(filterGamesAction(newFilters.join('')));
-    }
-    else {
+      dispatch(filterGamesAction(newFilters.join("")));
+    } else {
       dispatch(getGame());
       setFiltDB([]); // seteo el estado donde almacenaba los estring para la url
-      
     }
-  }
+  };
 
-
-
-//** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
- 
+  //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
   const getCurrentItems = () => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     return filteredGames.slice(indexOfFirstItem, indexOfLastItem);
   };
-  console.log(filteredGames,"filteredgames");
+  console.log(filteredGames, "filteredgames");
 
   const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
 
@@ -285,119 +273,145 @@ function Tienda() {
     }
   };
 
-  const initial = ((currentPage * itemsPerPage) - itemsPerPage) + 1;
-  const ending = (currentPage * itemsPerPage) < filteredGames.length ? (currentPage * itemsPerPage) : filteredGames.length;
-
+  const initial = currentPage * itemsPerPage - itemsPerPage + 1;
+  const ending =
+    currentPage * itemsPerPage < filteredGames.length
+      ? currentPage * itemsPerPage
+      : filteredGames.length;
 
   return (
-    <div className='container'>
-      <div className='botones'>
-        <span className='items'>items {initial}-{ending}</span>
+    <div className="container">
+      <div className="botones">
+        <span className="items">
+          items {initial}-{ending}
+        </span>
 
-        <select 
-          className='xBoton'
-          onChange={(e) =>{
-            handleFilterChange(e)
-            handleOfChange(e, 'SupportedPlatforms')
-          }}
-          name='plat'
-          value={selectedFilters.plat}
-        > 
-          <option value='' hidden> Sort By: Platforms </option>
-          {allPlatforms.map((platform) => (
-                      <option key={platform} value={platform}>
-                        {platform}
-                      </option>
-                    ))}
-        </select>
-
-        <select 
-          className='xBoton'
+        <select
+          className="xBoton"
           onChange={(e) => {
-            handleFilterChange(e)            
-            handleOfChange(e, 'Genres')
+            handleFilterChange(e);
+            handleOfChange(e, "SupportedPlatforms");
           }}
-          name='gen'
-          value={selectedFilters.gen}
+          name="plat"
+          value={selectedFilters.plat}
         >
-          <option value='' hidden> Sort By: Genre</option>
-          {genre && allGenres.map(type => (
-              <option key={type} value={type}> 
-                  {type}
-              </option>
+          <option value="" hidden>
+            {" "}
+            Sort By: Platforms{" "}
+          </option>
+          {allPlatforms.map((platform) => (
+            <option key={platform} value={platform}>
+              {platform}
+            </option>
           ))}
         </select>
 
-        <select 
-          className='xBoton'
+        <select
+          className="xBoton"
           onChange={(e) => {
-            handleFilterChange(e)            
-            handleOfChange(e, 'price')
+            handleFilterChange(e);
+            handleOfChange(e, "Genres");
           }}
-          name='pric'
+          name="gen"
+          value={selectedFilters.gen}
+        >
+          <option value="" hidden>
+            {" "}
+            Sort By: Genre
+          </option>
+          {genre &&
+            allGenres.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+        </select>
+
+        <select
+          className="xBoton"
+          onChange={(e) => {
+            handleFilterChange(e);
+            handleOfChange(e, "price");
+          }}
+          name="pric"
           value={selectedFilters.pric}
-        > 
-          <option value='' hidden> Sort By: Price </option>
+        >
+          <option value="" hidden>
+            {" "}
+            Sort By: Price{" "}
+          </option>
           <option value="Asc">Ascendente</option>
           <option value="Desc">Descendente</option>
         </select>
 
-        <button 
-            className='xBoton'
-            onClick={(e) => {
-              setSelectedFilters({
-                plat: "Sort By: Platforms",
-                gen: "Sort By: Genre",
-                pric: "Sort By: Price",
-              })
-              handleOfChange(e, 'todo')
-            }}
-          >
-            Show: <span className='xSpan'> All games</span> 
+        <button
+          className="xBoton"
+          onClick={(e) => {
+            setSelectedFilters({
+              plat: "Sort By: Platforms",
+              gen: "Sort By: Genre",
+              pric: "Sort By: Price",
+            });
+            handleOfChange(e, "todo");
+          }}
+        >
+          Show: <span className="xSpan"> All games</span>
         </button>
-
       </div>
       <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onNextPage={nextPage}
-                onPrevPage={prevPage}
-            />
-            
-      <div className=' cardFLex row'>
-                {filteredGames.length > 0 ? getCurrentItems().map((game) => {
-                    return <CardT 
-                    key={game.id}
-                    game={game}
-                    />
-                }) : <div>
-                      <h1>There is no games for the filters!</h1>
-                      <h3>Please choose another one or reset filters 👇</h3>
-                      <button
-                        className='xBoton'
-                        onClick={(e) => {
-                          setSelectedFilters({
-                            plat: "Sort By: Platforms",
-                            gen: "Sort By: Genre",
-                            pric: "Sort By: Price",
-                          })
-                          handleOfChange(e, 'todo')
-                        }}
-                      >
-                        RESET FILTERS
-                      </button>
-                    </div>
-                }
-            </div>
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={nextPage}
+        onPrevPage={prevPage}
+      />
 
-            <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onNextPage={nextPage}
-                onPrevPage={prevPage}
-            />
+      <div className=" cardFLex row">
+        {filteredGames.length > 0 ? (
+          getCurrentItems().map((game) => {
+            return <CardT key={game.id} game={game} />;
+          })
+        ) : (
+          <div className="cta-area ">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="cta-content bg-img background-overlay">
+                    <div className="h-100 d-flex align-items-center justify-content-end row">
+                      <img src={notSearch} className=" col-6"/>
+                      <div className=" col-6 filter--text">
+                        <h2 className="fs-2">There is no games for the filters!</h2>
+                        <h6 className="mb-5 fs-5">Please choose another one or reset filters 👇</h6>
+                        <button
+                          className="essence-btn aC"
+                          onClick={(e) => {
+                            setSelectedFilters({
+                              plat: "Sort By: Platforms",
+                              gen: "Sort By: Genre",
+                              pric: "Sort By: Price",
+                            });
+                            handleOfChange(e, "todo");
+                          }}
+                        >
+                          RESET FILTERS
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={nextPage}
+        onPrevPage={prevPage}
+      />
     </div>
-  )
+  );
 }
 
-export default Tienda
+export default Tienda;

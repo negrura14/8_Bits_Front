@@ -570,7 +570,7 @@ const Landing = () => {
             <NavLink
               className="guestDbutton btn btn-secondary "
               onClick={() => window.scrollTo(0, 0)}
-              to={ROUTES.STORE}
+              to={ROUTES.HOME}
             >
               Guest
             </NavLink>
