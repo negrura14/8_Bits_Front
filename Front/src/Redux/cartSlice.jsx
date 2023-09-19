@@ -28,11 +28,19 @@ const cartSlice = createSlice({
     cartUpdate: (state) => {
       state.cartUpdate = !state.cartUpdate;
     },
-    UpdateList: (state) => {
-      return {
-        ...state,
-        listCart: JSON.parse(localStorage.getItem('cart')),
+    UpdateList: (state, action) => {
+      if (action.payload !== undefined) {
+        return {
+          ...state,
+          listCart: JSON.parse(localStorage.getItem(`cart.${action.payload}`)) || [],
+        }
       }
+      // else {
+      //   return {
+      //     ...state,
+      //     listCart: JSON.parse(localStorage.getItem('cart')) || [],
+      //   }
+      // }
     }
   },
 });

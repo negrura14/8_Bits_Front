@@ -12,6 +12,9 @@ function Card (props) {
 const {game} = props;
 const dispatch = useDispatch()
 // const cart = useSelector((state) => state.cart.listCart)
+const { user, auth } = useSelector((state) => state.user.userState)
+const userData = user;
+
 
 //--------------------sweet alert---------------------------//
 const MySwal = withReactContent(Swal);
@@ -33,21 +36,23 @@ const Toast = MySwal.mixin({
 
 const handleChangeOnClic = () => {
     // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if(auth === true) {
+        const cart = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
 
-    cart.push(game);
+        cart.push(game);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    dispatch(addToCart(cart))
-    
-    dispatch(cartUpdate())
-    Toast.fire({
-        icon: 'success',
-        iconColor: "white",
-        title: <strong>Game added to cart!</strong>,
-        color: "#fff",
-        background : "#333",
-      })
+        localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(cart));
+        dispatch(addToCart(cart))
+        
+        dispatch(cartUpdate())
+        Toast.fire({
+            icon: 'success',
+            iconColor: "white",
+            title: <strong>Game added to cart!</strong>,
+            color: "#fff",
+            background : "#333",
+        })
+    }
 
 }
 
