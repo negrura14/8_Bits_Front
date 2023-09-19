@@ -5,7 +5,7 @@ import DateTimeDisplay from '../Time/Time.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart, cartUpdate } from '../../Redux/cartSlice';
+import { toggleCart, cartUpdate, UpdateList } from '../../Redux/cartSlice';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/userSlice.jsx'
@@ -19,7 +19,7 @@ function Nav() {
   const location = useLocation();
   const detail = /^\/Detail\/\d+$/i.test(location.pathname);
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const dispatch = useDispatch();
   const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
@@ -44,16 +44,26 @@ function Nav() {
 
   const uniqueIds = {};
   let totalGames = 0;
-  for (const element of cart) {
-    if (!uniqueIds[element.id]) {
-      uniqueIds[element.id] = true;
-      totalGames += 1;
+  if(auth === true){
+    const cart = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
+
+    for (const element of cart) {
+      if (!uniqueIds[element.id]) {
+        uniqueIds[element.id] = true;
+        totalGames += 1;
+      }
     }
   }
 // console.log("TEOTAL DE JUEGOS EN EL CARRITO: ", totalGames);
 
   const handleCartClick = () => {
-    dispatch(toggleCart());
+    if(auth === true) {
+      dispatch(UpdateList(userData.user.id));
+      dispatch(toggleCart());
+    }
+    else {
+      dispatch(toggleCart());
+    }
   }
 
 
@@ -96,11 +106,11 @@ function Nav() {
  
   }
   
-  useEffect(() => {
-    if (isCartUpdated){
-      dispatch(cartUpdate())
-    }
-  }, [isCartUpdated, dispatch])
+  // useEffect(() => {
+  //   if (!auth){
+  //     dispatch(cartUpdate())
+  //   }
+  // }, [isCartUpdated, dispatch])
 
   return (
 

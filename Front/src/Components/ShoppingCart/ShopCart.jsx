@@ -9,13 +9,15 @@ export const ShopCart = () => {
     const isCartOpen = useSelector(state => state.cart.isCartOpen);
     const cartOpen = isCartOpen ? 'shop show' : 'shop';
     const cartRedux = useSelector(state => state.cart.listCart);
+    const { user, auth } = useSelector((state) => state.user.userState)
+    const userData = user;
+    console.log("ESTO ES LO QUE LLEGA POR CARTREDUX: ", cartRedux);
 
-
-    useEffect(() => {
-        if(isCartOpen) {
-            dispatch(UpdateList())
-        }
-    }, [isCartOpen])
+    // useEffect(() => {
+    //     if(isCartOpen) {
+    //         dispatch(UpdateList())
+    //     }
+    // }, [isCartOpen])
         
 
     const removeFromCart = (itemId) => {
@@ -57,7 +59,7 @@ export const ShopCart = () => {
     const totalGames = [] ;
     const uniqueIds = {};
     let totalPrice = 0;
-
+    if(auth === true){
     for (const element of cartRedux) {
         totalPrice = totalPrice + Number(element.price);
         if (!uniqueIds[element.id]) {
@@ -77,6 +79,7 @@ export const ShopCart = () => {
                 totalGames[existingIndex].cant++;
             }
         }
+    }
     }
 
     const handleCloseCart = () => {
