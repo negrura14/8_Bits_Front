@@ -282,12 +282,12 @@ function Tienda() {
   return (
     <div className="container">
       <div className="botones">
-        <span className="items">
-          items {initial}-{ending}
-        </span>
+      <div className="row d-flex justify-content-center mt-2">
+
+      <div className="col-md-3 col-sm-6">
 
         <select
-          className="xBoton"
+          className="form-select bg-transparent text-white-50  m-2"
           onChange={(e) => {
             handleFilterChange(e);
             handleOfChange(e, "SupportedPlatforms");
@@ -305,9 +305,11 @@ function Tienda() {
             </option>
           ))}
         </select>
+      </div>
+      <div className="col-md-3 col-sm-6">
 
         <select
-          className="xBoton"
+          className="form-select bg-transparent text-white-50  m-2"
           onChange={(e) => {
             handleFilterChange(e);
             handleOfChange(e, "Genres");
@@ -326,9 +328,11 @@ function Tienda() {
               </option>
             ))}
         </select>
+      </div>
 
+      <div className="col-md-3 col-sm-6">
         <select
-          className="xBoton"
+          className="form-select bg-transparent text-white-50 m-2"
           onChange={(e) => {
             handleFilterChange(e);
             handleOfChange(e, "price");
@@ -344,8 +348,12 @@ function Tienda() {
           <option value="Desc">Descendente</option>
         </select>
 
+      </div>
+
+      <div className="col-md-3 col-sm-6">
+
         <button
-          className="xBoton"
+          className="btn border-primary text-white-50  m-2"
           onClick={(e) => {
             setSelectedFilters({
               plat: "Sort By: Platforms",
@@ -355,8 +363,17 @@ function Tienda() {
             handleOfChange(e, "todo");
           }}
         >
-          Show: <span className="xSpan"> All games</span>
+          Show: <span> All games</span>
         </button>
+      </div>
+
+      </div>
+      </div>
+      <div className="d-flex justify-content-center ">
+
+      <span className="text-white mt-1">
+          Items {initial}-{ending}
+        </span>
       </div>
       <Pagination
         currentPage={currentPage}
