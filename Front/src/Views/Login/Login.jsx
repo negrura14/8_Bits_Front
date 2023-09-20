@@ -22,27 +22,20 @@ export default function Login() {
   const [focusedField, setFocusedField] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { users }  = useSelector((state) => state.user);
+  const { users, auth }  = useSelector((state) => state.user.userState);
   
   useEffect(() => {
     dispatch(getUsersAct());
-  }, [dispatch])
+    if(auth === true) {
+      navigate("/home")
+    }
+  }, [dispatch, navigate, auth])
 
   console.log(users);
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
 
-  const Toast = MySwal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
+
 
   //--------------------sweet alert---------------------------//
 
@@ -107,21 +100,13 @@ export default function Login() {
     dispatch(userLoginAct(form));
     // dispatch(swAuth(!auth));
 
-    Toast.fire({
-      icon: "success",
-      iconColor: "white",
-      title: <strong>Login successfully!</strong>,
-      html: <i>You are being redirected to the home</i>,
-      color: "#fff",
-      background: "#333",
-    });
+
 
     setForm({
       email: "",
       password: "",
     });
 
-    navigate("/home");
   }
 
   return (
