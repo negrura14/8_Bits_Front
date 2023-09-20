@@ -15,6 +15,9 @@ export default function Detail() {
     const {id} = useParams();
     const dispatch = useDispatch()
     const detail = useSelector(state => state.game.detail)
+    const { user, auth } = useSelector((state) => state.user.userState)
+    const userData = user;
+
 
     //--------------------sweet alert---------------------------//
     const MySwal = withReactContent(Swal);
@@ -44,20 +47,21 @@ export default function Detail() {
     },[dispatch, id])
     
     const handleChangeOnClic = () => {
-      // console.log("Esto es lo que muestra el GAME dentro de CARDT: ", game);
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  
-      cart.push(detail);
-  
-      localStorage.setItem("cart", JSON.stringify(cart));
-      dispatch(UpdateList())  
-      Toast.fire({
-        icon: 'success',
-        iconColor: "white",
-        title: <strong>Game added to cart!</strong>,
-        color: "#fff",
-        background : "#333",
-      }, dispatch(cartUpdate()))
+      if(auth === true){ 
+        const cart = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
+    
+        cart.push(detail);
+    
+        localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(cart));
+        dispatch(UpdateList())  
+        Toast.fire({
+          icon: 'success',
+          iconColor: "white",
+          title: <strong>Game added to cart!</strong>,
+          color: "#fff",
+          background : "#333",
+        }, dispatch(cartUpdate()))
+      }
   }
     
     
