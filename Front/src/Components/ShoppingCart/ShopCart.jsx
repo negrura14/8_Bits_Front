@@ -14,10 +14,11 @@ export const ShopCart = () => {
     console.log("ESTO ES LO QUE LLEGA POR CARTREDUX: ", cartRedux);
 
     // useEffect(() => {
-    //     if(isCartOpen) {
-    //         dispatch(UpdateList())
+    //     if(auth === true) {
+    //         console.log("ENTRO A ESTE USEEFECT?");
+    //         dispatch(UpdateList(userData.user.id))
     //     }
-    // }, [isCartOpen])
+    // }, [dispatch])
         
 
     const removeFromCart = (itemId) => {
@@ -52,6 +53,12 @@ export const ShopCart = () => {
                 }
             }
         }
+    }
+
+    const onClickClearCart = () => {
+        localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify([]));
+        dispatch(UpdateList(userData.user.id));
+        dispatch(cartUpdate())
     }
    
 
@@ -160,6 +167,7 @@ export const ShopCart = () => {
   Pay
   <i class="fa-regular fa-credit-card"></i>
 </button>
+<button onClick={onClickClearCart}>Clear Cart</button>
       </>
                
                  : '' }
