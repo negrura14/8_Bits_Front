@@ -16,7 +16,7 @@ import withReactContent from 'sweetalert2-react-content';
 export default function CreateUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { users }  = useSelector((state) => state.user);
+  const { users }  = useSelector((state) => state.user.userState);
   
 
   //useEffect de los usuarios
