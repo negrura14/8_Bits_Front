@@ -1,7 +1,25 @@
 import axios from 'axios';
 import {userLogin, getUsers, switchAut, updateFromCookie, userLogout} from './userSlice';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+
+
 
 export const userLoginAct = (user) => async (dispatch) =>{
+    const MySwal = withReactContent(Swal);
+    const Toast = MySwal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      
     try{
         const response = await axios.post('user/login', user, {
             withCredentials: true
@@ -18,8 +36,23 @@ export const userLoginAct = (user) => async (dispatch) =>{
         dispatch(userLogin(userData));
 
         dispatch(updateFromCookie(userData));
+
+        Toast.fire({
+            icon: "success",
+            iconColor: "white",
+            title: <strong>Login successfully!</strong>,
+            html: <i>You are being redirected to the home</i>,
+            color: "#fff",
+            background: "#333",
+          });
+
     } catch (error) {
-        window.alert(error.response.data.message);
+        MySwal.fire({
+            title: <strong>Error</strong>,
+            html: <i>Login Failed!</i>,
+            icon: 'error',
+            background : "#1d1d1d",
+          });
     }
 };
 

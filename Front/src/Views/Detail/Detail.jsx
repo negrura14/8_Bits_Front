@@ -17,6 +17,7 @@ export default function Detail() {
     const detail = useSelector(state => state.game.detail)
     const { user, auth } = useSelector((state) => state.user.userState)
     const userData = user;
+    const navigate = useNavigate();
 
 
     //--------------------sweet alert---------------------------//
@@ -61,6 +62,8 @@ export default function Detail() {
           color: "#fff",
           background : "#333",
         }, dispatch(cartUpdate()))
+      } else {
+        navigate('/login');
       }
   }
     

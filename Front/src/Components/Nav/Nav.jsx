@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
@@ -25,7 +25,7 @@ function Nav() {
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   
   const userData = user;
-  console.log(user)
+  const navigate = useNavigate()
 
   //---------------sweet alert-------------------//
 
@@ -62,7 +62,7 @@ function Nav() {
       dispatch(toggleCart());
     }
     else {
-      dispatch(toggleCart());
+      navigate('/login')
     }
   }
 

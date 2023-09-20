@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { ROUTES } from '../../Helpers/RoutesPath'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, cartUpdate } from '../../Redux/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -14,6 +15,7 @@ const dispatch = useDispatch()
 // const cart = useSelector((state) => state.cart.listCart)
 const { user, auth } = useSelector((state) => state.user.userState)
 const userData = user;
+const navigate = useNavigate();
 
 
 //--------------------sweet alert---------------------------//
@@ -52,6 +54,8 @@ const handleChangeOnClic = () => {
             color: "#fff",
             background : "#333",
         })
+    } else {
+        navigate('/login');
     }
 
 }
