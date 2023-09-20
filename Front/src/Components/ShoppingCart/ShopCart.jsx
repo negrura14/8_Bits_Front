@@ -23,20 +23,20 @@ export const ShopCart = () => {
     const removeFromCart = (itemId) => {
         const updatedCart = cartRedux.filter(item => item.id !== itemId);
 
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        dispatch(UpdateList())
+        localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(updatedCart));
+        dispatch(UpdateList(userData.user.id))
         dispatch(cartUpdate())
     }
     
     const AddOrSubClick = (itemId, addSub) => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cart = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
         
         if(addSub === 'add'){
             for(const element of cartRedux){
                 if(element.id === itemId){
                     cart.push(element)
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    dispatch(UpdateList())
+                    localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(cart));
+                    dispatch(UpdateList(userData.user.id))
                     break;
                 }
             }
@@ -45,8 +45,8 @@ export const ShopCart = () => {
             for (let i = cartRedux.length - 1; i > -1; i--) {
                 if (cartRedux[i].id === itemId) {
                   cart.splice(i, 1); 
-                  localStorage.setItem('cart', JSON.stringify(cart));
-                  dispatch(UpdateList());
+                  localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(cart));
+                  dispatch(UpdateList(userData.user.id));
                   dispatch(cartUpdate())
                   break; 
                 }
