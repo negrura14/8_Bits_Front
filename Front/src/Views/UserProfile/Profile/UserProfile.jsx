@@ -1,5 +1,5 @@
 import "./UserProfile.css";
-import "../Card/Card.css";
+import "../../../Components/Card/Card.css";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -7,12 +7,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { getUsersAct } from "../../Redux/userActions";
-import { ROUTES } from "../../Helpers/RoutesPath";
+import { getUsersAct } from "../../../Redux/userActions";
+import { ROUTES } from "../../../Helpers/RoutesPath";
 
-import UploadWidget from "../../Helpers/UploadWidget";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+
 
 export default function UserProfile() {
   // const {id} = useParams();
@@ -152,14 +152,10 @@ export default function UserProfile() {
               <img src={userTest.image}
                 alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
-              <button type="button" class="btn btn-outline-light btnUP" data-mdb-ripple-color="dark"
-               >
-                Edit profile
-              </button>
             </div>
             <div class="ms-3 textsUP" >
-              <h5>{userTest.nickname}</h5>
-              <p>New York</p>
+              <h5>{userTest.nickname ? userTest.nickname : userTest.name}</h5>
+              <p>{userTest.country}</p>
             </div>
           </div>
           <div class="p-4 text-white textU" >
