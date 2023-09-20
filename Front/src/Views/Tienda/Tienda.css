@@ -6,24 +6,12 @@
 .xBoton {
     padding: 10px;
     margin: 10px;
-    border: solid 2px #fff;
     background: transparent;
     cursor: pointer;
     width: 10rem;
     color: #bababa;
     font-size: 12px;
     font-weight: 800;
-}
-.xBoton option[hidden]{
-    color: #bababa;
-    font-size: 12px;
-    font-weight: 800;
-}
-.xSpan {
-    color: #fff;
-}
-.items {
-    color: grey
 }
 
 
@@ -70,11 +58,11 @@
   padding: .5em;
 }
 .data-pagination button:hover {
-    color: #f60;
+    color: #ba1f65;
     
 }
 .data-pagination span .activePage {
-  color: #f60;
+  color: #ba1f65;
 }
 .data-pagination span span .current {
   background: rgba(0,0,0,.1)

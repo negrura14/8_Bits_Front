@@ -1,0 +1,8 @@
+.tabsU .nav-link.active {
+    color: #ffffff; 
+    background-color: rgba(0, 255, 110, 0.55) ;
+  }
+  
+  .tabsU .nav-link:hover {
+    border-color: #2cffa0;
+  }
