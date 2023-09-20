@@ -13,7 +13,7 @@ import { swAuth, userLogoutAct } from '../../Redux/userActions.jsx';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function Nav() {
   const location = useLocation();
@@ -132,7 +132,21 @@ function Nav() {
         <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
         {auth === false && <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>}
         {auth === true && <li className="nav-item"><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></li>}
-        {auth === true && <li className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></li>}
+        {auth === true && 
+        //<li className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></li>
+          <div>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Options
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item ><NavLink to={ROUTES.PROFILEUSER}>Profile</NavLink></Dropdown.Item>
+                <Dropdown.Item className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        }
         
         {/* <NavDropdown
               id="nav-dropdown-dark-example"
