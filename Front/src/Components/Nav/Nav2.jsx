@@ -84,6 +84,7 @@ function Nav2() {
           'You will be logged out',
           'success'
         )
+        navigate('/')
         if(userData.authMethod === 'google'){  
           dispatch(clearUser());
           dispatch(swAuth(!auth));
