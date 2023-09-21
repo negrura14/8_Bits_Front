@@ -21,7 +21,6 @@ import { userDataFromCookie } from './Helpers/cookieUtils';
 import { useEffect } from 'react';
 import { updateFromCookie } from './Redux/Reducers/userSlice';
 import MercadoPago from './Components/MercadoPago/MercadoPago';
-import { updateFromCookie } from './Redux/Reducers/userSlice';
 import {DashBoard} from "./Views/DashBoard/DashBoard.jsx"
 
 
