@@ -21,6 +21,9 @@ import { userDataFromCookie } from './Helpers/cookieUtils';
 import { useEffect } from 'react';
 import { updateFromCookie } from './Redux/Reducers/userSlice';
 import MercadoPago from './Components/MercadoPago/MercadoPago';
+import { updateFromCookie } from './Redux/userSlice';
+import {DashBoard} from "./Views/DashBoard/DashBoard.jsx"
+
 
 function App() {
   const location = useLocation();
@@ -55,6 +58,7 @@ function App() {
        <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
        <Route path = {ROUTES.MERCADO} element= {<MercadoPago/>}/>
        <Route path = {ROUTES.PROFILEUSER} element= {<TabProfile/>}/>
+       <Route path = "Dashboard" element= {<DashBoard/>}/>
       </Routes>
       {!main && <Footer/>}
     </div>
