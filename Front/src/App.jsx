@@ -8,14 +8,14 @@ import Detail from './Views/Detail/Detail'
 import CreateGame from './Components/Create Game/CreateGame.jsx';
 import About from './Views/About/About';
 import Tienda from './Views/Tienda/Tienda'
-import Nav from './Components/Nav/Nav.jsx'
+import Nav2 from './Components/Nav/Nav2.jsx'
 import Footer from './Components/Footer/Footer.jsx';
 import Login from './Views/Login/Login';
 import Search from './Components/Search/Search';
 import CreateUser from './Components/Create User/CreateUser';
 import TabProfile from './Views/UserProfile/TabProfile';
 import {Cloudinary} from "@cloudinary/url-gen";
-import { ShopCart } from './Components/ShoppingCart/ShopCart';
+import { ShopCart } from './Components/ShoppingCart/ShopCart3';
 import { useDispatch } from 'react-redux';
 import { userDataFromCookie } from './Helpers/cookieUtils';
 import { useEffect } from 'react';
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      {!main && <Nav/>}
+      {!main && <Nav2/>}
       <ShopCart></ShopCart>
       <Routes>
        <Route path = {ROUTES.LANDING} element={<Landing/>}/>

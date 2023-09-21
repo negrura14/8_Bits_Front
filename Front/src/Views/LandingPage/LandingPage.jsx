@@ -321,12 +321,12 @@ const Landing = () => {
           <div className="">
             <ul className="nav">
               <li className="nav-item signin-active">
-                <a className="nav-link" onClick={handleBtnClick}>
+                <a className="nav-link text-primary" onClick={handleBtnClick}>
                   Existing User
                 </a>
               </li>
               <li className="nav-item signup-inactive">
-                <a className="nav-link " onClick={handleBtnClick}>
+                <a className="nav-link text-primary " onClick={handleBtnClick}>
                   New User
                 </a>
               </li>
@@ -390,7 +390,7 @@ const Landing = () => {
                         {showPassword ? (
                           <i className="fa-regular fa-eye-slash text-secondary"></i>
                         ) : (
-                          <i className="fa-regular fa-eye "></i>
+                          <i className="fa-regular fa-eye text-primary"></i>
                         )}
                       </a>
                     </div>
@@ -440,7 +440,7 @@ const Landing = () => {
                     }}
                   >
                     <a type="button" className="icon">
-                      <i className="fa-brands fa-google p-3 "></i>
+                      <i className="fa-brands fa-google p-3 text-primary"></i>
                     </a>
                   </LoginSocialGoogle>
                 </div>
@@ -528,7 +528,7 @@ const Landing = () => {
                     {showPasswordR ? (
                       <i className="fa-regular fa-eye-slash text-secondary"></i>
                     ) : (
-                      <i className="fa-regular fa-eye "></i>
+                      <i className="fa-regular fa-eye text-primary "></i>
                     )}
                   </a>
                 </div>
@@ -538,7 +538,7 @@ const Landing = () => {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Confirm password</label>
+                <label className="form-label text-primary">Confirm password</label>
                 <input
                   placeholder="Reenter your password"
                   type={showPasswordR ? "text" : "password"}
