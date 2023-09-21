@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { userDataFromCookie } from './Helpers/cookieUtils';
 import { useEffect } from 'react';
 import { updateFromCookie } from './Redux/userSlice';
+import {DashBoard} from "./Views/DashBoard/DashBoard.jsx"
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
        <Route path = {ROUTES.LOGIN} element = {<Login/>}/>
        <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
        <Route path = {ROUTES.PROFILEUSER} element= {<TabProfile/>}/>
+       <Route path = "Dashboard" element= {<DashBoard/>}/>
       </Routes>
       {!main && <Footer/>}
     </div>
