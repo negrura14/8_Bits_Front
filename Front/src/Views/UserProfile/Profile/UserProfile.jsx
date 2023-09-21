@@ -13,31 +13,20 @@ import { ROUTES } from "../../../Helpers/RoutesPath";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import defaultPhoto from "../../../Img/YessPx.png";
 
 export default function UserProfile() {
   // const {id} = useParams();
-  // const dispatch = useDispatch()
-  const { users } = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.user.userState.user);
 
-  // useEffect(() => {
-  //     dispatch(getUsersAct());
-  //   }, [dispatch]);
+  useEffect(() => {
+      dispatch(getUsersAct());
+    }, [dispatch]);
+    
+  console.log(user);  
 
-  const userTest = {
-    name: "Agus",
-    lastname: "Camuzzi",
-    nickname: "CAMU",
-    description:
-      "Programmer and passionate for the videogames and martial arts",
-    email: "email@email.com",
-    password: "Asdf1234",
-    image:
-      "https://res.cloudinary.com/bits8/image/upload/v1694117023/like-to-ash-of-pokemon-removebg-preview_xnqier.png",
-    country: "San Luis, San Luis, Argentina",
-    number: "2664953687",
-    disable: false,
-    admin: false,
-  };
+
 
   const userGames = [
     {
@@ -89,16 +78,16 @@ export default function UserProfile() {
   return (
     <>{/*
       <div className="basicStyles">
-        <h1>{"Hello " + userTest.nickname + "!"}</h1>
+        <h1>{"Hello " + user.nickname + "!"}</h1>
 
         <img
           alt="profileImage"
-          src={userTest.image}
+          src={user.image}
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
-        <h2>{userTest.country}</h2>
+        <h2>{user.country}</h2>
 
-        <h3>{userTest.description}</h3>
+        <h3>{user.description}</h3>
 
         <h2>Your games:</h2>
         <div className="containerF">
@@ -131,15 +120,15 @@ export default function UserProfile() {
 
         <button>MODIFY PROFILE</button>
 
-        {/* <h2>Name: {userTest.name}</h2>
-            <h2>Lastname: {userTest.lastname}</h2>
-            <h2>Nickname: {userTest.nickname}</h2>
-            <h2>Email: {userTest.email}</h2>
-            <h2>Location: {userTest.country}</h2>
-            <h2>Number: {userTest.number}</h2>
-            <h2>Description: {userTest.description}</h2>
-            <h2>Password: {userTest.password}</h2>
-            <h2>Image: {userTest.image}</h2> 
+        {/* <h2>Name: {user.name}</h2>
+            <h2>Lastname: {user.lastname}</h2>
+            <h2>Nickname: {user.nickname}</h2>
+            <h2>Email: {user.email}</h2>
+            <h2>Location: {user.country}</h2>
+            <h2>Number: {user.number}</h2>
+            <h2>Description: {user.description}</h2>
+            <h2>Password: {user.password}</h2>
+            <h2>Image: {user.image}</h2> 
       </div>*/}
 
       
@@ -148,14 +137,14 @@ export default function UserProfile() {
       <div class="col col-lg-12 col-xl-10">
         <div class="cardUP">
           <div class="rounded-top text-white d-flex flex-row" >
-            <div class="ms-4 mt-5 d-flex flex-column avatarU">
-              <img src={userTest.image}
+            <div class="ms-4 mt-5 d-flex flex-column avatarU" >
+              <img src={user.image ? user.image : defaultPhoto}
                 alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
             </div>
             <div class="ms-3 textsUP" >
-              <h5>{userTest.nickname ? userTest.nickname : userTest.name}</h5>
-              <p>{userTest.country}</p>
+              <h5>{user.nickname ? user.nickname : user.name}</h5>
+              <p>{user.country ? user.country : "your location"}</p>
             </div>
           </div>
           <div class="p-4 text-white textU" >
@@ -170,7 +159,7 @@ export default function UserProfile() {
             <div class="mb-5">
               <p class="lead fw-normal mb-1">About</p>
               <div class="p-4 description UP">
-                <p class="font-italic mb-1">{userTest.description}</p>
+                <p class="font-italic mb-1">{user.description ? user.description : "Write your description"}</p>
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">

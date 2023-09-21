@@ -1,12 +1,23 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import { useState } from 'react';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import AccountEdit from '../AccountEdit/AccountEdit';
 import AboutEdit from '../AboutEdit/AboutEdit';
 import AvatarEdit from '../AvatarEdit/AvatarEdit';
 
+import { getUsersAct } from '../../../../Redux/userActions';
+
+
 export default function DropdownProfile() {
+    const dispatch = useDispatch();
+    const { user,users } = useSelector((state) => state.user.userState);
+
+    useEffect(() => {
+      dispatch(getUsersAct());
+    }, [dispatch]);
+    
 
     const [selectedOption,setSelectedOption] = useState("Account");
 
@@ -17,7 +28,7 @@ export default function DropdownProfile() {
     const renderSelectedComponent = () => {
       switch (selectedOption) {
         case "Account":
-          return <AccountEdit />
+          return <AccountEdit currentUser={user.user} allUsers={users}/>
         case "About":
           return <AboutEdit />
         case "Avatar":
