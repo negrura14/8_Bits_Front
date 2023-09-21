@@ -1,8 +1,6 @@
 .font {
-    background-color: #fff
-}
-.text {
-    color: #fff
+    background-color: #364355;
+    border-radius: 10px;
 }
 .rowTable {
     width: 100%;
