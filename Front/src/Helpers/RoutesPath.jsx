@@ -9,6 +9,7 @@ export const ROUTES = {
     CREATEGAME:'/CreateGame',
     CREATEUSER: "/CreateUser",
     PROFILEUSER: "/UserProfile",
+    MERCADO: '/Mercado',
     ERROR: '*',
     LOGIN: '/Login',
    

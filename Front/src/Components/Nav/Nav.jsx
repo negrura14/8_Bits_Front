@@ -5,10 +5,10 @@ import DateTimeDisplay from '../Time/Time.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart, cartUpdate, UpdateList } from '../../Redux/cartSlice';
+import { toggleCart, cartUpdate, UpdateList } from '../../Redux/Reducers/cartSlice.jsx';
 import './Nav.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { clearUser } from '../../Redux/userSlice.jsx'
+import { clearUser } from '../../Redux/Reducers/userSlice.jsx'
 import { swAuth, userLogoutAct } from '../../Redux/userActions.jsx';
 
 import Swal from 'sweetalert2';

@@ -3,7 +3,7 @@ import React ,{ useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../Helpers/RoutesPath";
-import {clearSearch } from "../../Redux/gameSlice/";
+import {clearSearch } from "../../Redux/Reducers/gameSlice";
 import CardT from "../Card/CardT";
 import { getGame } from '../../Redux/gameActions';
 import "./Search.css"

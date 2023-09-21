@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {userLogin, getUsers, switchAut, updateFromCookie, userLogout} from './userSlice';
+import {userLogin, getUsers, switchAut, updateFromCookie, userLogout} from './Reducers/userSlice';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 

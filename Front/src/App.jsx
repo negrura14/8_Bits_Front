@@ -19,8 +19,8 @@ import { ShopCart } from './Components/ShoppingCart/ShopCart';
 import { useDispatch } from 'react-redux';
 import { userDataFromCookie } from './Helpers/cookieUtils';
 import { useEffect } from 'react';
-import { updateFromCookie } from './Redux/userSlice';
-
+import { updateFromCookie } from './Redux/Reducers/userSlice';
+import MercadoPago from './Components/MercadoPago/MercadoPago';
 
 function App() {
   const location = useLocation();
@@ -53,6 +53,7 @@ function App() {
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
        <Route path = {ROUTES.LOGIN} element = {<Login/>}/>
        <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
+       <Route path = {ROUTES.MERCADO} element= {<MercadoPago/>}/>
        <Route path = {ROUTES.PROFILEUSER} element= {<TabProfile/>}/>
       </Routes>
       {!main && <Footer/>}

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './ShopCart.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart, UpdateList, cartUpdate } from '../../Redux/cartSlice';
+import { toggleCart, UpdateList, cartUpdate } from '../../Redux/Reducers/cartSlice';
+import {ROUTES} from '../../Helpers/RoutesPath'
 
 
 export const ShopCart = () => {
@@ -12,6 +13,11 @@ export const ShopCart = () => {
     const { user, auth } = useSelector((state) => state.user.userState)
     const userData = user;
     console.log("ESTO ES LO QUE LLEGA POR CARTREDUX: ", cartRedux);
+    const [orderData, setOrderData] = useState({
+        items: [],
+        amount: 0,
+        description: 'Cart Items',
+      });
 
     // useEffect(() => {
     //     if(auth === true) {
@@ -19,6 +25,30 @@ export const ShopCart = () => {
     //         dispatch(UpdateList(userData.user.id))
     //     }
     // }, [dispatch])
+
+    const handleCheckoutClick = () => {
+        const mercadoPagoUrl = ROUTES.MERCADO;
+    
+        // Construye el objeto orderData con los detalles necesarios
+        const items = cartRedux.map((element) => ({
+          id: element.id,
+          title: element.name,
+          picture_url: element.image,
+          unit_price: parseFloat(element.price),
+          quantity: element.cant,
+        }));
+    
+        const amount = items.reduce((total, item) => total + item.unit_price * item.quantity, 0);
+    
+        setOrderData({
+          items,
+          amount: amount.toFixed(2),
+          description: 'Cart Items',
+        });
+    
+        // Abre la ventana de pago de MercadoPago
+        window.open(mercadoPagoUrl, '_blank');
+      };
         
 
     const removeFromCart = (itemId) => {
@@ -163,7 +193,7 @@ export const ShopCart = () => {
         <p>Total Amount</p>
         <h4>${totalPrice.toFixed(1)}</h4>
       </div>
-      <button class="Btn">
+      <button class="Btn" onClick={handleCheckoutClick}>
   Pay
   <i class="fa-regular fa-credit-card"></i>
 </button>

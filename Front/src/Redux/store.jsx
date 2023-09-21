@@ -3,11 +3,13 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk';
-import game from'./gameSlice';
-import genre from "./genreSlice";
-import cart from './cartSlice';
-import loadingReducer from './LoadingSlice'
-import user from './userSlice'
+import game from'./Reducers/gameSlice';
+import genre from "./Reducers/genreSlice";
+import cart from './Reducers/cartSlice';
+import loadingReducer from './Reducers/LoadingSlice'
+import user from './Reducers/userSlice'
+import checkoutSlice from './Reducers/checkoutSlice';
+import paymentsSlice from './Reducers/paymentsSlice';
 
 const persistConfig = {
     key: 'root',
@@ -28,6 +30,9 @@ export default configureStore({
         cart: cart,
         loading: loadingReducer,
         user: persistedReducer,
+        checkout: checkoutSlice,
+        payments: paymentsSlice,
+        
 
     },
     middleware: [thunk]

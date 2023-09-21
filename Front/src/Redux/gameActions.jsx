@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getAllGame, getGameById, getGameByName, filterGames } from './gameSlice';
-import { getAllGenres } from './genreSlice';
+import { getAllGame, getGameById, getGameByName, filterGames } from './Reducers/gameSlice';
+import { getAllGenres } from './Reducers/genreSlice';
 
 
 export const getGame = () => async  (dispatch) =>{

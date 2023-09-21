@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { ROUTES } from '../../Helpers/RoutesPath'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart, cartUpdate } from '../../Redux/cartSlice';
+import { addToCart, removeFromCart, cartUpdate } from '../../Redux/Reducers/cartSlice';
 import { useNavigate } from 'react-router-dom';
 
 import Swal from 'sweetalert2';

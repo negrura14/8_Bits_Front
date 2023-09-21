@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import { getGamesId } from "../../Redux/gameActions";
-import { clearDetail } from '../../Redux/gameSlice'
-import { UpdateList, cartUpdate} from '../../Redux/cartSlice';
+import { clearDetail } from '../../Redux/Reducers/gameSlice'
+import { UpdateList, cartUpdate} from '../../Redux/Reducers/cartSlice';
 import Loading from '../../Components/Loading/Loading';
 import './Detail.css';
 
