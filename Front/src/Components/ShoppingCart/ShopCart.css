@@ -10,14 +10,9 @@
     visibility: visible;
 }
 .subCont {
-    position: fixed;
-    background-color: #171a21;
-    height: 94%;
-    width: 35%;
+    
     right: 0;
-    overflow: auto;
-    padding-bottom: 2rem;
-    color:white;
+    
 }
 .headerCart {
     display: flex;
@@ -111,7 +106,7 @@ Order Summary Card
   }
   .close-btn {
     position: absolute;
-    right: 10px;
+    right: 30px;
     top: 5px;
   }
   
@@ -147,10 +142,12 @@ Order Summary Card
     line-height: 30px;
     width: 30px;
     text-align: center;
+    color: #fff ;
   }
   
   .pqt-plus,
   .pqt-minus {
+    color:white;
     border: none;
     font-size: 20px;
     height: 100%;
@@ -247,3 +244,207 @@ Order Summary Card
     transform: translate(5px,5px);
     transition-duration: .3s;
   }
+
+  
+    
+/* Cart Area CSS */
+.right-side-cart-area {
+  position: fixed;
+  width: 60vw;
+  height: 100%;
+  color: white;
+  top: 15vh;
+  background-color: #26303dc8;
+  z-index: 1100;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1); }
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .right-side-cart-area {
+      width: 70vw;
+      } }
+  @media only screen and (max-width: 767px) {
+    .right-side-cart-area {
+      width: 80vw;
+       } }
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .right-side-cart-area {
+      width:90vw;
+       } }
+  .right-side-cart-area.cart-on {
+    right: 0; }
+  .right-side-cart-area .cart-button a {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    z-index: 100;
+    width: 90px;
+    display: block;
+    text-align: center;
+    border-left: 1px solid #ebebeb;
+    height: 85px;
+    line-height: 80px;
+    background-color: #f5f7f9; }
+    @media only screen and (max-width: 767px) {
+      .right-side-cart-area .cart-button a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px; } }
+    .right-side-cart-area .cart-button a img {
+      max-width: 20px; }
+    .right-side-cart-area .cart-button a span {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 18px;
+      color: #0315ff;
+      font-weight: 700;
+      position: absolute;
+      top: -10px; }
+  .right-side-cart-area .cart-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%; }
+    .right-side-cart-area .cart-content .cart-list {
+      position: relative;
+      z-index: 10;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 210px;
+      flex: 0 0 210px;
+      width: 210px;
+      
+     }
+    
+      .right-side-cart-area .cart-content .cart-list .single-cart-item {
+        position: relative;
+        z-index: 1; }
+        .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image {
+          position: relative;
+          z-index: 1;
+          display: block; 
+          margin-top:5px;}
+          .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 0px 0px 25px 0px;}
+            @media only screen and (max-width: 767px) {
+              .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
+                padding: 5px; } }
+            @media only screen and (min-width: 576px) and (max-width: 767px) {
+              .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
+                padding: 30px 20px; } }
+            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .product-remove {
+              position: absolute;
+              top: 15px;
+              right: 15px;
+              color: #ffffff;
+              font-size: 12px;
+              padding: 5px; }
+              @media only screen and (max-width: 767px) {
+                .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .product-remove {
+                  top: 5px;
+                  right: 5px; } }
+            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .badge {
+              display: block;
+              font-weight: 600;
+              font-size: 10px;
+              color: rgba(255, 255, 255, 0.5);
+              text-transform: uppercase;
+              margin-bottom: 5px;
+              text-align: left;
+              padding: 0; }
+            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc h6 {
+              font-size: 12px;
+              color: #ffffff;
+              text-transform: capitalize;
+              margin-bottom: 30px; }
+              @media only screen and (max-width: 767px) {
+                .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc h6 {
+                  margin-bottom: 10px; } }
+            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .size,
+            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .color {
+              display: block;
+              font-weight: 600;
+              font-size: 10px;
+              color: rgba(255, 255, 255, 0.5);
+              text-transform: uppercase;
+              margin-bottom: 5px;
+              line-height: 1; }
+            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .price {
+              font-family: "Ubuntu", sans-serif;
+              font-size: 16px;
+              font-weight: 700;
+              margin-bottom: 0;
+              margin-top: 30px;
+              color: #ffffff; }
+              @media only screen and (max-width: 767px) {
+                .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .price {
+                  margin-top: 10px;
+                  font-size: 12px; } }
+        .right-side-cart-area .cart-content .cart-list .single-cart-item:hover .product-image .cart-item-desc {
+          background-color: rgba(0, 0, 0, 0.8); }
+    .right-side-cart-area .cart-content .cart-amount-summary {
+      padding: 50px 10%;
+      position: relative;
+      z-index: 10;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 calc(100% - 190px);
+      flex: 0 0 calc(100% - 190px);
+      width: calc(100% - 190px); }
+      @media only screen and (max-width: 767px) {
+        .right-side-cart-area .cart-content .cart-amount-summary {
+          -webkit-box-flex: 0;
+          -ms-flex: 0 0 calc(100% - 100px);
+          flex: 0 0 calc(100% - 100px);
+          width: calc(100% - 100px);
+          padding: 50px 15px; } }
+      @media only screen and (min-width: 576px) and (max-width: 767px) {
+        .right-side-cart-area .cart-content .cart-amount-summary {
+          -webkit-box-flex: 0;
+          -ms-flex: 0 0 calc(100% - 150px);
+          flex: 0 0 calc(100% - 150px);
+          width: calc(100% - 150px);
+          padding: 50px 30px; } }
+      .right-side-cart-area .cart-content .cart-amount-summary h2 {
+        font-size: 30px;
+        margin-bottom: 100px; }
+        @media only screen and (max-width: 767px) {
+          .right-side-cart-area .cart-content .cart-amount-summary h2 {
+            font-size: 24px;
+            margin-bottom: 30px; } }
+        @media only screen and (max-width: 767px) {
+          .right-side-cart-area .cart-content .cart-amount-summary h2 {
+            font-size: 30px;
+            margin-bottom: 50px; } }
+      .right-side-cart-area .cart-content .cart-amount-summary .summary-table li {
+        margin-bottom: 20px;
+        color: #ffffff;
+        font-size: 14px;
+        letter-spacing: 0.75px;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between; }
+        @media only screen and (max-width: 767px) {
+          .right-side-cart-area .cart-content .cart-amount-summary .summary-table li {
+            font-size: 12px;
+            margin-bottom: 10px; } }
+        @media only screen and (min-width: 576px) and (max-width: 767px) {
+          .right-side-cart-area .cart-content .cart-amount-summary .summary-table li {
+            font-size: 14px;
+            margin-bottom: 15px; } }
+        .right-side-cart-area .cart-content .cart-amount-summary .summary-table li span:last-child {
+          font-weight: 700;
+          font-family: "Ubuntu", sans-serif; }
+      @media only screen and (max-width: 767px) {
+        .right-side-cart-area .cart-content .cart-amount-summary .essence-btn {
+          min-width: 140px;
+          width: 140px;
+          padding: 0 15px; } }

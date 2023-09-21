@@ -111,7 +111,9 @@
   font-weight: 600;
 }
 
-
+.colorLP{
+  color: white;
+}
 .navL {
   width: 100%;
   height: 100px;

@@ -23,9 +23,11 @@ export default function SearchBar(){
     };
 
     return(
-        <form className=" d-flex" onSubmit={event => handleSubmit(event)}>
-            <input className="input_searchBar " type = 'text' placeholder="Enter Name" value = {state} onChange={handleChange}/>
-            <button className="btn_searchBar" type="submit"><i className="fas fa-search"></i></button>
-        </form>
+        <div class="search-area">
+                    <form action="#" method="post" onSubmit={event => handleSubmit(event)}>
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search" value = {state} onChange={handleChange}/>
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
     )
 }

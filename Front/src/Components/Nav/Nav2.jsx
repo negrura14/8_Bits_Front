@@ -6,16 +6,16 @@ import SearchBar from '../SearchBar/SearchBar.jsx';
 import Imagen from '../../Img/Imagen1.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart, cartUpdate, UpdateList } from '../../Redux/Reducers/cartSlice.jsx';
-import './Nav.css';
+import './Nav2.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/Reducers/userSlice.jsx'
 import { swAuth, userLogoutAct } from '../../Redux/userActions.jsx';
-
+import avatarU from "../../Img/UserProfile/Avatars/Avatar (1).jpeg"
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function Nav() {
+function Nav2() {
   const location = useLocation();
   const detail = /^\/Detail\/\d+$/i.test(location.pathname);
   // const isCartOpen = useSelector(state => state.cart.isCartOpen);
@@ -115,65 +115,68 @@ function Nav() {
 
   return (
 
-    <div className="container-fluid nav-bar">
-    <nav className="d-flex flex-wrap justify-content-between py-3 mb-2 border-bottom">
-    <div className="d-flex flex-wrap justify-content-between mb-2">
+    <>
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            
+            <nav class="classy-navbar my-1" id="essenceNav">
+                
+                <a class="nav-brand" href="/"><img  src={Imagen} width="80px" alt="" /></a>
+               
+                
+                
+                <div class="classy-menu">
+                    
+                    
+                    
+                    <div class="classynav ">
+                        <ul>
+                            <li><NavLink  to={ROUTES.HOME}>Home</NavLink></li>
+                            <li><NavLink  to={ROUTES.STORE}>Store</NavLink></li>
+                            {auth === false && <li><NavLink  to={ROUTES.LOGIN}>Login</NavLink></li>}
+                            {auth === true && <li><NavLink  to={ROUTES.CREATEGAME}>Create Game</NavLink></li>}
+                            
+                        </ul>
+                    </div>
+                   
+                </div>
+            </nav>
 
-    <div  >
-    <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img  src={Imagen} width="80px" alt="" />
-      </a>
-    </div>
-      <div className='text-left align-self-end px-2'>
-      {!Array.isArray(userData) && <span className='text-white'>Welcome, {user.user.name}</span>}</div>
-    </div>
-      <div className="d-flex flex-wrap justify-content-center mb-1">
-      <ul className="nav nav-pills mb-1">
-        <li className="nav-item margCart"><NavLink className='nav-link teal' to={ROUTES.HOME}>Home</NavLink></li>
-        <li className="nav-item"><NavLink className='nav-link' to={ROUTES.STORE}>Store</NavLink></li>
-        {auth === false && <li className="nav-item"><NavLink className='nav-link' to={ROUTES.LOGIN}>Login</NavLink></li>}
-        {auth === true && <li className="nav-item"><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></li>}
-        {auth === true && 
+            
+            <div class="header-meta my-1 d-flex clearfix justify-content-end">
+                
+                <SearchBar/>
+                
+                
+                <div class="user-login-info d-flex justify-content-center align-items-center">
+                    {auth === true && 
         //<li className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></li>
-          <div>
+          <div >
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Options
+              <Dropdown.Toggle className='avatarButton' variant="success" id="dropdown-basic">
+              <div ><img  className='avatarI' src={avatarU}></img></div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item ><NavLink to={ROUTES.PROFILEUSER}>Profile</NavLink></Dropdown.Item>
-                <Dropdown.Item className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></Dropdown.Item>
+                <Dropdown.Item className="bg-danger" ><NavLink className='text-white' onClick={handlerSw}>Logout</NavLink></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
         }
-        
-        {/* <NavDropdown
-              id="nav-dropdown-dark-example"
-              title="Create"
-              menuVariant="dark"
-            >
-              <NavDropdown.Item ><NavLink className="nav-link" to={ROUTES.CREATEGAME}>Create Game</NavLink></NavDropdown.Item>
-              <NavDropdown.Item >
-              <NavLink className="nav-link" to={ROUTES.CREATEUSER}>Create User</NavLink>
-              </NavDropdown.Item>
-            </NavDropdown> */}
+                </div>
+                
+                <div class="cart-area">
+                    <a id="essenceCartBtn"  onClick={handleCartClick}><i className="fa fa-shopping-cart cart fa-2x cartBtn"></i><span>{totalGames}</span></a>
+                </div>
+            </div>
 
+        </div>
+    </header>
 
-        <li className="color ps-3 pt-1 me-5" onClick={handleCartClick}>
-        <i className="fa fa-shopping-cart cart"></i>
-          <span className="item-count">{totalGames}</span>
-        </li>
+    </>
 
-      </ul>
-      <SearchBar />
-      </div>
-      
-      
-    </nav>
-  </div>
   )
 }
 
-export default Nav
+export default Nav2
