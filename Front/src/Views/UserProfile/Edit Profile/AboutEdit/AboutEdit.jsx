@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Country, State, City }  from 'country-state-city';
 import validateAbout from "./validateAbout";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-export default function AboutEdit({currentUser,allUsers}) {
-    const navigate = useNavigate();
+export default function AboutEdit({currentUser,allUsers,userProfile}) {
 
     const MySwal = withReactContent(Swal);
     
@@ -107,8 +105,8 @@ export default function AboutEdit({currentUser,allUsers}) {
 
 
         MySwal.fire({
-            title: 'Actualizando datos',
-            text: 'Por favor, espere...',
+            title: 'Updating data',
+            text: 'Please wait...',
             allowOutsideClick: false, // Evita que el usuario cierre la alerta haciendo clic fuera
             onBeforeOpen: () => {
               Swal.showLoading(); // Muestra un spinner de carga en la alerta
@@ -164,7 +162,7 @@ export default function AboutEdit({currentUser,allUsers}) {
                 <div className="mb-3 ">
                     <label className="form-label">nickName</label>
                     <input 
-                        placeholder="Enter your nickName"
+                        placeholder={userProfile.nickName ? userProfile.nickName : "Enter your nickName"}
                         type="text"
                         name="nickName"
                         value={input.nickName}
@@ -181,7 +179,7 @@ export default function AboutEdit({currentUser,allUsers}) {
                 <div className="mb-3 ">
                     <label className="form-label">Description</label>
                     <input 
-                        placeholder="Enter your description"
+                        placeholder={userProfile.description ? userProfile.description : "Enter your description"}
                         type="text"
                         name="description"
                         value={input.description}
@@ -251,7 +249,7 @@ export default function AboutEdit({currentUser,allUsers}) {
                 <div className="mb-3 ">
                     <label className="form-label">Phone</label>
                     <input 
-                        placeholder="Enter your phone"
+                        placeholder={userProfile.phone ? userProfile.phone : "Enter your phone"}
                         type="tel"
                         name="phone"
                         value={input.phone}
@@ -268,7 +266,6 @@ export default function AboutEdit({currentUser,allUsers}) {
                 <button type="sumbit">
                     SUMBIT CHANGES
                 </button>
-                {isLoading === true && <h1>Esto es el loading</h1>}
             </form>
         </div>
     )
