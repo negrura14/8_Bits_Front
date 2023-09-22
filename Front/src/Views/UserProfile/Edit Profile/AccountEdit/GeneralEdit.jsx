@@ -1,11 +1,14 @@
 import axios from "axios"
-import { useState,useEffect } from "react"
-import { useSelector,useDispatch } from "react-redux"
+import { useState } from "react"
 import validateUser from "../../../../Components/Create User/validateUser";
-import bcrypt from "bcryptjs-react";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-export default function GeneralEdit({currentUser,allUsers}) {
+export default function GeneralEdit({currentUser,allUsers,userProfile}) {
     //console.log(currentUser);
+    const MySwal = withReactContent(Swal);
+    const [isLoading, setIsLoading] = useState(false);
+
     const [input, setInput] = useState({
         name: "",
         lastname: "",
@@ -63,7 +66,17 @@ export default function GeneralEdit({currentUser,allUsers}) {
     
     const sumbitHandler = async (e) => {
         e.preventDefault();
-        console.log("Submit button clicked!");
+
+        MySwal.fire({
+            title: 'Updating data',
+            text: 'Please wait...',
+            allowOutsideClick: false, // Evita que el usuario cierre la alerta haciendo clic fuera
+            onBeforeOpen: () => {
+              Swal.showLoading(); // Muestra un spinner de carga en la alerta
+            },
+          });
+
+        setIsLoading(true);
 
         const updatedFields = {};
 
@@ -80,22 +93,18 @@ export default function GeneralEdit({currentUser,allUsers}) {
             updatedFields.email = input.email;
           }
 
-          if (input.password !== "" && !errors.password){
-            updatedFields.password = input.password;
-          } 
-
-        //console.log("Updated fields",updatedFields);
-
         axios
         .put(`/user/update/${currentUser.id}`, updatedFields) // Corrección en la URL
         .then((res) => { res,
-            alert("Updated successfully");
-            // Aquí puedes realizar otras acciones después de una actualización exitosa si es necesario
+            window.location.reload();
         })
         .catch((err) => {
             alert(err);
             // Aquí puedes manejar el error si ocurre algún problema en la solicitud
-        });
+        })
+        .finally(() => {
+            setIsLoading(false); // Establecer isLoading en false cuando la solicitud haya finalizado
+          });  
     }
 
     return(
@@ -106,7 +115,7 @@ export default function GeneralEdit({currentUser,allUsers}) {
                 <div className="mb-3 ">
                     <label className="form-label">Name</label>
                     <input
-                        placeholder={currentUser.name}
+                        placeholder={userProfile.name}
                         type="text"
                         name="name"
                         value={input.name}
@@ -121,7 +130,7 @@ export default function GeneralEdit({currentUser,allUsers}) {
                 <div className="mb-3">
                     <label className="form-label">Lastname</label>
                     <input
-                        placeholder={currentUser.lastname}
+                        placeholder={userProfile.lastname}
                         type="text"
                         name="lastname"
                         value={input.lastname}
@@ -138,7 +147,7 @@ export default function GeneralEdit({currentUser,allUsers}) {
                 <div className="mb-3">
                     <label className="form-label">Email</label>
                     <input
-                        placeholder={currentUser.email}
+                        placeholder={userProfile.email}
                         type="text"
                         name="email"
                         value={input.email}

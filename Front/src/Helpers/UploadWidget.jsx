@@ -1,6 +1,6 @@
 import { useEffect,useRef } from "react";
 
-const UploadWidget = ({onImageUpload,selectedImage,setSelectedImage,setIsUploadingImage,isUploadingImage,isImageUpload}) => {
+const UploadWidget = ({onImageUpload,selectedImage,setSelectedImage,setIsUploadingImage,isUploadingImage}) => {
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 
@@ -16,6 +16,7 @@ const UploadWidget = ({onImageUpload,selectedImage,setSelectedImage,setIsUploadi
                 const imageUrl = result.info.secure_url;
                 onImageUpload(imageUrl); // Llama a la función con la URL de la imagen
                 setIsUploadingImage(false);
+                widgetRef.current.close();
             } else {
                 setIsUploadingImage(false);
             }

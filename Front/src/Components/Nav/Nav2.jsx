@@ -9,8 +9,7 @@ import { toggleCart, cartUpdate, UpdateList } from '../../Redux/Reducers/cartSli
 import './Nav2.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/Reducers/userSlice.jsx'
-import { swAuth, userLogoutAct } from '../../Redux/userActions.jsx';
-import avatarU from "../../Img/UserProfile/Avatars/Avatar (1).jpeg"
+import { swAuth, userLogoutAct,getUserProfileAction } from '../../Redux/userActions.jsx';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -23,10 +22,15 @@ function Nav2() {
   const dispatch = useDispatch();
   const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
-  
+  const { userProfile } = useSelector((state) => state.user.userState);
+
+  useEffect(() => {
+    dispatch(getUserProfileAction(user.user.email));
+  }, [dispatch,user.user.email]);
+
   const userData = user;
   const navigate = useNavigate()
-
+  const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
   //---------------sweet alert-------------------//
 
   const MySwal = withReactContent(Swal);
@@ -154,7 +158,7 @@ function Nav2() {
           <div >
             <Dropdown>
               <Dropdown.Toggle className='avatarButton' variant="success" id="dropdown-basic">
-              <div ><img  className='avatarI' src={avatarU}></img></div>
+              <div ><img  className='avatarI' src={userProfile[0].image ? userProfile[0].image : defaultPhoto}></img></div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

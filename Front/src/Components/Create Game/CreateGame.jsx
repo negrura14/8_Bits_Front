@@ -467,7 +467,6 @@ export default function CreateGame() {
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
               isUploadingImage={isUploadingImage}
-              isImageUpload = {input.image}
             />
           </div>
 
