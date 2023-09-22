@@ -5,7 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { UpdateProduct } from '../../Components/UpdateProuct/UpdateProduct';
+import UserDashboard from '../../Components/UserDashboarView/UserDashboardView';
 import Tabs from 'react-bootstrap/esm/Tabs';
+
 
 export const DashBoard = () => {
 
@@ -19,7 +21,7 @@ export const DashBoard = () => {
                 <Nav.Link eventKey="first">VIEWS</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">UPDATE USERS</Nav.Link>
+                <Nav.Link eventKey="second">User Management</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="third">PURCHASE ORDERS</Nav.Link>
@@ -36,7 +38,7 @@ export const DashBoard = () => {
             <Tab.Content >
               
               <Tab.Pane eventKey="first">{<UpdateProduct/>}</Tab.Pane>
-              <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
+              <Tab.Pane eventKey="second">{<UserDashboard/>}</Tab.Pane>
               <Tab.Pane eventKey="third">Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fourth" >Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fifth">Second tab content</Tab.Pane>

@@ -57,7 +57,7 @@ function App() {
        <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
        <Route path = {ROUTES.MERCADO} element= {<MercadoPago/>}/>
        <Route path = {ROUTES.PROFILEUSER} element= {<TabProfile/>}/>
-       <Route path = "Dashboard" element= {<DashBoard/>}/>
+       <Route path = "/Dashboard" element= {<DashBoard/>}/>
       </Routes>
       {!main && <Footer/>}
     </div>
