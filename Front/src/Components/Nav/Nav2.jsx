@@ -24,9 +24,11 @@ function Nav2() {
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   const { userProfile } = useSelector((state) => state.user.userState);
 
-  useEffect(() => {
-    dispatch(getUserProfileAction(user.user.email));
-  }, [dispatch,user.user.email]);
+  // useEffect(() => {
+  //   if(user && user.user.email !== null){
+  //     dispatch(getUserProfileAction(user.user.email));
+  //   }
+  // }, [dispatch]);
 
   const userData = user;
   const navigate = useNavigate()
