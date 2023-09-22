@@ -1,29 +1,61 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfileAction } from "../../../Redux/userActions";
+import UserSearchResult from "../UserSearchResult/UserSearchResult";
 
 export default function UserSearchBar() {
-    const [searchInput, setSearchInput] = useState('');
-    // const dispatch = useDispatch();
+  const [searchInput, setSearchInput] = useState("");
+  const [searchData, setSearchData] = useState("");
+  const dispatch = useDispatch();
+  const { userProfile } = useSelector((state) => state.user.userState);
+  
 
-    const changeHandler = (event) => {
-        setSearchInput(event.target.value);
-    }
+  useEffect(() => {
+    dispatch(getUserProfileAction(searchData))
+  }, [dispatch,searchData]);
 
-    const submitHandler = (event) => {
-        // dispatch(event)
-    }
 
-    return (
-        <div>
-            <form action="#" method="get" onSubmit={submitHandler(searchInput)}>
-                <input required="" 
-                    onChange={changeHandler} 
-                    type="text"
-                    placeholder="Search User">
-                </input>
-                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-            </form>
-        </div>
-    )
+
+  const changeHandler = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleClick = () => {
+    setSearchData(searchInput);
+  };
+
+  return (
+    <div>
+      <div>
+        <input
+          required=""
+          onChange={changeHandler}
+          type="text"
+          placeholder="Search User"
+          value={searchInput}
+        />
+        <button type="submit" onClick={handleClick}>
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div>
+        {Array.isArray(userProfile) 
+        ? userProfile.map((user, index) => {
+            return(
+                <UserSearchResult
+                key = {index}
+                disable = {user.disadisable}
+                email = {user.email} 
+                image = {user.image} 
+                name = {user.name}
+                lastname = {user.lastname} 
+                nickname ={user.nickname}/>
+            )}
+           
+        )
+        : <p>{userProfile}</p> }
+      </div>
+    </div>
+  );
 }
