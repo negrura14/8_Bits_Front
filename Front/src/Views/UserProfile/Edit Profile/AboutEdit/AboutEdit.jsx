@@ -4,9 +4,13 @@ import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Country, State, City }  from 'country-state-city';
 import validateAbout from "./validateAbout";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function AboutEdit({currentUser,allUsers}) {
     const navigate = useNavigate();
+
+    const MySwal = withReactContent(Swal);
     
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
@@ -99,6 +103,17 @@ export default function AboutEdit({currentUser,allUsers}) {
     }
 
     function sumbitHandler(e){
+        e.preventDefault();
+
+
+        MySwal.fire({
+            title: 'Actualizando datos',
+            text: 'Por favor, espere...',
+            allowOutsideClick: false, // Evita que el usuario cierre la alerta haciendo clic fuera
+            onBeforeOpen: () => {
+              Swal.showLoading(); // Muestra un spinner de carga en la alerta
+            },
+          });
         
 
         const updatedFields = {};
@@ -125,8 +140,6 @@ export default function AboutEdit({currentUser,allUsers}) {
           axios
           .put(`/user/update/${currentUser.id}`, updatedFields) // Corrección en la URL
           .then((res) => {
-              alert("Updated successfully");
-              // Aquí puedes realizar otras acciones después de una actualización exitosa si es necesario
               window.location.reload();
             })
             .catch((err) => {
