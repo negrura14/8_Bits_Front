@@ -12,5 +12,6 @@ export const ROUTES = {
     MERCADO: '/Mercado',
     ERROR: '*',
     LOGIN: '/Login',
+    CART: '/Cart',
    
 }

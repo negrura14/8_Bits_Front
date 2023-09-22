@@ -116,20 +116,20 @@ function Nav2() {
   return (
 
     <>
-    <header class="header_area">
-        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+    <header className="header_area">
+        <div className="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             
-            <nav class="classy-navbar my-1" id="essenceNav">
+            <nav className="classy-navbar my-1" id="essenceNav">
                 
-                <a class="nav-brand" href="/"><img  src={Imagen} width="80px" alt="" /></a>
+                <a className="nav-brand" href="/"><img  src={Imagen} width="80px" alt="" /></a>
                
                 
                 
-                <div class="classy-menu">
+                <div className="classy-menu">
                     
                     
                     
-                    <div class="classynav ">
+                    <div className="classynav ">
                         <ul>
                             <li><NavLink  to={ROUTES.HOME}>Home</NavLink></li>
                             <li><NavLink  to={ROUTES.STORE}>Store</NavLink></li>
@@ -143,12 +143,12 @@ function Nav2() {
             </nav>
 
             
-            <div class="header-meta my-1 d-flex clearfix justify-content-end">
+            <div className="header-meta my-1 d-flex clearfix justify-content-end">
                 
                 <SearchBar/>
                 
                 
-                <div class="user-login-info d-flex justify-content-center align-items-center">
+                <div className="user-login-info d-flex justify-content-center align-items-center">
                     {auth === true && 
         //<li className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></li>
           <div >
@@ -166,8 +166,11 @@ function Nav2() {
         }
                 </div>
                 
-                <div class="cart-area">
+                <div className="cart-area">
                     <a id="essenceCartBtn"  onClick={handleCartClick}><i className="fa fa-shopping-cart cart fa-2x cartBtn"></i><span>{totalGames}</span></a>
+                </div>
+                <div className="cart-areaC">
+                    <NavLink to={ROUTES.CART} id="essenceCartBtn"><i className="fa fa-shopping-cart cart fa-2x cartBtn"></i><span>{totalGames}</span></NavLink>
                 </div>
             </div>
 
