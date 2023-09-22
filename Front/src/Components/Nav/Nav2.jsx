@@ -158,7 +158,8 @@ function Nav2() {
         //<li className="nav-item"><NavLink className='nav-link bg-danger' onClick={handlerSw}>Logout</NavLink></li>
           <div >
             <Dropdown>
-              <Dropdown.Toggle className='avatarButton' variant="success" id="dropdown-basic">
+
+              <Dropdown.Toggle className='avatarButton'  id="dropdown-basic">
               <div ><img  className='avatarI' src={userData.user.image ? userData.user.image : defaultPhoto}></img></div>
               </Dropdown.Toggle>
 
