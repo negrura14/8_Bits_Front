@@ -213,11 +213,11 @@
 }
 .avatarButton{
     padding: 0;
+    color: white;
+    background: #17865491;
+    border: none;
 }
 
-.dropdown-toggle::after {
-  display: none !important; 
-}
 
     .header_area .user-login-info a {
       position: relative;
