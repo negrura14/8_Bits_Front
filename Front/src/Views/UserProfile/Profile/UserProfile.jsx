@@ -13,7 +13,6 @@ import { ROUTES } from "../../../Helpers/RoutesPath";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import defaultPhoto from "../../../Img/YessPx.png";
 
 export default function UserProfile() {
   // const {id} = useParams();
@@ -22,6 +21,7 @@ export default function UserProfile() {
   const { userProfile } = useSelector((state) => state.user.userState);
 
   const userData = userProfile[0];
+  const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
 
   useEffect(() => {
       dispatch(getUsersAct());

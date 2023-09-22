@@ -1,0 +1,10 @@
+.avatar-thumbnail {
+    max-width: 280px;
+    max-height: 280px;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  .avatar-thumbnail:hover {
+    border: 2px solid #007bff; /* Color del borde al hacer hover (puedes personalizarlo) */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón sobre el avatar */
+  }  

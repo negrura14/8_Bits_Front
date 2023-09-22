@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useState,useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useState } from "react";
 import validateUser from "../../../../Components/Create User/validateUser";
 import bcrypt from "bcryptjs-react";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function PasswordEdit({currentUser,allUsers}) {
+
+    const MySwal = withReactContent(Swal);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [input, setInput] = useState({
         currentPassword: "",
@@ -96,6 +100,17 @@ export default function PasswordEdit({currentUser,allUsers}) {
 
     const sumbitHandler = async (e) => {
         e.preventDefault();
+        MySwal.fire({
+            title: 'Updating data',
+            text: 'Please wait...',
+            allowOutsideClick: false, // Evita que el usuario cierre la alerta haciendo clic fuera
+            onBeforeOpen: () => {
+              Swal.showLoading(); // Muestra un spinner de carga en la alerta
+            },
+          });
+
+        setIsLoading(true);
+        
         
         if (errors.password  || errors.confirmPassword ) {
             alert("Error in the fields");
@@ -110,13 +125,15 @@ export default function PasswordEdit({currentUser,allUsers}) {
                     axios
                         .put(`/user/update/${currentUser.id}`, newPassword) // Corrección en la URL
                         .then((res) => { res,
-                            alert("Updated successfully");
-                            // Aquí puedes realizar otras acciones después de una actualización exitosa si es necesario
+                            window.location.reload();
                         })
                         .catch((err) => {
                             alert(err);
                             // Aquí puedes manejar el error si ocurre algún problema en la solicitud
-                        });
+                        })
+                        .finally(() => {
+                            setIsLoading(false); // Establecer isLoading en false cuando la solicitud haya finalizado
+                          });  
                 }
             })
            
@@ -133,7 +150,7 @@ export default function PasswordEdit({currentUser,allUsers}) {
                 <div className="mb-3">
                     <label className="form-label">Your current password</label>
                     <input
-                        placeholder="Enter your password"
+                        placeholder="Current password"
                         type="password"
                         name="currentPassword"
                         value={input.currentPassword}
@@ -153,7 +170,7 @@ export default function PasswordEdit({currentUser,allUsers}) {
                     <label className="form-label">Your new password</label>
                     <div className=" col-9">
                         <input
-                        placeholder="Enter your password"
+                        placeholder="Enter your new password"
                         type={showPassword ? "text" : "password"}
                         name="password"
                         value={input.password}
@@ -184,7 +201,7 @@ export default function PasswordEdit({currentUser,allUsers}) {
                 <div className="mb-3">
                     <label className="form-label">Confirm your new password</label>
                     <input
-                        placeholder="Reenter your password"
+                        placeholder="Confirm your new password"
                         type={showPassword ? "text" : "password"}
                         name="confirmPassword"
                         value={input.confirmPassword}
