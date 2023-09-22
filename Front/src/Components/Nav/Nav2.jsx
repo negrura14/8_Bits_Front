@@ -29,7 +29,6 @@ function Nav2() {
   //     dispatch(getUserProfileAction(user.user.email));
   //   }
   // }, [dispatch]);
-
   const userData = user;
   const navigate = useNavigate()
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
@@ -160,7 +159,7 @@ function Nav2() {
           <div >
             <Dropdown>
               <Dropdown.Toggle className='avatarButton' variant="success" id="dropdown-basic">
-              <div ><img  className='avatarI' src={userProfile[0].image ? userProfile[0].image : defaultPhoto}></img></div>
+              <div ><img  className='avatarI' src={userData.user.image ? userData.user.image : defaultPhoto}></img></div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
