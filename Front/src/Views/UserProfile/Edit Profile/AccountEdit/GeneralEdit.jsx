@@ -5,7 +5,7 @@ import validateUser from "../../../../Components/Create User/validateUser";
 import bcrypt from "bcryptjs-react";
 
 export default function GeneralEdit({currentUser,allUsers}) {
-    console.log(currentUser);
+    //console.log(currentUser);
     const [input, setInput] = useState({
         name: "",
         lastname: "",
@@ -84,7 +84,7 @@ export default function GeneralEdit({currentUser,allUsers}) {
             updatedFields.password = input.password;
           } 
 
-        console.log("Updated fields",updatedFields);
+        //console.log("Updated fields",updatedFields);
 
         axios
         .put(`/user/update/${currentUser.id}`, updatedFields) // Corrección en la URL

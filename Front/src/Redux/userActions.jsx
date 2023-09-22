@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {userLogin, getUsers, switchAut, updateFromCookie, userLogout} from './Reducers/userSlice';
+import {userLogin, getUsers, switchAut, updateFromCookie, userLogout,getUserProfile} from './Reducers/userSlice';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -87,6 +87,15 @@ export const googleLoginAct = (token) => async (dispatch) => {
     try{
         const response = await axios.post('google/auth', tokenObj);
         return dispatch(userLogin(response.data));
+    } catch (error) {
+        window.alert("Request failed:", error);
+    }
+}
+
+export const getUserProfileAction = (mail) => async (dispatch) => {
+    try {
+        const response = await axios.get(`/user/filter?email=${mail}`);
+        return dispatch(getUserProfile(response.data))
     } catch (error) {
         window.alert("Request failed:", error);
     }

@@ -15,7 +15,7 @@ export const ShopCart = () => {
   const cartRedux = useSelector((state) => state.cart.listCart);
   const { user, auth } = useSelector((state) => state.user.userState);
   const userData = user;
-  console.log("ESTO ES LO QUE LLEGA POR CARTREDUX: ", cartRedux);
+  //console.log("ESTO ES LO QUE LLEGA POR CARTREDUX: ", cartRedux);
   const [orderData, setOrderData] = useState({
     items: [],
     amount: 0,

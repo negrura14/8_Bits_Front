@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { getUsersAct } from "../../../Redux/userActions";
+import { getUsersAct,getUserProfileAction } from "../../../Redux/userActions";
 import { ROUTES } from "../../../Helpers/RoutesPath";
 
 import Swal from "sweetalert2";
@@ -19,14 +19,15 @@ export default function UserProfile() {
   // const {id} = useParams();
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user.userState.user);
+  const { userProfile } = useSelector((state) => state.user.userState);
+
+  const userData = userProfile[0];
 
   useEffect(() => {
       dispatch(getUsersAct());
-    }, [dispatch]);
-    
-  console.log(user);  
-
-
+      dispatch(getUserProfileAction(user.email));
+    }, [dispatch,user.email]);
+  
 
   const userGames = [
     {
@@ -138,13 +139,13 @@ export default function UserProfile() {
         <div class="cardUP">
           <div class="rounded-top text-white d-flex flex-row" >
             <div class="ms-4 mt-5 d-flex flex-column avatarU" >
-              <img src={user.image ? user.image : defaultPhoto}
+              <img src={userData.image ? userData.image : defaultPhoto}
                 alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
             </div>
             <div class="ms-3 textsUP" >
-              <h5>{user.nickName ? user.nickName : user.name}</h5>
-              <p>{user.country ? user.country : "your location"}</p>
+              <h5>{userData.nickName ? userData.nickName : userData.name}</h5>
+              <p>{userData.country ? userData.country : "your location"}</p>
             </div>
           </div>
           <div class="p-4 text-white textU" >
@@ -159,7 +160,7 @@ export default function UserProfile() {
             <div class="mb-5">
               <p class="lead fw-normal mb-1">About</p>
               <div class="p-4 description UP">
-                <p class="font-italic mb-1">{user.description ? user.description : "Write your description"}</p>
+                <p class="font-italic mb-1">{userData.description ? userData.description : "Write your description"}</p>
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
