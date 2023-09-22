@@ -11,6 +11,7 @@ export default function AboutEdit({currentUser,allUsers}) {
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [input, setInput] = useState({
         nickName: "",
@@ -75,8 +76,8 @@ export default function AboutEdit({currentUser,allUsers}) {
     
     //console.log("Pais:",input.country,",Provincia:",input.state,",Ciudad:",input.city);
 
-    const locationComplete = [input.country,input.state,input.city].join(", ");
-    console.log(locationComplete);
+   // const locationComplete = [input.country,input.state,input.city].join(", ");
+    //console.log(locationComplete);
     //----------------------------------------------------------------------------//
 
     function handleChange(e){
@@ -98,7 +99,7 @@ export default function AboutEdit({currentUser,allUsers}) {
     }
 
     function sumbitHandler(e){
-        e.preventDefault();
+        
 
         const updatedFields = {};
 
@@ -119,23 +120,30 @@ export default function AboutEdit({currentUser,allUsers}) {
             updatedFields.country = completeLocation;
           }
 
+          setIsLoading(true);
+
           axios
           .put(`/user/update/${currentUser.id}`, updatedFields) // Corrección en la URL
           .then((res) => {
               alert("Updated successfully");
               // Aquí puedes realizar otras acciones después de una actualización exitosa si es necesario
-              //window.location.reload()
+              window.location.reload();
             })
             .catch((err) => {
                 alert(err);
                 // Aquí puedes manejar el error si ocurre algún problema en la solicitud
-            });  
+            })
+            .finally(() => {
+                setIsLoading(false); // Establecer isLoading en false cuando la solicitud haya finalizado
+              });  
             
     }
     
 
+
     return(
         <div>
+            
             <h1>Here you can modify you description, nickName, location and phone number!</h1>
 
             <form onSubmit={(event) => sumbitHandler(event)}>
@@ -247,7 +255,7 @@ export default function AboutEdit({currentUser,allUsers}) {
                 <button type="sumbit">
                     SUMBIT CHANGES
                 </button>
-
+                {isLoading === true && <h1>Esto es el loading</h1>}
             </form>
         </div>
     )
