@@ -3,9 +3,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import AccountEdit from '../AccountEdit/AccountEdit';
+import GeneralEdit from '../AccountEdit/GeneralEdit';
 import AboutEdit from '../AboutEdit/AboutEdit';
 import AvatarEdit from '../AvatarEdit/AvatarEdit';
+import PasswordEdit from '../PasswordEdit/PasswordEdit';
 
 import { getUsersAct } from '../../../../Redux/userActions';
 
@@ -19,7 +20,7 @@ export default function DropdownProfile() {
     }, [dispatch]);
     
 
-    const [selectedOption,setSelectedOption] = useState("Account");
+    const [selectedOption,setSelectedOption] = useState("General");
 
     const handleOptionChange = (option) => {
       setSelectedOption(option);
@@ -27,12 +28,14 @@ export default function DropdownProfile() {
 
     const renderSelectedComponent = () => {
       switch (selectedOption) {
-        case "Account":
-          return <AccountEdit currentUser={user.user} allUsers={users}/>
+        case "General":
+          return <GeneralEdit currentUser={user.user} allUsers={users}/>
         case "About":
-          return <AboutEdit />
+          return <AboutEdit currentUser={user.user} allUsers={users}/>
         case "Avatar":
-          return <AvatarEdit />
+          return <AvatarEdit currentUser={user.user} allUsers={users}/>
+        case "Password":
+          return <PasswordEdit currentUser={user.user} allUsers={users}/>
         default:
           return null;  
       }
@@ -47,8 +50,11 @@ export default function DropdownProfile() {
           </Dropdown.Toggle>
     
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => handleOptionChange("Account")}>
-              Account
+            <Dropdown.Item onClick={() => handleOptionChange("General")}>
+              General
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => handleOptionChange("Password")}>
+              Password
             </Dropdown.Item>
             <Dropdown.Item onClick={() => handleOptionChange("About")}>
               About

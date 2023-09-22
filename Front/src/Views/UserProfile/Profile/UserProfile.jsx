@@ -143,7 +143,7 @@ export default function UserProfile() {
                />
             </div>
             <div class="ms-3 textsUP" >
-              <h5>{user.nickname ? user.nickname : user.name}</h5>
+              <h5>{user.nickName ? user.nickName : user.name}</h5>
               <p>{user.country ? user.country : "your location"}</p>
             </div>
           </div>
