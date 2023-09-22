@@ -20,6 +20,7 @@ export default function DropdownProfile() {
 
     useEffect(() => {
       dispatch(getUsersAct());
+      dispatch(getUserProfileAction(user.user.email));
     }, [dispatch]);
     
 
