@@ -187,7 +187,7 @@ export const ShopCart = () => {
             <span className="close-btn closeCart" onClick={handleCloseCart}>
               <i className="fa-solid fa-xmark"></i>
             </span>
-            <NavLink className="nameCart" to={ROUTES.CART}>
+            <NavLink onClick={handleCloseCart}  className="nameCart" to={ROUTES.CART}>
 
             <h2>Summary</h2>
             </NavLink>
