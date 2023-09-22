@@ -13,6 +13,7 @@ import Footer from './Components/Footer/Footer.jsx';
 import Login from './Views/Login/Login';
 import Search from './Components/Search/Search';
 import CreateUser from './Components/Create User/CreateUser';
+import { Cart } from './Views/Cart/Cart';
 import TabProfile from './Views/UserProfile/TabProfile';
 import {Cloudinary} from "@cloudinary/url-gen";
 import { ShopCart } from './Components/ShoppingCart/ShopCart3';
@@ -55,6 +56,7 @@ function App() {
        <Route path = {ROUTES.ERROR} element = {<NotFound/>}/>
        <Route path = {ROUTES.LOGIN} element = {<Login/>}/>
        <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
+       <Route path = {ROUTES.CART} element= {<Cart/>}/>
        <Route path = {ROUTES.MERCADO} element= {<MercadoPago/>}/>
        <Route path = {ROUTES.PROFILEUSER} element= {<TabProfile/>}/>
        <Route path = "/Dashboard" element= {<DashBoard/>}/>

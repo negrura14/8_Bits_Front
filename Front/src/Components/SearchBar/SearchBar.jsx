@@ -23,10 +23,10 @@ export default function SearchBar(){
     };
 
     return(
-        <div class="search-area">
+        <div className="search-area">
                     <form action="#" method="post" onSubmit={event => handleSubmit(event)}>
                         <input type="search" name="search" id="headerSearch" placeholder="Type for search" value = {state} onChange={handleChange}/>
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <button type="submit"><i className="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
     )

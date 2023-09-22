@@ -154,6 +154,7 @@
       height: 100%;
       line-height: 100px; }
       @media only screen and (max-width: 767px) {
+        
         .header_area .favourite-area a,
         .header_area .cart-area a {
           -webkit-box-flex: 0;
@@ -171,11 +172,16 @@
         color: #ff7bb6;
         font-weight: 700;
         position: absolute;
-        top: -10px; }
-        @media only screen and (max-width: 767px) {
+        top: -10px;
+       }
+        @media only screen and (max-width: 899px) {
+          .header_area .cart-area{
+            display: none;
+          }
           .header_area .favourite-area a span,
           .header_area .cart-area a span {
             font-size: 14px; } }
+
     .header_area.sticky {
       position: fixed;
       z-index: 900;
@@ -227,10 +233,13 @@
         
         .header_area .user-login-info a {
           -webkit-box-flex: 0;
-          -ms-flex: 0 0 50px;
-          flex: 0 0 50px;
-          width: 50px;
-          line-height: 40px; } }
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          width: 100%;
+          line-height: 40px; 
+          padding: 0;
+        margin-top: 5px;
+      margin-bottom: 5px;} }
       
       .header_area .user-login-info a img {
         max-width: 20px; }
@@ -260,3 +269,53 @@
  .dropdown-item:hover {
     background-color: #464e5a;
 }
+
+.header_area .cart-areaC{
+      display: none;
+    }
+
+.header_area .cart-areaC a {
+  
+  position: relative;
+  z-index: 1;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 90px;
+  flex: 0 0 90px;
+  width: 90px;
+  text-align: center;
+ 
+  height: 100%;
+  line-height: 100px; }
+  @media only screen and (max-width: 767px) {
+    .header_area .cart-areaC{
+      display: none;
+    }
+    .header_area .favourite-area a,
+    .header_area .cart-areaC a {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 60px;
+      flex: 0 0 60px;
+      width: 60px;
+      line-height: 40px; } 
+      .header_area .cart-areaC a .cart{
+      padding: 5px;
+      }}
+  .header_area .favourite-area a img,
+  .header_area .cart-areaC a img {
+    max-width: 20px; }
+  .header_area .favourite-area a span,
+  .header_area .cart-areaC a span {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 18px;
+    color: #ff7bb6;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+   }
+    @media only screen and (max-width: 899px) {
+      .header_area .cart-areaC{
+        display: block;
+      }
+      .header_area .favourite-area a span,
+      .header_area .cart-areaC a span {
+        font-size: 14px; } }

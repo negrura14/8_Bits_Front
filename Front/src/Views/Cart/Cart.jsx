@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ShopCart.css";
+import "./Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   toggleCart,
@@ -7,9 +7,9 @@ import {
   cartUpdate,
 } from "../../Redux/Reducers/cartSlice";
 import { ROUTES } from "../../Helpers/RoutesPath";
-import { NavLink } from "react-router-dom";
+import cartImg from "../../Img/cartImg.jpeg"
 
-export const ShopCart = () => {
+export const Cart = () => {
   const dispatch = useDispatch();
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const cartOpen = isCartOpen ? "shop show" : "shop";
@@ -137,98 +137,109 @@ export const ShopCart = () => {
     dispatch(toggleCart());
   };
 
-  return (
-    <div className={cartOpen}>
-      <div className="subCont right-side-cart-area">
-        <div className="cart-content d-flex">
-          <div className="cart-list ">
-            {totalGames.map((element, index) => (
+  useEffect(() => {
+         
+         
+             dispatch(UpdateList(userData.user.id))
+        
+     }, [dispatch])
+
+
+
+  return (<>
+
+<div className="cardCart mt-5">
+            <div className="row">
+                <div className="col-md-8 cartP">
+                    <div className="titleCP">
+                        <div className="row">
+                            <div className="col"><h4><b>Shopping Cart</b></h4></div>
+                            <div className="col align-self-center text-right ">{totalGames.length} items</div>
+                        </div>
+                    </div>    
+                    {totalGames.map((element, index) => (
               <>
-                <div key={index} className="single-cart-item">
-                  <div className="product-image">
-                    <img src={element.image} className="cart-thumb" alt="" />
-
-                    <div className="cart-item-desc">
-                      <a
-                        onClick={() => removeFromCart(element.id)}
-                        className="product-remove"
-                      >
-                        <i
-                          className="fa fa-close  closeItem"
-                          aria-hidden="true"
-                        ></i>
-                      </a>
-
-                      <a className="nameCart" href={"/Detail/" + element.id}>
-                        <h6 >{element.name}</h6>
-                      </a>
-                      <p className="price">${element.price}</p>
-                      <span
+              <div key={index} className="row border-top border-bottom">
+                        <div className="row mainCP align-items-center">
+                        
+                            <div className="col-3"><img className="img-fluid imgCP" src={element.image}/></div>
+                            
+                            <div className="col">
+                                <div className="row text-ligth-50">Game</div>
+                                <div className="row"><a href={"/Detail/" + element.id} className="nameCart">{element.name}</a></div>
+                            </div>
+                            <div className="col">
+                            <span
                         className="pqt-minus"
                         onClick={() => AddOrSubClick(element.id, "sub")}
                       >
                         -
-                      </span>
-                      <span className="pqt">{element.cant}</span>
-                      <span
+                      </span><span >{element.cant}</span><span
                         className="pqt-plus"
                         onClick={() => AddOrSubClick(element.id, "add")}
                       >
                         +
                       </span>
+                            </div>
+                            <div className="col">$ {element.price} <span className="product-remove text-white close"  onClick={() => removeFromCart(element.id)}
+                        ><i
+                          className="fa fa-close fa-2x  closeItem"
+                          aria-hidden="true"
+                        ></i></span></div>
+                        </div>
                     </div>
-                  </div>
-                </div>
               </>
             ))}
-          </div>
-
-          <div className="cart-amount-summary  ">
-            <span className="close-btn closeCart" onClick={handleCloseCart}>
-              <i className="fa-solid fa-xmark"></i>
-            </span>
-            <NavLink className="nameCart" to={ROUTES.CART}>
-
-            <h2>Summary</h2>
-            </NavLink>
-            <ul className="summary-table">
-              {totalGames.map((element, index) => (
-                <>
-                  <li className="priceC">
-                    <span>{element.name}:</span>{" "}
-                    <span>${(element.price * element.cant).toFixed(1)}</span>
-                  </li>
-                </>
-              ))}
-
-              <li>
-                <span>total:</span> <span>${totalPrice.toFixed(1)}</span>
-              </li>
-            </ul>
-            {totalGames.length > 0 ? (
+                    
+                    <div className="mt-2" ><a href="#" className="btn essence-btn"><i className="fa-solid fa-arrow-left"></i> Back to shop</a></div>
+                </div>
+                <div className="col-md-4 summary">
+                    <div><h5><b>Summary</b></h5></div>
+                    <hr className="hrCP"/>
+                    <div className="d-flex justify-content-center my-2" >
+                        <img className="cartImg" src={cartImg}></img>
+                    </div>
+                    
+                    <div className="row">
+                        <div className="col itemsC ms-3" >Items </div>
+                        <div className="col text-right">$ {totalPrice.toFixed(1)}</div>
+                    </div>
+                    <div className="row priceCP" >
+                        <div className="col">Total price</div>
+                        <div className="col text-right"> $ {totalPrice.toFixed(1)}</div>
+                    </div>
+                    {totalGames.length > 0 ? (
               <>
-                <div className="checkout-btn mt-100 d-flex justify-content-between">
+                <div className="row priceCP d-flex justify-content-between ">
+                <div className="col-5">
+
                   <button
-                    className="btn essence-btn mx-1"
+                    className="btnCP bg-primary"
                     onClick={handleCheckoutClick}
                   >
                     Pay
                     <i className="fa-regular fa-credit-card"></i>
                   </button>
+                </div>
+                <div className="col-5">
+
                   <button
                     onClick={onClickClearCart}
-                    className="btn essence-btn mx-1"
+                    className="btnCP bg-danger"
                   >
                     Clear Cart <i className="fa-solid fa-trash"></i>
                   </button>
+                </div>
                 </div>
               </>
             ) : (
               ""
             )}
-          </div>
+                </div>
+            </div>
+            
         </div>
-      </div>
-    </div>
+
+  </>
   );
 };
