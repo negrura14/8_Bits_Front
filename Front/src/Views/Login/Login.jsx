@@ -5,13 +5,14 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import { LoginSocialGoogle } from "reactjs-social-login";
 import { validateLogin } from "../validateLogin";
 import { useNavigate, Link } from "react-router-dom";
-import { userLoginAct, googleLoginAct } from '../../Redux/userActions';
+import { userLoginAct, googleLoginAct, userLogoutAct } from '../../Redux/userActions';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 import { getUsersAct } from "../../Redux/userActions";
+import { clearUsers } from "../../Redux/Reducers/userSlice";
 
 
 
@@ -28,10 +29,13 @@ export default function Login() {
     dispatch(getUsersAct());
     if(auth === true) {
       navigate("/home")
+      return () => {
+        dispatch(clearUsers());
+      };
     }
   }, [dispatch, navigate, auth])
 
-  console.log(users);
+  
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
 
@@ -61,7 +65,7 @@ export default function Login() {
   const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log(name, value);
+    
 
     setErrors(validateLogin({ ...form, [name]: value },users));
     setForm({ ...form, [name]: value });
@@ -69,43 +73,59 @@ export default function Login() {
 
   function submitHandler(event) {
     event.preventDefault();
+    const bannedUser = users.some((user) => {
+      if (user.email === form.email && user.disable === true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
 
     const noErrors = Object.values(errors).every((error) => error === "");
 
-    if (!noErrors) {
-      MySwal.fire({
-        title: <strong>ERROR</strong>,
-        html: <i>There is some error in the fields, please try again</i>,
-        icon: "error",
-        background: "#1d1d1d",
-        customClass: {
-          container: "custom-alert-container",
-        },
+    if(bannedUser === true){
+      dispatch(userLogoutAct());
+      document.cookie = 'miCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      window.alert("Banned User")
+      navigate('/home')
+    } else{
+      if (!noErrors) {
+        MySwal.fire({
+          title: <strong>ERROR</strong>,
+          html: <i>There is some error in the fields, please try again</i>,
+          icon: "error",
+          background: "#1d1d1d",
+          customClass: {
+            container: "custom-alert-container",
+          },
+        });
+        return;
+      } else if (form.email === "" || form.password === "") {
+        MySwal.fire({
+          title: <strong>WARNING</strong>,
+          html: <i>You have to complete all fields</i>,
+          icon: "warning",
+          background: "#1d1d1d",
+          customClass: {
+            container: "custom-alert-container",
+          },
+        });
+        return;
+  
+      }
+  
+      dispatch(userLoginAct(form));
+      // dispatch(swAuth(!auth));
+  
+  
+  
+      setForm({
+        email: "",
+        password: "",
       });
-      return;
-    } else if (form.email === "" || form.password === "") {
-      MySwal.fire({
-        title: <strong>WARNING</strong>,
-        html: <i>You have to complete all fields</i>,
-        icon: "warning",
-        background: "#1d1d1d",
-        customClass: {
-          container: "custom-alert-container",
-        },
-      });
-      return;
-
+  
     }
 
-    dispatch(userLoginAct(form));
-    // dispatch(swAuth(!auth));
-
-
-
-    setForm({
-      email: "",
-      password: "",
-    });
 
   }
 

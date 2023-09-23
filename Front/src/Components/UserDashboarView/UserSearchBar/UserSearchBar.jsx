@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfileAction } from "../../../Redux/userActions";
+import { getUserProfileAction, getUsersAct } from "../../../Redux/userActions";
 import UserSearchResult from "../UserSearchResult/UserSearchResult";
 
 export default function UserSearchBar() {
@@ -11,7 +11,7 @@ export default function UserSearchBar() {
   
 
   useEffect(() => {
-    dispatch(getUserProfileAction(searchData))
+    dispatch(getUserProfileAction(searchData));
   }, [dispatch,searchData]);
 
 
@@ -41,11 +41,12 @@ export default function UserSearchBar() {
 
       <div>
         {Array.isArray(userProfile) 
-        ? userProfile.map((user, index) => {
+        ? userProfile.map((user) => {
             return(
                 <UserSearchResult
-                key = {index}
-                disable = {user.disadisable}
+                key = {user.id}
+                id = {user.id}
+                disable = {user.disable}
                 email = {user.email} 
                 image = {user.image} 
                 name = {user.name}

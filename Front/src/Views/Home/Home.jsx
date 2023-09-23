@@ -12,22 +12,49 @@ import brandXbox from "../../Img/brands/xbox-logo-3.png"
 import { NavLink} from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import CardT from "../../Components/Card/CardT";
-
+import { clearUser, clearUsers } from "../../Redux/Reducers/userSlice";
+import { getUsersAct, swAuth } from "../../Redux/userActions";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Home() {
 
-    // const loading = useSelector((state) => state.loading);
-    const dispatch = useDispatch()
-    const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(true);
 
 
   const dataByName = useSelector((state) => state.game.search);
   const { game } = useSelector(state => state.game);
+  const { users, user, auth } = useSelector(state => state.user.userState)
+
+  console.log(user)
+
+  if(!Array.isArray(user)) {
+  const bannedUser = users.some((u) => {
+    if (u.disable === true && u.email === user.user.email) {
+      console.log("El usuario está deshabilitado:", u.disable);
+      return true;
+    }
+    return false;
+  });
+  if(bannedUser === true) {
+    dispatch(clearUser());
+    dispatch(swAuth(!auth));
+    document.cookie = 'miCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    window.alert('Banned User');
+    };
+  };
+
+
+
+
+
 
   useEffect(() => {
     dispatch(getGame());
+    dispatch(getUsersAct());
   }, [dispatch]);
   
     const getLowestPricedGames = (count) => {
@@ -52,6 +79,9 @@ function Home() {
             alert('Error loading cards', error);
             setLoading(false);
         })
+        return () => {
+            dispatch(clearUsers());
+          };
       },[dispatch]) 
       
       if (loading){
