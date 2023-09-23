@@ -13,6 +13,7 @@ import { ROUTES } from "../../../Helpers/RoutesPath";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import LoadingPage from "../../../Components/Loading/Loading";
 
 
 export default function UserProfile() {
@@ -21,7 +22,7 @@ export default function UserProfile() {
   const { user } = useSelector((state) => state.user.userState.user);
   const { userProfile } = useSelector((state) => state.userProfile);
   // const [userData, setUserData] = useState(userProfile[0])
-  
+  const [loading, setLoading] = useState(true);
   
   const userData = userProfile[0]
 
@@ -30,7 +31,14 @@ export default function UserProfile() {
   useEffect(() => {
       console.log(user.email)
       dispatch(getUsersAct());
-      dispatch(getUserProfileAction(user.email));
+      dispatch(getUserProfileAction(user.email))
+      .then (() =>{
+        setLoading(false);
+      })
+      .catch((error) => {
+        alert('Error', error);
+        setLoading(false);
+      })
     }, [dispatch, user.email]);
   
 
@@ -81,7 +89,15 @@ export default function UserProfile() {
     },
   ];
 
-  return (
+
+  if(loading) {
+    return(
+      <div> 
+          <LoadingPage/>
+      </div>
+    )
+  } else {
+    return (
     <>{/*
       <div className="basicStyles">
         <h1>{"Hello " + user.nickname + "!"}</h1>
@@ -205,4 +221,4 @@ export default function UserProfile() {
   </div>
     </>
   );
-}
+}}
