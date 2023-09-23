@@ -108,8 +108,10 @@ export default function GeneralEdit({currentUser,allUsers,userProfile}) {
     }
 
     return(
-        <div>
-            <h1>Here you can modify your account fields like the name, lastname, password and email</h1>
+        <div className="row justify-content-center">
+
+        <div className="text-primary px-4 m-5 login-box col-md-6 col-sm-10">
+            <h2 className="mb-3">Here you can modify your account</h2>
 
             <form onSubmit={(event) => sumbitHandler(event)}>
                 <div className="mb-3 ">
@@ -159,10 +161,11 @@ export default function GeneralEdit({currentUser,allUsers,userProfile}) {
                     {focusedField === "email" && errors.email && <p className="text-danger">{errors.email}</p>}
                 </div>
 
-            <button type="sumbit">SUMBIT CHANGES</button>
+            <button className="mt-3" type="submit">SUBMIT CHANGES</button>
 
             </form>
 
+        </div>
         </div>
     )
 }

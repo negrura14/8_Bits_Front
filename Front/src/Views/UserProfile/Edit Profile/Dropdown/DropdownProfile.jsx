@@ -1,67 +1,108 @@
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserProfileAction } from '../../../../Redux/userProfileActions';
-import GeneralEdit from '../AccountEdit/GeneralEdit';
-import AboutEdit from '../AboutEdit/AboutEdit';
-import AvatarEdit from '../AvatarEdit/AvatarEdit';
-import PasswordEdit from '../PasswordEdit/PasswordEdit';
-
-import { getUsersAct } from '../../../../Redux/userActions';
-import LoadingPage from '../../../../Components/Loading/Loading';
-
+import { getUserProfileAction } from "../../../../Redux/userProfileActions";
+import GeneralEdit from "../AccountEdit/GeneralEdit";
+import AboutEdit from "../AboutEdit/AboutEdit";
+import AvatarEdit from "../AvatarEdit/AvatarEdit";
+import PasswordEdit from "../PasswordEdit/PasswordEdit";
+import "./DropdownProfile.css";
+import { getUsersAct } from "../../../../Redux/userActions";
+import LoadingPage from "../../../../Components/Loading/Loading";
 
 export default function DropdownProfile() {
-    const dispatch = useDispatch();
-    const { user,users } = useSelector((state) => state.user.userState.user);
-    const { userProfile } = useSelector((state) => state.userProfile);
-    const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { user, users } = useSelector((state) => state.user.userState.user);
+  const { userProfile } = useSelector((state) => state.userProfile);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      console.log(user.email)
-      dispatch(getUsersAct());
-      dispatch(getUserProfileAction(user.email))
-      .then (() =>{
+  useEffect(() => {
+    console.log(user.email);
+    dispatch(getUsersAct());
+    dispatch(getUserProfileAction(user.email))
+      .then(() => {
         setLoading(false);
       })
       .catch((error) => {
-        alert('Error', error);
+        alert("Error", error);
         setLoading(false);
-      })
-    }, [dispatch, user.email]);
-    
+      });
+  }, [dispatch, user.email]);
 
-    const [selectedOption,setSelectedOption] = useState("General");
+  const [selectedOption, setSelectedOption] = useState("General");
 
-    const handleOptionChange = (option) => {
-      setSelectedOption(option);
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+
+  const renderSelectedComponent = () => {
+    switch (selectedOption) {
+      case "General":
+        return (
+          <GeneralEdit
+            currentUser={user.user}
+            allUsers={users}
+            userProfile={userProfile[0]}
+          />
+        );
+      case "About":
+        return (
+          <AboutEdit
+            currentUser={user.user}
+            allUsers={users}
+            userProfile={userProfile[0]}
+          />
+        );
+      case "Avatar":
+        return <AvatarEdit currentUser={user.user} />;
+      case "Password":
+        return <PasswordEdit currentUser={user.user} allUsers={users} />;
+      default:
+        return null;
     }
+  };
 
-    const renderSelectedComponent = () => {
-      switch (selectedOption) {
-        case "General":
-          return <GeneralEdit currentUser={user.user} allUsers={users} userProfile={userProfile[0]}/>
-        case "About":
-          return <AboutEdit currentUser={user.user} allUsers={users} userProfile={userProfile[0]}/>
-        case "Avatar":
-          return <AvatarEdit currentUser={user.user}/>
-        case "Password":
-          return <PasswordEdit currentUser={user.user} allUsers={users}/>
-        default:
-          return null;  
-      }
-    };
-
-    if(loading) {
-      return(
-        <div> 
-            <LoadingPage/>
-        </div>
-      )
-    } else {
-      return (
+  if (loading) {
+    return (
       <div>
+        <LoadingPage />
+      </div>
+    );
+  } else {
+    return (
+      <div className=" row d-flex justify-content-center">
+        <div className="navbarEP col-md-6 col-sm-10 ">
+          <li
+            className="list-itemEP"
+            onClick={() => handleOptionChange("General")}
+          >
+            <i className="fa-solid fa-pen-to-square"></i>
+            <span className="list-item-nameEP">General</span>
+          </li>
+          <li
+            className="list-itemEP"
+            onClick={() => handleOptionChange("Password")}
+          >
+            <i className="fa-solid fa-key"></i>
+            <span className="list-item-nameEP">Password</span>
+          </li>
+          <li
+            className="list-itemEP"
+            onClick={() => handleOptionChange("About")}
+          >
+            <i className="fa-solid fa-address-card"></i>
+            <span className="list-item-nameEP">About</span>
+          </li>
+          <li
+            className="list-itemEP"
+            onClick={() => handleOptionChange("Avatar")}
+          >
+            <i className="fa-solid fa-user"></i>
+            <span className="list-item-nameEP">Avatar</span>
+          </li>
+        </div>
+        {/*
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Edit
@@ -81,8 +122,9 @@ export default function DropdownProfile() {
               Avatar
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown>*/}
         {renderSelectedComponent()}
       </div>
-      );
-}}
+    );
+  }
+}
