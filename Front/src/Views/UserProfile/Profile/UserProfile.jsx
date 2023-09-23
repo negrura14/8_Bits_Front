@@ -19,8 +19,11 @@ export default function UserProfile() {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user.userState.user);
   const { userProfile } = useSelector((state) => state.user.userState);
-
-  const userData = userProfile[0];
+  // const [userData, setUserData] = useState(userProfile[0])
+  
+  
+  const userData = userProfile[0]
+  
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
 
   useEffect(() => {
