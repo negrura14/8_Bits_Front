@@ -24,7 +24,7 @@ export default function UserProfile() {
   // const [userData, setUserData] = useState(userProfile[0])
   const [loading, setLoading] = useState(true);
   
-  const userData = userProfile[0]
+  const userData = userProfile;
 
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
 
@@ -160,13 +160,13 @@ export default function UserProfile() {
         <div class="cardUP">
           <div class="rounded-top text-white d-flex flex-row" >
             <div class="ms-4 mt-5 d-flex flex-column avatarU" >
-              <img src={userData.image ? userData.image : defaultPhoto}
+              <img src={userData[0].image ? userData[0].image : defaultPhoto}
                 alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
             </div>
             <div class="ms-3 textsUP" >
-              <h5>{userData.nickName ? userData.nickName : userData.name}</h5>
-              <p>{userData.country ? userData.country : "your location"}</p>
+              <h5>{userData[0].nickName ? userData[0].nickName : userData[0].name}</h5>
+              <p>{userData[0].country ? userData[0].country : "your location"}</p>
             </div>
           </div>
           <div class="p-4 text-white textU" >
@@ -181,7 +181,7 @@ export default function UserProfile() {
             <div class="mb-5">
               <p class="lead fw-normal mb-1">About</p>
               <div class="p-4 description UP">
-                <p class="font-italic mb-1">{userData.description ? userData.description : "Write your description"}</p>
+                <p class="font-italic mb-1">{userData[0].description ? userData[0].description : "Write your description"}</p>
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
