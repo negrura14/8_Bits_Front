@@ -7,7 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import { UpdateProduct } from '../../Components/UpdateProuct/UpdateProduct';
 import UserDashboard from '../../Components/UserDashboarView/UserDashboardView';
 import Tabs from 'react-bootstrap/esm/Tabs';
-import GenreStatisticsComponent from '../Statistics/genreStatistics';
+import GenreStatisticsComponent from '../Statistics/GenreStatistics';
 
 
 export const DashBoard = () => {
