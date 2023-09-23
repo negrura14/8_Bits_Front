@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './DashBoard.css';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
@@ -7,9 +7,19 @@ import Tab from 'react-bootstrap/Tab';
 import { UpdateProduct } from '../../Components/UpdateProuct/UpdateProduct';
 import UserDashboard from '../../Components/UserDashboarView/UserDashboardView';
 import Tabs from 'react-bootstrap/esm/Tabs';
+import { useDispatch } from 'react-redux';
+import { getUsersAct } from '../../Redux/userActions';
+import { clearUsers } from '../../Redux/Reducers/userSlice';
 
 
 export const DashBoard = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getUsersAct());
+      return () => {
+      dispatch(clearUsers());
+    };
+  }, [dispatch]);
 
   return (
     <div className='mt-3'>

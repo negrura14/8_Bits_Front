@@ -1,22 +1,24 @@
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function UserSearchResult(props) {
-    const {id, disable, email, image, name, lastname, nickname} = props;
-    console.log('dsa',disable)
+    const { id, disable, email, image, name, lastname, nickname } = props;
     const [switcha, setSwitcha] = useState(disable);
-    console.log('asd',switcha)
     
+    useEffect(() => {
+        setSwitcha(disable);
+    }, [disable]);
+
     const changeHandler = () => {
-        const newSwitcha = !switcha
-        setSwitcha(newSwitcha)
-        const banned = {disable: newSwitcha}
+        const newSwitcha = !switcha;
+        setSwitcha(newSwitcha);
+        const banned = { disable: newSwitcha };
         axios.put(`/user/update/${id}`, banned);
     }
 
-    return(
-        <div >
+    return (
+        <div>
             <img src={image} alt="Avatar" />
             <span>{nickname}</span>
             <span>{name}</span>

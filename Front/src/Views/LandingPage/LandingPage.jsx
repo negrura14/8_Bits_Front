@@ -8,13 +8,14 @@ import { LoginSocialGoogle } from "reactjs-social-login";
 import { validateLogin } from "../validateLogin";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
-import { userLoginAct, googleLoginAct } from "../../Redux/userActions";
+import { userLoginAct, googleLoginAct, userLogoutAct } from "../../Redux/userActions";
 import logo from "../../Img/Logo.png";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import validateUser from "../../Components/Create User/validateUser";
+import { clearUsers } from "../../Redux/Reducers/userSlice";
 
 
 
@@ -22,12 +23,15 @@ const Landing = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { auth } = useSelector((state) => state.user.userState)
+  const { users, auth } = useSelector((state) => state.user.userState)
   
 
   useEffect(() => {
     if(auth === true) {
       navigate("/home")
+      return () => {
+        dispatch(clearUsers());
+      };
     }
   },[auth, navigate]);
 
@@ -95,7 +99,7 @@ const Landing = () => {
   const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log(name, value);
+    console.log(name, value, '123');
 
     setErrors(validateLogin({ ...form, [name]: value }));
     setForm({ ...form, [name]: value });
@@ -103,51 +107,66 @@ const Landing = () => {
 
   function submitHandler(event) {
     event.preventDefault();
+    const bannedUser = users.some((user) => {
+      console.log(user.email, user.disable, '12333')
+      if (user.email === form.email && user.disable === true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
 
     const noErrors = Object.values(errors).every((error) => error === "");
+    console.log(bannedUser)
+    if(bannedUser === true){
+      dispatch(userLogoutAct());
+      document.cookie = 'miCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      window.alert("Banned User")
+      navigate('/home')
+      setForm({
+        email: "",
+        password: "",
+      });
 
-    if (!noErrors) {
-      MySwal.fire({
-        title: <strong>ERROR</strong>,
-        html: <i>There is some error in the fields, please try again</i>,
-        icon: "error",
-        background: "#1d1d1d",
-        customClass: {
-          container: "custom-alert-container",
-        },
+    } else{
+      if (!noErrors) {
+        MySwal.fire({
+          title: <strong>ERROR</strong>,
+          html: <i>There is some error in the fields, please try again</i>,
+          icon: "error",
+          background: "#1d1d1d",
+          customClass: {
+            container: "custom-alert-container",
+          },
+        });
+        return;
+      } else if (form.email === "" || form.password === "") {
+        MySwal.fire({
+          title: <strong>WARNING</strong>,
+          html: <i>You have to complete all fields</i>,
+          icon: "warning",
+          background: "#1d1d1d",
+          customClass: {
+            container: "custom-alert-container",
+          },
+        });
+        return;
+  
+      }
+  
+      dispatch(userLoginAct(form));
+      // dispatch(swAuth(!auth));
+  
+  
+  
+      setForm({
+        email: "",
+        password: "",
       });
-      return;
-    } else if (form.email === "" || form.password === "") {
-      MySwal.fire({
-        title: <strong>WARNING</strong>,
-        html: <i>You have to complete all fields</i>,
-        icon: "warning",
-        background: "#1d1d1d",
-        customClass: {
-          container: "custom-alert-container",
-        },
-      });
-      return;
+  
     }
 
-    dispatch(userLoginAct(form));
-    // dispatch(swAuth(!auth));
 
-    Toast.fire({
-      icon: "success",
-      iconColor: "white",
-      title: <strong>Login successfully!</strong>,
-      html: <i>You are being redirected to the home</i>,
-      color: "#fff",
-      background: "#333",
-    });
-
-    setForm({
-      email: "",
-      password: "",
-    });
-
-    navigate("/home");
   }
 
   /////////////////////
@@ -444,10 +463,10 @@ const Landing = () => {
                     </a>
                   </LoginSocialGoogle>
                 </div>
-                <p className="signup bGuest">
+                {/* <p className="signup bGuest">
                   You do not have an account? create it{" "}
                   <Link to={"/createuser"}>here</Link>
-                </p>
+                </p> */}
               </div>
             </Form>
             <form

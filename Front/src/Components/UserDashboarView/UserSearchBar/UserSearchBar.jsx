@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfileAction } from "../../../Redux/userActions";
+import { getUserProfileAction, getUsersAct } from "../../../Redux/userActions";
 import UserSearchResult from "../UserSearchResult/UserSearchResult";
 
 export default function UserSearchBar() {
@@ -11,7 +11,7 @@ export default function UserSearchBar() {
   
 
   useEffect(() => {
-    dispatch(getUserProfileAction(searchData))
+    dispatch(getUserProfileAction(searchData));
   }, [dispatch,searchData]);
 
 
