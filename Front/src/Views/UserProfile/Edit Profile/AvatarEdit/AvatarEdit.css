@@ -8,3 +8,62 @@
     border: 2px solid #007bff; /* Color del borde al hacer hover (puedes personalizarlo) */
     cursor: pointer; /* Cambia el cursor al pasar el ratón sobre el avatar */
   }  
+
+
+.row .active{
+  color: white;
+  background: #178654;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #178654;
+    border-radius: 5px;
+    text-align: center;
+    color: #178654;
+    margin-bottom: 30px;
+    cursor: pointer;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #178654;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #178654;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #178654;
+    color: white;
+}
+
+.upload div div button{
+  margin-left: 10px;
+  margin-right: 10px;
+  color:red;
+}
+
+.upload div div button:hover{
+  margin-left: 10px;
+  background: rgb(144, 3, 3);
+  color:white;
+}
+.upload div{
+  display: inline;
+}
+
+.upload div button{
+  margin-left: 10px;
+  margin-right: 10px;
+  color:rgb(0, 179, 255);
+}
+
+.upload div button:hover{
+  margin-left: 10px;
+  background: rgb(0, 179, 255);
+  color:black;
+}

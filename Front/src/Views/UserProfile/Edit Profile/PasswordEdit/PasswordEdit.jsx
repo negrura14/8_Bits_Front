@@ -143,8 +143,10 @@ export default function PasswordEdit({currentUser,allUsers}) {
     }
     
     return(
-        <div>
-            <h1>Here you can modify you password</h1>
+        <div className="row justify-content-center">
+
+        <div className="text-primary px-4 m-5 login-box col-md-6 col-sm-10">
+            <h2 className="mb-3">Here you can modify you password</h2>
 
             <form onSubmit={(event) => sumbitHandler(event)}>
                 <div className="mb-3">
@@ -166,9 +168,9 @@ export default function PasswordEdit({currentUser,allUsers}) {
 
 
 
-                <div className="row mb-3">
+                <div className="row ">
+                    <div className=" col-5">
                     <label className="form-label">Your new password</label>
-                    <div className=" col-9">
                         <input
                         placeholder="Enter your new password"
                         type={showPassword ? "text" : "password"}
@@ -181,7 +183,7 @@ export default function PasswordEdit({currentUser,allUsers}) {
                         disabled={!isCurrentPasswordValid}
                         />
                     </div>
-                    <div className="mb-3 col-3 p-1">
+                    <div className="mb-3 col-2 d-flex justify-content-center align-items-center">
                         <a
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
@@ -196,9 +198,7 @@ export default function PasswordEdit({currentUser,allUsers}) {
                     {focusedField === "password" && errors.password && (
                         <p className="text-danger">{errors.password}</p>
                         )}
-                </div>      
-
-                <div className="mb-3">
+                <div className="mb-3 col-5">
                     <label className="form-label">Confirm your new password</label>
                     <input
                         placeholder="Confirm your new password"
@@ -215,10 +215,13 @@ export default function PasswordEdit({currentUser,allUsers}) {
                         <p className="text-danger">{errors.confirmPassword}</p>
                     )}
                 </div>
+                </div>      
 
-                <button type="sumbit">SUMBIT CHANGES</button>
+
+                <button className="mt-3" type="submit">SUBMIT CHANGES</button>
             </form>
 
+        </div>
         </div>
     )
 }

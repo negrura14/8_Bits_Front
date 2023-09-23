@@ -153,9 +153,11 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
 
 
     return(
-        <div>
+        <div className="row justify-content-center">
+
+        <div className="text-primary px-4 m-5 login-box col-md-6 col-sm-10">
             
-            <h1>Here you can modify you description, nickName, location and phone number!</h1>
+            <h2 className="mb-3" >Here you can modify other data!</h2>
 
             <form onSubmit={(event) => sumbitHandler(event)}>
 
@@ -192,14 +194,16 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
                         <p className="text-danger">{errors.description}</p>
                     )}
                 </div>
+                <div className="row">
 
-                <div className="mb-3 ">
+                <div className="mb-3 col-4 ">
                     <label className="form-label">Country</label>
                     <select
                         id="country"
                         name="country"
                         value={input.countryCode}
                         onChange={handleCountryChange}
+                        className="form-select bg-transparent text-white-50 m-2"
                     >
                         <option value="">Select a country</option>
                         {countries.map((country) => (
@@ -210,9 +214,10 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
                     </select>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 col-4">
                     <label htmlFor="state">State</label>
                     <select
+                    className="form-select bg-transparent text-white-50 m-2"
                         id="state"
                         name="state"
                         value={input.stateCode}
@@ -228,9 +233,10 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
                     </select>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 col-4">
                     <label htmlFor="city">City</label>
                     <select
+                    className="form-select bg-transparent text-white-50 m-2"
                         id="city"
                         name="city"
                         value={input.city}
@@ -244,6 +250,7 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
                         </option>
                         ))}
                     </select>
+                </div>
                 </div>
 
                 <div className="mb-3 ">
@@ -263,10 +270,11 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
                     )}
                 </div>
 
-                <button type="sumbit">
-                    SUMBIT CHANGES
+                <button className="mt-3" type="submit">
+                    SUBMIT CHANGES
                 </button>
             </form>
+        </div>
         </div>
     )
 }
