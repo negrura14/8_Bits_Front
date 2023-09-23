@@ -7,6 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import { UpdateProduct } from '../../Components/UpdateProuct/UpdateProduct';
 import UserDashboard from '../../Components/UserDashboarView/UserDashboardView';
 import Tabs from 'react-bootstrap/esm/Tabs';
+import GenreStatisticsComponent from '../Statistics/genreStatistics';
 
 
 export const DashBoard = () => {
@@ -32,6 +33,9 @@ export const DashBoard = () => {
               <Nav.Item>
                 <Nav.Link eventKey="fifth">STOCK</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="sixth">STATISTICS</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Col>
           <Col sm={9} className='font'>
@@ -42,6 +46,7 @@ export const DashBoard = () => {
               <Tab.Pane eventKey="third">Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fourth" >Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fifth">Second tab content</Tab.Pane>
+              <Tab.Pane eventKey="sixth"><GenreStatisticsComponent /></Tab.Pane>
               
             </Tab.Content>
           </Col>
