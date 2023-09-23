@@ -41,11 +41,12 @@ export default function UserSearchBar() {
 
       <div>
         {Array.isArray(userProfile) 
-        ? userProfile.map((user, index) => {
+        ? userProfile.map((user) => {
             return(
                 <UserSearchResult
-                key = {index}
-                disable = {user.disadisable}
+                key = {user.id}
+                id = {user.id}
+                disable = {user.disable}
                 email = {user.email} 
                 image = {user.image} 
                 name = {user.name}

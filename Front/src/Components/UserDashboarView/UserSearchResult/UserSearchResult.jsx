@@ -1,12 +1,18 @@
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
 export default function UserSearchResult(props) {
-    const { disable, email, image, name, lastname, nickname} = props;
-    const [switcha, setSwitcha] = useState(false);
+    const {id, disable, email, image, name, lastname, nickname} = props;
+    console.log('dsa',disable)
+    const [switcha, setSwitcha] = useState(disable);
+    console.log('asd',switcha)
     
-    const changeHandler = (event) => {
-        setSwitcha(!switcha)
+    const changeHandler = () => {
+        const newSwitcha = !switcha
+        setSwitcha(newSwitcha)
+        const banned = {disable: newSwitcha}
+        axios.put(`/user/update/${id}`, banned);
     }
 
     return(
