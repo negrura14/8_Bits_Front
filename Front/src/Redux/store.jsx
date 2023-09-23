@@ -10,6 +10,7 @@ import loadingReducer from './Reducers/LoadingSlice'
 import user from './Reducers/userSlice'
 import checkoutSlice from './Reducers/checkoutSlice';
 import paymentsSlice from './Reducers/paymentsSlice';
+import userProfile from './Reducers/userProfile';
 
 const persistConfig = {
     key: 'root',
@@ -32,6 +33,7 @@ export default configureStore({
         user: persistedReducer,
         checkout: checkoutSlice,
         payments: paymentsSlice,
+        userProfile: userProfile,
         
 
     },

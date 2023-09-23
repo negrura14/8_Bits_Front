@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { getUsersAct,getUserProfileAction } from "../../../Redux/userActions";
+import { getUsersAct } from "../../../Redux/userActions";
+import { getUserProfileAction } from "../../../Redux/userProfileActions";
 import { ROUTES } from "../../../Helpers/RoutesPath";
 
 import Swal from "sweetalert2";
@@ -18,18 +19,19 @@ export default function UserProfile() {
   // const {id} = useParams();
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user.userState.user);
-  const { userProfile } = useSelector((state) => state.user.userState);
+  const { userProfile } = useSelector((state) => state.userProfile);
   // const [userData, setUserData] = useState(userProfile[0])
   
   
   const userData = userProfile[0]
-  
+
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
 
   useEffect(() => {
+      console.log(user.email)
       dispatch(getUsersAct());
       dispatch(getUserProfileAction(user.email));
-    }, [dispatch,user.email]);
+    }, [dispatch, user.email]);
   
 
   const userGames = [
