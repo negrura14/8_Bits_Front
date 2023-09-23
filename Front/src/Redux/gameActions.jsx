@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getAllGame, getGameById, getGameByName, filterGames } from './Reducers/gameSlice';
-import { getAllGenres } from './Reducers/genreSlice';
+import { getAllGenres, setGenreStatistics } from './Reducers/genreSlice';
 
 
 export const getGame = () => async  (dispatch) =>{
@@ -46,5 +46,14 @@ export const filterGamesAction = (url) => async(dispatch) =>{
     return dispatch(filterGames(response.data));
   } catch (error) {
     window.alert("Request failed:", error);
+  }
+}
+
+export const getGenreStatistics = () => async (dispatch) => {
+  try {
+    const response = await axios("/genre/statistics");
+    return dispatch(setGenreStatistics(response.data));
+  } catch (error) {
+    console.error("Request failed:", error);
   }
 }
