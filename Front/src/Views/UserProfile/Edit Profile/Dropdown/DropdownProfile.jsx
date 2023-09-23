@@ -2,26 +2,34 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserProfileAction } from '../../../../Redux/userActions';
-
+import { getUserProfileAction } from '../../../../Redux/userProfileActions';
 import GeneralEdit from '../AccountEdit/GeneralEdit';
 import AboutEdit from '../AboutEdit/AboutEdit';
 import AvatarEdit from '../AvatarEdit/AvatarEdit';
 import PasswordEdit from '../PasswordEdit/PasswordEdit';
 
 import { getUsersAct } from '../../../../Redux/userActions';
+import LoadingPage from '../../../../Components/Loading/Loading';
 
 
 export default function DropdownProfile() {
     const dispatch = useDispatch();
-    const { user,users } = useSelector((state) => state.user.userState);
-    const { userProfile } = useSelector((state) => state.user.userState);
-
+    const { user,users } = useSelector((state) => state.user.userState.user);
+    const { userProfile } = useSelector((state) => state.userProfile);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+      console.log(user.email)
       dispatch(getUsersAct());
-      dispatch(getUserProfileAction(user.user.email));
-    }, [dispatch]);
+      dispatch(getUserProfileAction(user.email))
+      .then (() =>{
+        setLoading(false);
+      })
+      .catch((error) => {
+        alert('Error', error);
+        setLoading(false);
+      })
+    }, [dispatch, user.email]);
     
 
     const [selectedOption,setSelectedOption] = useState("General");
@@ -45,8 +53,14 @@ export default function DropdownProfile() {
       }
     };
 
-
-    return (
+    if(loading) {
+      return(
+        <div> 
+            <LoadingPage/>
+        </div>
+      )
+    } else {
+      return (
       <div>
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -71,4 +85,4 @@ export default function DropdownProfile() {
         {renderSelectedComponent()}
       </div>
       );
-}
+}}
