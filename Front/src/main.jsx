@@ -15,6 +15,7 @@ const persistor = persistStore(store)
 
 
 //axios.defaults.baseURL= 'http://localhost:3001';
+
   axios.defaults.baseURL= 'https://eight-bits-back.onrender.com'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
