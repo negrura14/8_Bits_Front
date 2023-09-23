@@ -13,7 +13,8 @@ import LoadingPage from "../../../../Components/Loading/Loading";
 
 export default function DropdownProfile() {
   const dispatch = useDispatch();
-  const { user, users } = useSelector((state) => state.user.userState.user);
+  const { user } = useSelector((state) => state.user.userState.user);
+  const { users } = useSelector((state) => state.user.userState);
   const { userProfile } = useSelector((state) => state.userProfile);
   const [loading, setLoading] = useState(true);
 
@@ -41,7 +42,7 @@ export default function DropdownProfile() {
       case "General":
         return (
           <GeneralEdit
-            currentUser={user.user}
+            currentUser={user}
             allUsers={users}
             userProfile={userProfile[0]}
           />
@@ -49,15 +50,15 @@ export default function DropdownProfile() {
       case "About":
         return (
           <AboutEdit
-            currentUser={user.user}
+            currentUser={user}
             allUsers={users}
             userProfile={userProfile[0]}
           />
         );
       case "Avatar":
-        return <AvatarEdit currentUser={user.user} />;
+        return <AvatarEdit currentUser={user} />;
       case "Password":
-        return <PasswordEdit currentUser={user.user} allUsers={users} />;
+        return <PasswordEdit currentUser={user} allUsers={users} />;
       default:
         return null;
     }
