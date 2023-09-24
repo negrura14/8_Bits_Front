@@ -41,7 +41,7 @@ function Search() {
     }
    }, []);
    const [isTableVisible, setTableVisibility] = useState(false);
-  const productClasses =  isTableVisible ? 'products' : 'products products-table';
+  const productSClasses =  isTableVisible ? 'productSs' : 'productSs productSs-table';
 
   const toggleTable = () => {
     setTableVisibility(!isTableVisible);
@@ -91,15 +91,15 @@ function Search() {
             <button className="buttonView" id="view" onClick={toggleTable}><span>Switch View</span></button>
           </div>
         </div>
-        <div className={productClasses}>
+        <div className={productSClasses}>
         {dataByName &&
           dataByName.map((elem, i) => {
             return (
-              <div className="product">
-                <div className="product-img">
+              <div className="productS">
+                <div className="productS-img">
                   <img src={elem.image} />
                 </div>
-                <div className="product-content">
+                <div className="productS-content">
                   <Link to={`${ROUTES.DETAIL}/${elem.id}`}>
                     <h3>
                       {elem.name}
@@ -107,8 +107,8 @@ function Search() {
                   </Link>
                       <small>{elem.releaseDate}</small>
 
-                  <p className="product-text price">{elem.price}$</p>
-                  <p className="product-text genre">{elem.genre}</p>
+                  <p className="productS-text price">{elem.price}$</p>
+                  <p className="productS-text genre">{elem.genre}</p>
                 </div>
               </div>
             );

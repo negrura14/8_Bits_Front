@@ -1,7 +1,16 @@
 .font {
-    background-color: #364355;
+    background-color: #36435594;
     border-radius: 10px;
 }
 .rowTable {
     width: 100%;
 }
+
+.row .active {
+    color: white;
+    background: #17865400;
+  }
+
+  .stadistic{
+    text-align: center;
+  }

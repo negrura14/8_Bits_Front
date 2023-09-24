@@ -39,18 +39,23 @@ export const UpdateProduct = () => {
 
 
   return (
-    <div className='cajaEdit'>
-      <div className='fontUpdate'>HAS INGRASADO AL UPDATEPRODUCTS</div>
+    <div className='cajaEdit login-box'>
+      <h2 className='mb-3' >Update Products</h2>
+      <div className='d-flex row justify-content-center mb-3'>
+      <div className='col-10 mb-4'>
+
       <input
         type="text"
         value={searchInput}
         onChange={onSearchInputChange}
         placeholder="Buscar juegos..."
-        className='space'
+        className="form-control bg-transparent text-white "
       />
-      
+      </div>
+      <div className='col-10 bg-transparent'>
+
       <select
-        className='fontUpdate space'
+        className="form-select bg-transparent text-white-50"
         value={selectedGame ? selectedGame.name : ''}
         onChange={(e) => {
           const selectedGameName = e.target.value;
@@ -59,32 +64,49 @@ export const UpdateProduct = () => {
         }}
         multiple
       >
-        <option value="">Selecciona un juego</option>
+        <option className='bg-transparent' value="">Selecciona un juego</option>
         {filteredGames.map((game, index) => (
-          <option key={index} value={game.name}>
+          <option className='bg-transparent' key={index} value={game.name}>
             {game.name}
           </option>
         ))}
       </select>
+      </div>
+      </div>
+
+      
+      
 
       {selectedGame && (
         <div>
-          <h2 className='space'>Editar Juego: {selectedGame.name}</h2>
-          <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
+          <h2 className='mb-3' >Editar Juego:</h2>
+          <form onSubmit={(event) => sumbitHandler(event)} className=''>
+          <div className='row d-flex justify-content-center'>
+
+          <div className='col-10 mb-3 mx-2'>
+
             <input
-              className='space'
+              className="form-control bg-transparent text-white"
               type="text"
               value={selectedGame.name}
               onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
               placeholder="Nombre del juego"
             />
+          </div>
+
+          <div className='col-10 mb-3 mx-2'>
             <input
-              className='space '
+              className="form-control bg-transparent text-white"
               type="text"
               value={selectedGame.description}
               onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
               placeholder="Descripción del juego"
             />
+
+          </div>
+
+          <div className='col-10 mb-3 mx-2'>
+
             <input
               placeholder="Stock"
               id="typeNumber"
@@ -94,14 +116,19 @@ export const UpdateProduct = () => {
               onChange={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
               min="0"
               max="100"
-              className="space"
+              className="form-control bg-transparent text-white"
             />
-            <div className='imageTam'>
+          </div>
+          <div className='col-10'> 
+          <div className='row d-flex justify-content-center '>
+
+            <div className='imageTam col-6'>
               <img src={selectedGame.image}/>
             </div>
-            <div className="removes mb-3">
-              {selectedGame.SupportedPlatforms.map((platform) => (
-                <div className=" remove-div mb-1 " >
+            <div className="p-5 mb-3 col-6">
+            <div className='removes'>
+            {selectedGame.SupportedPlatforms.map((platform) => (
+                <div className='remove-div mb-1' >
                   <span className="remove-span">{platform.name}</span>
                   <a
                     className="remove-button"
@@ -121,7 +148,15 @@ export const UpdateProduct = () => {
                 className=""
               />
             </div>
+              
+            </div>
+          </div>
+            <div>
+
             <button className='checkBoxs' type="sumbit">Guardar Cambios</button>
+            </div>
+          </div>
+          </div>
           </form>
         </div>
       )}

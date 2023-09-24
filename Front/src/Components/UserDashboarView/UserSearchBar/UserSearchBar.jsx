@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfileAction, getUsersAct } from "../../../Redux/userActions";
 import UserSearchResult from "../UserSearchResult/UserSearchResult";
+import "./UserSearchBar.css"
 
 export default function UserSearchBar() {
   const [searchInput, setSearchInput] = useState("");
@@ -24,23 +25,46 @@ export default function UserSearchBar() {
     setSearchData(searchInput);
   };
 
+
+  const [isTableVisible, setTableVisibility] = useState(false);
+  const productSClasses =  isTableVisible ? 'productSs' : 'productSs productSs-table';
+
+  const toggleTable = () => {
+    setTableVisibility(!isTableVisible);
+  }
+
   return (
-    <div>
-      <div>
-        <input
-          required=""
+    <div className=" bg-transparent">
+    <div className="row">
+
+    <div className="col-6">
+    <div className="searchU-box">
+    
+    <button  className="btn-searchU" type="submit" onClick={handleClick}>
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </button>
+        <input required=""
+        className="input-searchU"
           onChange={changeHandler}
           type="text"
           placeholder="Search User"
-          value={searchInput}
-        />
-        <button type="submit" onClick={handleClick}>
-          <i className="fa fa-search" aria-hidden="true"></i>
-        </button>
+          value={searchInput} />
+  </div>
+
+        
+        
+    </div>
+    <div className="col-6 d-flex justify-content-end">
+    <div className="buttons-container">
+  <button id="view" className="button-arounder"  onClick={toggleTable}>Switch View</button>
+</div>
+            
+          </div>
+
       </div>
 
-      <div>
-        {Array.isArray(userProfile) 
+      <div className={productSClasses}>
+      {Array.isArray(userProfile) 
         ? userProfile.map((user) => {
             return(
                 <UserSearchResult
@@ -56,6 +80,9 @@ export default function UserSearchBar() {
            
         )
         : <p>{userProfile}</p> }
+      </div>
+      <div>
+        
       </div>
     </div>
   );
