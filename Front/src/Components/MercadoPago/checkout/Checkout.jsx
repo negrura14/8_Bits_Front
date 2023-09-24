@@ -2,13 +2,15 @@
 import React, { useEffect, useState } from "react";
 import classnames from 'classnames'
 import { Context } from "../ContextProvider";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import './Checkout.css'
+import { setPayment, clearPayment, setOrder, setItems } from "../../../Redux/Reducers/checkoutSlice";
+
 
 const Checkout = ({ onClick }) => {
   const [isVisible, setIsVisible] = React.useState(true);
   const { preferenceId, isLoading: disabled, orderData, setOrderData } = React.useContext(Context);
-  const { user } = useSelector((state) => state.user.userState);
+  const { user, auth } = useSelector((state) => state.user.userState);
   const userData = user;
   const [subtotal, setSubtotal] = useState(0);
   const [localStorageCart, setLocalStorageCart] = useState([]);
@@ -16,6 +18,10 @@ const Checkout = ({ onClick }) => {
     'shopping-cart--hidden': !isVisible,
   });
   
+  const mpID = useSelector((state) => state.checkout.mpID);
+  const order = useSelector((state) => state.checkout.order);
+  const items = useSelector((state) => state.checkout.items);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
@@ -28,6 +34,7 @@ const Checkout = ({ onClick }) => {
 
   const handleCheckoutClick = () => {
     window.location.href = 'https://sandbox.mercadopago.com.co/checkout/v1/redirect?pref_id=1476672193-aaefb57f-259b-4074-af04-567c227c3dd4';
+    // dispatch(setPayment({ mpID: 'tuNuevoValor' }));
   }
 
   
@@ -35,7 +42,7 @@ const Checkout = ({ onClick }) => {
   useEffect(() => {
     const newSubtotal = localStorageCart.reduce((total, item) => {
       const price = parseFloat(item.price);
-      const cant = parseInt(item.cant, 10); 
+      const cant = 1; 
     
       if (!isNaN(price) && !isNaN(cant)) {
         return total + price * cant;
@@ -48,6 +55,8 @@ const Checkout = ({ onClick }) => {
     setSubtotal(newSubtotal); 
     
   }, [localStorageCart]);
+  
+  
 
 
   return (
