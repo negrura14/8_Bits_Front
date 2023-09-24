@@ -31,37 +31,26 @@ export const UpdateProduct = () => {
   
   const sumbitHandler = (e) => {
     e.preventDefault();
-    console.log("resultado del submit: ", selectedGame);
-    axios.post()
+    console.log("resultado del submit: ", selectedGame.id, selectedGame);
+    // axios.put("/games/putGame", selectedGame)
+    axios.put(`/games/${selectedGame.id}`, selectedGame)
   }
 
 
 
   return (
-    <>
+    <div className='cajaEdit'>
       <div className='fontUpdate'>HAS INGRASADO AL UPDATEPRODUCTS</div>
       <input
         type="text"
         value={searchInput}
         onChange={onSearchInputChange}
         placeholder="Buscar juegos..."
+        className='space'
       />
-      {/* <ul>
-        {filteredGames.map((game, index) => (
-          <li key={index} onClick={() => onSelectGame(game)}>
-            {game.name}
-          </li>
-        ))}
-      </ul>
-      <select name="" id="">
-      {filteredGames.map((game, index) => (
-              <option key={index} onClick={() => onSelectGame(game)}>
-                {game.name}
-              </option>
-            ))}
-      </select> */}
+      
       <select
-        className='fontUpdate'
+        className='fontUpdate space'
         value={selectedGame ? selectedGame.name : ''}
         onChange={(e) => {
           const selectedGameName = e.target.value;
@@ -80,25 +69,63 @@ export const UpdateProduct = () => {
 
       {selectedGame && (
         <div>
-          <h2>Editar Juego: {selectedGame.name}</h2>
-          <form onSubmit={(event) => sumbitHandler(event)}>
+          <h2 className='space'>Editar Juego: {selectedGame.name}</h2>
+          <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
             <input
+              className='space'
               type="text"
               value={selectedGame.name}
               onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
               placeholder="Nombre del juego"
             />
             <input
+              className='space '
               type="text"
               value={selectedGame.description}
               onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
               placeholder="Descripción del juego"
             />
-            <button type="sumbit">Guardar Cambios</button>
+            <input
+              placeholder="Stock"
+              id="typeNumber"
+              type="number"
+              name="stock"
+              value={selectedGame.stock}
+              onChange={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
+              min="0"
+              max="100"
+              className="space"
+            />
+            <div className='imageTam'>
+              <img src={selectedGame.image}/>
+            </div>
+            <div className="removes mb-3">
+              {selectedGame.SupportedPlatforms.map((platform) => (
+                <div className=" remove-div mb-1 " >
+                  <span className="remove-span">{platform.name}</span>
+                  <a
+                    className="remove-button"
+                    type="button"
+                    // onClick={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
+                  >
+                    X
+                  </a>
+                </div>
+              ))}
+            </div>
+            <div className="checkBoxs">
+              <input
+                type="checkbox"
+                checked= {true}
+                onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
+                className=""
+              />
+            </div>
+            <button className='checkBoxs' type="sumbit">Guardar Cambios</button>
           </form>
         </div>
       )}
     
-    </>
+    </div>
   )
 }

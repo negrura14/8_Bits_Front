@@ -98,7 +98,7 @@ export const ShopCart = () => {
   };
 
   const onClickClearCart = () => {
-    localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(totalGames));
+    localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify([]));
     dispatch(UpdateList(userData.user.id));
     dispatch(cartUpdate());
   };
