@@ -27,7 +27,7 @@ const Checkout = ({ onClick }) => {
   }, [preferenceId]);
 
   const handleCheckoutClick = () => {
-    window.location.href = 'https://sandbox.mercadopago.com.co/checkout/v1/redirect?pref_id=1476672193-eab2c8c1-864c-47ee-b31d-7d90aad0ac77';
+    window.location.href = 'https://sandbox.mercadopago.com.co/checkout/v1/redirect?pref_id=1476672193-aaefb57f-259b-4074-af04-567c227c3dd4';
   }
 
   
