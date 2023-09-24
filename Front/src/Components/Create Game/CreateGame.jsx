@@ -61,8 +61,8 @@ export default function CreateGame() {
     image: "",
     description: "",
     releaseDate: "",
-    supportedPlatforms: [],
-    genre: [],
+    SupportedPlatforms: [],
+    Genres: [],
     price: "",
     stock: "",
     review: "",
@@ -73,8 +73,8 @@ export default function CreateGame() {
     image: "",
     description: "",
     releaseDate: "",
-    supportedPlatform: [],
-    genre: [],
+    SupportedPlatforms: [],
+    Genres: [],
     price: "",
     stock: "",
     review: "",
@@ -92,7 +92,7 @@ export default function CreateGame() {
       setSelectedPlatforms([...selectedPlatforms, selectedPlatform]);
       setInput({
         ...input,
-        supportedPlatform: [...input.supportedPlatform, selectedPlatform], // Agregar a la propiedad supportedPlatform
+        SupportedPlatforms: [...input.SupportedPlatforms, selectedPlatform], // Agregar a la propiedad supportedPlatform
       });
       setSelectedPlatform("");
     }
@@ -103,7 +103,7 @@ export default function CreateGame() {
     setSelectedPlatforms(updatedPlatforms);
     setInput({
       ...input,
-      supportedPlatform: updatedPlatforms, // Actualizar la propiedad supportedPlatform
+      SupportedPlatforms: updatedPlatforms, // Actualizar la propiedad supportedPlatform
     });
   }
 
@@ -113,7 +113,7 @@ export default function CreateGame() {
 
       setInput({
         ...input,
-        genre: [...input.genre, selectedGenre],
+        Genres: [...input.Genres, selectedGenre],
       });
 
       setSelectedGenre("");
@@ -125,7 +125,7 @@ export default function CreateGame() {
     setSelectedGenres(updatedGenres);
     setInput({
       ...input,
-      genre: updatedGenres, // Une los géneros con saltos de línea
+      Genres: updatedGenres, // Une los géneros con saltos de línea
     });
   }
 
@@ -184,7 +184,7 @@ export default function CreateGame() {
       releaseDate: formattedDate,
       review: formattedReview,
     };
-
+    console.log(updatedInput);
     return updatedInput;
   }
 
@@ -197,8 +197,8 @@ export default function CreateGame() {
       "image",
       "description",
       "releaseDate",
-      "supportedPlatform",
-      "genre",
+      "SupportedPlatforms",
+      "Genres",
       "price",
       "stock",
       "review",
@@ -259,8 +259,8 @@ export default function CreateGame() {
         image: "",
         description: "",
         releaseDate: "",
-        supportedPlatform: [],
-        genre: [],
+        SupportedPlatforms: [],
+        Genres: [],
         price: "",
         stock: "",
         review: "",
