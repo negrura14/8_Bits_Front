@@ -6,7 +6,7 @@ export default function UserDashboard() {
     
     return (
         <div>
-            <UserSearchBar/>
+            <UserSearchBar />
         </div>
     )
 }

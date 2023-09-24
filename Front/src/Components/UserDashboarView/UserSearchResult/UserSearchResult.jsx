@@ -18,14 +18,24 @@ export default function UserSearchResult(props) {
     }
 
     return (
-        <div>
-            <img src={image} alt="Avatar" />
-            <span>{nickname}</span>
-            <span>{name}</span>
-            <span>{lastname}</span>
-            <span>{email}</span>
-            <Form>
+        <div className="productS">
+        
+                <div className="productS-img">
+                <img src={image} alt="Avatar" />
+                </div>
+                <div className="productS-content">
+                <h3>{name} {lastname}</h3>
+
+                  <p className="productS-text price text-white-50">{nickname}</p>
+                  <p className="productS-text price text-white-50">{email} </p>
+                </div>
+             
+           
+            
+            
+            <Form className='productS-text price'>
                 <Form.Check // prettier-ignore
+                
                     type="switch"
                     id="custom-switch"
                     label="Disable User"
