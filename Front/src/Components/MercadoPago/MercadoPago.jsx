@@ -1,69 +1,77 @@
-// MercadoPago.js
-import React, { createContext, useState, useEffect } from "react";
-import { initMercadoPago } from "@mercadopago/sdk-react";
-import axios from 'axios'
-import InternalProvider from "./ContextProvider";
-import Checkout from "./CheckOut";
-import Payment from "./Payment";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import Checkout from "./checkout/Checkout";
 
-import {useNavigate} from 'react-router-dom';
-import {CREDENTIALS} from './Credentials/Credentials'
-import { SpinnerCircular } from 'spinners-react'
+const FORM_ID = "payment-form";
 
-
-
-// Inicializamos MercadoPago
-initMercadoPago(CREDENTIALS.PUBLIC_KEY); // Reemplaza "TU_PUBLIC_KEY" con tu clave pública de MercadoPago
-
-const MercadoPago = () => {
+export default function MercadoPago({ items, setLoading, userID }) {
   const [preferenceId, setPreferenceId] = useState(null);
+  const history = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [orderData, setOrderData] = useState({ quantity: "1", price: "10", amount: 10, description: "Some book" });
-
-  const handleClick = () => {
-    setIsLoading(true);
-    fetch("http://localhost:3001/MercadoPago", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(orderData),
-    })
-      .then((response) => {
-        return response.json();
+  useEffect(() => {
+    axios
+      .post("/mercadopago/1", {
+        items,
+        base_url: 'http://localhost:3001/',
+        ID: userID,
       })
-      .then((preference) => {
-        setPreferenceId(preference.id);
+      .then((order) => {
+        setPreferenceId(order.data.preferenceId);
       })
       .catch((error) => {
-        console.error(error);
-      }).finally(() => {
-        setIsLoading(false);
-      })
-  };
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        }).then(() => {
+          history("/");
+        });
+      });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (preferenceId) {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src =
+        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.setAttribute("data-preference-id", preferenceId);
+      const form = document.getElementById(FORM_ID);
+      form.appendChild(script);
+      setTimeout(() => {
+        const button = document.querySelector(".mercadopago-button");
+        button.innerHTML = "PAY (Mercado Pago)";
+      }, 1000);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preferenceId]);
 
   const renderSpinner = () => {
-     if (isLoading) {
-      return (
-        <div className="spinner-wrapper">
-          <SpinnerCircular сolor='#009EE3' />
-        </div>
-      )
-     }
-  }
+    if (isLoading) {
+     return (
+       <div className="spinner-wrapper">
+         <SpinnerCircular сolor='#009EE3' />
+       </div>
+     )
+    }
+ }
+
 
   return (
-    <InternalProvider context={{ preferenceId, isLoading, orderData, setOrderData }}>
+    
       <main>
+      <form id={FORM_ID} method="GET" />;
         {renderSpinner()}
-        <Checkout onClick={handleClick} description/>
-        <Payment />
+        <Checkout description/>
+        
       </main>
       
-    </InternalProvider>
-  );
-};
-
-export default MercadoPago;
-
-//https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js
+    
+  )
+}

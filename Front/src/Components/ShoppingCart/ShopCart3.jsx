@@ -7,15 +7,18 @@ import {
   cartUpdate,
 } from "../../Redux/Reducers/cartSlice";
 import { ROUTES } from "../../Helpers/RoutesPath";
-import { NavLink } from "react-router-dom";
+import { setItems } from "../../Redux/Reducers/checkoutSlice";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const ShopCart = () => {
+  const checkoutUrl = ROUTES.CHECKOUT;
   const dispatch = useDispatch();
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const cartOpen = isCartOpen ? "shop show" : "shop";
   const cartRedux = useSelector((state) => state.cart.listCart);
   const { user, auth } = useSelector((state) => state.user.userState);
   const userData = user;
+  const navigate = useNavigate()
   //console.log("ESTO ES LO QUE LLEGA POR CARTREDUX: ", cartRedux);
   const [orderData, setOrderData] = useState({
     items: [],
@@ -23,17 +26,8 @@ export const ShopCart = () => {
     description: "Cart Items",
   });
 
-  // useEffect(() => {
-  //     if(auth === true) {
-  //         console.log("ENTRO A ESTE USEEFECT?");
-  //         dispatch(UpdateList(userData.user.id))
-  //     }
-  // }, [dispatch])
 
-  const handleCheckoutClick = () => {
-    const mercadoPagoUrl = ROUTES.MERCADO;
-
-    // Construye el objeto orderData con los detalles necesarios
+  function buyCart() {
     const items = cartRedux.map((element) => ({
       id: element.id,
       title: element.name,
@@ -52,10 +46,13 @@ export const ShopCart = () => {
       amount: amount.toFixed(2),
       description: "Cart Items",
     });
+     
+      dispatch(setItems(items));
+      window.open(checkoutUrl, '_blank');
+    
+  }
 
-    // Abre la ventana de pago de MercadoPago
-    window.open(mercadoPagoUrl, "_blank");
-  };
+ 
 
   const removeFromCart = (itemId) => {
     const updatedCart = cartRedux.filter((item) => item.id !== itemId);
@@ -101,7 +98,7 @@ export const ShopCart = () => {
   };
 
   const onClickClearCart = () => {
-    localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify([]));
+    localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify(totalGames));
     dispatch(UpdateList(userData.user.id));
     dispatch(cartUpdate());
   };
@@ -128,9 +125,11 @@ export const ShopCart = () => {
         if (existingIndex !== -1) {
           // Incrementa la cantidad del juego existente
           totalGames[existingIndex].cant++;
+          console.log(totalGames[existingIndex].cant);
         }
       }
     }
+    
   }
 
   const handleCloseCart = () => {
@@ -210,7 +209,7 @@ export const ShopCart = () => {
                 <div className="checkout-btn mt-100 d-flex justify-content-between">
                   <button
                     className="btn essence-btn mx-1"
-                    onClick={handleCheckoutClick}
+                    onClick={() => buyCart()}
                   >
                     Pay
                     <i className="fa-regular fa-credit-card"></i>

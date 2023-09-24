@@ -22,6 +22,7 @@ import { userDataFromCookie } from './Helpers/cookieUtils';
 import { useEffect } from 'react';
 import { updateFromCookie } from './Redux/Reducers/userSlice';
 import MercadoPago from './Components/MercadoPago/MercadoPago';
+import Checkout from './Components/MercadoPago/checkout/Checkout';
 import {DashBoard} from "./Views/DashBoard/DashBoard.jsx"
 
 
@@ -58,6 +59,7 @@ function App() {
        <Route path = {ROUTES.SEARCH} element= {<Search/>}/>
        <Route path = {ROUTES.CART} element= {<Cart/>}/>
        <Route path = {ROUTES.MERCADO} element= {<MercadoPago/>}/>
+       <Route path = {ROUTES.CHECKOUT} element= {<Checkout/>}/>
        <Route path = {ROUTES.PROFILEUSER} element= {<TabProfile/>}/>
        <Route path = "/Dashboard" element= {<DashBoard/>}/>
       </Routes>

@@ -10,6 +10,7 @@ export const ROUTES = {
     CREATEUSER: "/CreateUser",
     PROFILEUSER: "/UserProfile",
     MERCADO: '/Mercado',
+    CHECKOUT: '/Checkout',
     ERROR: '*',
     LOGIN: '/Login',
     CART: '/Cart',
