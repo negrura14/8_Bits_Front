@@ -6,7 +6,6 @@ import { clearDetail } from '../../Redux/Reducers/gameSlice'
 import { UpdateList, cartUpdate} from '../../Redux/Reducers/cartSlice';
 import Loading from '../../Components/Loading/Loading';
 import './Detail.css';
-
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -65,8 +64,20 @@ export default function Detail() {
       } else {
         navigate('/login');
       }
-  }
+  };
+
     
+//  let  stars = document.querySelectorAll('#star')
+
+//   console.log(stars, "startsssss"); 
+//   const index = 2
+//   stars.forEach(function(star){
+//     console.log(index, "indezxxx");
+//     for(let i = 0; i < index; i++ ){
+//       stars[i].classList.add('marcado')
+//     }
+//   })
+  
     
     return(
         <div>
@@ -118,12 +129,41 @@ export default function Detail() {
 </button>
             
           </div>
+          <div>
+          
+            {detail.Reviews.map((review, index)=>(
+              
+             <div key={index}>
+              <div className="review">
+                <img src={review.User.image} width={50} height={150} alt={review.User.name}></img>
+              {review.User.name}<br/>
+                
+              {review.reviewsText}
+              </div>     
+              <div className="rating">  
+              
+              {Array.from({length:5},(_,starIndex)=>(
+                console.log(starIndex, "starIndex"),
+                console.log(review.rating, "reviewrating"),
+                <i
+                key={starIndex}
+                className={`fas fa-star star ${starIndex < review.rating ? 'marked' : ''}`}
+              ></i>
+              ))}
+              
+              </div>
+              <br/>
+             </div> 
+))}
+          </div>
         </div>
       </div>
     </section>
                 :  (<Loading/>) 
             }
+            
         </div>
+        
     )
 
     
