@@ -195,3 +195,22 @@
     transform: scale(0.95);
     transition-duration: .3s;
   }
+
+  
+    .rating{
+      background-color: whitesmoke;
+  }
+
+    .star{
+      font-size: 16px;
+      color: #bbb;
+      transition: 0.3s;
+      cursor: pointer;  
+    }
+  .marked{
+    color: rgb(69, 214, 94);
+  }
+    
+  .review{
+    background-color: aliceblue;
+  }
