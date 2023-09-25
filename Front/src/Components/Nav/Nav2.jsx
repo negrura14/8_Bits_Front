@@ -24,19 +24,22 @@ function Nav2() {
   const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   const { userProfile } = useSelector((state) => state.user.userState);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  console.log(Array.isArray(user), 'nav')
   
   
 
   useEffect(() => {
-    dispatch(getUserProfileAction(user.user.email))
-    .then (() =>{
-      setLoading(false);
-    })
-    .catch((error) => {
-      alert('Error', error);
-      setLoading(false);
-    })
+    if(Array.isArray(user) === false) {
+      dispatch(getUserProfileAction(user.user.email))
+      .then (() =>{
+        setLoading(false);
+      })
+      .catch((error) => {
+        alert('Error', error);
+        setLoading(false);
+      })
+    }; 
   }, [dispatch, user]);
 
   const userData = user;
