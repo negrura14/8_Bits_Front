@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../Helpers/RoutesPath.jsx';
 import DateTimeDisplay from '../Time/Time.jsx';
@@ -13,6 +13,7 @@ import { swAuth, userLogoutAct,getUserProfileAction } from '../../Redux/userActi
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import Dropdown from 'react-bootstrap/Dropdown';
+import LoadingPage from '../Loading/Loading.jsx';
 
 function Nav2() {
   const location = useLocation();
@@ -23,12 +24,21 @@ function Nav2() {
   const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   const { userProfile } = useSelector((state) => state.user.userState);
+  const [loading, setLoading] = useState(true);
+  
+  
 
-  // useEffect(() => {
-  //   if(user && user.user.email !== null){
-  //     dispatch(getUserProfileAction(user.user.email));
-  //   }
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserProfileAction(user.user.email))
+    .then (() =>{
+      setLoading(false);
+    })
+    .catch((error) => {
+      alert('Error', error);
+      setLoading(false);
+    })
+  }, [dispatch, user]);
+
   const userData = user;
   const navigate = useNavigate()
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
@@ -117,7 +127,13 @@ function Nav2() {
   //     dispatch(cartUpdate())
   //   }
   // }, [isCartUpdated, dispatch])
-
+  if(loading) {
+    return(
+      <div> 
+          <LoadingPage/>
+      </div>
+    )
+  } else {
   return (
 
     <>
@@ -139,7 +155,7 @@ function Nav2() {
                             <li><NavLink  to={ROUTES.HOME}>Home</NavLink></li>
                             <li><NavLink  to={ROUTES.STORE}>Store</NavLink></li>
                             {auth === false && <li><NavLink  to={ROUTES.LOGIN}>Login</NavLink></li>}
-                            {auth === true && <li><NavLink  to={ROUTES.CREATEGAME}>Create Game</NavLink></li>}
+                            {auth === true && userProfile[0].admin === true && (<li><NavLink  to={ROUTES.CREATEGAME}>Create Game</NavLink></li>)}
                             
                         </ul>
                     </div>
@@ -164,6 +180,7 @@ function Nav2() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
+              {auth === true && userProfile[0].admin === true && (<Dropdown.Item ><NavLink to={"/Dashboard"}>Dashboard</NavLink></Dropdown.Item>)}
                 <Dropdown.Item ><NavLink to={ROUTES.PROFILEUSER}>Profile</NavLink></Dropdown.Item>
                 <Dropdown.Item className="bg-danger" ><NavLink className='text-white' onClick={handlerSw}>Logout</NavLink></Dropdown.Item>
               </Dropdown.Menu>
@@ -186,6 +203,6 @@ function Nav2() {
     </>
 
   )
-}
+}}
 
 export default Nav2
