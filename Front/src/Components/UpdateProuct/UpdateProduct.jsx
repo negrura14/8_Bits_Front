@@ -78,29 +78,21 @@ export const UpdateProduct = () => {
 
 
   return (
-    <div className='cajaEdit'>
-      <div className="title mb-3">
-        <h2 className='fontUpdate'>HAS INGRASADO A UPDATE PRODUCTS</h2>
-        <Form className='disabledGame'>
-          <Form.Check // prettier-ignore
-              type="switch"
-              id="custom-switch"
-              label="Disable Game"
-              checked={true}
-              onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
-          />
-        </Form>
+    <div className='login-box'>
+      <div className=" mb-3">
+        <h2 className='text-center text-white'>Update Products</h2>
       </div>
+        
       <input
         type="text"
         value={searchInput}
         onChange={onSearchInputChange}
         placeholder="Buscar juegos..."
-        className='space'
+        className='form-control bg-transparent text-white mb-3'
       />
       
       <select
-        className='fontUpdate space'
+        className='form-select bg-transparent text-white-50'
         value={selectedGame ? selectedGame.name : ''}
         onChange={(e) => {
           const selectedGameName = e.target.value;
@@ -109,9 +101,9 @@ export const UpdateProduct = () => {
         }}
         size="4"
       >
-        <option value="">Selecciona un juego</option>
+        <option className='bg-transparent' value="">Selecciona un juego</option>
         {filteredGames.map((game, index) => (
-          <option key={index} value={game.name}>
+          <option className='bg-transparent' key={index} value={game.name}>
             {game.name}
           </option>
         ))}
@@ -119,22 +111,41 @@ export const UpdateProduct = () => {
 
       {selectedGame && (
         <div>
-          <h2 className='space'>Editar Juego: {selectedGame.name}</h2>
+          <h2 className='my-3'>Editar Juego:</h2>
+          <div className='row d-flex justify-content-center mb-3'>
+<div className='col-6'>
+
+              <img src={selectedGame.image}/>
+              <Form className='disabledGame'>
+          <Form.Check // prettier-ignore
+              type="switch"
+              id="custom-switch"
+              label="Disable Game"
+              checked={true}
+              onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
+          />
+        </Form>
+</div>
+            </div>
           <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
             <input
-              className='space'
+              className='form-control bg-transparent text-white mb-3'
               type="text"
               value={selectedGame.name}
               onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
               placeholder="Nombre del juego"
             />
             <input
-              className='space '
+              className='form-control bg-transparent text-white mb-3'
               type="text"
               value={selectedGame.description}
               onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
               placeholder="Descripción del juego"
             />
+            <div className='row'>
+
+            <div className='col'>
+
             <input
               type="number"
               name="stock"
@@ -142,8 +153,12 @@ export const UpdateProduct = () => {
               onChange={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
               min="0"
               max="100"
-              className="space"
-            />
+              className="form-control bg-transparent text-white mb-3"
+            /> 
+            </div>
+
+            <div className='col'>
+
             <input
               type="number"
               name="price"
@@ -151,16 +166,22 @@ export const UpdateProduct = () => {
               onChange={(e) => setSelectedGame({ ...selectedGame, price: e.target.value })}
               min="0"
               max="100"
-              className="space"
+              className="form-control bg-transparent text-white mb-3"
             />
-            <div className='platGenre'>
+</div>
+
+            </div>
+
+
+
+            <div className='row d-flex justify-content-between mb-3'>
 
     {/* ------------BLOQUE DONDE SE SELECCIONA O ELIMINA UN PLATAFORMAS-------------- */}
-              <div className="dimension mb-3">
-                <h4>Agrega o elimina una plataforma</h4>
+              <div className="col-5 mb-3">
+                <h4 className='mb-3'>Platforms</h4>
                 <div>
                   <select
-                    className="dimension"
+                    className="form-select bg-transparent text-white-50 mb-3"
                     value=""
                     onChange={(e) => addSelectGenrePlat('platform', e.target.value)}
                   >
@@ -189,11 +210,11 @@ export const UpdateProduct = () => {
 
     {/* ------------BLOQUE DONDE SE SELECCIONA O ELIMINA UN GENERO-------------- */}
         
-              <div className="dimension mb-3">
-              <h4>Agrega o elimina un genero</h4>
+              <div className="col-5 mb-3">
+              <h4 className='mb-3'>Genres</h4>
                 <div>
                   <select
-                    className="dimension"
+                    className="form-select bg-transparent text-white-50 mb-3"
                     value={selectedGame.Genres.name}
                     onChange={(e) => addSelectGenrePlat('genre', e.target.value)}
                   >
@@ -220,9 +241,7 @@ export const UpdateProduct = () => {
               </div>
     {/* ------------ FIN DE BLOQUE DONDE SE SELECCIONA O ELIMINA UN GENERO-------------- */}
             </div>
-            <div className='imageTam'>
-              <img src={selectedGame.image}/>
-            </div>
+           
             <button className='checkBoxs' type="sumbit">Guardar Cambios</button>
           </form>
         </div>
