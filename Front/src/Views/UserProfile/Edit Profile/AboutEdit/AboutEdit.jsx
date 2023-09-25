@@ -104,6 +104,76 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
         e.preventDefault();
 
 
+        
+        
+        const updatedFields = {};
+        
+        // if (input.nickName !== currentUser.nickName && !errors.nickName && input.nickName !== "") {
+            //     updatedFields.nickName = input.nickName;
+        //   }
+
+        if (errors.nickName) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "nickname" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.nickName !== currentUser.nickName && input.nickName !== ""){
+            updatedFields.nickName = input.nickName;
+        }
+        
+        if (errors.description) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "description" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.description !== currentUser.description && input.description !== ""){
+            updatedFields.description = input.description;
+        }
+        
+        if (errors.phone) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "phone" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.phone !== currentUser.phone && input.phone !== ""){
+            updatedFields.phone = input.phone;
+        }
+        
+        if (errors.country) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "country" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.country !== currentUser.country && input.country !== ""){
+            let completeLocation = [input.country,input.state,input.city].join(", ")
+            updatedFields.country = completeLocation;
+        }
+        
+        
         MySwal.fire({
             title: 'Updating data',
             text: 'Please wait...',
@@ -112,27 +182,6 @@ export default function AboutEdit({currentUser,allUsers,userProfile}) {
               Swal.showLoading(); // Muestra un spinner de carga en la alerta
             },
           });
-        
-
-        const updatedFields = {};
-
-        if (input.nickName !== currentUser.nickName && !errors.nickName && input.nickName !== "") {
-            updatedFields.nickName = input.nickName;
-          }
-        
-          if (input.description !== currentUser.description && !errors.description && input.description !== "") {
-            updatedFields.description = input.description;
-          }
-          
-          if (input.phone !== currentUser.phone && !errors.phone && input.phone !== "") {
-            updatedFields.phone = input.phone;
-          }
-
-          if (input.country !== "" && input.state !== "" && input.city !== "") {
-            let completeLocation = [input.country,input.state,input.city].join(", ")
-            updatedFields.country = completeLocation;
-          }
-
           setIsLoading(true);
 
           axios
