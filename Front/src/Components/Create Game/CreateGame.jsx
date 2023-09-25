@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import validateGame from "./validateGame";
-import { getGame, getGenres } from "../../Redux/gameActions";
+import { getGame, getGenres,getSupportedPlatforms } from "../../Redux/gameActions";
 
 import UploadWidget from "../../Helpers/UploadWidget";
 import Swal from 'sweetalert2';
@@ -17,6 +17,7 @@ export default function CreateGame() {
   const navigate = useNavigate();
   const { game } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.genre);
+  const { supportedPlatform } = useSelector((state) => state.supportedPlatform)
 
   //constantes para sweet alert//
   const MySwal = withReactContent(Swal);
@@ -38,19 +39,9 @@ export default function CreateGame() {
   useEffect(() => {
     dispatch(getGame());
     dispatch(getGenres());
+    dispatch(getSupportedPlatforms());
   }, [dispatch]);
-
-  //funcionalidad para traer todas las plataformas que tenemos hasta el momento
-  const uniquePlatforms = game.reduce((platformsSet, game) => {
-    if (game && game.SupportedPlatforms) {
-      game.SupportedPlatforms.forEach((platform) => {
-        platformsSet.add(platform.name);
-      });
-    }
-    return platformsSet;
-  }, new Set());
-
-  const allPlatforms = Array.from(uniquePlatforms);
+  
 
   const [termsAccepted, setTermsAccepted] = useState(false);
 
@@ -356,9 +347,9 @@ export default function CreateGame() {
                     }
                   >
                     <option value="">Select Platform</option>
-                    {allPlatforms.map((platform) => (
-                      <option key={platform} value={platform}>
-                        {platform}
+                    {supportedPlatform?.map((platform) => (
+                      <option key={platform.id} value={platform.name}>
+                        {platform.name}
                       </option>
                     ))}
                   </select>
