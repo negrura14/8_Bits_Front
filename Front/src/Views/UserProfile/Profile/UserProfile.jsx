@@ -24,6 +24,7 @@ export default function UserProfile() {
   // const [userData, setUserData] = useState(userProfile[0])
   const [loading, setLoading] = useState(true);
   
+  const MySwal = withReactContent(Swal);
   const userData = userProfile;
 
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
@@ -88,6 +89,27 @@ export default function UserProfile() {
       stock: 29,
     },
   ];
+
+  const showUserData = () => {
+    const formattedUserData = `
+    <b>Name:</b> ${userData[0].name}<br>
+    <b>Nickname:</b> ${userData[0].nickName}<br>
+    <b>Lastname:</b> ${userData[0].lastname}<br>
+    <b>Email:</b> ${userData[0].email}<br>
+    <b>Description:</b> ${userData[0].description}<br>
+    <b>Country:</b> ${userData[0].country}<br>
+    <b>Phone:</b> ${userData[0].phone}
+  `;
+  
+    MySwal.fire({
+      title: 'User Data',
+      html: formattedUserData,
+      icon: 'info',
+      confirmButtonText: 'Close',
+      background : "#1d1d1d",
+      color: "white",
+    });
+  };
 
 
   if(loading) {
@@ -163,6 +185,11 @@ export default function UserProfile() {
               <img src={userData[0].image ? userData[0].image : defaultPhoto}
                 alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
+            </div>
+            <div>
+              <button onClick={showUserData}>
+                SHOW DETAIL
+              </button>
             </div>
             <div class="ms-3 textsUP" >
               <h5>{userData[0].nickName ? userData[0].nickName : userData[0].name}</h5>
