@@ -10,8 +10,7 @@ import Tabs from 'react-bootstrap/esm/Tabs';
 import { useDispatch } from 'react-redux';
 import { getUsersAct } from '../../Redux/userActions';
 import { clearUsers } from '../../Redux/Reducers/userSlice';
-import GenreStatisticsComponent from '../Statistics/GenreStatistics';
-
+import { StatisticsViews } from '../Statistics/StatisticsViews';
 
 
 export const DashBoard = () => {
@@ -57,7 +56,7 @@ export const DashBoard = () => {
               <Tab.Pane eventKey="third">Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fourth" >Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fifth">Second tab content</Tab.Pane>
-              <Tab.Pane eventKey="sixth"><GenreStatisticsComponent /></Tab.Pane>
+              <Tab.Pane eventKey="sixth"><StatisticsViews /></Tab.Pane>
               
             </Tab.Content>
           </Col>

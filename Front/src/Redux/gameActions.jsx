@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getAllGame, getGameById, getGameByName, filterGames } from './Reducers/gameSlice';
 import { getAllGenres, setGenreStatistics } from './Reducers/genreSlice';
-
+import { getAllSupportedPlatform, setSupportedPlatformStatistics } from './Reducers/supportedPlatformSlice';
 
 export const getGame = () => async  (dispatch) =>{
   try {
@@ -53,6 +53,24 @@ export const getGenreStatistics = () => async (dispatch) => {
   try {
     const response = await axios("/genre/statistics");
     return dispatch(setGenreStatistics(response.data));
+  } catch (error) {
+    console.error("Request failed:", error);
+  }
+}
+
+export const getSupportedPlatforms = () => async (dispatch) => {
+  try {
+    const response = await axios("/supportedPlatform");
+    return dispatch(getAllSupportedPlatform(response.data))
+  } catch (error) {
+    console.error("Request failed:", error);
+  }
+}
+
+export const getSupportedPlatformStatistics = () => async (dispatch) => {
+  try {
+    const response = await axios("/supportedPlatform/statistics");
+    return dispatch(setSupportedPlatformStatistics(response.data));
   } catch (error) {
     console.error("Request failed:", error);
   }

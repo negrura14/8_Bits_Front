@@ -12,11 +12,14 @@ const GenreStatisticsComponent = () => {
         dispatch(getGenreStatistics());
       }, [dispatch]);
 
-const chartData = genreStatistics.map((entry) => ({
+const sortedGenreStatistics = [...genreStatistics].sort((a, b) => parseInt(a.count, 10) - parseInt(b.count, 10));
+
+const chartData = sortedGenreStatistics.map((entry) => ({
     x: entry.name,
     y: parseInt(entry.count, 10), // Convierte 'count' a número
     label: `${entry.name}: ${entry.count}`,
 }));
+
 
 return (
     <div className="stadistic">
@@ -29,6 +32,7 @@ return (
                     colorScale={[ "#36A2EB","#943E41", "#178654", "#ba1f65", "#9216BA", "#8CBA32"]}
                     style={{data:{fillOpacity: 1, stroke: "#ffffff", strokeWidth: 0.5}}}
                     labelComponent={<VictoryTooltip />}
+
                 />
             </div>
             <div className="col-md-6 col-sm-12">
@@ -47,4 +51,4 @@ return (
 
    };
 
-export default GenreStatisticsComponent;
+export {GenreStatisticsComponent};
