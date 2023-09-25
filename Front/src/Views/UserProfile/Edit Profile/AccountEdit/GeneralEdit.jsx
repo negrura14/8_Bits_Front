@@ -36,12 +36,7 @@ export default function GeneralEdit({currentUser,allUsers,userProfile}) {
     function handleChange(e) {
         e.preventDefault();
 
-        if(e.target.name === "currentPassword") {
-            setInput({
-                ...input,
-                currentPassword: e.target.value
-            })
-        } else {
+        
             setInput({
             ...input,
             [e.target.name]: e.target.value,
@@ -56,7 +51,7 @@ export default function GeneralEdit({currentUser,allUsers,userProfile}) {
                 allUsers
             )
             );
-        }
+        
 
     }
 
@@ -80,18 +75,50 @@ export default function GeneralEdit({currentUser,allUsers,userProfile}) {
 
         const updatedFields = {};
 
-        if (input.name !== currentUser.name && !errors.name && input.name !== "") {
+          if (errors.name) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "name" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.name !== currentUser.name && input.name !== ""){
             updatedFields.name = input.name;
-          }
+        }
           
-        
-          if (input.lastname !== currentUser.lastname && !errors.lastname && input.lastname !== "") {
+          if (errors.lastname) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "lastname" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.lastname !== currentUser.lastname && input.lastname !== ""){
             updatedFields.lastname = input.lastname;
-          }
-        
-          if (input.email !== currentUser.email && !errors.email && input.email !== "") {
+        }
+
+        if (errors.email) {
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You are triying to update the field "email" with an error, please check it and try again</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+            return;
+        } else if (input.email !== currentUser.email && input.email !== ""){
             updatedFields.email = input.email;
-          }
+        }
 
         axios
         .put(`/user/update/${currentUser.id}`, updatedFields) // Corrección en la URL

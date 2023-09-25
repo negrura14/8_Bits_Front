@@ -29,7 +29,7 @@ export default function UserProfile() {
   const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
 
   useEffect(() => {
-      console.log(user.email)
+      //console.log(user.email)
       dispatch(getUsersAct());
       dispatch(getUserProfileAction(user.email))
       .then (() =>{

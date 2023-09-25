@@ -19,7 +19,7 @@ export default function DropdownProfile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(user.email);
+    //console.log(user.email);
     dispatch(getUsersAct());
     dispatch(getUserProfileAction(user.email))
       .then(() => {

@@ -100,22 +100,27 @@ export default function PasswordEdit({currentUser,allUsers}) {
 
     const sumbitHandler = async (e) => {
         e.preventDefault();
-        MySwal.fire({
-            title: 'Updating data',
-            text: 'Please wait...',
-            allowOutsideClick: false, // Evita que el usuario cierre la alerta haciendo clic fuera
-            onBeforeOpen: () => {
-              Swal.showLoading(); // Muestra un spinner de carga en la alerta
-            },
-          });
-
-        setIsLoading(true);
         
         
         if (errors.password  || errors.confirmPassword ) {
-            alert("Error in the fields");
+            MySwal.fire({
+                title: <strong>ERROR</strong>,
+                html: <i>Passwords do not match, try again</i>,
+                icon: 'error',
+                background : "#1d1d1d",
+            });
             return;
         } else {
+            MySwal.fire({
+                title: 'Updating data',
+                text: 'Please wait...',
+                allowOutsideClick: false, // Evita que el usuario cierre la alerta haciendo clic fuera
+                onBeforeOpen: () => {
+                  Swal.showLoading(); // Muestra un spinner de carga en la alerta
+                },
+              });
+    
+            setIsLoading(true);
             bcrypt.hash(input.password,10,(err,hashedPassword) => {
                 if(err){
                     alert("Error hashing password", err)
