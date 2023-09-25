@@ -86,7 +86,15 @@ export default function Login() {
     if(bannedUser === true){
       dispatch(userLogoutAct());
       document.cookie = 'miCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      window.alert("Banned User")
+      MySwal.fire({
+        title: <strong>WARNING</strong>,
+        html: <i>Banned user</i>,
+        icon: 'warning',     
+        background : "#1d1d1d",
+        customClass:{
+          container: 'custom-alert-container',
+        }
+      });
       navigate('/home')
     } else{
       if (!noErrors) {
