@@ -7,9 +7,7 @@ export const PaymentStatisticsComponent = () => {
     const dispatch = useDispatch();
     const paymentStatistics = useSelector((state) => state.payments.paymentStatistics)
 
-    useEffect(() => {
-        dispatch(getAllPayments())
-    }), [];
+
 
     const columns = [
         {

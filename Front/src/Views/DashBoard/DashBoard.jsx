@@ -1,4 +1,4 @@
-import React, { useEffect, } from 'react'
+import React, { useEffect } from 'react'
 import './DashBoard.css';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
@@ -13,19 +13,17 @@ import { clearUsers } from '../../Redux/Reducers/userSlice';
 import { StatisticsViews } from '../Statistics/StatisticsViews';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-
-export const DashBoard = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user.userState);
-  const navigate = useNavigate();
 import { PaymentStatisticsComponent } from '../Statistics/PaymentStatistics';
+import { getAllPayments } from '../../Redux/paymentsActions';
 
 
 export const DashBoard = () => {
+  const { user } = useSelector((state) => state.user.userState);
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   
   useEffect(() => {
+    dispatch(getAllPayments());
     if(user.user.admin === false) {
       navigate('/home');
     }
