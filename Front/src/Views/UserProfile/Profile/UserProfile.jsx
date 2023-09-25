@@ -185,10 +185,9 @@ export default function UserProfile() {
               <img src={userData[0].image ? userData[0].image : defaultPhoto}
                 alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
-            </div>
-            <div>
-              <button onClick={showUserData}>
-                SHOW DETAIL
+
+               <button className="btn btn-secondary bg-transparent showDetail" onClick={showUserData}>
+                Show Detail
               </button>
             </div>
             <div class="ms-3 textsUP" >
