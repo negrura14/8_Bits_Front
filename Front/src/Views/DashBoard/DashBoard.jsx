@@ -19,6 +19,12 @@ export const DashBoard = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user.userState);
   const navigate = useNavigate();
+import { PaymentStatisticsComponent } from '../Statistics/PaymentStatistics';
+
+
+export const DashBoard = () => {
+  const dispatch = useDispatch()
+  
   useEffect(() => {
     if(user.user.admin === false) {
       navigate('/home');
@@ -60,7 +66,7 @@ export const DashBoard = () => {
               
               <Tab.Pane eventKey="first">{<UpdateProduct/>}</Tab.Pane>
               <Tab.Pane eventKey="second">{<UserDashboard/>}</Tab.Pane>
-              <Tab.Pane eventKey="third">Second tab content</Tab.Pane>
+              <Tab.Pane eventKey="third"><PaymentStatisticsComponent /></Tab.Pane>
               <Tab.Pane eventKey="fourth" >Second tab content</Tab.Pane>
               <Tab.Pane eventKey="fifth">Second tab content</Tab.Pane>
               <Tab.Pane eventKey="sixth"><StatisticsViews /></Tab.Pane>
