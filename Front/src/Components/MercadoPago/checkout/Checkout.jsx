@@ -99,10 +99,13 @@ const handleCheckoutClick = async () => {
       
       setShowPayButton(true)
       
-      console.log(orderId.init_point);
+      console.log('Orden de compra creada:', orderId);
 
-      if(orderId.init_point){
-        window.location.href = orderId.init_point;
+      const initPointResponse = await fetch(`/mercadopago/${orderId.id}`)
+      const initData = initPointResponse.data;
+
+      if(initData.init_point){
+        window.location.href = initData.init_point;
       } else {
         console.error('No se pudo obtener el init_point de la respuesta.');
       }

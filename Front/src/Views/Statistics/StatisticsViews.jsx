@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PlatformStatisticsComponent } from "./PlatformStatistics";
-import { GenreStatisticsComponent } from "./genreStatistics";
+import { GenreStatisticsComponent } from "./GenreStatistics";
 
 export const StatisticsViews = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);
