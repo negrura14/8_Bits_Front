@@ -1,3 +1,12 @@
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+.disabledGame {
+    padding-top: 20px;
+    padding-right: 50px;
+}
+
 .fontUpdate {
     color: #fff;
     margin: 10px;
@@ -20,4 +29,20 @@
 .cajaEdit {
     margin: 10px 0px;
     padding: 10px 0px;
+}
+.platGenre {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+.dimension {
+    width: 50%;
+}
+.deletedElement {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+.colorSelect {
+    color: #fff;
 }
