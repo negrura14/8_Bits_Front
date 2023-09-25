@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './UpdateProduct.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getGame, getGenres } from '../../Redux/gameActions';
+import { getGame, getGenres, getSupportedPlatforms } from '../../Redux/gameActions';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
@@ -11,12 +11,14 @@ export const UpdateProduct = () => {
   const [selectedGame, setSelectedGame] = useState(null); // Estado para el juego seleccionado
   const { game } = useSelector(state => state.game);
   const { genre } = useSelector(state => state.genre);
+  const { supportedPlatform } = useSelector(state => state.supportedPlatform);
   const dispatch = useDispatch();
-  // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", genre);
+  // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", supportedPlatform);
 
   useEffect(() => {
     dispatch(getGame());
     dispatch(getGenres());
+    dispatch(getSupportedPlatforms());
   }, [dispatch]);
 
   const onSearchInputChange = (e) => {
@@ -63,11 +65,11 @@ export const UpdateProduct = () => {
       }
     }else
     if(element === 'platform') {
-      const selectedPlatf = platform.find(p => p.name === platGenre);
+      const selectedPlatf = supportedPlatform.find(p => p.name === platGenre);
       if (!selectedGame.SupportedPlatforms.some((platf) => platf.name === selectedPlatf.name)) {
         setSelectedGame((prevSelectedGame) => ({
           ...prevSelectedGame,
-          Genres: [...prevSelectedGame.SupportedPlatforms, selectedPlatf],
+          SupportedPlatforms: [...prevSelectedGame.SupportedPlatforms, selectedPlatf],
         }));
       }
     }
@@ -84,7 +86,7 @@ export const UpdateProduct = () => {
               type="switch"
               id="custom-switch"
               label="Disable Game"
-              checked={false}
+              checked={true}
               onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
           />
         </Form>
@@ -105,7 +107,7 @@ export const UpdateProduct = () => {
           const selectedGame = filteredGames.find(game => game.name === selectedGameName);
           setSelectedGame(selectedGame);
         }}
-        multiple
+        size="4"
       >
         <option value="">Selecciona un juego</option>
         {filteredGames.map((game, index) => (
@@ -158,14 +160,14 @@ export const UpdateProduct = () => {
                 <h4>Agrega o elimina una plataforma</h4>
                 <div>
                   <select
-                    className=""
+                    className="dimension"
                     value=""
-                    onChange={(e) => addSelectGenrePlat('platfom', e.target.value)}
+                    onChange={(e) => addSelectGenrePlat('platform', e.target.value)}
                   >
                     <option value="">Select Platform</option>
-                    {genre.map((genre) => (
-                      <option className='colorSelect' key={genre.id} value={genre.name}>
-                        {genre.name}
+                    {supportedPlatform.map((platf) => (
+                      <option className='colorSelect' key={platf.id} value={platf.name}>
+                        {platf.name}
                       </option>
                     ))}
                   </select>
@@ -191,7 +193,7 @@ export const UpdateProduct = () => {
               <h4>Agrega o elimina un genero</h4>
                 <div>
                   <select
-                    className=""
+                    className="dimension"
                     value={selectedGame.Genres.name}
                     onChange={(e) => addSelectGenrePlat('genre', e.target.value)}
                   >
