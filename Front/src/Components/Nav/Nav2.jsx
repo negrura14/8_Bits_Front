@@ -25,7 +25,7 @@ function Nav2() {
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   const { userProfile } = useSelector((state) => state.user.userState);
   const [loading, setLoading] = useState(true);
-  console.log(Array.isArray(user), 'nav')
+  
   
   
 
@@ -39,7 +39,9 @@ function Nav2() {
         alert('Error', error);
         setLoading(false);
       })
-    }; 
+    } else {
+      setLoading(false);
+    } 
   }, [dispatch, user]);
 
   const userData = user;
