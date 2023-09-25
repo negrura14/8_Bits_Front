@@ -24,7 +24,7 @@ function Nav2() {
   const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
   const { userProfile } = useSelector((state) => state.user.userState);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   console.log(Array.isArray(user), 'nav')
   
   
