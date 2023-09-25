@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     payments: [],
     payment: {},
+    paymentByGame:[],
     paymentStatistics: [],
 }
 
@@ -21,10 +22,13 @@ const paymentsSlice = createSlice ({
         },
         getPaymentStatistics: (state, action) => {
             state.paymentStatistics = action.payload;
+        },
+        getPaymentByGameId: (state, action)=>{
+            state.paymentByGame = action.payload;
         }
     }
 });
 
-export const { getPayments, getPaymentID, clearPaymentDetailAdmin, getPaymentStatistics} = paymentsSlice.actions;
+export const { getPayments, getPaymentID, clearPaymentDetailAdmin, getPaymentStatistics, getPaymentByGameId} = paymentsSlice.actions;
 
 export default paymentsSlice.reducer;
