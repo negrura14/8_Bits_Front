@@ -12,6 +12,8 @@
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.11.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mercadopago/sdk-react": "^0.0.14",
     "@reduxjs/toolkit": "^1.9.5",
     "@sweetalert2/theme-dark": "^5.0.15",
@@ -20,6 +22,7 @@
     "bootstrap": "^5.3.1",
     "chart.js": "^4.4.0",
     "country-state-city": "^3.2.1",
+    "font-awesome": "^4.7.0",
     "gapi-script": "^1.2.0",
     "react": "^18.2.0",
     "react-admin": "^4.13.2",
