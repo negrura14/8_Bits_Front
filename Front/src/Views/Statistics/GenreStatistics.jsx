@@ -19,20 +19,26 @@ const chartData = genreStatistics.map((entry) => ({
 }));
 
 return (
-    <div>
-        <h2>Game Genres</h2>
-        <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+    <div className="stadistic">
+        
+        <h2 className="m-3">Game Genres</h2>
+        <div className="mb-5 row" style={{ display: "flex" }}>
+            <div className="col-md-6 col-sm-12">
                 <VictoryPie
                     data={chartData}
-                    colorScale={["#FF6384", "#36A2EB", "#FFCE56", "#E7E9ED", "#8E5EA2"]}
+                    colorScale={[ "#36A2EB","#943E41", "#178654", "#ba1f65", "#9216BA", "#8CBA32"]}
+                    style={{data:{fillOpacity: 1, stroke: "#ffffff", strokeWidth: 0.5}}}
                     labelComponent={<VictoryTooltip />}
                 />
             </div>
-            <div style={{ width: "50%" }}>
+            <div className="col-md-6 col-sm-12">
                 <VictoryLegend
-                    data={chartData.map((entry) => ({ name: entry.x }))}
-                    colorScale={["#FF6384", "#36A2EB", "#FFCE56", "#E7E9ED", "#8E5EA2"]}
+                title="Legend"
+                
+  centerTitle
+  style={{title: {fontSize: 30, fill: "white", margin:"20px" }}}
+                    data={chartData.map((entry) => ({ name: entry.x, labels: { fill: "white" }   } ))}
+                    colorScale={[ "#36A2EB","#943E41", "#178654", "#ba1f65", "#9216BA", "#8CBA32"]}
                 />
             </div>
         </div>

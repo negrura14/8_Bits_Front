@@ -10,6 +10,7 @@ import { ROUTES } from "../../Helpers/RoutesPath";
 import { setItems } from "../../Redux/Reducers/checkoutSlice";
 import { NavLink, useNavigate } from "react-router-dom";
 
+
 export const ShopCart = () => {
   const checkoutUrl = ROUTES.CHECKOUT;
   const dispatch = useDispatch();
@@ -66,8 +67,8 @@ export const ShopCart = () => {
   };
 
   const AddOrSubClick = (itemId, addSub) => {
-    const cart =
-      JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
+    const cart = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
+      dispatch(setItems(cart));
 
     if (addSub === "add") {
       for (const element of cartRedux) {

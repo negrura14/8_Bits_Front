@@ -11,20 +11,16 @@
     color: #fff;
     margin: 10px;
 }
-.space {
-    margin: 10px;
-    border: solid 1px ;
-    padding: 5px;
-    width: 90%;
-}
 .checkBoxs {
     margin: 10px;
     padding: 5px;
 }
 .imageTam {
-    margin: 10px;
-    padding: 5px;
-    width: 30%;
+    padding: 5%;
+}
+.imageTam img{
+    
+    box-shadow: #fff 5px 5px 5px;
 }
 .cajaEdit {
     margin: 10px 0px;

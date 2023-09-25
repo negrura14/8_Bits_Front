@@ -1,41 +1,58 @@
 
 import React, { useEffect, useState } from "react";
+import axios from 'axios'
 import classnames from 'classnames'
 import { Context } from "../ContextProvider";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import './Checkout.css'
+
+
 
 const Checkout = ({ onClick }) => {
   const [isVisible, setIsVisible] = React.useState(true);
+  const [showPayButton, setShowPayButton] = useState(false);
   const { preferenceId, isLoading: disabled, orderData, setOrderData } = React.useContext(Context);
-  const { user } = useSelector((state) => state.user.userState);
+  const { user, auth } = useSelector((state) => state.user.userState);
   const userData = user;
+  const [orderId, setOrderId] = useState(null);
   const [subtotal, setSubtotal] = useState(0);
   const [localStorageCart, setLocalStorageCart] = useState([]);
   const shoppingCartClass = classnames('shopping-cart dark', {
     'shopping-cart--hidden': !isVisible,
   });
   
+  const groupItemsById = (items) => {
+    const groupedItems = {};
+    items.forEach((item) => {
+      if (!groupedItems[item.id]) {
+        groupedItems[item.id] = { ...item };
+        groupedItems[item.id].cant = 0;
+      }
+      groupedItems[item.id].cant += 1;
+    });
+    return Object.values(groupedItems);
+  };
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem(`cart.${userData.user.id}`)) || [];
-    setLocalStorageCart(cartData);
+    const groupedCartData = groupItemsById(cartData);
+    setLocalStorageCart(groupedCartData);
   }, [userData.user.id]);
+
+
+
 
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId]);
 
-  const handleCheckoutClick = () => {
-    window.location.href = 'https://sandbox.mercadopago.com.co/checkout/v1/redirect?pref_id=1476672193-aaefb57f-259b-4074-af04-567c227c3dd4';
-  }
-
+  
   
   
   useEffect(() => {
     const newSubtotal = localStorageCart.reduce((total, item) => {
       const price = parseFloat(item.price);
-      const cant = parseInt(item.cant, 10); 
+      const cant = 1; 
     
       if (!isNaN(price) && !isNaN(cant)) {
         return total + price * cant;
@@ -48,6 +65,72 @@ const Checkout = ({ onClick }) => {
     setSubtotal(newSubtotal); 
     
   }, [localStorageCart]);
+  
+
+
+const handleCheckoutClick = async () => {
+  try {
+    // Obtén la cantidad total de productos en el carrito
+    const totalQuantity = localStorageCart.reduce((total, item) => total + item.cant, 0);
+
+    const userId = user.user.id;
+
+    const cartForServer = localStorageCart.map((item)=>({
+      idGame: item.id,
+      unit_price: item.price,
+      title: item.name,
+
+      
+    }))
+    
+
+    // Realiza una solicitud POST al servidor para crear la orden de compra
+    const response = await axios.post('/mercadopago', {
+      quantity: totalQuantity,
+      idUser: userId,
+      cart: cartForServer,
+      currency_id: 'USD',
+    });
+    
+
+    if (response.status === 201) {
+      const orderId = response.data;
+      setOrderId(orderId);
+      
+      setShowPayButton(true)
+      
+      console.log(orderId.init_point);
+
+      if(orderId.init_point){
+        window.location.href = orderId.init_point;
+      } else {
+        console.error('No se pudo obtener el init_point de la respuesta.');
+      }
+    } else {
+      console.error('Respuesta no exitosa:', response.status);
+    }
+
+  } catch (error) {
+    console.error('Error al crear la orden de compra:', error);
+  }
+};
+
+const handlePayClick = async () => {
+  try {
+    const response = await axios.get(`/mercadopago/init_point/${orderId.id}`);
+    const data = response.data;
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      console.error('No se pudo obtener el init_point de la respuesta.');
+      // Aquí puedes manejar el caso en el que no se recibe el init_point de la respuesta.
+    }
+  } catch (error) {
+    console.error('Error al obtener init_point:', error);
+  }
+};
+
+
 
 
   return (
@@ -106,6 +189,14 @@ const Checkout = ({ onClick }) => {
                 >
                   Checkout
                 </button>
+                {showPayButton && (
+                  <button className="btn btn-success btn-lg btn-block"
+                  onClick={handlePayClick}
+                  id="pay-btn"
+                  >
+                    Pay
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -116,6 +207,13 @@ const Checkout = ({ onClick }) => {
 };
 
 export default Checkout;
+
+
+
+
+
+
+
 
 
 
