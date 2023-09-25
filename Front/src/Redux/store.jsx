@@ -11,6 +11,7 @@ import user from './Reducers/userSlice'
 import checkoutSlice from './Reducers/checkoutSlice';
 import paymentsSlice from './Reducers/paymentsSlice';
 import userProfile from './Reducers/userProfile';
+import supportedPlatform from './Reducers/supportedPlatformSlice';
 
 const persistConfig = {
     key: 'root',
@@ -34,7 +35,7 @@ export default configureStore({
         checkout: checkoutSlice,
         payments: paymentsSlice,
         userProfile: userProfile,
-        
+        supportedPlatform: supportedPlatform,
 
     },
     middleware: [thunk]
