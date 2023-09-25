@@ -94,13 +94,11 @@ export const UpdateProduct = () => {
         value={searchInput}
         onChange={onSearchInputChange}
         placeholder="Buscar juegos..."
-        className="form-control bg-transparent text-white "
+        className='space'
       />
-      </div>
-      <div className='col-10 bg-transparent'>
-
+      
       <select
-        className="form-select bg-transparent text-white-50"
+        className='fontUpdate space'
         value={selectedGame ? selectedGame.name : ''}
         onChange={(e) => {
           const selectedGameName = e.target.value;
@@ -109,49 +107,32 @@ export const UpdateProduct = () => {
         }}
         multiple
       >
-        <option className='bg-transparent' value="">Selecciona un juego</option>
+        <option value="">Selecciona un juego</option>
         {filteredGames.map((game, index) => (
-          <option className='bg-transparent' key={index} value={game.name}>
+          <option key={index} value={game.name}>
             {game.name}
           </option>
         ))}
       </select>
-      </div>
-      </div>
-
-      
-      
 
       {selectedGame && (
         <div>
-          <h2 className='mb-3' >Editar Juego:</h2>
-          <form onSubmit={(event) => sumbitHandler(event)} className=''>
-          <div className='row d-flex justify-content-center'>
-
-          <div className='col-10 mb-3 mx-2'>
-
+          <h2 className='space'>Editar Juego: {selectedGame.name}</h2>
+          <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
             <input
-              className="form-control bg-transparent text-white"
+              className='space'
               type="text"
               value={selectedGame.name}
               onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
               placeholder="Nombre del juego"
             />
-          </div>
-
-          <div className='col-10 mb-3 mx-2'>
             <input
-              className="form-control bg-transparent text-white"
+              className='space '
               type="text"
               value={selectedGame.description}
               onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
               placeholder="Descripción del juego"
             />
-
-          </div>
-
-          <div className='col-10 mb-3 mx-2'>
-
             <input
               type="number"
               name="stock"
@@ -159,7 +140,7 @@ export const UpdateProduct = () => {
               onChange={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
               min="0"
               max="100"
-              className="form-control bg-transparent text-white"
+              className="space"
             />
             <input
               type="number"
@@ -240,15 +221,7 @@ export const UpdateProduct = () => {
             <div className='imageTam'>
               <img src={selectedGame.image}/>
             </div>
-              
-            </div>
-          </div>
-            <div>
-
             <button className='checkBoxs' type="sumbit">Guardar Cambios</button>
-            </div>
-          </div>
-          </div>
           </form>
         </div>
       )}
