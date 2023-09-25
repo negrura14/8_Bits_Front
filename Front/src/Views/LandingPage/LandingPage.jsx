@@ -348,12 +348,12 @@ const Landing = () => {
           <div className="">
             <ul className="nav">
               <li className="nav-item signin-active">
-                <a className="nav-link text-primary" onClick={handleBtnClick}>
+                <a className="nav-link text-white" onClick={handleBtnClick}>
                   Existing User
                 </a>
               </li>
               <li className="nav-item signup-inactive">
-                <a className="nav-link text-primary " onClick={handleBtnClick}>
+                <a className="nav-link text-white " onClick={handleBtnClick}>
                   New User
                 </a>
               </li>
@@ -431,9 +431,9 @@ const Landing = () => {
                 </Form.Group>
               </div>
 
-              <div className="row justify-content-center">
-                <div className="mb-2 col-md-3 col-sm-5">
-                  <Button className=" ms-2" variant="primary" type="submit">
+              <div className="row d-flex justify-content-center">
+                <div className="mb-2 col-md-3 col-sm-5 btn">
+                  <Button className="" variant="primary" type="submit">
                     Submit
                   </Button>
                 </div>
@@ -466,9 +466,9 @@ const Landing = () => {
                       console.log(err);
                     }}
                   >
-                    <a type="button" className="icon">
-                      <i className="fa-brands fa-google p-3 text-primary"></i>
-                    </a>
+                    <button type="button" className="btn btn-primary bg-transparent mt-3">
+                      <i className="fa-brands fa-google px-3 text-primary"></i>
+                    </button>
                   </LoginSocialGoogle>
                 </div>
                 {/* <p className="signup bGuest">

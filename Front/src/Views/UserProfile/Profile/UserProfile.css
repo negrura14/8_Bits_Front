@@ -5,6 +5,17 @@
     color: white;
 }
 
+.showDetail{
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+}
+
+.showDetail:hover{
+    color:#6dd8a8;
+    transition: all 0.3s ease-in-out;
+
+}
+
 .cardUP{
     background-color: rgba(0, 0, 0, 0.327);
 }
