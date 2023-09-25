@@ -1,4 +1,14 @@
+import axios from "axios";
+import { getPaymentStatistics } from "./Reducers/paymentsSlice";
 
+export const getAllPayments = () => async (dispatch) => {
+    try {
+        const response = await axios("/payment");
+        return dispatch(getPaymentStatistics(response.data))
+    } catch (error) {
+        console.error("Request failed:", error);
+    }
+}
 
 // export const getGame = () => async  (dispatch) =>{
 //     try {
