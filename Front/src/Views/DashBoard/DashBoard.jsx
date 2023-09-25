@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, } from 'react'
 import './DashBoard.css';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
@@ -11,16 +11,23 @@ import { useDispatch } from 'react-redux';
 import { getUsersAct } from '../../Redux/userActions';
 import { clearUsers } from '../../Redux/Reducers/userSlice';
 import { StatisticsViews } from '../Statistics/StatisticsViews';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 export const DashBoard = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user.userState);
+  const navigate = useNavigate();
   useEffect(() => {
+    if(user.user.admin === false) {
+      navigate('/home');
+    }
     dispatch(getUsersAct());
       return () => {
       dispatch(clearUsers());
     };
-  }, [dispatch]);
+  }, [dispatch, navigate, user]);
 
   return (
     <div className='mt-3'>
