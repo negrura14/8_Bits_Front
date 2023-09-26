@@ -68,31 +68,41 @@ export default function BackgroundEdit ({currentUser}) {
     }
 
     return(
-        <div>
+        <div className="row justify-content-center">
+        <div className="text-primary px-4 m-5 login-box col-11">
 
-            <form onSubmit={handleSumbit}>
-                <h1>Select your background image:</h1>
+        <form className="container" onSubmit={handleSumbit}>
+                <h2 className="text-white p-5 mb-3">Select your background image:</h2>
+                <div className="gallery row d-flex justify-content-center">
+
                 {predefinedBackgrounds.map((background,index) => (
-                    <Col xs={6} md={3} key={index}>
+                    <div className="col-auto p-1 col-xl-3" key={index} >
                         <Image 
                             src={background}
-                            thumbnail
+                            className="avatar-thumbnail"
                             style={{ maxWidth: '280px', maxHeight: '280px' }}
                             onClick={() => handleSelectBack(background)}
                         />
-                    </Col>
+                    </div>
                 ))}
+                </div>
                 {selectedBackground && 
-                    <div>
-                        <h3>Selected background:</h3>
-                        <Image src={selectedBackground} thumbnail/>
+                    <div className="row">
+                        <h3 className="mt-3">Selected background:</h3>
+                        <Image className="col-6" src={selectedBackground}/>
                     </div>
                 }
 
+                <div className=" pt-5">
                 <button type="sumbit" disabled={true}>
                     SAVE BACKGROUND
                 </button>
+            </div>
+
+                
             </form>
+            
+        </div>
 
         </div>
     )
