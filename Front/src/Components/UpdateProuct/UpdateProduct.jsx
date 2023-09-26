@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenres, getSupportedPlatforms } from '../../Redux/gameActions';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import UploadWidget from "../../Helpers/UploadWidget";
+
 
 
 export const UpdateProduct = () => {
@@ -13,13 +15,21 @@ export const UpdateProduct = () => {
   const { genre } = useSelector(state => state.genre);
   const { supportedPlatform } = useSelector(state => state.supportedPlatform);
   const dispatch = useDispatch();
-  // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", supportedPlatform);
+  // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", game[8]);
 
   useEffect(() => {
     dispatch(getGame());
     dispatch(getGenres());
     dispatch(getSupportedPlatforms());
   }, [dispatch]);
+
+  const [selectedImage, setSelectedImage] = useState("");
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+
+  function onImageUpload(imageUrl) {
+    setSelectedGame({ ...selectedGame, image: imageUrl })
+    setSelectedImage(imageUrl);
+  }
 
   const onSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -38,6 +48,8 @@ export const UpdateProduct = () => {
     alert("LOS CAMBIOS SE REALIZARON CON EXITO")
     setSelectedGame(null);
     setSearchInput('');
+    dispatch(getGame());
+
   }
 
   const deletedPlatform = (element, platGenre) => {
@@ -113,15 +125,28 @@ export const UpdateProduct = () => {
           <h2 className='my-3'>Editar Juego:</h2>
           <div className='row d-flex justify-content-center mb-3'>
 <div className='col-6'>
-
+            <UploadWidget
+              onImageUpload={onImageUpload}
+              setIsUploadingImage={setIsUploadingImage}
+              selectedImage={selectedGame.image}
+              setSelectedImage={setSelectedImage}
+              isUploadingImage={isUploadingImage}
+            />
               <img src={selectedGame.image}/>
               <Form className='disabledGame'>
           <Form.Check // prettier-ignore
               type="switch"
               id="custom-switch"
               label="Disable Game"
-              checked={true}
-              onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
+              checked={selectedGame.disable}
+              onChange={() => {
+                const clic = true;
+                if(selectedGame.disable === false){
+                  setSelectedGame({ ...selectedGame, disable: true })
+                }else{
+                  setSelectedGame({ ...selectedGame, disable: false })
+                }
+              }}
           />
         </Form>
 </div>
