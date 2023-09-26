@@ -181,7 +181,7 @@ function Nav2() {
             <Dropdown>
 
               <Dropdown.Toggle className='avatarButton'  id="dropdown-basic">
-              <div ><img  className='avatarI' src={userData.user.image ? userData.user.image : defaultPhoto}></img></div>
+              <div ><img  className='avatarI' src={userProfile[0].image ? userProfile[0].image : defaultPhoto}></img></div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
