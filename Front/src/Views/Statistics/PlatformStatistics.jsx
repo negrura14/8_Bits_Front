@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSupportedPlatformStatistics, getSupportedPlatforms } from "../../Redux/gameActions";
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTooltip } from "victory";
@@ -6,10 +6,12 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryTooltip } from "victory";
 export const PlatformStatisticsComponent = () => {
     const dispatch = useDispatch();
     const platformStatisticsData = useSelector((state) => state.supportedPlatform.supportedPlatformStatistics);
-    
+    const [animate, setAnimate] = useState(true)
+
     useEffect(() => {
       dispatch(getSupportedPlatforms());
       dispatch(getSupportedPlatformStatistics());
+      setAnimate(true);
     }, []);
   
     if (!platformStatisticsData) {
@@ -28,7 +30,7 @@ export const PlatformStatisticsComponent = () => {
           domainPadding={20}
           width={500}
           height={250}
-          animate={{ duration: 1000 }} // Agrega animación a las barras
+          animate={animate ? { duration: 1000 } : false} // Agrega animación a las barras
         >
           <VictoryAxis
 
