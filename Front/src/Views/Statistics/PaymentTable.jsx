@@ -1,4 +1,5 @@
 import { useTable } from "react-table";
+import "./PaymentTable.css"
 
 export const PaymentTable = ({ columns, data }) => {
   const {
@@ -13,8 +14,8 @@ export const PaymentTable = ({ columns, data }) => {
   });
 
   return (
-    <div>
-      <table {...getTableProps()} className="table">
+    <div className="table-responsive p-5">
+      <table {...getTableProps()} className="table table-dark table-striped custom-table ">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
