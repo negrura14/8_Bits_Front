@@ -14,6 +14,7 @@ import { ROUTES } from "../../../Helpers/RoutesPath";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import LoadingPage from "../../../Components/Loading/Loading";
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 
 export default function UserProfile() {
@@ -89,6 +90,32 @@ export default function UserProfile() {
       stock: 29,
     },
   ];
+  
+  //-------------BARRA DE PROGRESO---------------------------------------------------------------------------//
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    // Aquí calculamos el progreso basado en los datos de userData[0]
+    if (userData && userData.length > 0) {
+      const user = userData[0];
+      const fieldsToIgnore = ["id", "disable", "admin"];
+
+      // Filtrar los campos que no deben ser ignorados y no son nulos
+      const validFields = Object.keys(user).filter(
+        (key) => !fieldsToIgnore.includes(key) && user[key] !== null
+      );
+
+      // Calcular el progreso como un porcentaje de campos válidos en comparación con todos los campos posibles
+      const calculatedProgress = (validFields.length / (Object.keys(user).length - fieldsToIgnore.length)) * 100;
+      
+      setProgress(calculatedProgress);
+    }
+  }, [userData]);
+  //-------------BARRA DE PROGRESO---------------------------------------------------------------------------//
+
+
+
+  //-------funcionalidad para mostrar toda la data del usuario------------//
 
   const showUserData = () => {
     const formattedUserData = `
@@ -110,7 +137,7 @@ export default function UserProfile() {
       color: "white",
     });
   };
-
+  //-------fin funcionalidad para mostrar toda la data del usuario------------//
 
   if(loading) {
     return(
@@ -177,6 +204,7 @@ export default function UserProfile() {
 
       
   <div class="container py-5 h-100">
+  <ProgressBar now={progress} label={`${progress.toFixed(2)}%`} />
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-12 col-xl-10">
         <div class="cardUP">

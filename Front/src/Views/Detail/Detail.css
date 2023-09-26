@@ -207,8 +207,13 @@
       transition: 0.3s;
       cursor: pointer;  
     }
+    .star:hover{
+      color: gold;
+      
+    }
   .marked{
-    color: rgb(69, 214, 94);
+    color: gold;
+    cursor: pointer;
   }
     
   .review{

@@ -2,21 +2,31 @@ import React, {useEffect, useState} from "react";
 import {useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; // ver en la clase de Redux Toolkit los cambios
 import { getGamesId } from "../../Redux/gameActions";
+import { paymentByGameId } from "../../Redux/paymentsActions";
 import { clearDetail } from '../../Redux/Reducers/gameSlice'
 import { UpdateList, cartUpdate} from '../../Redux/Reducers/cartSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import Loading from '../../Components/Loading/Loading';
 import './Detail.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import axios from "axios";
+
 
 
 export default function Detail() {
     const {id} = useParams();
     const dispatch = useDispatch()
-    const detail = useSelector(state => state.game.detail)
-    const { user, auth } = useSelector((state) => state.user.userState)
+    const detail = useSelector(state => state.game.detail);
+    const payment = useSelector(state=>state.payments.paymentByGame);
+    const { user, auth } = useSelector((state) => state.user.userState);
     const userData = user;
     const navigate = useNavigate();
+
+    const [rating, setRating] = useState(0);
+    const [reviewsText, setReviewsText] = useState('');
+    const [isFormValid, setIsFormValid] = useState(false);
 
 
     //--------------------sweet alert---------------------------//
@@ -37,7 +47,9 @@ export default function Detail() {
     //--------------------sweet alert---------------------------//
     
     useEffect(() =>{
-        dispatch(getGamesId(id))
+        dispatch(getGamesId(id));
+        dispatch(paymentByGameId(id));
+        
         
         return () => {
           dispatch(clearDetail()); // Llama a la acción para borrar el detalle
@@ -65,19 +77,63 @@ export default function Detail() {
         navigate('/login');
       }
   };
+ //-------------------------------Review---------------------------------
+let userId 
+const review = detail.Reviews;
 
-    
-//  let  stars = document.querySelectorAll('#star')
+// const prueba = review.find(obj=> obj.userId === user.user.id)
+// console.log(prueba, "pruebaaa");
 
-//   console.log(stars, "startsssss"); 
-//   const index = 2
-//   stars.forEach(function(star){
-//     console.log(index, "indezxxx");
-//     for(let i = 0; i < index; i++ ){
-//       stars[i].classList.add('marcado')
-//     }
-//   })
+console.log(review, "rererer");
+
+user.length == 0 ? userId : userId = user.user.id 
+console.log(userId);
+const validatePayment = payment.find(obj => obj.idUser === userId ); 
+
+
+
+
+ const handleRatingChange = (newRating) => {
+  setRating(newRating);
+  validateForm(newRating, reviewsText)
   
+};
+
+const handleCommentChange = (event) => {
+  const newReviewsText= event.target.value
+  setReviewsText(newReviewsText);
+  validateForm(rating, newReviewsText)
+};
+
+const validateForm = (newRating, newReviewsText) => {
+  setIsFormValid(newRating > 0 && newReviewsText.trim() !== '');
+};
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const data = {
+    rating:rating,
+    reviewsText: reviewsText,
+    userId: user.user.id,
+    gameId: detail.id
+  };
+
+  setRating(0);
+  setReviewsText('');
+  setIsFormValid(false);
+
+ try{
+  await axios.post("http://localhost:3001/reviews", data)
+ }catch(error){
+ console.log(JSON.stringify({error:error.message}))
+ }
+
+  // setRating(0);
+  // setReviewsText('');
+  // setIsFormValid(false);
+};
+      
     
     return(
         <div>
@@ -122,13 +178,14 @@ export default function Detail() {
             Stock: <span class="description">{detail.stock} Available</span> 
             </p>
             <button class="bookmarkBtn" onClick={handleChangeOnClic}>
-  <span class="IconContainerDB"> 
-  <i className="fa fa-shopping-cart"></i>
-  </span>
-  <p class="textDB">Add</p>
-</button>
+              <span class="IconContainerDB"> 
+              <i className="fa fa-shopping-cart"></i>
+                </span>
+              <p class="textDB">Add</p>
+            </button>
             
           </div>
+       
           <div>
           
             {detail.Reviews.map((review, index)=>(
@@ -143,8 +200,6 @@ export default function Detail() {
               <div className="rating">  
               
               {Array.from({length:5},(_,starIndex)=>(
-                console.log(starIndex, "starIndex"),
-                console.log(review.rating, "reviewrating"),
                 <i
                 key={starIndex}
                 className={`fas fa-star star ${starIndex < review.rating ? 'marked' : ''}`}
@@ -156,8 +211,41 @@ export default function Detail() {
              </div> 
 ))}
           </div>
+          {validatePayment ?( 
+            <div>
+      <h2>Leave a Review</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="rating"></label>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={rating >= star ? 'marked' : 'star'}
+              onClick={() => handleRatingChange(star)}
+            >
+              <FontAwesomeIcon icon={faStar} />
+            </span>
+          ))}
         </div>
+        <div>
+          <label htmlFor="reviewsText"></label>
+          <textarea
+            id="reviewsText"
+            value={reviewsText}
+            onChange={handleCommentChange}
+            rows={4}
+          />
+        </div>
+        <div>
+          <button type="submit" disabled={!isFormValid}>Submit</button>
+        </div>
+      </form>
+    </div>) : null}
+         
+        </div>
+        
       </div>
+      
     </section>
                 :  (<Loading/>) 
             }
