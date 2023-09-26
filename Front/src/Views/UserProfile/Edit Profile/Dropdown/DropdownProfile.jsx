@@ -6,6 +6,7 @@ import { getUserProfileAction } from "../../../../Redux/userProfileActions";
 import GeneralEdit from "../AccountEdit/GeneralEdit";
 import AboutEdit from "../AboutEdit/AboutEdit";
 import AvatarEdit from "../AvatarEdit/AvatarEdit";
+import BackgroundEdit from "../BackgroundEdit/BackgroundEdit";
 import PasswordEdit from "../PasswordEdit/PasswordEdit";
 import "./DropdownProfile.css";
 import { getUsersAct } from "../../../../Redux/userActions";
@@ -57,6 +58,8 @@ export default function DropdownProfile() {
         );
       case "Avatar":
         return <AvatarEdit currentUser={user} />;
+      case "Background":
+        return <BackgroundEdit currentUser={user}/>
       case "Password":
         return <PasswordEdit currentUser={user} allUsers={users} />;
       default:
@@ -101,6 +104,13 @@ export default function DropdownProfile() {
           >
             <i className="fa-solid fa-user"></i>
             <span className="list-item-nameEP">Avatar</span>
+          </li>
+          <li
+            className="list-itemEP"
+            onClick={() => handleOptionChange("Background")}
+          >
+            <i className="fa-solid fa-user"></i>
+            <span className="list-item-nameEP">Background</span>
           </li>
         </div>
         {/*
