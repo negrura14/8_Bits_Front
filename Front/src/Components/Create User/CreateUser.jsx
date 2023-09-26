@@ -229,8 +229,8 @@ export default function CreateUser() {
         </div>
 
         <div className="row mb-3">
+          <div className=" col-4">
           <label className="form-label">Password</label>
-          <div className=" col-9">
             <input
               placeholder="Enter your password"
               type={showPassword ? "text" : "password"}
@@ -241,8 +241,11 @@ export default function CreateUser() {
               onFocus={(event) => handleFocus(event)}
               className="form-control bg-transparent text-white"
             />
+            {focusedField === "password" && errors.password && (
+              <p className="text-danger">{errors.password}</p>
+            )}
           </div>
-          <div className="mb-3 col-3 p-1">
+          <div className="mb-3 col-3 p-1 d-flex justify-content-center align-items-end">
             <a
               type="button"
               onClick={() => setShowPassword(!showPassword)}
@@ -254,12 +257,8 @@ export default function CreateUser() {
               )}
             </a>
           </div>
-          {focusedField === "password" && errors.password && (
-              <p className="text-danger">{errors.password}</p>
-            )}
-        </div>
-
-        <div className="mb-3">
+          
+        <div className="col-4 ">
           <label className="form-label">Confirm password</label>
           <input
             placeholder="Reenter your password"
@@ -275,6 +274,8 @@ export default function CreateUser() {
             <p className="text-danger">{errors.confirmPassword}</p>
           )}
         </div>
+        </div>
+
 
         <button type="sumbit">
           <span></span>
