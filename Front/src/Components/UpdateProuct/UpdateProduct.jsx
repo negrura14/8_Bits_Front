@@ -30,16 +30,14 @@ export const UpdateProduct = () => {
   const filteredGames = game.filter(game => {
     return game.name.toLowerCase().includes(searchInput.toLowerCase());
   });
-
-  // const onSelectGame = (game) => {
-  //   setSelectedGame(game);
-  // }
   
   const sumbitHandler = (e) => {
     e.preventDefault();
-    console.log("resultado del submit: ", selectedGame);
+    // console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
     alert("LOS CAMBIOS SE REALIZARON CON EXITO")
+    setSelectedGame(null);
+    setSearchInput('');
   }
 
   const deletedPlatform = (element, platGenre) => {
@@ -82,7 +80,8 @@ export const UpdateProduct = () => {
       <div className=" mb-3">
         <h2 className='text-center text-white'>Update Products</h2>
       </div>
-        
+
+      <h4>Search Game</h4>
       <input
         type="text"
         value={searchInput}
@@ -128,6 +127,8 @@ export const UpdateProduct = () => {
 </div>
             </div>
           <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
+
+            <h4>Name</h4>
             <input
               className='form-control bg-transparent text-white mb-3'
               type="text"
@@ -135,6 +136,8 @@ export const UpdateProduct = () => {
               onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
               placeholder="Nombre del juego"
             />
+
+            <h4>Description</h4>
             <input
               className='form-control bg-transparent text-white mb-3'
               type="text"
@@ -146,6 +149,7 @@ export const UpdateProduct = () => {
 
             <div className='col'>
 
+            <h4>Stock</h4>
             <input
               type="number"
               name="stock"
@@ -159,8 +163,10 @@ export const UpdateProduct = () => {
 
             <div className='col'>
 
+            <h4>Price</h4>
             <input
               type="number"
+              step="0.01"
               name="price"
               value={selectedGame.price}
               onChange={(e) => setSelectedGame({ ...selectedGame, price: e.target.value })}
