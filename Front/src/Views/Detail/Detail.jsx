@@ -86,10 +86,12 @@ export default function Detail() {
   const review = detail.Reviews;
 
 
-const validateReview = review?.find(obj=> obj.userId === user.user.id)
+
 
 
 user.length == 0 ? userId : userId = user.user.id 
+
+const validateReview = review?.find(obj=> obj.userId === user.id)
 
 const validatePayment = payment?.find(obj => obj.idUser === user.id ); 
 
