@@ -17,11 +17,11 @@ export default function About() {
       </div>
     </div>
     <div class="row  p-5">
-      <div class="col-6 p-5 featurette">
+      <div class="col-auto p-5 featurette">
         <h2 >What we offer</h2>
         <p >At 8 Bits, we are proud to offer a wide selection of high-quality digital video games for a variety of platforms. Whether you're a fan of adventure, role-playing, sports, or any other genre, we've got something for you. We work closely with the industry's leading developers and publishers to ensure you always have access to the latest and most popular titles.</p>
       </div>
-      <div class="col-6 p-5 featurette">
+      <div class="col-auto p-5 featurette">
         <h2 >Join Our Community</h2>
         <p >At 8 Bits we believe in the gaming community. We're excited to share our passion with you and look forward to having you join our growing community of players. Follow us on social networks and stay up to date with the latest news, releases and special offers.</p>
       </div>
@@ -42,10 +42,10 @@ export default function About() {
 
             <div className="team">
             
-<div className="row clearfix " >
+<div className="row clearfix d-flex justify-content-center" >
             {data.map((element) => (
 
-  <div className="team-block col-xl-4 col-lg-4 col-md-4 col-sm-12  " key={element.name}>
+  <div className="team-block col-auto " key={element.name}>
     <div
       className="inner-box wow fadeInLeft"
       data-wow-delay="0ms"

@@ -93,7 +93,7 @@ export const UpdateProduct = () => {
         <h2 className='text-center text-white'>Update Products</h2>
       </div>
 
-      <h4>Search Game</h4>
+      <label className="form-label">Search Game</label>
       <input
         type="text"
         value={searchInput}
@@ -124,7 +124,14 @@ export const UpdateProduct = () => {
         <div>
           <h2 className='my-3'>Editar Juego:</h2>
           <div className='row d-flex justify-content-center mb-3'>
-<div className='col-6'>
+          
+              <img src={selectedGame.image} className="col-8"/>
+
+            </div>
+          <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
+
+          <div className='col-12 upload'>
+
             <UploadWidget
               onImageUpload={onImageUpload}
               setIsUploadingImage={setIsUploadingImage}
@@ -132,28 +139,9 @@ export const UpdateProduct = () => {
               setSelectedImage={setSelectedImage}
               isUploadingImage={isUploadingImage}
             />
-              <img src={selectedGame.image}/>
-              <Form className='disabledGame'>
-          <Form.Check // prettier-ignore
-              type="switch"
-              id="custom-switch"
-              label="Disable Game"
-              checked={selectedGame.disable}
-              onChange={() => {
-                const clic = true;
-                if(selectedGame.disable === false){
-                  setSelectedGame({ ...selectedGame, disable: true })
-                }else{
-                  setSelectedGame({ ...selectedGame, disable: false })
-                }
-              }}
-          />
-        </Form>
-</div>
-            </div>
-          <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
+          </div>
 
-            <h4>Name</h4>
+            <label className="form-label">Name</label>
             <input
               className='form-control bg-transparent text-white mb-3'
               type="text"
@@ -162,7 +150,7 @@ export const UpdateProduct = () => {
               placeholder="Nombre del juego"
             />
 
-            <h4>Description</h4>
+            <label className="form-label">Description</label>
             <input
               className='form-control bg-transparent text-white mb-3'
               type="text"
@@ -174,7 +162,7 @@ export const UpdateProduct = () => {
 
             <div className='col'>
 
-            <h4>Stock</h4>
+            <label className="form-label">Stock</label>
             <input
               type="number"
               name="stock"
@@ -188,7 +176,7 @@ export const UpdateProduct = () => {
 
             <div className='col'>
 
-            <h4>Price</h4>
+            <label className="form-label">Price</label>
             <input
               type="number"
               step="0.01"
@@ -209,7 +197,7 @@ export const UpdateProduct = () => {
 
     {/* ------------BLOQUE DONDE SE SELECCIONA O ELIMINA UN PLATAFORMAS-------------- */}
               <div className="col-5 mb-3">
-                <h4 className='mb-3'>Platforms</h4>
+                <label className="form-label mb-3" >Platforms</label>
                 <div>
                   <select
                     className="form-select bg-transparent text-white-50 mb-3"
@@ -242,7 +230,7 @@ export const UpdateProduct = () => {
     {/* ------------BLOQUE DONDE SE SELECCIONA O ELIMINA UN GENERO-------------- */}
         
               <div className="col-5 mb-3">
-              <h4 className='mb-3'>Genres</h4>
+              <label className="form-label mb-3">Genres</label>
                 <div>
                   <select
                     className="form-select bg-transparent text-white-50 mb-3"
@@ -272,8 +260,28 @@ export const UpdateProduct = () => {
               </div>
     {/* ------------ FIN DE BLOQUE DONDE SE SELECCIONA O ELIMINA UN GENERO-------------- */}
             </div>
+
+            <div className="mb-3">
+            <Form className='disabledGame'>
+          <Form.Check // prettier-ignore
+              type="switch"
+              id="custom-switch"
+              label="Disable Game"
+              checked={selectedGame.disable}
+              onChange={() => {
+                const clic = true;
+                if(selectedGame.disable === false){
+                  setSelectedGame({ ...selectedGame, disable: true })
+                }else{
+                  setSelectedGame({ ...selectedGame, disable: false })
+                }
+              }}
+          />
+        </Form>
+            </div>
            
             <button className='checkBoxs' type="sumbit">Guardar Cambios</button>
+            
           </form>
         </div>
       )}

@@ -27,7 +27,7 @@ export default function LoadingPage() {
       <>
 
       <img className="logoL" src={logo}></img>
-      <div class="loading">
+      <div className="loading">
       Loading&#8230;
       </div>
       </>
