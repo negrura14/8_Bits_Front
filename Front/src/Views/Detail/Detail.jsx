@@ -93,7 +93,7 @@ user.length == 0 ? userId : userId = user.user.id
 
 const validateReview = review?.find(obj=> obj.userId === user.id)
 
-const validatePayment = payment?.find(obj => obj.idUser === "50a1876d-8c39-4e80-a4a1-58e5a35668ef" ); 
+const validatePayment = payment?.find(obj => obj.idUser === user.id ); 
 
 
   const handleRatingChange = (newRating) => {
