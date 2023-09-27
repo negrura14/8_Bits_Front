@@ -43,13 +43,13 @@ export const DashBoard = () => {
                 <Nav.Link eventKey="first">VIEWS</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">User Management</Nav.Link>
+                <Nav.Link eventKey="second">USER MANAGEMENT</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="third">PURCHASE ORDERS</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fourth">UPDATE PRODUCTS</Nav.Link>
+                <Nav.Link eventKey="fourth">PREDUCT MANAGEMENT</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="fifth">STOCK</Nav.Link>
@@ -62,10 +62,10 @@ export const DashBoard = () => {
           <Col sm={9} className='font'>
             <Tab.Content >
               
-              <Tab.Pane eventKey="first">{<UpdateProduct/>}</Tab.Pane>
+              <Tab.Pane eventKey="first">Frist tab content</Tab.Pane>
               <Tab.Pane eventKey="second">{<UserDashboard/>}</Tab.Pane>
               <Tab.Pane eventKey="third"><PaymentStatisticsComponent /></Tab.Pane>
-              <Tab.Pane eventKey="fourth" >Second tab content</Tab.Pane>
+              <Tab.Pane eventKey="fourth" >{<UpdateProduct/>}</Tab.Pane>
               <Tab.Pane eventKey="fifth">Second tab content</Tab.Pane>
               <Tab.Pane eventKey="sixth"><StatisticsViews /></Tab.Pane>
               

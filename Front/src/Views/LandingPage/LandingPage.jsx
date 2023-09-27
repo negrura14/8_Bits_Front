@@ -587,7 +587,7 @@ const Landing = () => {
           </div>
         </div>
         <div className="frame2 col-xl-5 col-md-6 col-sm-auto mb-5">
-        <div className="row vh-100 justify-content-center align-items-center"> 
+        <div className="row  d-flex justify-content-center align-items-center"> 
 
           <div class=" guestD bGuest col-10">
             <div class="guestD-border-top"></div>

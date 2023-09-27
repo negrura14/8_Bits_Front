@@ -187,6 +187,9 @@ export default function PasswordEdit({currentUser,allUsers}) {
                         className="form-control bg-transparent text-white"
                         disabled={!isCurrentPasswordValid}
                         />
+                        {focusedField === "password" && errors.password && (
+                        <p className="text-danger">{errors.password}</p>
+                        )}
                     </div>
                     <div className="mb-3 col-2 d-flex justify-content-center align-items-center">
                         <a
@@ -200,9 +203,7 @@ export default function PasswordEdit({currentUser,allUsers}) {
                         )}
                         </a>
                     </div>
-                    {focusedField === "password" && errors.password && (
-                        <p className="text-danger">{errors.password}</p>
-                        )}
+                    
                 <div className="mb-3 col-5">
                     <label className="form-label">Confirm your new password</label>
                     <input

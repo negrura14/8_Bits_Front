@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGame, getGenres, getSupportedPlatforms } from '../../Redux/gameActions';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import UploadWidget from "../../Helpers/UploadWidget";
+
 
 
 export const UpdateProduct = () => {
@@ -13,13 +15,21 @@ export const UpdateProduct = () => {
   const { genre } = useSelector(state => state.genre);
   const { supportedPlatform } = useSelector(state => state.supportedPlatform);
   const dispatch = useDispatch();
-  // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", supportedPlatform);
+  // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", game[8]);
 
   useEffect(() => {
     dispatch(getGame());
     dispatch(getGenres());
     dispatch(getSupportedPlatforms());
   }, [dispatch]);
+
+  const [selectedImage, setSelectedImage] = useState("");
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+
+  function onImageUpload(imageUrl) {
+    setSelectedGame({ ...selectedGame, image: imageUrl })
+    setSelectedImage(imageUrl);
+  }
 
   const onSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -30,16 +40,16 @@ export const UpdateProduct = () => {
   const filteredGames = game.filter(game => {
     return game.name.toLowerCase().includes(searchInput.toLowerCase());
   });
-
-  // const onSelectGame = (game) => {
-  //   setSelectedGame(game);
-  // }
   
   const sumbitHandler = (e) => {
     e.preventDefault();
-    console.log("resultado del submit: ", selectedGame);
+    // console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
     alert("LOS CAMBIOS SE REALIZARON CON EXITO")
+    setSelectedGame(null);
+    setSearchInput('');
+    dispatch(getGame());
+
   }
 
   const deletedPlatform = (element, platGenre) => {
@@ -82,7 +92,8 @@ export const UpdateProduct = () => {
       <div className=" mb-3">
         <h2 className='text-center text-white'>Update Products</h2>
       </div>
-        
+
+      <h4>Search Game</h4>
       <input
         type="text"
         value={searchInput}
@@ -114,20 +125,35 @@ export const UpdateProduct = () => {
           <h2 className='my-3'>Editar Juego:</h2>
           <div className='row d-flex justify-content-center mb-3'>
 <div className='col-6'>
-
+            <UploadWidget
+              onImageUpload={onImageUpload}
+              setIsUploadingImage={setIsUploadingImage}
+              selectedImage={selectedGame.image}
+              setSelectedImage={setSelectedImage}
+              isUploadingImage={isUploadingImage}
+            />
               <img src={selectedGame.image}/>
               <Form className='disabledGame'>
           <Form.Check // prettier-ignore
               type="switch"
               id="custom-switch"
               label="Disable Game"
-              checked={true}
-              onChange={(e) => setSelectedGame({ ...selectedGame, description: e.target.value })}
+              checked={selectedGame.disable}
+              onChange={() => {
+                const clic = true;
+                if(selectedGame.disable === false){
+                  setSelectedGame({ ...selectedGame, disable: true })
+                }else{
+                  setSelectedGame({ ...selectedGame, disable: false })
+                }
+              }}
           />
         </Form>
 </div>
             </div>
           <form onSubmit={(event) => sumbitHandler(event)} className='disposition'>
+
+            <h4>Name</h4>
             <input
               className='form-control bg-transparent text-white mb-3'
               type="text"
@@ -135,6 +161,8 @@ export const UpdateProduct = () => {
               onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
               placeholder="Nombre del juego"
             />
+
+            <h4>Description</h4>
             <input
               className='form-control bg-transparent text-white mb-3'
               type="text"
@@ -146,6 +174,7 @@ export const UpdateProduct = () => {
 
             <div className='col'>
 
+            <h4>Stock</h4>
             <input
               type="number"
               name="stock"
@@ -159,8 +188,10 @@ export const UpdateProduct = () => {
 
             <div className='col'>
 
+            <h4>Price</h4>
             <input
               type="number"
+              step="0.01"
               name="price"
               value={selectedGame.price}
               onChange={(e) => setSelectedGame({ ...selectedGame, price: e.target.value })}

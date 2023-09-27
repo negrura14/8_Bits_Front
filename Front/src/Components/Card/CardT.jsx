@@ -56,6 +56,12 @@ const handleChangeOnClic = () => {
         })
     } else {
         navigate('/login');
+        MySwal.fire({
+            title: <strong>WARNING</strong>,
+            html: <i>You have to login to purchase a game</i>,
+            icon: 'info',
+            background : "#1d1d1d",
+          });
     }
 
 }

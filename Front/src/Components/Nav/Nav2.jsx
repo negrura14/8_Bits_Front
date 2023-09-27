@@ -83,6 +83,13 @@ function Nav2() {
     }
     else {
       navigate('/login')
+      MySwal.fire({
+        title: <strong>WARNING</strong>,
+        html: <i>You have to login to purchase a game</i>,
+        icon: 'info',
+        background : "#1d1d1d",
+      });
+
     }
   }
 
@@ -181,7 +188,7 @@ function Nav2() {
             <Dropdown>
 
               <Dropdown.Toggle className='avatarButton'  id="dropdown-basic">
-              <div ><img  className='avatarI' src={userData.user.image ? userData.user.image : defaultPhoto}></img></div>
+              <div ><img  className='avatarI' src={userProfile[0].image ? userProfile[0].image : defaultPhoto}></img></div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
