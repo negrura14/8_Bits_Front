@@ -9,11 +9,12 @@ import { toggleCart, cartUpdate, UpdateList } from '../../Redux/Reducers/cartSli
 import './Nav2.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { clearUser } from '../../Redux/Reducers/userSlice.jsx'
-import { swAuth, userLogoutAct,getUserProfileAction } from '../../Redux/userActions.jsx';
+import { swAuth, userLogoutAct } from '../../Redux/userActions.jsx';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import Dropdown from 'react-bootstrap/Dropdown';
 import LoadingPage from '../Loading/Loading.jsx';
+import { getUserByIdAction } from '../../Redux/userProfileActions.jsx';
 
 function Nav2() {
   const location = useLocation();
@@ -23,15 +24,15 @@ function Nav2() {
   const dispatch = useDispatch();
   const { user, auth } = useSelector((state) => state.user.userState)
   const isCartUpdated = useSelector(state => state.cart.cartUpdate)
-  const { userProfile } = useSelector((state) => state.user.userState);
+  const { userById } = useSelector((state) => state.userProfile);
   const [loading, setLoading] = useState(true);
   
   
-  
+  console.log(userById, 'asd')
 
   useEffect(() => {
     if(Array.isArray(user) === false) {
-      dispatch(getUserProfileAction(user.user.email))
+      dispatch(getUserByIdAction(user.user.id))
       .then (() =>{
         setLoading(false);
       })
@@ -167,7 +168,7 @@ function Nav2() {
                             <li><NavLink  to={ROUTES.HOME}>Home</NavLink></li>
                             <li><NavLink  to={ROUTES.STORE}>Store</NavLink></li>
                             {auth === false && <li><NavLink  to={ROUTES.LOGIN}>Login</NavLink></li>}
-                            {auth === true && userProfile[0].admin === true && (<li><NavLink  to={ROUTES.CREATEGAME}>Create Game</NavLink></li>)}
+                            {auth === true && userById.admin === true && (<li><NavLink  to={ROUTES.CREATEGAME}>Create Game</NavLink></li>)}
                             
                         </ul>
                     </div>
@@ -188,11 +189,11 @@ function Nav2() {
             <Dropdown>
 
               <Dropdown.Toggle className='avatarButton'  id="dropdown-basic">
-              <div ><img  className='avatarI' src={userProfile[0].image ? userProfile[0].image : defaultPhoto}></img></div>
+              <div ><img  className='avatarI' src={userById.image ? userById.image : defaultPhoto}></img></div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-              {auth === true && userProfile[0].admin === true && (<Dropdown.Item ><NavLink to={"/Dashboard"}>Dashboard</NavLink></Dropdown.Item>)}
+              {auth === true && userById.admin === true && (<Dropdown.Item ><NavLink to={"/Dashboard"}>Dashboard</NavLink></Dropdown.Item>)}
                 <Dropdown.Item ><NavLink to={ROUTES.PROFILEUSER}>Profile</NavLink></Dropdown.Item>
                 <Dropdown.Item className="bg-danger" ><NavLink className='text-white' onClick={handlerSw}>Logout</NavLink></Dropdown.Item>
               </Dropdown.Menu>
