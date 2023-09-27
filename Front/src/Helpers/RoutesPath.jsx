@@ -11,6 +11,7 @@ export const ROUTES = {
     PROFILEUSER: "/UserProfile",
     MERCADO: '/Mercado',
     CHECKOUT: '/Checkout',
+    SUCCESS: '/Payment-success',
     ERROR: '*',
     LOGIN: '/Login',
     CART: '/Cart',

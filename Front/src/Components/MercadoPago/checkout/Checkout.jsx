@@ -5,16 +5,19 @@ import classnames from 'classnames'
 import { Context } from "../ContextProvider";
 import { useSelector, useDispatch } from "react-redux";
 import './Checkout.css'
+import { useNavigate } from "react-router";
+import {ROUTES} from '../../../Helpers/RoutesPath'
 
 
 
 const Checkout = ({ onClick }) => {
+  const navigate = useNavigate
   const [isVisible, setIsVisible] = React.useState(true);
   const [showPayButton, setShowPayButton] = useState(true);
   const { preferenceId, isLoading: disabled, orderData, setOrderData } = React.useContext(Context);
   const { user, auth } = useSelector((state) => state.user.userState);
   const userData = user;
-  const [initPoint, setInitPoint] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [localStorageCart, setLocalStorageCart] = useState([]);
   const shoppingCartClass = classnames('shopping-cart dark', {
@@ -52,7 +55,7 @@ const Checkout = ({ onClick }) => {
   useEffect(() => {
     const newSubtotal = localStorageCart.reduce((total, item) => {
       const price = parseFloat(item.price);
-      const cant = 1; 
+      const cant = item.cant; 
     
       if (!isNaN(price) && !isNaN(cant)) {
         return total + price * cant;
@@ -103,26 +106,28 @@ const handleCheckoutClick = async () => {
 
 const handlePayClick = async () => {
   try {
-    // Realiza una solicitud fetch para obtener el init_point desde el servidor
+    setIsLoading(true);
+    
    const idShop = await handleCheckoutClick()
-    const response = await axios.post(`http://localhost:3001/mercadopago/${idShop}`, {
-      
+    const response = await axios.post(`http://localhost:3001/mercadopago/${idShop}`, {});
 
-    });
-
-   
-
-    console.log(response, 'RESPUESTA MERCADO PAGO');
 
     if (response) {
       window.location.href = response.data.data.body.sandbox_init_point;
+
+    
+
+    
     } else {
       console.error('El init_point no está definido.');
-      // Aquí puedes manejar el caso en el que init_point no esté definido.
+      
     }
   } catch (error) {
     console.error('Error al obtener el init_point:', error);
     // Aquí puedes manejar el error si la solicitud fetch falla.
+  } finally{
+    setIsLoading(false);
+
   }
 };
 
@@ -182,8 +187,9 @@ const handlePayClick = async () => {
                   <button className="btn btn-success btn-lg btn-block"
                   onClick={handlePayClick}
                   id="pay-btn"
+                  disabled={isLoading}
                   >
-                    Pay
+                  {isLoading ? 'Loading...' : 'Pay'}
                   </button>
                 )}
               </div>
