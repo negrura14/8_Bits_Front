@@ -207,7 +207,7 @@ export default function Detail() {
                 {detail.Reviews.map((review, index) => (
                   <div key={index}>
 
-                  <div className="cardTesti mt-2 p-4">
+                  <div className="cardTesti divRe mt-2 p-4">
                 <p className="post">
                     <span><i className="fa-solid fa-quote-left fa-2x quote-img text-primary me-3"></i></span>
                     <span className="post-txt">{review.reviewsText} </span>
@@ -235,11 +235,26 @@ export default function Detail() {
                 ))}
               </div>
               {validatePayment ? (
-                <div>
-                  <h2>Leave a Review</h2>
-                  <form onSubmit={handleSubmit}>
-                    <div>
-                      <label htmlFor="rating"></label>
+                <div className="col-11 bgReview border-top border-primary m-3">
+
+
+                
+
+                  <h2 className="text-white p-5">Leave a Review</h2>
+                  <form  onSubmit={handleSubmit}>
+                  <div className="cardTesti mt-2 p-4">
+
+                  <p className="post">
+                    <span><i className="fa-solid fa-quote-left fa-2x quote-img text-primary me-3"></i></span>
+                    
+                    <textarea
+                    className="post-txt bg-transparent text-white border-primary"
+                        id="reviewsText"
+                        value={reviewsText}
+                        onChange={handleCommentChange}
+                      />
+                    <div className="rating mt-2">
+                    <label htmlFor="rating"></label>
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span
                           key={star}
@@ -250,20 +265,20 @@ export default function Detail() {
                         </span>
                       ))}
                     </div>
-                    <div>
-                      <label htmlFor="reviewsText"></label>
-                      <textarea
-                        id="reviewsText"
-                        value={reviewsText}
-                        onChange={handleCommentChange}
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <button type="submit" disabled={!isFormValid}>
+                </p>
+                  </div>
+                  <div className="arrow-down"></div>
+            <div className="row d-flex justify-content-center mb-4">
+                <div className="d-flex">
+                    <div className="profile-pic fit-image"><i class="text-white fa-solid fa-user fa-4x p-2"></i></div>
+                    <div className="m-4 p-3">
+
+                    <button type="submit" className="btn btn-outline-primary" disabled={!isFormValid}>
                         Submit
                       </button>
                     </div>
+                </div>
+            </div>
                   </form>
                 </div>
               ) : null}
