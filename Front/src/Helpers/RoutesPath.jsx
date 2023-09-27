@@ -12,6 +12,7 @@ export const ROUTES = {
     MERCADO: '/Mercado',
     CHECKOUT: '/Checkout',
     SUCCESS: '/Payment-success',
+    FAILURE: '/Payment-failure',
     ERROR: '*',
     LOGIN: '/Login',
     CART: '/Cart',

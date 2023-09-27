@@ -2,15 +2,31 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 const SuccessMP = () => {
-  // Obtiene los parámetros de la URL
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
-  // Obtiene los datos del juego de los parámetros de la URL
-  const gameId = queryParams.get("idGame");
-  const gameName = queryParams.get("gameName");
-  const unitPrice = queryParams.get("unitPrice");
-  const quantity = queryParams.get("shoppingQuantity");
+  const games = {};
+
+  for (let i = 0; i < queryParams.get("shoppingQuantity"); i++) {
+    const gameId = queryParams.get(`idGame${i}`);
+    const gameName = queryParams.get(`gameName${i}`);
+    const unitPrice = queryParams.get(`unitPrice${i}`);
+
+    if (!games[gameId]) {
+      
+      games[gameId] = {
+        gameId,
+        gameName,
+        unitPrice,
+        quantity: 1, 
+      };
+    } else {
+      
+      games[gameId].quantity += 1;
+    }
+  }
+
+  const gamesArray = Object.values(games); 
 
   return (
     <div className="container mt-5">
@@ -20,11 +36,18 @@ const SuccessMP = () => {
             <div className="card-body">
               <h2 className="card-title">Successful Payment</h2>
               <p className="card-text">Thanks for your purchase!</p>
-              <p className="card-text">Game ID: {gameId}</p>
-              <p className="card-text">Game Name: {gameName}</p>
-              <p className="card-text">Unit Price: ${unitPrice}</p>
-              <p className="card-text">Quantity: {quantity}</p>
-              <a href="/" className="btn btn-primary">Go to Home</a>
+              <h3 className="card-subtitle mb-3">Games Purchased:</h3>
+              {gamesArray.map((game, index) => (
+                <div key={index}>
+                  <p className="card-text">Game ID: {game.gameId}</p>
+                  <p className="card-text">Game Name: {game.gameName}</p>
+                  <p className="card-text">Unit Price: ${game.unitPrice}</p>
+                  <p className="card-text">Quantity: {game.quantity}</p>
+                </div>
+              ))}
+              <a href="/" className="btn btn-primary">
+                Go to Home
+              </a>
             </div>
           </div>
         </div>

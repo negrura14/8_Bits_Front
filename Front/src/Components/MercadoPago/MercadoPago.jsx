@@ -12,7 +12,7 @@ export default function MercadoPago({ items, setLoading, userID }) {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     axios
-      .post("/mercadopago/1", {
+      .post("/mercadopago/", {
         items,
         base_url: 'http://localhost:3001/',
         ID: userID,
@@ -49,7 +49,7 @@ export default function MercadoPago({ items, setLoading, userID }) {
         setLoading(false);
       }, 2000);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [preferenceId]);
 
   const renderSpinner = () => {
