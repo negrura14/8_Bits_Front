@@ -17,15 +17,15 @@ const Review = () => {
   const[idReview, setIdReview] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  console.log(user.id, "userId" );
+  console.log(profile, "profile" );
 
 useEffect(()=>{
 dispatch(getUserByIdAction(user.id))
-}, [dispatch, profile.Review])
+}, [dispatch])
 
-  const handleEditClick = (id) => {
-    setSelectedReviewIndex(id);
-    const selectedReview = reviews[id];
+  const handleEditClick = (index) => {
+    setSelectedReviewIndex(index);
+    const selectedReview = reviews[index];
     setIdReview(selectedReview.id)
     setEditedReview({
       rating: editedReview.rating,
@@ -37,7 +37,11 @@ dispatch(getUserByIdAction(user.id))
     try{
         const updatedReview = { ...reviews[selectedReviewIndex], ...editedReview };
         const update = await axios.put(`http://localhost:3001/reviews/${idReview}`, updatedReview)
+        dispatch(getUserByIdAction(user.id))
         setSelectedReviewIndex(-1);
+        setEditedReview({ rating: "", textReview: ""});
+        
+        
        }catch(error){
        console.log(JSON.stringify({error:error.message}))
        }
