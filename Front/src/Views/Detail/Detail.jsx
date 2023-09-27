@@ -87,14 +87,12 @@ export default function Detail() {
 let userId 
 const review = detail.Reviews;
 
-// const prueba = review.find(obj=> obj.userId === user.user.id)
-// console.log(prueba, "pruebaaa");
+const validateReview = review?.find(obj=> obj.userId === user.user.id)
 
-console.log(review, "rererer");
 
 user.length == 0 ? userId : userId = user.user.id 
-console.log(userId);
-const validatePayment = payment.find(obj => obj.idUser === userId ); 
+
+const validatePayment = payment?.find(obj => obj.idUser === "50a1876d-8c39-4e80-a4a1-58e5a35668ef" ); 
 
 
 
@@ -135,9 +133,6 @@ const handleSubmit = async (event) => {
  console.log(JSON.stringify({error:error.message}))
  }
 
-  // setRating(0);
-  // setReviewsText('');
-  // setIsFormValid(false);
 };
       
     
@@ -194,7 +189,7 @@ const handleSubmit = async (event) => {
        
           <div>
           
-            {detail.Reviews.map((review, index)=>(
+            {detail.Reviews?.map((review, index)=>(
               
              <div key={index}>
               <div className="review">
@@ -217,7 +212,7 @@ const handleSubmit = async (event) => {
              </div> 
 ))}
           </div>
-          {validatePayment ?( 
+          {validatePayment  && !validateReview?( 
             <div>
       <h2>Leave a Review</h2>
       <form onSubmit={handleSubmit}>
