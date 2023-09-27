@@ -7,6 +7,7 @@
     }
     .star:hover{
       color: gold;
+      cursor: pointer;  
       
     }
   .marked{
@@ -18,13 +19,13 @@
     background-color: aliceblue;
   }
 
-  .cardTesti .star{
+  .divRe .star{
     font-size: 16px;
     transition: 0.3s;
     cursor: default;
     color: #bbb;
   }
-  .cardTesti .marked{
+  .divRe .marked{
     color: gold;
   }
 
@@ -145,7 +146,9 @@
         .single_product_details_area .single_product_desc .nice-select .list .option.selected {
           color: #0315ff; }
 
-
+.post textarea{
+  width:100%;
+}
 .bgReview{
   background: #00000029;
   overflow-y: auto;
@@ -153,8 +156,8 @@
 }
           
 .cardTesti {
-  border: solid 1px #212121;
-  background-color: #212121;
+  border: solid 1px #ffffff25;
+  background-color: #01010181;
   border-radius: 10px;
   color: #fff;
 }
@@ -175,7 +178,7 @@ width: 0;
 height: 0; 
 border-left: 15px solid transparent;
 border-right: 15px solid transparent;
-border-top: 10px solid #212121;
+border-top: 10px solid #01010181;
 margin-left: 75px;
 }
 
