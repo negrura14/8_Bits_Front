@@ -109,7 +109,7 @@ const handlePayClick = async () => {
     setIsLoading(true);
     
    const idShop = await handleCheckoutClick()
-    const response = await axios.post(`http://localhost:3001/mercadopago/${idShop}`, {});
+    const response = await axios.post(`/mercadopago/${idShop}`, {});
 
 
     if (response) {
