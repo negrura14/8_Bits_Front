@@ -139,20 +139,20 @@ export default function Detail() {
       {Object.keys(detail).length > 0 ? (
         <>
 
-          <section class="single_product_details_area d-flex align-items-center">
-            <div class="single_product_thumb clearfix">
-              <div class="product_thumbnail_slides owl-carousel">
+          <section className="single_product_details_area d-flex align-items-center">
+            <div className="single_product_thumb clearfix">
+              <div className="product_thumbnail_slides owl-carousel">
                 <img src={detail.image} alt="" />
               </div>
             </div>
 
-            <div class="single_product_desc clearfix">
+            <div className="single_product_desc clearfix">
               <span>{detail.releaseDate}</span>
               
                 <h2 className="text-white">{detail.name}</h2>
               
-              <p class="product-price text-primary">{detail.price} $</p>
-              <p class="product-desc">{detail.description}</p>
+              <p className="product-price text-primary">{detail.price} $</p>
+              <p className="product-desc">{detail.description}</p>
               <p className="d-flex text-info">{/* {detail.SupportedPlatforms.map((platform) => platform.name)} */}
               {detail.SupportedPlatforms.map((platform, index) => (
                   <p className="">
@@ -165,7 +165,7 @@ export default function Detail() {
 
               <div className="d-flex justify-content-between">
 
-              <p class=" d-flex">
+              <p className=" d-flex">
                 {/* {detail.releaseDate} <span className="bbar">|</span>{detail.Genres.join(" - ")} <span className="bbar">|</span>{detail.SupportedPlatforms.join(" - ")} */}
                 
                 {detail.Genres.map((genre, index) => (
@@ -175,18 +175,18 @@ export default function Detail() {
                   </p>
                 ))}{" "}
               </p>
-              <p class=" text-warning">
+              <p className=" text-warning">
                   Stock:{" "}
                   {detail.stock} Available
                 </p>
               </div>
               </div>
 
-              <div class="cart-fav-box d-flex align-items-center">
+              <div className="cart-fav-box d-flex align-items-center">
                 <button
                   name="addtocart"
                   value="5"
-                  class="btn essence-btn"
+                  className="btn essence-btn"
                   onClick={handleChangeOnClic}
                 >
                   Add to cart
@@ -200,17 +200,17 @@ export default function Detail() {
           
             <div className="row d-flex justify-content-center border-top">
 
-            <h2 className="text-white p-5">Reviews <i class="fa-solid fa-comments"></i></h2>
+            <h2 className="text-white p-5">Reviews <i className="fa-solid fa-comments"></i></h2>
 
 
               <div className="col-11 bgReview">
                 {detail.Reviews.map((review, index) => (
                   <div key={index}>
 
-                  <div class="cardTesti mt-2 p-4">
-                <p class="post">
-                    <span><i class="fa-solid fa-quote-left fa-2x quote-img text-primary me-3"></i></span>
-                    <span class="post-txt">{review.reviewsText} </span>
+                  <div className="cardTesti mt-2 p-4">
+                <p className="post">
+                    <span><i className="fa-solid fa-quote-left fa-2x quote-img text-primary me-3"></i></span>
+                    <span className="post-txt">{review.reviewsText} </span>
                     <div className="rating mt-2">
                       {Array.from({ length: 5 }, (_, starIndex) => (
                         <i
@@ -223,11 +223,11 @@ export default function Detail() {
                     </div>
                 </p>
             </div>
-            <div class="arrow-down"></div>
-            <div class="row d-flex justify-content-center mb-4">
-                <div class="d-flex">
-                    <img class="profile-pic fit-image" src={review.User.image} alt={review.User.name}/>
-                <p class=" mx-2 profile-name">{review.User.name}</p>
+            <div className="arrow-down"></div>
+            <div className="row d-flex justify-content-center mb-4">
+                <div className="d-flex">
+                    <img className="profile-pic fit-image" src={review.User.image} alt={review.User.name}/>
+                <p className=" mx-2 profile-name">{review.User.name}</p>
                 </div>
             </div>
                     
