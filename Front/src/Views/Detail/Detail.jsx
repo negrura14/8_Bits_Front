@@ -165,11 +165,11 @@ export default function Detail() {
 
               <div className="d-flex justify-content-between">
 
-              <p className=" d-flex">
+              <p className=" d-flex">Genre:&nbsp; 
                 {/* {detail.releaseDate} <span className="bbar">|</span>{detail.Genres.join(" - ")} <span className="bbar">|</span>{detail.SupportedPlatforms.join(" - ")} */}
                 
                 {detail.Genres.map((genre, index) => (
-                  <p>Genre:{" "}
+                  <p>{" "}
                     {genre.name}
                     {index < detail.Genres.length - 1 && " -"}
                   </p>
