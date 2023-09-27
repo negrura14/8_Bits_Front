@@ -193,7 +193,7 @@ export const Cart = () => {
                     
                     <div className="mt-2" ><a href="#" className="btn essence-btn"><i className="fa-solid fa-arrow-left"></i> Back to shop</a></div>
                 </div>
-                <div className="col-md-4 summary">
+                <div className="col-md-4 summary bg-transparent">
                     <div><h5><b>Summary</b></h5></div>
                     <hr className="hrCP"/>
                     <div className="d-flex justify-content-center my-2" >
