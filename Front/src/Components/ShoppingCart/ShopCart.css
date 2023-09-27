@@ -245,13 +245,21 @@ Order Summary Card
     transition-duration: .3s;
   }
 
+  .summary-table{
+    overflow-y: auto;
+  max-height: 300px;
+  }
   
+  .cart-list{
+    overflow-y: auto;
+  max-height: 80vh;
+  }
     
 /* Cart Area CSS */
 .right-side-cart-area {
   position: fixed;
   width: 60vw;
-  height: 100%;
+  height: 85%;
   color: white;
   top: 15vh;
   background-color: #26303dc8;

@@ -165,7 +165,7 @@ function Tienda() {
     const filteredGames = game.filter((gameItem) => {
       // Lógica de filtrado aquí en función de filtDB.
       // Puedes modificar esta lógica según tus necesidades.
-      return true;
+      return gameItem.disable !== true;
     });
 
     // Establecer el estado de filteredGames y currentPage.

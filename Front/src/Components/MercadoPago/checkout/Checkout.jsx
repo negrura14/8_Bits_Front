@@ -1,20 +1,25 @@
 
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import axios from 'axios'
 import classnames from 'classnames'
 import { Context } from "../ContextProvider";
 import { useSelector, useDispatch } from "react-redux";
 import './Checkout.css'
+import cartImg from "../../../Img/cartImg.jpeg"
+import { useNavigate } from "react-router";
+import {ROUTES} from '../../../Helpers/RoutesPath'
 
 
 
 const Checkout = ({ onClick }) => {
+  const navigate = useNavigate
   const [isVisible, setIsVisible] = React.useState(true);
   const [showPayButton, setShowPayButton] = useState(true);
   const { preferenceId, isLoading: disabled, orderData, setOrderData } = React.useContext(Context);
   const { user, auth } = useSelector((state) => state.user.userState);
   const userData = user;
-  const [initPoint, setInitPoint] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [localStorageCart, setLocalStorageCart] = useState([]);
   const shoppingCartClass = classnames('shopping-cart dark', {
@@ -52,7 +57,7 @@ const Checkout = ({ onClick }) => {
   useEffect(() => {
     const newSubtotal = localStorageCart.reduce((total, item) => {
       const price = parseFloat(item.price);
-      const cant = 1; 
+      const cant = item.cant; 
     
       if (!isNaN(price) && !isNaN(cant)) {
         return total + price * cant;
@@ -103,95 +108,118 @@ const handleCheckoutClick = async () => {
 
 const handlePayClick = async () => {
   try {
-    // Realiza una solicitud fetch para obtener el init_point desde el servidor
+    setIsLoading(true);
+    
    const idShop = await handleCheckoutClick()
-    const response = await axios.post(`http://localhost:3001/mercadopago/${idShop}`, {
-      
+    const response = await axios.post(`http://localhost:3001/mercadopago/${idShop}`, {});
 
-    });
-
-   
-
-    console.log(response, 'RESPUESTA MERCADO PAGO');
 
     if (response) {
       window.location.href = response.data.data.body.sandbox_init_point;
+
+    
+
+    
     } else {
       console.error('El init_point no está definido.');
-      // Aquí puedes manejar el caso en el que init_point no esté definido.
+      
     }
   } catch (error) {
     console.error('Error al obtener el init_point:', error);
     // Aquí puedes manejar el error si la solicitud fetch falla.
+  } finally{
+    setIsLoading(false);
+
   }
 };
 
 
 
 
-  return (
-    <section className={shoppingCartClass}>
-      <div className="container" id="container">
-        <div className="block-heading">
-          <h2>Shopping Cart</h2>
-          <p>8 BITS</p>
-        </div>
-        <div className="">
-          <div className="row">
-            <div className="col-md-12 col-lg-8">
-              <div className="items">
-                {localStorageCart.length > 0 ? (
-                  localStorageCart.map((item, index) => (
-                    <div className="product" key={index}>
-                      <div className="">
-                        <div className="product-details">
-                          <div className="row justify-content-md-center">
-                            <div className="col-md-3">
-                              <img src={item.image} alt={item.image} />
-                            </div>
-                            <div className="col-md-4 product-detail">
-                              <h5>Product</h5>
-                              <div className="product-info">
-                                <b>Description: </b>
-                                <span id="product-description">{item.name}</span>
-                                <br />
-                                <b>Price:</b> $ {item.price}
-                                <br />
-                                <b>Quantity:</b> {item.cant}
-                              </div>
-                            </div>
-                          </div>
+  return (<>
+
+  <div className="cardCart mt-5">
+            <div className="row">
+                <div className="col-md-8 cartP">
+                    <div className="titleCP">
+                        <div className="row">
+                            <div className="col"><h4><b>Shopping Cart</b></h4></div>
+                            <div className="col align-self-center text-right ">{localStorageCart.length} items</div>
                         </div>
-                      </div>
+                    </div>    
+                    <div className="cartProductsDiv">
+
+                    {localStorageCart.length > 0 ? (
+                  localStorageCart.map((item, index) => (
+                    <>
+              <div key={index} className="row border-top border-bottom">
+                        <div className="row mainCP align-items-center">
+                        
+                            <div className="col-3"><img className="img-fluid imgCP" src={item.image} alt={item.image}/></div>
+                            
+                            <div className="col">
+                                <div className="row text-ligth-50">Game</div>
+                                <div className="row"><a href={"/Detail/" + item.id} className="nameCart">{item.name}</a></div>
+                            </div>
+                            <div className="col">
+                            <span >{item.cant}</span>
+                            </div>
+                            <div className="col">$ {item.price}</div>
+                        </div>
                     </div>
+                    </>
                   ))
                 ) : (
                   <p>No items in the cart</p>
                 )}
-              </div>
-            </div>
-            <div className="col-md-12 col-lg-4">
-              <div className="summary">
-                <h3>Cart</h3>
-                <div className="summary-item">
-                  <span className="text">USD</span>
-                  <span className="price" id="cart-total">${subtotal.toFixed(2)}</span>
-                </div>  
-                
+
+                    </div>
+                    
+                    <div className="mt-2" ><NavLink className="btn essence-btn" to={ROUTES.CART}>
+
+                    <i className="fa-solid fa-arrow-left"></i> Back to cart
+</NavLink></div>
+                </div>
+                <div className="col-md-4 summary bg-transparent">
+                    <div><h5><b>Summary</b></h5></div>
+                    <hr className="hrCP"/>
+                    <div className="d-flex justify-content-center my-2" >
+                        <img className="cartImg" src={cartImg}></img>
+                    </div>
+                    
+                    <div className="row">
+                        <div className="col itemsC ms-3" >Items </div>
+                        <div className="col text-right">${subtotal.toFixed(2)}</div>
+                    </div>
+                    <div className="row priceCP" >
+                        <div className="col">Total price</div>
+                        <div className="col text-right"> ${subtotal.toFixed(2)}</div>
+                    </div>
+                    {localStorageCart.length > 0 ? (
+              <>
+                <div className="row priceCP d-flex justify-content-between ">
+                <div className="col-5">
+
                 {showPayButton && (
-                  <button className="btn btn-success btn-lg btn-block"
-                  onClick={handlePayClick}
+                  <button className="btnCP bg-primary text-white"
+                    onClick={handlePayClick}
                   id="pay-btn"
+                  disabled={isLoading}
                   >
-                    Pay
+                  {isLoading ? 'Loading...' : 'Pay'}<i className="fa-regular fa-credit-card"></i>
                   </button>
                 )}
-              </div>
+                </div>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+                </div>
             </div>
-          </div>
+            
         </div>
-      </div>
-    </section>
+  </>
   );
 };
 

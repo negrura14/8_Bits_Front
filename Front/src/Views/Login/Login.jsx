@@ -234,7 +234,7 @@ export default function Login() {
             console.log(err);
           }}
         >
-          <a type="button" className="icon"><i className="fa-brands fa-google p-3 "></i></a>
+          <button type="button" className="btn btn-primary bg-transparent my-3"><i className="fa-brands fa-google px-3 text-primary"></i></button>
         </LoginSocialGoogle>
       </div>
   <p className="signup">

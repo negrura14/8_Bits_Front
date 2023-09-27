@@ -204,7 +204,7 @@ export default function UserProfile() {
 
       
   <div class="container py-5 h-100">
-  <ProgressBar now={progress} label={`${progress.toFixed(2)}%`} />
+  
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-12 col-xl-10">
         <div class="cardUP">
@@ -231,9 +231,14 @@ export default function UserProfile() {
               </div>
             </div>
           </div>
-          <div class="card-body p-4 text-white mt-5">
+          <div class="card-body p-4 text-white mt-3">
+          <div className="mb-4 progressData">
+
+          <p class="lead fw-normal my-1">Percentage of data completed</p>
+          <ProgressBar now={progress} label={`${progress.toFixed(2)}%`} />
+          </div>
             <div class="mb-5">
-              <p class="lead fw-normal mb-1">About</p>
+              <p class="lead fw-normal my-1">About</p>
               <div class="p-4 description UP">
                 <p class="font-italic mb-1">{userData[0].description ? userData[0].description : "Write your description"}</p>
               </div>

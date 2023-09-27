@@ -7,9 +7,12 @@
   .avatar-thumbnail:hover {
     border: 2px solid #007bff; /* Color del borde al hacer hover (puedes personalizarlo) */
     cursor: pointer; /* Cambia el cursor al pasar el ratón sobre el avatar */
+    transition: border 0.3s ease-in-out;
   }  
 
-
+.hidden{
+  display: none;
+}
 .row .active{
   color: white;
   background: #178654;
