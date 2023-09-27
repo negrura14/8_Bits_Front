@@ -3,6 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import "./TabProfile.css"
 import UserProfile from './Profile/UserProfile';
 import DropdownProfile from './Edit Profile/Dropdown/DropdownProfile';
+import Review from './Profile/profileReviews';
 
 function TabProfile() {
   return (
@@ -21,7 +22,7 @@ function TabProfile() {
         <DropdownProfile />
       </Tab>
       <Tab eventKey="reviews" title={<span>Reviews <i class="fa-solid fa-book"></i></span>}>
-        Tab content for Reviews
+        <Review/>
       </Tab>
       <Tab eventKey="games" title={<span>Games <i class="fa-solid fa-gamepad"></i></span>}>
         Tab content for Games

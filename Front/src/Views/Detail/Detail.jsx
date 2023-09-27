@@ -85,14 +85,14 @@ export default function Detail() {
   let userId;
   const review = detail.Reviews;
 
-  // const prueba = review.find(obj=> obj.userId === user.user.id)
-  // console.log(prueba, "pruebaaa");
 
-  console.log(review, "rererer");
+const validateReview = review?.find(obj=> obj.userId === user.user.id)
 
-  user.length == 0 ? userId : (userId = user.user.id);
-  console.log(userId);
-  const validatePayment = payment.find((obj) => obj.idUser === userId);
+
+user.length == 0 ? userId : userId = user.user.id 
+
+const validatePayment = payment?.find(obj => obj.idUser === user.id ); 
+
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -134,6 +134,7 @@ export default function Detail() {
     // setIsFormValid(false);
   };
 
+
   return (
     <div>
       {Object.keys(detail).length > 0 ? (
@@ -148,6 +149,7 @@ export default function Detail() {
 
             <div className="single_product_desc clearfix">
               <span>{detail.releaseDate}</span>
+
               
                 <h2 className="text-white">{detail.name}</h2>
               
@@ -204,7 +206,7 @@ export default function Detail() {
 
 
               <div className="col-11 bgReview">
-                {detail.Reviews.map((review, index) => (
+                {detail.Reviews?.map((review, index) => (
                   <div key={index}>
 
                   <div className="cardTesti divRe mt-2 p-4">
@@ -234,7 +236,7 @@ export default function Detail() {
                   </div>
                 ))}
               </div>
-              {validatePayment ? (
+              {validatePayment  && !validateReview?(
                 <div className="col-11 bgReview border-top border-primary m-3">
 
 

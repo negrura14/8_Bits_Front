@@ -261,18 +261,21 @@ function Tienda() {
 
   const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
 
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
+  // const nextPage = () => {
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage((prevPage) => prevPage + 1);
+  //   }
+  // };
 
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
+  // const prevPage = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage((prevPage) => prevPage - 1);
+  //   }
+  // };
+ 
+  const onPageChange = (n)=>{
+    setCurrentPage(n)
   };
-
   const initial = currentPage * itemsPerPage - itemsPerPage + 1;
   const ending =
     currentPage * itemsPerPage < filteredGames.length
@@ -378,8 +381,9 @@ function Tienda() {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onNextPage={nextPage}
-        onPrevPage={prevPage}
+        onPageChange={onPageChange}
+        // onNextPage={nextPage}
+        // onPrevPage={prevPage}
       />
 
       <div className=" cardFLex row">
@@ -424,8 +428,9 @@ function Tienda() {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onNextPage={nextPage}
-        onPrevPage={prevPage}
+        onPageChange={onPageChange}
+        // onNextPage={nextPage}
+        // onPrevPage={prevPage}
       />
     </div>
   );
