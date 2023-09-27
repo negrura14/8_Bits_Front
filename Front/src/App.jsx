@@ -25,7 +25,8 @@ import MercadoPago from './Components/MercadoPago/MercadoPago';
 import Checkout from './Components/MercadoPago/checkout/Checkout';
 import SuccessMP from './Components/MercadoPago/success/SuccessMP';
 import FailureMP from './Components/MercadoPago/failure/failureMP';
-import {DashBoard} from "./Views/DashBoard/DashBoard.jsx"
+import {DashBoard} from "./Views/DashBoard/DashBoard.jsx";
+import ContactUs from './Views/ContactUs/ContactUs';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
        <Route path = {ROUTES.SUCCESS} element= {<SuccessMP/>}/>
        <Route path = {ROUTES.FAILURE} element= {<FailureMP/>}/>
        <Route path = "/Dashboard" element= {<DashBoard/>}/>
+       <Route path = {ROUTES.CONTACT} element= {<ContactUs/>}/>
       </Routes>
       {!main && <Footer/>}
     </div>

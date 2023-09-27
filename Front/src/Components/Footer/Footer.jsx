@@ -37,6 +37,7 @@ function Footer() {
       <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.HOME}>Home</NavLink></li>
       <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.STORE}>Store</NavLink></li>
       <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.ABOUT}>About us</NavLink></li>
+      <li className="nav-item"><NavLink className='nav-link px-2 text-body-primary' onClick={() => window.scrollTo(0, 0)} to={ROUTES.CONTACT}>Contact us</NavLink></li>
     </ul>
   </footer>
 </div>
