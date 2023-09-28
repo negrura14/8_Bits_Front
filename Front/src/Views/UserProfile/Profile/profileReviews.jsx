@@ -75,6 +75,19 @@ const handleRatingChange = (star) => {
     setIsFormValid(star > 0 && value.trim() !== '');
   };
 
+  const deletedReview =async ()=>{
+    try {
+        alert("The review will be deleted");
+       await axios.delete(`http://localhost:3001/reviews/${idReview}`)
+        dispatch(getUserByIdAction(user.id))
+        setSelectedReviewIndex(-1);
+       alert("review successfully deleted")
+    } catch (error) {
+      
+    }
+
+  }
+
   return (
     <div className="row d-flex justify-content-center">
 
@@ -155,6 +168,7 @@ const handleRatingChange = (star) => {
             <div>
               <button className="btn btn-outline-secondary me-1" onClick={handleSaveClick} disabled={!isFormValid}>Save</button>
               <button className="btn btn-outline-danger ms-1" onClick={handleCancelClick}>Cancel</button>
+              <button className="btn btn-outline-danger ms-1" onClick={()=>deletedReview(index)}>Delete</button>
             </div>
           ) : (
             <div className="my-4 py-3">
