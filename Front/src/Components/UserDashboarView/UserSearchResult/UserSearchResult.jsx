@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import defaultPhoto from '../../../Img/UserProfile/Avatars/default.jpeg'
 
 export default function UserSearchResult(props) {
     const { id, disable, email, image, name, lastname, nickname, admin } = props;
@@ -203,7 +204,7 @@ export default function UserSearchResult(props) {
     return (
         <div className="productS">
             <div className="productS-img">
-                <img src={image} alt="Avatar" />
+                <img src={image ? image : defaultPhoto} alt="Avatar" />
             </div>
             <div className="productS-content">
                 <h3>{name} {lastname}</h3>
