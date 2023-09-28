@@ -134,7 +134,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img sportsC">
                         <div className="catagory-content">
-                            <button onClick={filterChange} value={'Genres=Sports'} className="aC" >Sports</button>
+                            <button onClick={filterChange} value={'Genres=Platformer'} className="aC" >Platformer</button>
                         </div>
                     </div>
                 </div>
