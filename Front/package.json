@@ -24,6 +24,7 @@
     "country-state-city": "^3.2.1",
     "font-awesome": "^4.7.0",
     "gapi-script": "^1.2.0",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-admin": "^4.13.2",
     "react-bootstrap": "^2.8.0",
