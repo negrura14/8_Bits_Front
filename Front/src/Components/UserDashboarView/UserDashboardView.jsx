@@ -5,7 +5,7 @@ import UserSearchBar from "./UserSearchBar/UserSearchBar";
 export default function UserDashboard() {
     
     return (
-        <div>
+        <div className="login-box">
             <UserSearchBar />
         </div>
     )

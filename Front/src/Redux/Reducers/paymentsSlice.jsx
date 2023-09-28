@@ -5,6 +5,8 @@ const initialState = {
     payment: {},
     paymentByGame:[],
     paymentStatistics: [],
+    topSelling: [],
+    totalSales: [],
 }
 
 const paymentsSlice = createSlice ({
@@ -25,10 +27,16 @@ const paymentsSlice = createSlice ({
         },
         getPaymentByGameId: (state, action)=>{
             state.paymentByGame = action.payload;
+        },
+        getTopSelling: (state, action) => {
+            state.topSelling = action.payload;
+        },
+        getTotalSales: (state, action) => {
+            state.totalSales = action.payload;
         }
     }
 });
 
-export const { getPayments, getPaymentID, clearPaymentDetailAdmin, getPaymentStatistics, getPaymentByGameId} = paymentsSlice.actions;
+export const { getPayments, getPaymentID, clearPaymentDetailAdmin, getPaymentStatistics, getPaymentByGameId, getTopSelling, getTotalSales } = paymentsSlice.actions;
 
 export default paymentsSlice.reducer;
