@@ -19,7 +19,7 @@ function Search() {
 
   useEffect(() => {
     dispatch(getGame());
-  }, [dispatch]);
+  }, [dispatch, dataByName]);
   
     const getLowestPricedGames = (count) => {
       if (game.length === 0) {
@@ -94,6 +94,7 @@ function Search() {
         <div className={productSClasses}>
         {dataByName &&
           dataByName.map((elem, i) => {
+            if(elem.disable === false) {
             return (
               <div className="productS">
                 <div className="productS-img">
@@ -113,7 +114,45 @@ function Search() {
                   <p className="productS-text genre">{elem.genre}</p>
                 </div>
               </div>
-            );
+            )}else{
+              console.log(i)
+              if(dataByName.length === 1){
+                console.log(i,'dentro')
+                return (<div>
+
+    
+                  <h2 className="p-2 mx-3 text-primary">There are no results for {elem.name}</h2>
+                  <div className="not-loading row m-3">
+              <div className="col-sm-6 col-md-3">
+                <div className="game--isloading">
+                  <div className="loading-image"></div>
+                  <div className="loading-content">
+                    <div className="loading-text-container">
+                      <div className="loading-main-text"></div>
+                      <div className="loading-sub-text"></div>
+                    </div>
+                    <div className="loading-btn"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  <div className="container-fluid mt-4">
+                  <h2 className="p-2 text-secondary">Higher collection</h2>
+                        <div className=' cardFLex row'>
+                            {lowestPricedGames.map((game) => {
+                                return <CardT 
+                                key={game.id}
+                                game={game}
+                                />
+                            })}
+                        </div>
+                  </div>
+                  
+                </div>
+                  
+                );
+              }
+            };
           })}
         </div>
       </div>

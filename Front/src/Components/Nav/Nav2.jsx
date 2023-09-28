@@ -15,6 +15,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Dropdown from 'react-bootstrap/Dropdown';
 import LoadingPage from '../Loading/Loading.jsx';
 import { getUserByIdAction } from '../../Redux/userProfileActions.jsx';
+import defaultPhoto from '../../Img/UserProfile/Avatars/default.jpeg'
 
 function Nav2() {
   const location = useLocation();
@@ -47,7 +48,7 @@ function Nav2() {
 
   const userData = user;
   const navigate = useNavigate()
-  const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
+  // const defaultPhoto = "https://res.cloudinary.com/bits8/image/upload/v1695360325/Avatar%20Images/ftme8psm1dbrgyjltb6w.jpg";
   //---------------sweet alert-------------------//
 
   const MySwal = withReactContent(Swal);
