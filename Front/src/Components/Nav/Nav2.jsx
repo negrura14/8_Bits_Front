@@ -168,7 +168,7 @@ function Nav2() {
                             <li><NavLink  to={ROUTES.HOME}>Home</NavLink></li>
                             <li><NavLink  to={ROUTES.STORE}>Store</NavLink></li>
                             {auth === false && <li><NavLink  to={ROUTES.LOGIN}>Login</NavLink></li>}
-                            {auth === true && userById.admin === true && (<li><NavLink  to={ROUTES.CREATEGAME}>Create Game</NavLink></li>)}
+                          
                             
                         </ul>
                     </div>

@@ -32,6 +32,19 @@ const SuccessMP = () => {
     } else {
       acc[element.id] = { ...element, quantity: 1 };
     }
+  
+    if (auth === true) {
+      for (const element of cart) {
+        const gameStock = game.find((s) => s.id === element.id);
+        if (gameStock && gameStock.stock > 0) {
+          const updatedGameStock = { ...gameStock, stock: gameStock.stock - 1 };        
+          console.log("Este es el nuevo stock: ", updatedGameStock);
+          axios.put(`/games/${updatedGameStock.id}`, updatedGameStock);
+          dispatch(getGame());
+        }
+      }
+    }
+    
     return acc;
   }, {});
 
