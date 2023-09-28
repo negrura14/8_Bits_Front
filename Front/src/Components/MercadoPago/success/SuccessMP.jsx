@@ -32,21 +32,23 @@ const SuccessMP = () => {
     } else {
       acc[element.id] = { ...element, quantity: 1 };
     }
-  
-    if (auth === true) {
-      for (const element of cart) {
-        const gameStock = game.find((s) => s.id === element.id);
-        if (gameStock && gameStock.stock > 0) {
-          const updatedGameStock = { ...gameStock, stock: gameStock.stock - 1 };        
-          console.log("Este es el nuevo stock: ", updatedGameStock);
-          axios.put(`/games/${updatedGameStock.id}`, updatedGameStock);
-          dispatch(getGame());
-        }
-      }
-    }
-    
     return acc;
   }, {});
+  for (const element of cart) {
+    // console.log("ESTE ES EL RESULTADO DE UPDATELIST EN SUCCESSMP: ", element);
+    const gameStock = game.find((s) => s.id === element.id);
+
+    let i= 1;
+    if (gameStock && gameStock.stock > 0) {
+      const updatedGameStock = { ...gameStock, stock: gameStock.stock - 1 };        
+      console.log("Este es el nuevo stock: ", updatedGameStock);
+      axios.put(`/games/${updatedGameStock.id}`, updatedGameStock)
+      console.log("pasa por aqui: ", i);
+      i++;
+      dispatch(getGame());
+    }
+  }
+  
 
  
   const calculateTotalPrice = (gameId, quantity) => {
@@ -84,9 +86,9 @@ const SuccessMP = () => {
               <h2 className="card-title">Successful Payment</h2>
               <p className="card-text">Thanks for your purchase!</p>
               <h3 className="card-subtitle mb-3">Games Purchased:</h3>
+              <p className="card-text">Payment ID: {paymentId}</p>
               {Object.values(groupedCart).map((element, index) => (
                 <div key={index}>
-                  <p className="card-text">Payment ID: {paymentId}</p>
                   <p className="card-text">Game ID: {element.id}</p>
                   <p className="card-text">Game Name: {element.name}</p>
                   <p className="card-text">Unit Price: ${element.price}</p>
