@@ -34,20 +34,6 @@ const SuccessMP = () => {
     }
     return acc;
   }, {});
-  for (const element of cart) {
-    // console.log("ESTE ES EL RESULTADO DE UPDATELIST EN SUCCESSMP: ", element);
-    const gameStock = game.find((s) => s.id === element.id);
-
-    let i= 1;
-    if (gameStock && gameStock.stock > 0) {
-      const updatedGameStock = { ...gameStock, stock: gameStock.stock - 1 };        
-      console.log("Este es el nuevo stock: ", updatedGameStock);
-      axios.put(`/games/${updatedGameStock.id}`, updatedGameStock)
-      console.log("pasa por aqui: ", i);
-      i++;
-      dispatch(getGame());
-    }
-  }
   
 
  
@@ -71,7 +57,41 @@ const SuccessMP = () => {
     setSubtotal(calculateCartTotalPrice());
   }, [groupedCart]);
 
+
+  const refreshStock = () => {
+    if (auth === true){
+
+      const gameStockCount = {}; // Objeto para contar las repeticiones de cada juego en cart
+
+      // Contar cuántas veces aparece cada juego en cart
+      for (const element of cart) {
+        if (!gameStockCount[element.id]) {
+          gameStockCount[element.id] = 1;
+        } else {
+          gameStockCount[element.id]++;
+        }
+      }
+
+      // Actualizar el stock en gameStock
+      for (const element of cart) {
+        const gameStock = game.find((s) => s.id === element.id);
+
+        if (gameStock && gameStock.stock > 0) {
+          const stockToSubtract = gameStockCount[element.id]; // Obtener el contador
+          const updatedGameStock = { ...gameStock, stock: gameStock.stock - stockToSubtract };
+
+          // Realizar la actualización del stock
+          axios.put(`/games/${updatedGameStock.id}`, updatedGameStock);
+
+          // También puedes actualizar el estado de Redux si es necesario
+          // dispatch(getGame());
+        }
+      }
+    }
+  }
+
   const deletedCart = () => {
+    refreshStock();
     localStorage.setItem(`cart.${userData.user.id}`, JSON.stringify([]));
     dispatch(UpdateList(userData.user.id));
     dispatch(cartUpdate());
