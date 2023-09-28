@@ -26,11 +26,14 @@ const SuccessMP = () => {
     for (const element of cart) {
       // console.log("ESTE ES EL RESULTADO DE UPDATELIST EN SUCCESSMP: ", element);
       const gameStock = game.find((s) => s.id === element.id);
-      
+      let i= 1;
       if (gameStock && gameStock.stock > 0) {
         const updatedGameStock = { ...gameStock, stock: gameStock.stock - 1 };        
         console.log("Este es el nuevo stock: ", updatedGameStock);
         axios.put(`/games/${updatedGameStock.id}`, updatedGameStock)
+        console.log("pasa por aqui: ", i);
+        i++;
+        dispatch(getGame());
       }
     }
   }
