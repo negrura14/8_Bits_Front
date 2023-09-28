@@ -14,9 +14,11 @@ import { StatisticsViews } from '../Statistics/StatisticsViews';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PaymentStatisticsComponent } from '../Statistics/PaymentStatistics';
-import { getAllPayments } from '../../Redux/paymentsActions';
+import { getAllPayments, totalSales } from '../../Redux/paymentsActions';
+import { topSellingGames } from '../../Redux/paymentsActions';
 import CreateGame from '../../Components/Create Game/CreateGame';
 
+import { GameStockComponent } from '../Statistics/GameStock';
 
 
 export const DashBoard = () => {
@@ -26,6 +28,8 @@ export const DashBoard = () => {
   
   useEffect(() => {
     dispatch(getAllPayments());
+    dispatch(topSellingGames());
+    dispatch(totalSales());
     if(user.user.admin === false) {
       navigate('/home');
     }
@@ -68,7 +72,7 @@ export const DashBoard = () => {
               <Tab.Pane eventKey="second">{<UserDashboard/>}</Tab.Pane>
               <Tab.Pane eventKey="third"><PaymentStatisticsComponent /></Tab.Pane>
               <Tab.Pane eventKey="fourth" >{<UpdateProduct/>}</Tab.Pane>
-              <Tab.Pane eventKey="fifth">Second tab content</Tab.Pane>
+              <Tab.Pane eventKey="fifth"><GameStockComponent /></Tab.Pane>
               <Tab.Pane eventKey="sixth"><StatisticsViews /></Tab.Pane>
               
             </Tab.Content>
