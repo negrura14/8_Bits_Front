@@ -27,7 +27,7 @@ const data = [
         
         "instragram":"https://www.instagram.com/aguscamuzzi/ ",
         
-        "linkedIn":"www.linkedin.com/in/agustin-camuzzi-3a9b81272",
+        "linkedIn":"https://www.linkedin.com/in/agustin-camuzzi-3a9b81272/",
         
         "twitter": "null",
 
@@ -46,7 +46,7 @@ const data = [
         
         "instragram": "https://www.instagram.com/gebardo.yeah/  ",
         
-        "linkedIn": "https://www.linkedin.com/feed/",
+        "linkedIn": "https://www.linkedin.com/in/gerardo-campero-57167525/",
         
         "twitter": "null",
 
@@ -66,7 +66,7 @@ const data = [
     
         "instragram": "https://www.instagram.com/fajardo_steve/ ",
     
-        "linkedIn": "www.linkedin.com/in/stevens-fajardo-a32144248",
+        "linkedIn": "https://www.linkedin.com/in/stevens-fajardo-a32144248/",
     
         "twitter": "null", 
 

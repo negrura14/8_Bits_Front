@@ -144,8 +144,11 @@ function Tienda() {
   const [filtDB, setFiltDB] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const dispatch = useDispatch();
-  const { game, auxGames } = useSelector((state) => state.game);
+  const { game, auxGames, filter } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.genre);
+  const [filterSwitch, setFilterSwitch] = useState(false)
+
+  console.log(filter)
 
   const [selectedFilters, setSelectedFilters] = useState({
     plat: "Sort By: Platforms",
@@ -155,10 +158,26 @@ function Tienda() {
 
   // console.log("ESTO SE CARGA A LA VARIABLE FILTDB: ", game[3]);
 
-  useEffect(() => {
-    dispatch(getGame());
-    dispatch(getGenres());
-  }, [dispatch]);
+
+  if(filter.length === 0) {
+    useEffect(() => {
+      setFilterSwitch(true);
+      dispatch(getGame());
+      dispatch(getGenres());
+    }, [dispatch]);
+  } else {
+    useEffect(() => {
+      if(filterSwitch === false) {
+      // setFilterSwitch(true);
+      setSelectedFilters({
+        ...selectedFilters,
+        gen: game[0].Genres[0].name,
+      })}
+      dispatch(getGenres());
+    }, [dispatch, game]);
+  }
+
+
 
   useEffect(() => {
     // Filtrar los juegos basados en filtDB y almacenarlos en filteredGames.
@@ -363,6 +382,7 @@ function Tienda() {
               gen: "Sort By: Genre",
               pric: "Sort By: Price",
             });
+            setFilterSwitch(true);
             handleOfChange(e, "todo");
           }}
         >

@@ -7,6 +7,7 @@ export const gameSlice = createSlice({
         detail:[],
         search:[],
         auxGames: [],
+        filter: [],
     },
     reducers:{
         getAllGame: (state, action) => {
