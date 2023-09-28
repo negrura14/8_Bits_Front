@@ -144,11 +144,11 @@ function Tienda() {
   const [filtDB, setFiltDB] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const dispatch = useDispatch();
-  const { game, auxGames, filter } = useSelector((state) => state.game);
+  const { game, auxGames } = useSelector((state) => state.game);
   const { genre } = useSelector((state) => state.genre);
   const [filterSwitch, setFilterSwitch] = useState(false)
 
-  console.log(filter)
+  
 
   const [selectedFilters, setSelectedFilters] = useState({
     plat: "Sort By: Platforms",
@@ -159,21 +159,25 @@ function Tienda() {
   // console.log("ESTO SE CARGA A LA VARIABLE FILTDB: ", game[3]);
 
 
-  if(filter.length === 0) {
+  if(filterSwitch === true) {
     useEffect(() => {
       setFilterSwitch(true);
       dispatch(getGame());
       dispatch(getGenres());
-    }, [dispatch]);
+    }, [dispatch, setFilterSwitch]);
   } else {
     useEffect(() => {
-      if(filterSwitch === false) {
+      if(filterSwitch === false && game.length > 0) {
       // setFilterSwitch(true);
+      dispatch(getGenres());  
       setSelectedFilters({
         ...selectedFilters,
         gen: game[0].Genres[0].name,
-      })}
+      })} else {
       dispatch(getGenres());
+      dispatch(getGame());
+      setFilterSwitch(true);
+      };    
     }, [dispatch, game]);
   }
 
@@ -192,8 +196,8 @@ function Tienda() {
     setCurrentPage(1);
   }, [game, filtDB]);
 
-  console.log(game, "games");
-  console.log(auxGames, "auxGames");
+  // console.log(game, "games");
+  // console.log(auxGames, "auxGames");
   //** +++++++++++++++++++++++++++++++++++++++ SEPARACIÓN DE CODIGO ++++++++++++++++++++++++++++++++++++++++ */
 
   // const updateFiltersAndFetch = (newFilters) => {
@@ -276,7 +280,7 @@ function Tienda() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     return filteredGames.slice(indexOfFirstItem, indexOfLastItem);
   };
-  console.log(filteredGames, "filteredgames");
+  // console.log(filteredGames, "filteredgames");
 
   const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
 
