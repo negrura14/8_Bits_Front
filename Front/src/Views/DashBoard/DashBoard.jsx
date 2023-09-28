@@ -15,6 +15,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PaymentStatisticsComponent } from '../Statistics/PaymentStatistics';
 import { getAllPayments } from '../../Redux/paymentsActions';
+import CreateGame from '../../Components/Create Game/CreateGame';
+
 
 
 export const DashBoard = () => {
@@ -40,7 +42,7 @@ export const DashBoard = () => {
           <Col sm={3}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item>
-                <Nav.Link eventKey="first">VIEWS</Nav.Link>
+                <Nav.Link eventKey="first">UPLOAD GAME</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="second">USER MANAGEMENT</Nav.Link>
@@ -49,7 +51,7 @@ export const DashBoard = () => {
                 <Nav.Link eventKey="third">PURCHASE ORDERS</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fourth">PREDUCT MANAGEMENT</Nav.Link>
+                <Nav.Link eventKey="fourth">PRODUCT MANAGEMENT</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="fifth">STOCK</Nav.Link>
@@ -62,7 +64,7 @@ export const DashBoard = () => {
           <Col sm={9} className='font'>
             <Tab.Content >
               
-              <Tab.Pane eventKey="first">Frist tab content</Tab.Pane>
+              <Tab.Pane eventKey="first">{<CreateGame/>}</Tab.Pane>
               <Tab.Pane eventKey="second">{<UserDashboard/>}</Tab.Pane>
               <Tab.Pane eventKey="third"><PaymentStatisticsComponent /></Tab.Pane>
               <Tab.Pane eventKey="fourth" >{<UpdateProduct/>}</Tab.Pane>

@@ -97,7 +97,9 @@ function Search() {
             return (
               <div className="productS">
                 <div className="productS-img">
-                  <img src={elem.image} />
+                  <Link to={`${ROUTES.DETAIL}/${elem.id}`}>
+                    <img src={elem.image} />
+                  </Link>  
                 </div>
                 <div className="productS-content">
                   <Link to={`${ROUTES.DETAIL}/${elem.id}`}>

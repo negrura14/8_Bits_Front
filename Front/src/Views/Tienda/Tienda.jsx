@@ -347,8 +347,8 @@ function Tienda() {
             {" "}
             Sort By: Price{" "}
           </option>
-          <option value="Asc">Ascendente</option>
-          <option value="Desc">Descendente</option>
+          <option value="Asc">Cheaper</option>
+          <option value="Desc">Expensiver</option>
         </select>
 
       </div>
