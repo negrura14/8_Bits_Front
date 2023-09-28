@@ -67,7 +67,7 @@ const handleChangeOnClic = () => {
 }
 
     return ( <>
-    <div className="col-md-4 col-sm-6 mb-5 " key={game.id}>
+    <div className="col-auto cardDivT mb-5 col-md-4 " key={game.id}>
         <div className="product-grid card-st">
         <span className="badge">{game.name}</span>
             <div className="product-image">

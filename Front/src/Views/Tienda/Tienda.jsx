@@ -386,7 +386,7 @@ function Tienda() {
         // onPrevPage={prevPage}
       />
 
-      <div className=" cardFLex row">
+      <div className=" cardFLex row d-flex justify-content-center">
         {filteredGames.length > 0 ? (
           getCurrentItems().map((game) => {
             return <CardT key={game.id} game={game} />;
