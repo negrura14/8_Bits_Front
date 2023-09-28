@@ -1,8 +1,14 @@
 import { useState } from "react";
 import "./ContactUs.css";
 import contactImage from "../../Img/contactImage.jpeg"
+import axios from "axios";
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function ContactUs(){
+
+    const MySwal = withReactContent(Swal);
 
     const [input,setInput] = useState({
         email: "",
@@ -24,7 +30,7 @@ export default function ContactUs(){
         }
 
         if(input.issue && input.issue.length > 200){
-            errors.issue = "Too long"
+            errors.issue = "Comment to long"
         }
 
         return errors;
@@ -44,7 +50,48 @@ export default function ContactUs(){
     const handleSumbit = (e) => {
         e.preventDefault();
 
-        alert("Success");
+        
+        if(errors.email || errors.issue){
+            MySwal.fire({
+                title: <strong>ERROR</strong>,
+                html: <i>There is some error in {
+                    errors.email ? "email" : errors.issue && "your comment" 
+                  }</i>,
+                icon: 'error',
+                background : "#1d1d1d",
+              });
+        } else if (!input.email || !input.issue){
+            MySwal.fire({
+                title: <strong>WARNING</strong>,
+                html: <i>You have to complete all fields</i>,
+                icon: 'warning',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              });
+        } else {
+            console.log(input);
+            const formatInput = {
+                textMail: input.email,
+                text: input.issue
+            }
+            console.log(formatInput,"format");
+            axios
+            .post("/send-mail/contact", formatInput)
+            .then((res) => res,
+            MySwal.fire({
+                title: <strong>SUCCESS</strong>,
+                html: <i>We will contact you. Thanks!</i>,
+                icon: 'success',     
+                background : "#1d1d1d",
+                customClass:{
+                  container: 'custom-alert-container',
+                }
+              })
+            )
+            .catch((err) => alert(err));
+        }
     }
 
     return(
