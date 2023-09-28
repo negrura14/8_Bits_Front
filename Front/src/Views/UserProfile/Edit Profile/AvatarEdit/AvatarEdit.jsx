@@ -31,6 +31,11 @@ export default function AvatarEdit({ currentUser }) {
     "https://res.cloudinary.com/bits8/image/upload/v1695360321/Avatar%20Images/tlptaz2zmcshkpza7knq.jpg",
     "https://res.cloudinary.com/bits8/image/upload/v1695360321/Avatar%20Images/obqld0sy4cqmygibdxis.jpg",
     "https://res.cloudinary.com/bits8/image/upload/v1695360321/Avatar%20Images/phatrmwyzchqsf1vxx7m.jpg",
+    "https://res.cloudinary.com/bits8/image/upload/v1695922686/Avatar%20Images/hggab6ufcc6cx2lvisrt.jpg",
+    "https://res.cloudinary.com/bits8/image/upload/v1695922686/Avatar%20Images/i7axsvbildsop6nygfbl.jpg",
+    "https://res.cloudinary.com/bits8/image/upload/v1695922686/Avatar%20Images/ebmg86tadyroraezkd1a.jpg",
+    "https://res.cloudinary.com/bits8/image/upload/v1695922685/Avatar%20Images/r77fjuzbedlsa3uc33m6.jpg",
+    "https://res.cloudinary.com/bits8/image/upload/v1695922674/Avatar%20Images/psswaldw3o3dd6igo6h8.jpg"
   ];
 
   const femaleAvatars = [
