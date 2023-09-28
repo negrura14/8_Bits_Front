@@ -34,9 +34,11 @@ export const TopSellingComponent = () => {
       });
     
       return (
-        <div>
-          <h2>Top Selling Games</h2>
-          <table {...getTableProps()} className="table">
+        <div  className="table-responsive p-5 login-box">
+          <h2 className="mb-3">Top Selling Games</h2>
+          <div className=" table-div">
+
+          <table {...getTableProps()} className="table table-dark table-striped custom-table">
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
@@ -61,6 +63,7 @@ export const TopSellingComponent = () => {
               })}
             </tbody>
           </table>
+          </div>
         </div>
       );
 

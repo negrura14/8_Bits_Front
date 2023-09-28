@@ -63,6 +63,8 @@ export default function UserSearchBar() {
 
       </div>
 
+      <div className="table-div">
+
       <div className={productSClasses}>
       {Array.isArray(userProfile) 
         ? userProfile.map((user) => {
@@ -82,8 +84,6 @@ export default function UserSearchBar() {
         )
         : <p>{userProfile}</p> }
       </div>
-      <div>
-        
       </div>
     </div>
   );

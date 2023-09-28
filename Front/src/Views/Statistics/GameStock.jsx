@@ -24,6 +24,7 @@ export const GameStockComponent = () => {
           }}
           placeholder={`Search ${column.Header}`}
           onClick={handleSearchClick}
+          className="form-control bg-transparent text-white col-6"
         />
       );
     };
@@ -65,8 +66,8 @@ export const GameStockComponent = () => {
     
     
       return (
-        <div>
-          <h2>Game Stock</h2>
+        <div className="table-responsive p-5 login-box">
+          <h2 className="mb-3">Game Stock</h2>
           {/* <input
             value={globalFilter}
             onChange={(e) => {
@@ -75,18 +76,20 @@ export const GameStockComponent = () => {
             }}
             placeholder="Buscar en todos los juegos"
           /> */}
-          <table {...getTableProps()} className="table">
+          <div className=" table-div">
+
+          <table  {...getTableProps()} className="table table-dark table-striped custom-table">
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    <th className=" fs-6 p-4 " {...column.getHeaderProps(column.getSortByToggleProps())}>
                       {column.render('Header')}
-                      <span>
+                      <span className="mb-3">
                         {column.isSorted
                           ? column.isSortedDesc
-                            ? ' 🔽'
-                            : ' 🔼'
+                            ? <i class="ms-3 fa-solid fa-chevron-down"></i>
+                            : <i class="ms-3 fa-solid fa-chevron-up"></i>
                           : ''}
                       </span>
                       {column.Header === 'Game' ? (
@@ -112,6 +115,7 @@ export const GameStockComponent = () => {
               })}
             </tbody>
           </table>
+          </div>
         </div>
       );
 }
