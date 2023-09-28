@@ -38,7 +38,6 @@ export const PaymentStatisticsComponent = () => {
     
       return (
         <div className="tablePay">
-          <h2>Payments</h2>
           <PaymentTable columns={columns} data={paymentStatistics} />
         </div>
       );

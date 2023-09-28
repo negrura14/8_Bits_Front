@@ -26,13 +26,17 @@ export const PaymentTable = ({ columns, data }) => {
   };
 
   return (
-    <div className="table-responsive p-5">
+    <div className="table-responsive p-5 login-box">
+    
+    <h2 className="text-center text-white mb-3">Payments</h2>
       <input
         value={filterInput}
         onChange={handleFilterChange}
         placeholder="Filter by Payment ID"
-        className="filter-input"
+       className="form-control bg-transparent text-white mb-3"
       />
+      <div className=" table-div">
+
       <table {...getTableProps()} className="table table-dark table-striped custom-table">
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -58,6 +62,7 @@ export const PaymentTable = ({ columns, data }) => {
           })}
         </tbody>
       </table>
+      </div>
     </div>
   );
 
