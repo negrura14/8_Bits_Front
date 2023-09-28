@@ -1,6 +1,6 @@
 import "./Home.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { getGame } from '../../Redux/gameActions';
+import { filterGamesAction, getGame } from '../../Redux/gameActions';
 import React, { useEffect, useState } from 'react';
 import LoadingPage from '../../Components/Loading/Loading'
 import brandEA from "../../Img/brands/1200px-The_EA_Sports_Logo(Beta)_For_EA_SPORTS_Inc..svg.png"
@@ -15,6 +15,7 @@ import CardT from "../../Components/Card/CardT";
 import { clearUser, clearUsers } from "../../Redux/Reducers/userSlice";
 import { getUsersAct, swAuth } from "../../Redux/userActions";
 import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -75,6 +76,11 @@ function Home() {
       return sortedGames.slice(0, count); 
     };
   
+    const filterChange = (event) => {
+        dispatch(filterGamesAction(event.target.value))
+        navigate('/store')
+    };
+
     const lowestPricedGames = getLowestPricedGames(3);
     
     
@@ -128,7 +134,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img sportsC">
                         <div className="catagory-content">
-                            <a className="aC" href="#">Sports</a>
+                            <button onClick={filterChange} value={'Genres=Sports'} className="aC" >Sports</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +142,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img rpgC" >
                         <div className="catagory-content">
-                            <a className="aC" href="#">RPG</a>
+                        <button onClick={filterChange} value={'Genres=RPG'} className="aC" >RPG</button>
                         </div>
                     </div>
                 </div>
@@ -144,7 +150,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img adventureC" >
                         <div className="catagory-content">
-                            <a className="aC" href="#">Adventure</a>
+                        <button onClick={filterChange} value={'Genres=Adventure'} className="aC" >Adventure</button>
                         </div>
                     </div>
                 </div>
