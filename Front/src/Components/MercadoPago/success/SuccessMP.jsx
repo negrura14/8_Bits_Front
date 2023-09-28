@@ -83,7 +83,7 @@ const SuccessMP = () => {
                   <p className="card-text">Quantity: {game.quantity}</p>
                 </div>
               ))}
-              <a href="/" className="btn btn-primary">
+              <a href="/" className="btn btn-primary" onClick={deletedCArt}>
                 Go to Home
               </a>
             </div>
