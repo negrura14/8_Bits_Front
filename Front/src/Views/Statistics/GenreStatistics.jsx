@@ -22,7 +22,7 @@ const chartData = sortedGenreStatistics.map((entry) => ({
 
 
 return (
-    <div className="stadistic">
+    <div className="stadistic login-box">
         
         <h2 className="m-3">Game Genres</h2>
         <div className="mb-5 row" style={{ display: "flex" }}>
