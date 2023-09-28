@@ -16,7 +16,9 @@
 
 
 
-
+.notSearchImg{
+  max-width: 550px;
+}
 .data-pagination,
 .data-pagination *,
 .data-pagination *:before,
