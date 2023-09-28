@@ -1,4 +1,4 @@
-import React from "react";
+import React from, {useEffect} "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGame } from '../../../Redux/gameActions';
