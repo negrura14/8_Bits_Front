@@ -14,15 +14,17 @@ import LoadingPage from "../../../../Components/Loading/Loading";
 
 export default function DropdownProfile() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user.userState.user);
+  // const { user } = useSelector((state) => state.user.userState.user);
   const { users } = useSelector((state) => state.user.userState);
   const { userProfile } = useSelector((state) => state.userProfile);
+  const { user } = useSelector((state) => state.user.userState);
   const [loading, setLoading] = useState(true);
+  console.log(user)
 
   useEffect(() => {
     //console.log(user.email);
     dispatch(getUsersAct());
-    dispatch(getUserProfileAction(user.email))
+    dispatch(getUserProfileAction(user.user.email))
       .then(() => {
         setLoading(false);
       })
@@ -43,7 +45,7 @@ export default function DropdownProfile() {
       case "General":
         return (
           <GeneralEdit
-            currentUser={user}
+            currentUser={user.user}
             allUsers={users}
             userProfile={userProfile[0]}
           />
@@ -51,17 +53,17 @@ export default function DropdownProfile() {
       case "About":
         return (
           <AboutEdit
-            currentUser={user}
+            currentUser={user.user}
             allUsers={users}
             userProfile={userProfile[0]}
           />
         );
       case "Avatar":
-        return <AvatarEdit currentUser={user} />;
+        return <AvatarEdit currentUser={user.user} />;
       case "Background":
-        return <BackgroundEdit currentUser={user}/>
+        return <BackgroundEdit currentUser={user.user}/>
       case "Password":
-        return <PasswordEdit currentUser={user} allUsers={users} />;
+        return <PasswordEdit currentUser={user.user} allUsers={users} />;
       default:
         return null;
     }
@@ -84,13 +86,13 @@ export default function DropdownProfile() {
             <i className="fa-solid fa-pen-to-square"></i>
             <span className="list-item-nameEP">General</span>
           </li>
-          <li
+          {user.authMethod === 'local' && <li
             className="list-itemEP"
             onClick={() => handleOptionChange("Password")}
           >
             <i className="fa-solid fa-key"></i>
             <span className="list-item-nameEP">Password</span>
-          </li>
+          </li>}
           <li
             className="list-itemEP"
             onClick={() => handleOptionChange("About")}
