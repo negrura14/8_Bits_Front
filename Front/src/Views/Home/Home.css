@@ -182,7 +182,9 @@
   left: 0;
   z-index: -10;
 }
-.single_catagory_area .catagory-content a {
+.single_catagory_area .catagory-content button {
+  background: none;
+  border: none;
   display: block;
   font-size: 30px;
   font-weight: 700;
@@ -191,21 +193,21 @@
   text-transform: uppercase;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .single_catagory_area .catagory-content a {
+  .single_catagory_area .catagory-content button {
     font-size: 20px;
   }
 }
 @media only screen and (max-width: 767px) {
-  .single_catagory_area .catagory-content a {
+  .single_catagory_area .catagory-content button {
     font-size: 18px;
   }
 }
-.single_catagory_area:hover .catagory-content a {
+.single_catagory_area:hover .catagory-content button {
   color:#3eff78 ;
 }
 
 .sportsC {
-  background-image: url(../../Img/Home/sportCover.jpeg);
+  background-image: url(../../Img/Home/platformCover.jpeg);
 }
 
 .rpgC {
