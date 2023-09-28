@@ -56,7 +56,7 @@ export const PlatformStatisticsComponent = () => {
             y="count"
             labels={({ datum }) => `${datum.platform}: ${datum.count}`}
             style={{
-              data: { fill: "blue" },
+              data: { fill: "#ba1f65" },
             }}
             labelComponent={
               <VictoryTooltip
