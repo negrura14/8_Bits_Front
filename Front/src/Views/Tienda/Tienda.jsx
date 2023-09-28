@@ -398,7 +398,7 @@ function Tienda() {
                 <div className="col-12">
                   <div className="cta-content bg-img background-overlay">
                     <div className="h-100 d-flex align-items-center justify-content-end row">
-                      <img src={notSearch} className=" col-6"/>
+                      <img src={notSearch} className="notSearchImg col-6"/>
                       <div className=" col-6 filter--text">
                         <h2 className="fs-2">There is no games for the filters!</h2>
                         <h6 className="mb-5 fs-5">Please choose another one or reset filters 👇</h6>
