@@ -16,7 +16,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import validateUser from "../../Components/Create User/validateUser";
 import { clearUsers } from "../../Redux/Reducers/userSlice";
-
+import bcrypt from "bcryptjs-react";
+import axios from "axios";
 
 
 const Landing = () => {
@@ -177,19 +178,7 @@ const Landing = () => {
 
   }
 
-  /////////////////////
-
-  //useEffect de los usuarios
-
-  const usersPrueba = [
-    {
-      name: "Sujeto 1",
-      lastname: "-",
-      email: "prueba@gmail.com",
-      password: "1234",
-    },
-  ];
-
+  
   //---------------------------//
 
   const ToastR = MySwal.mixin({
@@ -247,7 +236,7 @@ const Landing = () => {
           ...input,
           [e.target.name]: e.target.value,
         },
-        usersPrueba
+        users
       )
     );
   }
