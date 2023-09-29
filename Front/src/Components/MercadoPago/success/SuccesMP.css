@@ -1,0 +1,36 @@
+
+
+.font-bolder, .text-600 {
+    font-weight: 600!important;
+  }
+  
+  .pb-25, .py-25 {
+    padding-bottom: .75rem!important;
+  }
+  
+  .pt-25, .py-25 {
+    padding-top: .75rem!important;
+  }
+  .page-header .page-tools {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+  }
+  
+  .imgFS{
+    width: 200px;
+  }
+  
+  .invoice{
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+  }
+  
+  .backgroundinvoice{
+    padding: 40px;
+      background: rgba(0,0,0,.5);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+  }
