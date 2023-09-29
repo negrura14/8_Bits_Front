@@ -1,8 +1,7 @@
-.imageReview{
-    width: 20%;
-    min-width: 200px;
-}
 
+.notReviewImg{
+    width: 500px;
+}
 
 .dataReview{
     text-align: center;
