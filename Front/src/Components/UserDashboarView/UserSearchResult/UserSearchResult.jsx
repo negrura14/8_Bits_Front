@@ -208,8 +208,11 @@ export default function UserSearchResult(props) {
             </div>
             <div className="productS-content">
                 <h3>{name} {lastname}</h3>
-                <p className="productS-text price text-white-50">{nickname}</p>
-                <p className="productS-text price text-white-50">{email} </p>
+                <p className="productS-text price text-secondary mb-3">{nickname}</p>
+                <div className='productSmail'>
+
+                <p className="productS-text price text-white-50 fs-6">{email} </p>
+                </div>
             </div>
 
             <Form className='productS-text price'>

@@ -109,3 +109,9 @@
     border-bottom-right-radius: var(--radius);
     color: white;
   }
+
+  .productSmail{
+    
+    height: auto;
+  word-wrap: break-word;
+  }
