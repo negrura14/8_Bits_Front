@@ -30,14 +30,14 @@ export const PlatformStatisticsComponent = () => {
           domainPadding={20}
           width={500}
           height={250}
-          animate={animate ? { duration: 1000 } : false} // Agrega animación a las barras
+          // animate={animate ? { duration: 1000 } : false} // Agrega animación a las barras
         >
           <VictoryAxis
           
             tickValues={chartData.map((entry) => entry.platform)}
             tickFormat={(tick) => tick}
             style={{
-              tickLabels: { angle: -45, textAnchor: "end", fill: "white", },
+              tickLabels: { angle: -45, textAnchor: "end", fill: "white", fontSize: 7},
               axis: { stroke: "grey"},
             }}
             
