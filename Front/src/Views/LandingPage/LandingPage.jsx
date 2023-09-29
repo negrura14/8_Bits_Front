@@ -578,11 +578,11 @@ const Landing = () => {
         <div className="frame2 col-xl-5 col-md-6 col-sm-auto mb-5">
         <div className="row  d-flex justify-content-center align-items-center"> 
 
-          <div class=" guestD bGuest col-10">
-            <div class="guestD-border-top"></div>
-            <div class="guestDimg"></div>
+          <div className=" guestD bGuest col-10">
+            <div className="guestD-border-top"></div>
+            <div className="guestDimg"></div>
             <span> Not Account?</span>
-            <p class="guestDjob"> Sign in as a guest</p>
+            <p className="guestDjob"> Sign in as a guest</p>
             <NavLink
               className="guestDbutton btn btn-secondary "
               onClick={() => window.scrollTo(0, 0)}

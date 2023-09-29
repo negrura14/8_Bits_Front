@@ -26,6 +26,8 @@ export default function Detail() {
   const [reviewsText, setReviewsText] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
+  
+
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
 
@@ -82,19 +84,12 @@ export default function Detail() {
     }
   };
   //-------------------------------Review---------------------------------
-  let userId;
-  const review = detail.Reviews;
+  
+const review = detail.Reviews;
 
+const validateReview = review?.find(obj=> obj.userId === user.user.id)
 
-
-
-
-user.length == 0 ? userId : userId = user.user.id 
-
-const validateReview = review?.find(obj=> obj.userId === user.id)
-
-const validatePayment = payment?.find(obj => obj.idUser === user.id ); 
-
+const validatePayment = payment?.find(obj => obj.idUser == user.user.id ); 
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -126,15 +121,13 @@ const validatePayment = payment?.find(obj => obj.idUser === user.id );
     setIsFormValid(false);
 
     try {
-      await axios.post("http://localhost:3001/reviews", data);
-      window.location.reload();
+      await axios.post("/reviews", data);
+      dispatch(getGamesId(id));
     } catch (error) {
       console.log(JSON.stringify({ error: error.message }));
     }
 
-    // setRating(0);
-    // setReviewsText('');
-    // setIsFormValid(false);
+    
   };
 
 
@@ -257,6 +250,7 @@ const validatePayment = payment?.find(obj => obj.idUser === user.id );
                         id="reviewsText"
                         value={reviewsText}
                         onChange={handleCommentChange}
+                        maxLength={200}
                       />
                     <div className="rating mt-2">
                     <label htmlFor="rating"></label>
@@ -275,7 +269,7 @@ const validatePayment = payment?.find(obj => obj.idUser === user.id );
                   <div className="arrow-down"></div>
             <div className="row d-flex justify-content-center mb-4">
                 <div className="d-flex">
-                    <div className="profile-pic fit-image"><i class="text-white fa-solid fa-user fa-4x p-2"></i></div>
+                    <div className="profile-pic fit-image"><i className="text-white fa-solid fa-user fa-4x p-2"></i></div>
                     <div className="m-4 p-3">
 
                     <button type="submit" className="btn btn-outline-primary" disabled={!isFormValid}>

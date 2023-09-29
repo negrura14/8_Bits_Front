@@ -216,10 +216,10 @@ export default function Login() {
             Submit
           </Button>
           
-        <div class="separator">
-    <hr class="line"/>
+        <div className="separator">
+    <hr className="line"/>
     <span>Or</span>
-    <hr class="line"/>
+    <hr className="line"/>
   </div>
   <div className="social-icons">
   <LoginSocialGoogle

@@ -2,12 +2,26 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import {getUserByIdAction} from '../../../Redux/userProfileActions'
+import {getUserByIdAction} from '../../../Redux/userProfileActions';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import notReviewsP from "../../../Img/notReviewsP.jpeg"
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../Helpers/RoutesPath";
+import "./profileReviews.css"
+
 import axios from "axios";
 
 const Review = () => {
 
-
+  const MySwal = withReactContent(Swal);
+  const swalWithBootstrapButtons = MySwal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  });
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userProfile.userById);
   const reviews = profile.Reviews;
@@ -17,7 +31,7 @@ const Review = () => {
   const[idReview, setIdReview] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  console.log(profile, "profile" );
+ // console.log(profile, "profile" );
 
 
 useEffect(()=>{
@@ -37,7 +51,9 @@ dispatch(getUserByIdAction(user.id))
   const handleSaveClick = async () => { 
     try{
         const updatedReview = { ...reviews[selectedReviewIndex], ...editedReview };
-        const update = await axios.put(`http://localhost:3001/reviews/${idReview}`, updatedReview)
+
+        
+        const update = await axios.put(`/reviews/${idReview}`, updatedReview)
         dispatch(getUserByIdAction(user.id))
         setSelectedReviewIndex(-1);
         setEditedReview({ rating: "", textReview: ""});
@@ -75,26 +91,54 @@ const handleRatingChange = (star) => {
     setIsFormValid(star > 0 && value.trim() !== '');
   };
 
-  const deletedReview =async ()=>{
+  const deletedReview = async ()=>{
     try {
-        alert("The review will be deleted");
-       await axios.delete(`http://localhost:3001/reviews/${idReview}`)
-        dispatch(getUserByIdAction(user.id))
-        setSelectedReviewIndex(-1);
-       alert("review successfully deleted")
-    } catch (error) {
+
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You are going to delete review!",
+        icon: 'warning',
+        background: "#1d1d1d",
+        showCancelButton: true,
+        confirmButtonText: "Yes, I'm sure",
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then (async (result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Success!',
+            'Deleted review',
+            'success'
+          )
+           await axios.delete(`/reviews/${idReview}`)
+          dispatch(getUserByIdAction(user.id))
+          setSelectedReviewIndex(-1);
+  
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            '',
+            'error'
+          )
+        }
+      })
       
+    } catch (error) {
+      console.log(JSON.stringify({error:error.message}))
     }
 
   }
-
+  
   return (
     <div className="row d-flex justify-content-center">
 
             <h2 className="text-white p-5">Reviews <i className="fa-solid fa-comments"></i></h2>
 
     <div className="col-11 bgReview">
-      {reviews?.map((review, index) => (
+      {reviews?.length !== 0 ? reviews?.map((review, index) => (
         <div key={index}>
           <div className="cardTesti divRe mt-2 pt-4 pb-3 d-flex justify-content-center row">
           <div className="col-md-3 col-xl-3 col-auto">
@@ -138,6 +182,7 @@ const handleRatingChange = (star) => {
                       value={editedReview.textReview}
                       onChange={handleInputChange}
                       rows={4}
+                      maxLength={200}
                     />
                   </div>
                 </form>
@@ -181,7 +226,18 @@ const handleRatingChange = (star) => {
 
           
         </div>
-      ))}
+      )): 
+          <div className="row d-flex justify-content-center text-white login-box">
+          <div className=" col-6 filter--text pLinkG mt-5">
+          <div><h2 className="fs-3 mb-5">You have no reviews, to do one you have to purchase a game!</h2></div>
+          <div><h6 className="mb-5 fs-4">Purchase one here 👇</h6></div>
+            
+            
+            <Link  className="essence-btn aC" to={ROUTES.STORE}><p>STORE</p></Link>
+          </div>
+          <img src={notReviewsP} className="notReviewImg col-6"/>
+        </div>
+      }
     </div>
     </div>
   );

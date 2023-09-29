@@ -1,0 +1,47 @@
+
+
+.font-bolder, .text-600 {
+    font-weight: 600!important;
+  }
+  
+  .pb-25, .py-25 {
+    padding-bottom: .75rem!important;
+  }
+  
+  .pt-25, .py-25 {
+    padding-top: .75rem!important;
+  }
+  .page-header .page-tools {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+  }
+  
+  .imgFS{
+    width: 200px;
+  }
+  
+  .invoice{
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+  }
+  
+  .backgroundinvoice{
+    padding: 40px;
+      background: rgba(0,0,0,.2);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+  }
+
+  .divPaymentError{
+    --opacidad-negro: 0.7;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    background-image:linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url("../../../Img/errorPayment.jpeg");
+    background-size: contain;
+    font-weight: bold;
+  }
+  

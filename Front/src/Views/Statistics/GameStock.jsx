@@ -88,8 +88,8 @@ export const GameStockComponent = () => {
                       <span className="mb-3">
                         {column.isSorted
                           ? column.isSortedDesc
-                            ? <i class="ms-3 fa-solid fa-chevron-down"></i>
-                            : <i class="ms-3 fa-solid fa-chevron-up"></i>
+                            ? <i className="ms-3 fa-solid fa-chevron-down"></i>
+                            : <i className="ms-3 fa-solid fa-chevron-up"></i>
                           : ''}
                       </span>
                       {column.Header === 'Game' ? (

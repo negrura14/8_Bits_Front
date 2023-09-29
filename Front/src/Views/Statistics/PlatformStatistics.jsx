@@ -24,7 +24,7 @@ export const PlatformStatisticsComponent = () => {
     }));
   
     return (
-      <div>
+      <div className="login-box platStats">
         <h2>Game Platforms</h2>
         <VictoryChart
           domainPadding={20}
@@ -33,21 +33,22 @@ export const PlatformStatisticsComponent = () => {
           animate={animate ? { duration: 1000 } : false} // Agrega animación a las barras
         >
           <VictoryAxis
-
+          
             tickValues={chartData.map((entry) => entry.platform)}
             tickFormat={(tick) => tick}
             style={{
-              tickLabels: { angle: -45, textAnchor: "end", fill: "green" },
-              axis: { stroke: "white"}
+              tickLabels: { angle: -45, textAnchor: "end", fill: "white", },
+              axis: { stroke: "grey"},
             }}
+            
           />
           <VictoryAxis
 
             dependentAxis
             tickFormat={(tick) => tick}
             style={{
-                tickLabels: { fill: "green" },
-                axis: { stroke: "white" },
+                tickLabels: { fill: "white" },
+                axis: { stroke: "gray" },
               }}
           />
           <VictoryBar
@@ -61,7 +62,7 @@ export const PlatformStatisticsComponent = () => {
             labelComponent={
               <VictoryTooltip
                 cornerRadius={3}
-                flyoutStyle={{ fill: "white" }}
+                flyoutStyle={{ fill: "#00ff8c" }}
               />
             }
           />

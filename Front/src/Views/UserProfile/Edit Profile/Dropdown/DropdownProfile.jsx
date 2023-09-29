@@ -19,7 +19,7 @@ export default function DropdownProfile() {
   const { userProfile } = useSelector((state) => state.userProfile);
   const { user } = useSelector((state) => state.user.userState);
   const [loading, setLoading] = useState(true);
-  console.log(user)
+  
 
   useEffect(() => {
     //console.log(user.email);
@@ -111,7 +111,7 @@ export default function DropdownProfile() {
             className="list-itemEP"
             onClick={() => handleOptionChange("Background")}
           >
-            <i class="fa-solid fa-image"></i>
+            <i className="fa-solid fa-image"></i>
             <span className="list-item-nameEP">Background</span>
           </li>
         </div>
