@@ -31,7 +31,6 @@ export default function UserProfile() {
 
 
   useEffect(() => {
-      console.log(user.email,"user email")
       dispatch(getUsersAct());
       dispatch(getUserGamesAction(user.id))
       dispatch(getUserProfileAction(user.email))
@@ -92,7 +91,7 @@ export default function UserProfile() {
     });
   };
   //-------fin funcionalidad para mostrar toda la data del usuario------------//
-console.log(userGamesPay);
+
   if(loading) {
     return(
       <div> 
