@@ -263,7 +263,7 @@ console.log(errors,"errores");
 
   return (
     <div className="row justify-content-center">
-      <div className="text-primary px-4 m-5 login-box col-md-6 col-sm-10">
+      <div className="text-primary px-4 m-5 login-box col-md-8 col-sm-10">
         {/* <button type="button" onClick={() => Toast.fire(
           {icon: 'success',
           iconColor: "white",
@@ -319,10 +319,10 @@ console.log(errors,"errores");
                 className="form-control bg-transparent text-white"
                 // className={errors.price ? 'error' : ''}
               />
-            </div>
             {errors.price && (
               <p className="error-message">{errors.price}</p>
             )}
+            </div>
             <div className="mb-3 col-md-6  col-sm-12">
               <label className="form-label">Release Date</label>
               <input
@@ -432,10 +432,10 @@ console.log(errors,"errores");
                 className="form-control bg-transparent text-white"
                 // className={errors.name ? 'error' : ''}
               />
-            </div>
             {errors.review && (
               <p className="error-message">{errors.review}</p>
             )}
+            </div>
             <div className="col quantity">
               <label className="form-label">Stock</label>
               <input
@@ -448,10 +448,10 @@ console.log(errors,"errores");
                 className="form-control bg-transparent text-white"
                 // className={errors.name ? 'error' : ''}
               />
-            </div>
             {errors.stock && (
               <p className="error-message">{errors.stock}</p>
             )}
+            </div>
           </div>
 
           <div className="mb-3">
