@@ -111,7 +111,7 @@ export default function DropdownProfile() {
             className="list-itemEP"
             onClick={() => handleOptionChange("Background")}
           >
-            <i class="fa-solid fa-image"></i>
+            <i className="fa-solid fa-image"></i>
             <span className="list-item-nameEP">Background</span>
           </li>
         </div>

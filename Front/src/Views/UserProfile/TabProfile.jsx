@@ -15,13 +15,13 @@ function TabProfile() {
       className="mb-3"
       fill
     >
-      <Tab eventKey="profile" title={<span>Profile <i class="fa-solid fa-user"></i></span>}>
+      <Tab eventKey="profile" title={<span>Profile <i className="fa-solid fa-user"></i></span>}>
         <UserProfile />
       </Tab>
-      <Tab eventKey="edit" title={<span>Edit Profile <i class="fa-solid fa-pen"></i></span>}>
+      <Tab eventKey="edit" title={<span>Edit Profile <i className="fa-solid fa-pen"></i></span>}>
         <DropdownProfile />
       </Tab>
-      <Tab eventKey="reviews" title={<span>Reviews <i class="fa-solid fa-book"></i></span>}>
+      <Tab eventKey="reviews" title={<span>Reviews <i className="fa-solid fa-book"></i></span>}>
         <Review/>
       </Tab>
     </Tabs>

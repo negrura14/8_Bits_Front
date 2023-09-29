@@ -102,50 +102,50 @@ console.log(userGamesPay);
   } else {
     return (
     <>   
-  <div class="container py-5 h-100">
+  <div className="container py-5 h-100">
   
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-lg-12 col-xl-10">
-        <div class="cardUP">
-          <div class="rounded-top text-white d-flex flex-row" >
-            <div class="ms-4 mt-5 d-flex flex-column avatarU" >
+    <div className="row d-flex justify-content-center align-items-center h-100">
+      <div className="col col-lg-12 col-xl-10">
+        <div className="cardUP">
+          <div className="rounded-top text-white d-flex flex-row" >
+            <div className="ms-4 mt-5 d-flex flex-column avatarU" >
               <img src={userData[0].image}
-                alt="Generic placeholder image" class="img-fluid img-thumbnail thumbailU mt-4 mb-2"
+                alt="Generic placeholder image" className="img-fluid img-thumbnail thumbailU mt-4 mb-2"
                />
 
                <button className="btn btn-secondary bg-transparent showDetail" onClick={showUserData}>
                 Show Detail
               </button>
             </div>
-            <div class="ms-3 textsUP" >
+            <div className="ms-3 textsUP" >
               <h5>{userData[0].nickName ? userData[0].nickName : userData[0].name}</h5>
               <p>{userData[0].country ? userData[0].country : "your location"}</p>
             </div>
           </div>
-          <div class="p-4 text-white textU" >
-            <div class="d-flex justify-content-end text-center py-1">
+          <div className="p-4 text-white textU" >
+            <div className="d-flex justify-content-end text-center py-1">
               <div>
-                <p class="mb-1 h5">{userGamesPay.length}</p>
-                <p class="small text-white-50 mb-0">Games</p>
+                <p className="mb-1 h5">{userGamesPay.length}</p>
+                <p className="small text-white-50 mb-0">Games</p>
               </div>
             </div>
           </div>
-          <div class="card-body p-4 text-white mt-3">
+          <div className="card-body p-4 text-white mt-3">
           <div className="mb-4 progressData">
 
-          <p class="lead fw-normal my-1">Percentage of data completed</p>
+          <p className="lead fw-normal my-1">Percentage of data completed</p>
           <ProgressBar now={progress} label={`${progress.toFixed(2)}%`} />
           </div>
-            <div class="mb-5">
-              <p class="lead fw-normal my-1">About</p>
-              <div class="p-4 description UP">
-                <p class="font-italic mb-1">{userData[0].description ? userData[0].description : "Write your description"}</p>
+            <div className="mb-5">
+              <p className="lead fw-normal my-1">About</p>
+              <div className="p-4 description UP">
+                <p className="font-italic mb-1">{userData[0].description ? userData[0].description : "Write your description"}</p>
               </div>
             </div>
-            <div class="d-flex justify-content-between align-items-center mb-4">
-              <p class="lead fw-normal mb-0">Games</p>
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              <p className="lead fw-normal mb-0">Games</p>
             </div>
-                <div class="row g-2 d-flex justify-content-center containerCards-profile">
+                <div className="row g-2 d-flex justify-content-center containerCards-profile">
                {userGamesPay.length !== 0 ?
             
             userGamesPay.map((elem, i) => {
@@ -154,8 +154,8 @@ console.log(userGamesPay);
                   <Link
                     to={`${ROUTES.DETAIL}/${elem.game.id}`}
                   >
-                    <div class="profile-card-2"><img src={elem.game.image} class="img img-responsive"/>
-        <div class="profile-name">{elem.game.name}</div>
+                    <div className="profile-card-2"><img src={elem.game.image} className="img img-responsive"/>
+        <div className="profile-name">{elem.game.name}</div>
 
 </div>
                   </Link>
