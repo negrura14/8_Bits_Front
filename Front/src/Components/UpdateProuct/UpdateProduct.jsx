@@ -45,7 +45,15 @@ export const UpdateProduct = () => {
     e.preventDefault();
     // console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
-    alert("LOS CAMBIOS SE REALIZARON CON EXITO")
+    MySwal.fire({
+      title: <strong>SUCCESS</strong>,
+      html: <i>The changes were successfully made!</i>,
+      icon: 'success',     
+      background : "#1d1d1d",
+      customClass:{
+        container: 'custom-alert-container',
+      }
+    });
     setSelectedGame(null);
     setSearchInput('');
     dispatch(getGame());
