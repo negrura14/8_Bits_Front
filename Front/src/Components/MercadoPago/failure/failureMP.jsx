@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from '../../../Helpers/RoutesPath'
+import Logo from "../../../Img/Logo.png"
 
 const FailureMP = () => {
   const location = useLocation();
@@ -40,7 +41,7 @@ const FailureMP = () => {
         
         <div class="row">
           <div class="col-sm-6">
-              <img class="imgFS" src="./images/Logo.png"/>
+              <img class="imgFS" src={Logo}/>
           </div>
          
     
@@ -53,8 +54,7 @@ const FailureMP = () => {
     
                   <div class="my-2 "><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Payment ID:</span> {paymentId}</div>
     
-                  <div class="my-2"><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Status:</span> <span class="text-danger">Rejected</span></div>
-                  <div class="my-2"><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Reason:</span> <span>{status}</span></div>
+                  <div class="my-2"><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Status:</span> <span class="text-danger">{status}</span></div>
               </div>
           </div>
           
@@ -84,7 +84,7 @@ const FailureMP = () => {
               Go to Home
             </button>
             <div class="d-flex justify-content-center align-items-center mx-4 p-2">
-              <p class="m-0">or</p>
+              <p class="m-0 text-white">or</p>
 
             </div>
             <button onClick={handleTryAgainClick} class="btn btn-outline-primary text-white bg-transparent px-4 ">

@@ -36,7 +36,7 @@
   }
 
   .divPaymentError{
-    --opacidad-negro: 0.5;
+    --opacidad-negro: 0.7;
     height: 500px;
     width: 500px;
     text-align: center;
