@@ -181,6 +181,7 @@ const handleRatingChange = (star) => {
                       value={editedReview.textReview}
                       onChange={handleInputChange}
                       rows={4}
+                      maxLength={200}
                     />
                   </div>
                 </form>

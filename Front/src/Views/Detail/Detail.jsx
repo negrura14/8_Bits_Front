@@ -250,6 +250,7 @@ const validatePayment = payment?.find(obj => obj.idUser == user.user.id );
                         id="reviewsText"
                         value={reviewsText}
                         onChange={handleCommentChange}
+                        maxLength={200}
                       />
                     <div className="rating mt-2">
                     <label htmlFor="rating"></label>

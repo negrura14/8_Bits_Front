@@ -140,7 +140,7 @@ export default function CreateGame() {
       )
     );
   }
-
+console.log(errors,"errores");
   //cloudinary
 
   const [selectedImage, setSelectedImage] = useState("");
@@ -312,7 +312,7 @@ export default function CreateGame() {
               <label className="form-label">Price</label>
               <input
                 placeholder="Enter Price"
-                type="number"
+                type="text"
                 name="price"
                 value={input.price}
                 onChange={(event) => handleChange(event)}
@@ -320,6 +320,9 @@ export default function CreateGame() {
                 // className={errors.price ? 'error' : ''}
               />
             </div>
+            {errors.price && (
+              <p className="error-message">{errors.price}</p>
+            )}
             <div className="mb-3 col-md-6  col-sm-12">
               <label className="form-label">Release Date</label>
               <input
@@ -422,31 +425,33 @@ export default function CreateGame() {
               <label className="form-label">Review</label>
               <input
                 placeholder="0/100"
-                type="number"
+                type="text"
                 name="review"
                 value={input.review}
                 onChange={(event) => handleChange(event)}
-                min="0"
-                max="100"
                 className="form-control bg-transparent text-white"
                 // className={errors.name ? 'error' : ''}
               />
             </div>
+            {errors.review && (
+              <p className="error-message">{errors.review}</p>
+            )}
             <div className="col quantity">
               <label className="form-label">Stock</label>
               <input
                 placeholder="Stock"
                 id="typeNumber"
-                type="number"
+                type="text"
                 name="stock"
                 value={input.stock}
                 onChange={(event) => handleChange(event)}
-                min="0"
-                max="100"
                 className="form-control bg-transparent text-white"
                 // className={errors.name ? 'error' : ''}
               />
             </div>
+            {errors.stock && (
+              <p className="error-message">{errors.stock}</p>
+            )}
           </div>
 
           <div className="mb-3">
