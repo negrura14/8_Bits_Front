@@ -30,10 +30,14 @@ export const gameSlice = createSlice({
         filterGames: (state, action) => {
             state.game = action.payload
             state.filter = action.payload
-        }
+        },
+        clearFilter: (state)=>{
+            state.filter = [];
+        },
+
     }
 })
 
-export const {getAllGame, getGameById, getGameByName, clearDetail, clearSearch, filterGames } = gameSlice.actions
+export const {getAllGame, getGameById, getGameByName, clearDetail, clearSearch, filterGames, clearFilter } = gameSlice.actions
 
 export default gameSlice.reducer
