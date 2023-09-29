@@ -11,7 +11,7 @@ export const getAllPayments = () => async (dispatch) => {
 };
  export const paymentByGameId = (id)=> async (dispatch)=>{
 try{
-    const response = await axios.get(`http://localhost:3001/payment/${id}`);
+    const response = await axios.get(`/payment/game/${id}`);
     return dispatch(getPaymentByGameId(response.data))
 }catch(error){
     console.error("Request failed:", error);
