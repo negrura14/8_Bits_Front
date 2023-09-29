@@ -120,7 +120,7 @@ const SuccessMP = () => {
   
                 <div className="my-2 "><i className="fa fa-circle text-secondary me-1"></i> <span className="text-600">Payment ID:</span>{paymentId}</div>
   
-                <div className="my-2"><i className="fa fa-circle text-secondary me-1"></i> <span className="text-600">Status:</span> <span className=" bg-success px-25">Paid</span></div>
+                <div className="my-2"><i className="fa fa-circle text-secondary me-1"></i> <span className="text-600">Status:</span> <span className="text-success">Paid</span></div>
             </div>
         </div>
         
@@ -129,7 +129,7 @@ const SuccessMP = () => {
     <div className="mt-4 ">
       <div className="invoice">
   
-        <div className="row bg-secondary text-black py-25 ">
+        <div className="row bg-secondary text-white py-25 ">
           <div className="d-none d-sm-block col-1">ID</div>
             <div className="col-9 col-sm-5 ">Game Name</div>
             <div className="d-none d-sm-block col-4 col-sm-2 ">Quantity</div>
