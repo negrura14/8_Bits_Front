@@ -53,7 +53,7 @@ dispatch(getUserByIdAction(user.id))
         const updatedReview = { ...reviews[selectedReviewIndex], ...editedReview };
 
         
-        const update = await axios.put(`http://localhost:3001/reviews/${idReview}`, updatedReview)
+        const update = await axios.put(`/reviews/${idReview}`, updatedReview)
         dispatch(getUserByIdAction(user.id))
         setSelectedReviewIndex(-1);
         setEditedReview({ rating: "", textReview: ""});
@@ -110,7 +110,7 @@ const handleRatingChange = (star) => {
             'Deleted review',
             'success'
           )
-           await axios.delete(`http://localhost:3001/reviews/${idReview}`)
+           await axios.delete(`/reviews/${idReview}`)
           dispatch(getUserByIdAction(user.id))
           setSelectedReviewIndex(-1);
   
