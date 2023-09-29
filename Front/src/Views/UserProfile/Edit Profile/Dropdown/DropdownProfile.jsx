@@ -19,7 +19,7 @@ export default function DropdownProfile() {
   const { userProfile } = useSelector((state) => state.userProfile);
   const { user } = useSelector((state) => state.user.userState);
   const [loading, setLoading] = useState(true);
-  console.log(user)
+  
 
   useEffect(() => {
     //console.log(user.email);

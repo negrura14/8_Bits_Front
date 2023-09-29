@@ -5,6 +5,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import {getUserByIdAction} from '../../../Redux/userProfileActions';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import notGamesP from "../../../Img/notGamesP.jpeg"
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../Helpers/RoutesPath";
 
 import axios from "axios";
 
@@ -27,7 +30,7 @@ const Review = () => {
   const[idReview, setIdReview] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  console.log(profile, "profile" );
+ // console.log(profile, "profile" );
 
 
 useEffect(()=>{
@@ -127,14 +130,14 @@ const handleRatingChange = (star) => {
     }
 
   }
-
+  
   return (
     <div className="row d-flex justify-content-center">
 
             <h2 className="text-white p-5">Reviews <i className="fa-solid fa-comments"></i></h2>
 
     <div className="col-11 bgReview">
-      {reviews?.map((review, index) => (
+      {reviews?.length !== 0 ? reviews?.map((review, index) => (
         <div key={index}>
           <div className="cardTesti divRe mt-2 pt-4 pb-3 d-flex justify-content-center row">
           <div className="col-md-3 col-xl-3 col-auto">
@@ -221,7 +224,16 @@ const handleRatingChange = (star) => {
 
           
         </div>
-      ))}
+      )): 
+          <div className="row d-flex justify-content-center notGameProfile">
+          <img src={notGamesP} className="notGamesImg col-6"/>
+          <div className=" col-6 filter--text pLinkG mt-3">
+            <h2 className="fs-3">You have no reviews, to do one you have to purchase a game!</h2>
+            <h6 className="mb-5 fs-4">Purchase one here 👇</h6>
+            <Link  className="essence-btn aC" to={ROUTES.STORE}><p>STORE</p></Link>
+          </div>
+        </div>
+      }
     </div>
     </div>
   );
