@@ -121,7 +121,7 @@ const validatePayment = payment?.find(obj => obj.idUser == user.user.id );
     setIsFormValid(false);
 
     try {
-      await axios.post("http://localhost:3001/reviews", data);
+      await axios.post("/reviews", data);
       dispatch(getGamesId(id));
     } catch (error) {
       console.log(JSON.stringify({ error: error.message }));
