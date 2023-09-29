@@ -138,7 +138,7 @@ function Search() {
             </div>
                   <div className="container-fluid mt-4">
                   <h2 className="p-2 text-secondary">Higher collection</h2>
-                        <div className=' cardFLex row'>
+                        <div className=' cardFLex row d-flex justify-content-center'>
                             {lowestPricedGames.map((game) => {
                                 return <CardT 
                                 key={game.id}
