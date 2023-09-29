@@ -77,8 +77,8 @@ function Home() {
     };
   
     const filterChange = (event) => {
-        dispatch(filterGamesAction(event.target.value))
-        navigate('/store')
+        dispatch(filterGamesAction(`Genres=${event.target.value}`))
+        navigate(`/store?Genres=${event.target.value}`)
     };
 
     const lowestPricedGames = getLowestPricedGames(3);
@@ -134,7 +134,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img sportsC">
                         <div className="catagory-content">
-                            <button onClick={filterChange} value={'Genres=Platformer'} className="aC" >Platformer</button>
+                            <button onClick={filterChange} value={'Platformer'} className="aC" >Platformer</button>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img rpgC" >
                         <div className="catagory-content">
-                        <button onClick={filterChange} value={'Genres=RPG'} className="aC" >RPG</button>
+                        <button onClick={filterChange} value={'RPG'} className="aC" >RPG</button>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ function Home() {
                 <div className="col-12 col-sm-6 col-md-4">
                     <div className="single_catagory_area d-flex align-items-center justify-content-center bg-img adventureC" >
                         <div className="catagory-content">
-                        <button onClick={filterChange} value={'Genres=Adventure'} className="aC" >Adventure</button>
+                        <button onClick={filterChange} value={'Adventure'} className="aC" >Adventure</button>
                         </div>
                     </div>
                 </div>
