@@ -95,7 +95,7 @@ export const googleLoginAct = (token) => async (dispatch) => {
 export const getUserProfileAction = (mail) => async (dispatch) => {
 
     try {
-        const response = await axios.get(`/user/filter?email=${mail}`);
+        const response = await axios.get(`/user/filter?searchTerm=${mail}`);
         return dispatch(getUserProfile(response.data))
     } catch (error) {
         window.alert("Request failed:", error);

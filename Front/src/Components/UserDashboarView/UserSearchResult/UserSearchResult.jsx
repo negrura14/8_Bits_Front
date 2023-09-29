@@ -9,7 +9,7 @@ export default function UserSearchResult(props) {
     const { id, disable, email, image, name, lastname, nickname, admin } = props;
     const [switcha, setSwitcha] = useState(disable);
     const [adminSwitch, setAdminSwitch] = useState(admin);
-
+    console.log(nickname);
     const MySwal = withReactContent(Swal);
 
     const swalWithBootstrapButtons = MySwal.mixin({

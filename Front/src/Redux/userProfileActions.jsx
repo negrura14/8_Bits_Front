@@ -3,9 +3,10 @@ import { getUserProfile, getUserById } from './Reducers/userProfile';
 
 
 export const getUserProfileAction = (mail) => async (dispatch) => {
-    //console.log('asd2',mail)
+    console.log('asd2',mail)
     try {
         const response = await axios.get(`/user/filter?email=${mail}`);
+        console.log(response.data);
         return dispatch(getUserProfile(response.data))
     } catch (error) {
         window.alert("Request failed:", error);
