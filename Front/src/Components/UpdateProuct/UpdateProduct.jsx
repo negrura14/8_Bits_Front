@@ -6,7 +6,8 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import UploadWidget from "../../Helpers/UploadWidget";
 
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const UpdateProduct = () => {
   const [searchInput, setSearchInput ] = useState('');
@@ -16,6 +17,31 @@ export const UpdateProduct = () => {
   const { supportedPlatform } = useSelector(state => state.supportedPlatform);
   const dispatch = useDispatch();
   // console.log("ESTO ME ESTA TRAYENDO GAME DENTRO DEL COMPONENTE UP: ", game[8]);
+  console.log(game,"game");
+  //--------------------sweet alert---------------------------//
+  const MySwal = withReactContent(Swal);
+
+  const Toast = MySwal.mixin({  
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
+  const swalWithBootstrapButtons = MySwal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  });
+
+  //--------------------sweet alert---------------------------//
 
   useEffect(() => {
     dispatch(getGame());
@@ -45,7 +71,13 @@ export const UpdateProduct = () => {
     e.preventDefault();
     // console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
-    alert("LOS CAMBIOS SE REALIZARON CON EXITO")
+    Toast.fire({
+      icon: "success",
+      iconColor: "white",
+      title: <strong>Changes were successfully made!</strong>,
+      color: "#fff",
+      background: "#333",
+    });
     setSelectedGame(null);
     setSearchInput('');
     dispatch(getGame());
@@ -83,6 +115,81 @@ export const UpdateProduct = () => {
         }));
       }
     }
+  }
+
+  const changeHandler = () => {
+
+    if(selectedGame.disable === false) {
+      swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: `You are going to disable ${selectedGame.name}`,
+          icon: 'warning',
+          background: "#1d1d1d",
+          showCancelButton: true,
+          confirmButtonText: "Yes, I'm sure",
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              'Success!',
+              `Game ${selectedGame.name} disabled!`,
+              'success'
+            )
+  
+            setSelectedGame({ ...selectedGame, disable: true }) 
+    
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelled',
+              'Game not disabled!',
+              'error'
+            )
+          }
+        })
+
+  } else {
+      swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: `You are going to enable ${selectedGame.name}`,
+          icon: 'warning',
+          background: "#1d1d1d",
+          showCancelButton: true,
+          confirmButtonText: "Yes, I'm sure",
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              'Success!',
+              `Game ${selectedGame.name} enabled!`,
+              'success'
+            )
+          
+            setSelectedGame({ ...selectedGame, disable: false })
+    
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelled',
+              'Game still disabled!',
+              'error'
+            )
+          }
+        })
+
+  }
+
+    // if(selectedGame.disable === false){
+    //   setSelectedGame({ ...selectedGame, disable: true })
+    // }else{
+    //   setSelectedGame({ ...selectedGame, disable: false })
+    // }
   }
 
 
@@ -268,14 +375,7 @@ export const UpdateProduct = () => {
               id="custom-switch"
               label="Disable Game"
               checked={selectedGame.disable}
-              onChange={() => {
-                const clic = true;
-                if(selectedGame.disable === false){
-                  setSelectedGame({ ...selectedGame, disable: true })
-                }else{
-                  setSelectedGame({ ...selectedGame, disable: false })
-                }
-              }}
+              onChange={changeHandler}
           />
         </Form>
             </div>
