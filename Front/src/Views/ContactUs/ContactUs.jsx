@@ -48,7 +48,7 @@ export default function ContactUs(){
     }
 
     const handleSumbit = (e) => {
-        e.preventDefault();
+        
 
         
         if(errors.email || errors.issue){
