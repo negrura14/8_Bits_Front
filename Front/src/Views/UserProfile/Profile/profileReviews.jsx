@@ -2,12 +2,22 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import {getUserByIdAction} from '../../../Redux/userProfileActions'
+import {getUserByIdAction} from '../../../Redux/userProfileActions';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import axios from "axios";
 
 const Review = () => {
 
-
+  const MySwal = withReactContent(Swal);
+  const swalWithBootstrapButtons = MySwal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  });
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userProfile.userById);
   const reviews = profile.Reviews;
@@ -75,15 +85,45 @@ const handleRatingChange = (star) => {
     setIsFormValid(star > 0 && value.trim() !== '');
   };
 
-  const deletedReview =async ()=>{
+  const deletedReview = async ()=>{
     try {
-        alert("The review will be deleted");
-       await axios.delete(`http://localhost:3001/reviews/${idReview}`)
-        dispatch(getUserByIdAction(user.id))
-        setSelectedReviewIndex(-1);
-       alert("review successfully deleted")
-    } catch (error) {
+
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You are going to delete review!",
+        icon: 'warning',
+        background: "#1d1d1d",
+        showCancelButton: true,
+        confirmButtonText: "Yes, I'm sure",
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then (async (result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Success!',
+            'Deleted review',
+            'success'
+          )
+           await axios.delete(`http://localhost:3001/reviews/${idReview}`)
+          dispatch(getUserByIdAction(user.id))
+          setSelectedReviewIndex(-1);
+  
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            '',
+            'error'
+          )
+        }
+      })
+      //   alert("The review will be deleted");
       
+      //  alert("review successfully deleted")
+    } catch (error) {
+      console.log(JSON.stringify({error:error.message}))
     }
 
   }
