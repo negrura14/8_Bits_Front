@@ -369,11 +369,11 @@ function Tienda() {
   const { genre } = useSelector((state) => state.genre);
   const [filterSwitch, setFilterSwitch] = useState(false)
 
-    const searchParams = new URLSearchParams(location.search);
+    // const searchParams = new URLSearchParams(location.search);
 
   // Obtiene el valor del parámetro 'platform' (puede ser 'sports', 'adventure', etc.)
-  let homeGenreFilter = searchParams.get('Genres');
-  console.log(homeGenreFilter)
+  // let homeGenreFilter = searchParams.get('Genres');
+  // console.log(homeGenreFilter)
 
 
 
@@ -399,19 +399,19 @@ function Tienda() {
 
         // Obtiene el valor del parámetro 'platform' (puede ser 'sports', 'adventure', etc.)
       let homeGenreFilter = searchParams.get('Genres');
-      console.log(homeGenreFilter)
-      // setFilterSwitch(true);
-      console.log(game[0], 'tipo')
       dispatch(getGenres());  
       setSelectedFilters({
         ...selectedFilters,
         gen: homeGenreFilter,
-      })} else {
+      });
+      homeGenreFilter = false;
+      // setFilterSwitch(true);
+      } else {
       dispatch(getGenres());
       dispatch(getGame());
       setFilterSwitch(true);
       };    
-    }, [dispatch, game]);
+    }, [dispatch]);
   }
 
 
@@ -477,30 +477,38 @@ function Tienda() {
   };
 
   const handleOfChange = (e, buttonFiler) => {
+    let genre = '';
+    
+
+ 
+
     if (buttonFiler !== "todo") {
+      genre =  e.target.value;
       let newFilters = [];
       const indiceAReemplazar = filtDB.findIndex((str) =>
         str.includes(buttonFiler)
       );
       if (filtDB.length === 0) {
-        newFilters = [`${buttonFiler}=${e.target.value}`];
+        newFilters = [`${buttonFiler}=${genre}`];
         // setFiltDB([...filtDB, `${buttonFiler}=${e.target.value}`])
       } else if (indiceAReemplazar !== -1) {
         const newFiltDB = [...filtDB];
         if (indiceAReemplazar === 0) {
-          newFiltDB[indiceAReemplazar] = `${buttonFiler}=${e.target.value}`;
+          newFiltDB[indiceAReemplazar] = `${buttonFiler}=${genre}`;
         } else {
-          newFiltDB[indiceAReemplazar] = `&${buttonFiler}=${e.target.value}`;
+          newFiltDB[indiceAReemplazar] = `&${buttonFiler}=${genre}`;
         }
         newFilters = newFiltDB;
 
         // setFiltDB(newFiltDB);
       } else {
-        newFilters = [...filtDB, `&${buttonFiler}=${e.target.value}`];
+        newFilters = [...filtDB, `&${buttonFiler}=${genre}`];
       }
+      // homeGenreFilter = false;
       setFiltDB((prevFiltDB) => newFilters);
       dispatch(filterGamesAction(newFilters.join("")));
     } else {
+      // homeGenreFilter = false
       dispatch(getGame());
       setFiltDB([]); // seteo el estado donde almacenaba los estring para la url
     }
