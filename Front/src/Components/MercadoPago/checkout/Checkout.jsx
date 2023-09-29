@@ -108,9 +108,9 @@ const handleCheckoutClick = async () => {
 
 const handlePayClick = async () => {
   try {
+
     setIsLoading(true);
-    
-   const idShop = await handleCheckoutClick()
+    const idShop = await handleCheckoutClick()
     const response = await axios.post(`/mercadopago/${idShop}`, {});
 
 
@@ -118,7 +118,7 @@ const handlePayClick = async () => {
       window.location.href = response.data.data.body.sandbox_init_point;
 
     
-
+      
     
     } else {
       console.error('El init_point no está definido.');
