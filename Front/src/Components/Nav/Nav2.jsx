@@ -29,7 +29,7 @@ function Nav2() {
   const [loading, setLoading] = useState(true);
   
   
-  console.log(userById, 'asd')
+  // console.log(userById, 'asd')
 
   useEffect(() => {
     if(Array.isArray(user) === false) {

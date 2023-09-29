@@ -77,7 +77,7 @@ export default function UserSearchBar() {
                 image = {user.image} 
                 name = {user.name}
                 lastname = {user.lastname} 
-                nickname ={user.nickname}
+                nickname ={user.nickName}
                 admin = {user.admin}/>
             )}
            
