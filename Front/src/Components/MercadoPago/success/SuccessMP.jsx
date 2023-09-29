@@ -7,6 +7,7 @@ import axios from 'axios';
 import { UpdateList, cartUpdate } from "../../../Redux/Reducers/cartSlice";
 import queryString from 'query-string';
 import Logo from "../../../Img/Logo.png"
+import "./SuccesMP.css"
 
 
 
@@ -119,7 +120,7 @@ const SuccessMP = () => {
   
                 <div class="my-2 "><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Payment ID:</span>{paymentId}</div>
   
-                <div class="my-2"><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Status:</span> <span class="badge badge-success badge-pill px-25">Paid</span></div>
+                <div class="my-2"><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Status:</span> <span class=" bg-success px-25">Paid</span></div>
             </div>
         </div>
         
