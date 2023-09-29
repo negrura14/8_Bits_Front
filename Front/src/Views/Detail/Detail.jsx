@@ -275,7 +275,7 @@ const validatePayment = payment?.find(obj => obj.idUser === user.id );
                   <div className="arrow-down"></div>
             <div className="row d-flex justify-content-center mb-4">
                 <div className="d-flex">
-                    <div className="profile-pic fit-image"><i class="text-white fa-solid fa-user fa-4x p-2"></i></div>
+                    <div className="profile-pic fit-image"><i className="text-white fa-solid fa-user fa-4x p-2"></i></div>
                     <div className="m-4 p-3">
 
                     <button type="submit" className="btn btn-outline-primary" disabled={!isFormValid}>

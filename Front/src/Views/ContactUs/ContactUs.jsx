@@ -100,12 +100,12 @@ export default function ContactUs(){
 
         <div className="col-10 login-box">
             <div className="row">
-            <div class="col-md-6 pt-5 ">
+            <div className="col-md-6 pt-5 ">
               
-              <img src={contactImage} alt="Image" class="img-fluid imgContact"/>
+              <img src={contactImage} alt="Image" className="img-fluid imgContact"/>
 
             </div>
-                <div class="col-md-6">
+                <div className="col-md-6">
                 <div className="p-5">
 
                 <h2 className="text-center text-white">Get in Touch</h2>
