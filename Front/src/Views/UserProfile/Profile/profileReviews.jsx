@@ -47,6 +47,8 @@ dispatch(getUserByIdAction(user.id))
   const handleSaveClick = async () => { 
     try{
         const updatedReview = { ...reviews[selectedReviewIndex], ...editedReview };
+
+        
         const update = await axios.put(`http://localhost:3001/reviews/${idReview}`, updatedReview)
         dispatch(getUserByIdAction(user.id))
         setSelectedReviewIndex(-1);
@@ -119,9 +121,7 @@ const handleRatingChange = (star) => {
           )
         }
       })
-      //   alert("The review will be deleted");
       
-      //  alert("review successfully deleted")
     } catch (error) {
       console.log(JSON.stringify({error:error.message}))
     }

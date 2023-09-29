@@ -122,7 +122,7 @@ const validatePayment = payment?.find(obj => obj.idUser == user.user.id );
 
     try {
       await axios.post("http://localhost:3001/reviews", data);
-      window.location.reload();
+      dispatch(getGamesId(id));
     } catch (error) {
       console.log(JSON.stringify({ error: error.message }));
     }
