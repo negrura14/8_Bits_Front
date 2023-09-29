@@ -85,6 +85,7 @@ export default function Detail() {
   };
   //-------------------------------Review---------------------------------
   
+
 const review = detail.Reviews;
 
 const validateReview = review?.find(obj=> obj.userId === user.user.id)
