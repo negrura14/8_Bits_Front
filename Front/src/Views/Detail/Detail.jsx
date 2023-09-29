@@ -85,11 +85,16 @@ export default function Detail() {
   };
   //-------------------------------Review---------------------------------
   
-const review = detail.Reviews;
+  let validateReview = false;
+  let validatePayment = false;
 
-const validateReview = review?.find(obj=> obj.userId === user.user.id)
+  if(auth === true) {
+    const review = detail.Reviews;
 
-const validatePayment = payment?.find(obj => obj.idUser == user.user.id ); 
+    validateReview = review?.find(obj=> obj.userId === user.user.id)
+
+    validatePayment = payment?.find(obj => obj.idUser == user.user.id );
+   } 
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -232,7 +237,7 @@ const validatePayment = payment?.find(obj => obj.idUser == user.user.id );
                   </div>
                 ))}
               </div>
-              {validatePayment  && !validateReview?(
+              {validatePayment != false  && !validateReview?(
                 <div className="col-11 bgReview border-top border-primary m-3">
 
 
