@@ -5,9 +5,10 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import {getUserByIdAction} from '../../../Redux/userProfileActions';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import notGamesP from "../../../Img/notGamesP.jpeg"
+import notReviewsP from "../../../Img/notReviewsP.jpeg"
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../Helpers/RoutesPath";
+import "./profileReviews.css"
 
 import axios from "axios";
 
@@ -226,13 +227,15 @@ const handleRatingChange = (star) => {
           
         </div>
       )): 
-          <div className="row d-flex justify-content-center notGameProfile">
-          <img src={notGamesP} className="notGamesImg col-6"/>
-          <div className=" col-6 filter--text pLinkG mt-3">
-            <h2 className="fs-3">You have no reviews, to do one you have to purchase a game!</h2>
-            <h6 className="mb-5 fs-4">Purchase one here 👇</h6>
+          <div className="row d-flex justify-content-center text-white login-box">
+          <div className=" col-6 filter--text pLinkG mt-5">
+          <div><h2 className="fs-3 mb-5">You have no reviews, to do one you have to purchase a game!</h2></div>
+          <div><h6 className="mb-5 fs-4">Purchase one here 👇</h6></div>
+            
+            
             <Link  className="essence-btn aC" to={ROUTES.STORE}><p>STORE</p></Link>
           </div>
+          <img src={notReviewsP} className="notReviewImg col-6"/>
         </div>
       }
     </div>
