@@ -24,9 +24,6 @@ function TabProfile() {
       <Tab eventKey="reviews" title={<span>Reviews <i class="fa-solid fa-book"></i></span>}>
         <Review/>
       </Tab>
-      <Tab eventKey="games" title={<span>Games <i class="fa-solid fa-gamepad"></i></span>}>
-        Tab content for Games
-      </Tab>
     </Tabs>
     </div>
   );
