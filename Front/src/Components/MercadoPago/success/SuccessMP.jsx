@@ -101,79 +101,79 @@ const SuccessMP = () => {
 
   return (
     
-  <div class="container mt-5">
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-10 backgroundinvoice">
+  <div className="container mt-5">
+  <div className="row d-flex justify-content-center">
+    <div className="col-md-10 backgroundinvoice">
       
-      <div class="row">
-        <div class="col-sm-6">
-            <img class="imgFS" src={Logo}/>
+      <div className="row">
+        <div className="col-sm-6">
+            <img className="imgFS" src={Logo}/>
         </div>
         
   
-        <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-            <hr class="d-sm-none" />
-            <div class="text-white">
-                <div class="mt-1 mb-2 text-600 ">
+        <div className="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+            <hr className="d-sm-none" />
+            <div className="text-white">
+                <div className="mt-1 mb-2 text-600 ">
                     Invoice
                 </div>
   
-                <div class="my-2 "><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Payment ID:</span>{paymentId}</div>
+                <div className="my-2 "><i className="fa fa-circle text-secondary me-1"></i> <span className="text-600">Payment ID:</span>{paymentId}</div>
   
-                <div class="my-2"><i class="fa fa-circle text-secondary me-1"></i> <span class="text-600">Status:</span> <span class=" bg-success px-25">Paid</span></div>
+                <div className="my-2"><i className="fa fa-circle text-secondary me-1"></i> <span className="text-600">Status:</span> <span className=" bg-success px-25">Paid</span></div>
             </div>
         </div>
         
     </div>
   
-    <div class="mt-4 ">
-      <div class="invoice">
+    <div className="mt-4 ">
+      <div className="invoice">
   
-        <div class="row bg-secondary text-black py-25 ">
-          <div class="d-none d-sm-block col-1">ID</div>
-            <div class="col-9 col-sm-5 ">Game Name</div>
-            <div class="d-none d-sm-block col-4 col-sm-2 ">Quantity</div>
-            <div class="d-none d-sm-block col-sm-2 ">Unit Price</div>
-            <div class="col-2 ">Amount</div>
+        <div className="row bg-secondary text-black py-25 ">
+          <div className="d-none d-sm-block col-1">ID</div>
+            <div className="col-9 col-sm-5 ">Game Name</div>
+            <div className="d-none d-sm-block col-4 col-sm-2 ">Quantity</div>
+            <div className="d-none d-sm-block col-sm-2 ">Unit Price</div>
+            <div className="col-2 ">Amount</div>
         </div>
         
         {Object.values(groupedCart).map((element, index) => (
-        <div key={index} class=" text-white">
-            <div class="row mb-2 mb-sm-0 py-25">
-              <div class="d-none d-sm-block col-1">{element.id}</div>
-                <div class="col-9 col-sm-5">{element.name}</div>
-                <div class="d-none d-sm-block col-2">{element.quantity}</div>
-                <div class="d-none d-sm-block col-2 text-95"> ${element.price}</div>
-                <div class="col-2 text-secondary-d2">${calculateTotalPrice(element.id, element.quantity)}</div>
+        <div key={index} className=" text-white">
+            <div className="row mb-2 mb-sm-0 py-25">
+              <div className="d-none d-sm-block col-1">{element.id}</div>
+                <div className="col-9 col-sm-5">{element.name}</div>
+                <div className="d-none d-sm-block col-2">{element.quantity}</div>
+                <div className="d-none d-sm-block col-2 text-95"> ${element.price}</div>
+                <div className="col-2 text-secondary-d2">${calculateTotalPrice(element.id, element.quantity)}</div>
             </div>          
         </div>
             ))}
       </div>
   
-        <div class="row border-b-2 brc-default-l2"></div>
+        <div className="row border-b-2 brc-default-l2"></div>
   
   
-        <div class="row mt-3">
-            <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0 text-white-50">
+        <div className="row mt-3">
+            <div className="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0 text-white-50">
               Thanks for your purchase!
             </div>
   
-            <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+            <div className="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
   
-                <div class="row my-2 align-items-center bgc-primary-l3 p-2 text-white">
-                    <div class="col-7 text-right">
+                <div className="row my-2 align-items-center bgc-primary-l3 p-2 text-white">
+                    <div className="col-7 text-right">
                         Total Amount
                     </div>
-                    <div class="col-5">
-                        <span class="text-150 text-success-d3 opacity-2">${subtotal}</span>
+                    <div className="col-5">
+                        <span className="text-150 text-success-d3 opacity-2">${subtotal}</span>
                     </div>
                 </div>
             </div>
         </div>
   
-        <div class="border-top border-white pt-3 ">
+        <div className="border-top border-white pt-3 ">
            
-            <a href="/" class="btn btn-outline-primary text-white bg-transparent px-4 float-right mt-3 mt-lg-0" onClick={deletedCart}>Go to Home</a>
+            <a href="/" className="btn btn-outline-primary text-white bg-transparent px-4 float-right mt-3 mt-lg-0" onClick={deletedCart}>Go to Home</a>
         </div>
       
 
