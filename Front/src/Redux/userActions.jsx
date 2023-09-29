@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {userLogin, getUsers, switchAut, updateFromCookie, userLogout,getUserProfile} from './Reducers/userSlice';
+import {userLogin, getUsers, switchAut, updateFromCookie, userLogout,getUserProfile,getUserGames} from './Reducers/userSlice';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -97,6 +97,16 @@ export const getUserProfileAction = (mail) => async (dispatch) => {
     try {
         const response = await axios.get(`/user/filter?searchTerm=${mail}`);
         return dispatch(getUserProfile(response.data))
+    } catch (error) {
+        window.alert("Request failed:", error);
+    }
+}
+
+export const getUserGamesAction = (id) => async (dispatch) => {
+
+    try {
+        const response = await axios.get(`/payment/user/${id}`);
+        return dispatch(getUserGames(response.data))
     } catch (error) {
         window.alert("Request failed:", error);
     }

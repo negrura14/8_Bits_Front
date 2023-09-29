@@ -7,6 +7,7 @@ export  const userSlice = createSlice({
         user: [],
         users: [],
         userProfile: [],
+        userGamesPay: [],
         auth: false,
     },
     reducers:{
@@ -34,12 +35,15 @@ export  const userSlice = createSlice({
         getUserProfile: (state, action) => {
             state.userProfile = action.payload;
         },
+        getUserGames: (state, action) => {
+            state.userGamesPay = action.payload;
+        },
         clearUsers: (state) => {
         state.users = [];
     },
     }
 })
 
-export const { userLogin, clearUser, clearUsers, getUsers, switchAut, updateFromCookie, userLogout, getUserProfile } = userSlice.actions;
+export const { userLogin, clearUser, clearUsers, getUsers, switchAut, updateFromCookie, userLogout, getUserProfile, getUserGames } = userSlice.actions;
 
 export default userSlice.reducer;
