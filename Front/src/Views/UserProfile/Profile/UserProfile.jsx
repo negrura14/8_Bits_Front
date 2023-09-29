@@ -1,5 +1,6 @@
 import "./UserProfile.css";
 import "../../../Components/Card/Card.css";
+import notGamesP from "../../../Img/notGamesP.jpeg"
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -144,39 +145,37 @@ console.log(userGamesPay);
             <div class="d-flex justify-content-between align-items-center mb-4">
               <p class="lead fw-normal mb-0">Games</p>
             </div>
-            <div class="row g-2 d-flex justify-content-center">
+                <div class="row g-2 d-flex justify-content-center containerCards-profile">
                {userGamesPay.length !== 0 ?
+            
             userGamesPay.map((elem, i) => {
               return (
-                <div className="item col-xs-12 m-3" key={i}>
+                <div className=" col-auto m-3" key={i}>
                   <Link
-                    className="link_card"
                     to={`${ROUTES.DETAIL}/${elem.game.id}`}
                   >
-                    <div className="cardF">
-                      <div className="circle circle2"></div>
-                      <div className="circle circle1"></div>
-                      <img className="imgF" src={elem.game.image} />
-                    </div>
-                  </Link>
+                    <div class="profile-card-2"><img src={elem.game.image} class="img img-responsive"/>
+        <div class="profile-name">{elem.game.name}</div>
 
-                  <div className="content">
-                    <p>{elem.game.name}</p>
-                  </div>
-                  <span className="top"></span>
-                  <span className="right"></span>
-                  <span className="bottom"></span>
-                  <span className="left"></span>
+</div>
+                  </Link>
+                
                 </div>
               );
             }): 
-              <div>
-                <h1>You have no games!</h1>
-                <h3>Purchase one here 👇</h3>
-                <Link to={ROUTES.STORE}>STORE</Link>
-              </div>
+            
+
+              <div className="row d-flex justify-content-center notGameProfile">
+                      <img src={notGamesP} className="notGamesImg col-6"/>
+                      <div className=" col-6 filter--text pLinkG mt-3">
+                        <h2 className="fs-3">You have no games!</h2>
+                        <h6 className="mb-5 fs-4">Purchase one here 👇</h6>
+                        <Link  className="essence-btn aC" to={ROUTES.STORE}><p>STORE</p></Link>
+                      </div>
+                    </div>
             }
-            </div>
+                </div>
+            
           </div>
         </div>
       </div>
