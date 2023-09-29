@@ -26,6 +26,8 @@ export default function Detail() {
   const [reviewsText, setReviewsText] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
+  
+
   //--------------------sweet alert---------------------------//
   const MySwal = withReactContent(Swal);
 
@@ -82,19 +84,12 @@ export default function Detail() {
     }
   };
   //-------------------------------Review---------------------------------
-  let userId;
-  const review = detail.Reviews;
+  
+const review = detail.Reviews;
 
+const validateReview = review?.find(obj=> obj.userId === user.user.id)
 
-
-
-
-user.length == 0 ? userId : userId = user.user.id 
-
-const validateReview = review?.find(obj=> obj.userId === user.id)
-
-const validatePayment = payment?.find(obj => obj.idUser === user.id ); 
-
+const validatePayment = payment?.find(obj => obj.idUser == user.user.id ); 
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -132,9 +127,7 @@ const validatePayment = payment?.find(obj => obj.idUser === user.id );
       console.log(JSON.stringify({ error: error.message }));
     }
 
-    // setRating(0);
-    // setReviewsText('');
-    // setIsFormValid(false);
+    
   };
 
 
