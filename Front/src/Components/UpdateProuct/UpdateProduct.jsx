@@ -71,6 +71,9 @@ export const UpdateProduct = () => {
     e.preventDefault();
     console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
+    setSelectedGame(null);
+    setSearchInput('');
+    dispatch(getGame());
     Toast.fire({
       icon: "success",
       iconColor: "white",
@@ -78,9 +81,7 @@ export const UpdateProduct = () => {
       color: "#fff",
       background: "#333",
     });
-    setSelectedGame(null);
-    setSearchInput('');
-    dispatch(getGame());
+    
 
   }
 
