@@ -69,8 +69,8 @@ export const UpdateProduct = () => {
   
   const sumbitHandler = (e) => {
     e.preventDefault();
-    // console.log("resultado del submit: ", selectedGame);
-    axios.put(`/games/${selectedGame.id}`, selectedGame)
+    console.log("resultado del submit: ", selectedGame);
+    // axios.put(`/games/${selectedGame.id}`, selectedGame)
     Toast.fire({
       icon: "success",
       iconColor: "white",
@@ -215,6 +215,7 @@ export const UpdateProduct = () => {
         onChange={(e) => {
           const selectedGameName = e.target.value;
           const selectedGame = filteredGames.find(game => game.name === selectedGameName);
+          console.log("ESTOY VIENDO CUAL ES EL VALOR DE STOCK ANTES DE MODIFICARLO: ", selectedGame);
           setSelectedGame(selectedGame);
         }}
         size="4"
@@ -274,7 +275,7 @@ export const UpdateProduct = () => {
               type="number"
               name="stock"
               value={selectedGame.stock}
-              onChange={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
+              onChange={(e) => setSelectedGame({ ...selectedGame, stock: Number(e.target.value) })}
               min="0"
               max="100"
               className="form-control bg-transparent text-white mb-3"
