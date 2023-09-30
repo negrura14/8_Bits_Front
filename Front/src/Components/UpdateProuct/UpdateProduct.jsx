@@ -70,7 +70,7 @@ export const UpdateProduct = () => {
   const sumbitHandler = (e) => {
     e.preventDefault();
     console.log("resultado del submit: ", selectedGame);
-    // axios.put(`/games/${selectedGame.id}`, selectedGame)
+    axios.put(`/games/${selectedGame.id}`, selectedGame)
     Toast.fire({
       icon: "success",
       iconColor: "white",
