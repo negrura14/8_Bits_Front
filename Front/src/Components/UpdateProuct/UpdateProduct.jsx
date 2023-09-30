@@ -69,7 +69,6 @@ export const UpdateProduct = () => {
   
   const sumbitHandler = (e) => {
     e.preventDefault();
-    console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
     setSelectedGame(null);
     setSearchInput('');
@@ -216,7 +215,6 @@ export const UpdateProduct = () => {
         onChange={(e) => {
           const selectedGameName = e.target.value;
           const selectedGame = filteredGames.find(game => game.name === selectedGameName);
-          console.log("ESTOY VIENDO CUAL ES EL VALOR DE STOCK ANTES DE MODIFICARLO: ", selectedGame);
           setSelectedGame(selectedGame);
         }}
         size="4"
