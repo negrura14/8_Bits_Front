@@ -69,16 +69,20 @@ const SuccessMP = () => {
       for (const element of cart) {
         if (!gameStockCount[element.id]) {
           gameStockCount[element.id] = 1;
+          console.log("DENTRO DEL BENDITO IF: ", gameStockCount);
         } else {
           gameStockCount[element.id]++;
+          console.log("DENTRO DEL BENDITO ELSE: ", gameStockCount);
         }
       }
+      console.log("ESTO ES LO QUE CUENTA: ", typeof(gameStockCount), gameStockCount, typeof(gameStockCount[0]));
 
       // Actualizar el stock en gameStock
       for (const element of cart) {
         const gameStock = game.find((s) => s.id === element.id);
 
         if (gameStock && gameStock.stock > 0) {
+          console.log("EL VALOR DE GAMESTOCK.STOCK ES: ", gameStock.stock);
           const stockToSubtract = gameStockCount[element.id]; // Obtener el contador
           const updatedGameStock = { ...gameStock, stock: gameStock.stock - stockToSubtract };
 
