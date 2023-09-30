@@ -177,7 +177,7 @@ const SuccessMP = () => {
   
         <div className="border-top border-white pt-3 ">
            
-            <a href="/" className="btn btn-outline-primary text-white bg-transparent px-4 float-right mt-3 mt-lg-0" onClick={deletedCart}>Go to Home</a>
+            <button className="btn btn-outline-primary text-white bg-transparent px-4 float-right mt-3 mt-lg-0" onClick={deletedCart}>Go to Home</button>
         </div>
       
 
