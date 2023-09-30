@@ -33,7 +33,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    border-bottom: 1px solid #ebebeb;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms; }
     @media only screen and (max-width: 767px) {
@@ -332,3 +331,9 @@
             border: none;
         }
         }
+
+
+        
+  .dataUT{
+    background-color: #36435572;
+  }

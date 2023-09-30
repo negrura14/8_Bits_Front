@@ -15,7 +15,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Dropdown from 'react-bootstrap/Dropdown';
 import LoadingPage from '../Loading/Loading.jsx';
 import { getUserByIdAction } from '../../Redux/userProfileActions.jsx';
-import defaultPhoto from '../../Img/UserProfile/Avatars/default.jpeg'
+import defaultPhoto from '../../Img/UserProfile/Avatars/default.jpeg';
 
 function Nav2() {
   const location = useLocation();
@@ -212,8 +212,15 @@ function Nav2() {
             </div>
 
         </div>
+        <div className=' d-flex justify-content-between align-items-center dataUT border-primary border-bottom  border-2 px-1'>
+        <div>
+        {!Array.isArray(userData) && <span className='text-white'>Welcome, {user.user.name}</span>}
+        </div>
+        <div>
+          <DateTimeDisplay/>
+        </div>
+        </div>
     </header>
-
     </>
 
   )
