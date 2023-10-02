@@ -27,6 +27,7 @@ import SuccessMP from './Components/MercadoPago/success/SuccessMP';
 import FailureMP from './Components/MercadoPago/failure/failureMP';
 import {DashBoard} from "./Views/DashBoard/DashBoard.jsx";
 import ContactUs from './Views/ContactUs/ContactUs';
+import ParticlesComponent from './Components/Particles/ParticlesC';
 import ResetPassword from './Components/ResetPasssword/ResetPassword';
 
 
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
+      <ParticlesComponent/>
       {!main && <Nav2/>}
       <ShopCart></ShopCart>
       <Routes>

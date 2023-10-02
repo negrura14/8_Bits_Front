@@ -8,7 +8,7 @@ export default function About() {
     <div>
       <section className="container aboutS">
       <div className="row featurette p-5 my-5">
-      <div className="col-md-7">
+      <div className="col-md-7 featurette">
         <h2 >About Us.</h2>
         <p >At 8 Bits, we are passionate about video games. We believe that video games are more than a form of entertainment; they are a way to connect, explore and challenge the limits of the imagination. Our mission is to provide gamers around the world with a reliable and exciting platform to access the best digital video games.</p>
       </div>
