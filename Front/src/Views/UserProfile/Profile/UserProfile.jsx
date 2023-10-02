@@ -153,8 +153,9 @@ export default function UserProfile() {
                   <Link
                     to={`${ROUTES.DETAIL}/${elem.game.id}`}
                   >
-                    <div className="profile-card-2"><img src={elem.game.image} className="img img-responsive"/>
-        <div className="profile-name">{elem.game.name}</div>
+                    <div className="profile-card-2">
+                    <img src={elem.game.image} className="img img-responsive"/>
+                    <div className="profile-name">{elem.game.name}</div>
 
 </div>
                   </Link>

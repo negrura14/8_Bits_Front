@@ -69,8 +69,10 @@ export const UpdateProduct = () => {
   
   const sumbitHandler = (e) => {
     e.preventDefault();
-    // console.log("resultado del submit: ", selectedGame);
     axios.put(`/games/${selectedGame.id}`, selectedGame)
+    setSelectedGame(null);
+    setSearchInput('');
+    dispatch(getGame());
     Toast.fire({
       icon: "success",
       iconColor: "white",
@@ -78,9 +80,7 @@ export const UpdateProduct = () => {
       color: "#fff",
       background: "#333",
     });
-    setSelectedGame(null);
-    setSearchInput('');
-    dispatch(getGame());
+    
 
   }
 
@@ -274,7 +274,7 @@ export const UpdateProduct = () => {
               type="number"
               name="stock"
               value={selectedGame.stock}
-              onChange={(e) => setSelectedGame({ ...selectedGame, stock: e.target.value })}
+              onChange={(e) => setSelectedGame({ ...selectedGame, stock: Number(e.target.value) })}
               min="0"
               max="100"
               className="form-control bg-transparent text-white mb-3"

@@ -34,7 +34,7 @@ export default function About() {
         <section className="team-page-section">
           <div className="container">
             <div className="sec-title centered">
-              <div className="title">Our Team</div>
+              <div className="title d-flex justify-content-center "><h2 className="text-primary">Our Team</h2></div>
               <div className="separator">
                 <span></span>
               </div>

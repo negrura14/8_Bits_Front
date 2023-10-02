@@ -81,7 +81,6 @@ const SuccessMP = () => {
         if (gameStock && gameStock.stock > 0) {
           const stockToSubtract = gameStockCount[element.id]; // Obtener el contador
           const updatedGameStock = { ...gameStock, stock: gameStock.stock - stockToSubtract };
-
           // Realizar la actualización del stock
           axios.put(`/games/${updatedGameStock.id}`, updatedGameStock);
 
