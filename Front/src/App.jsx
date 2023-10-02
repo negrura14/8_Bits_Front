@@ -27,8 +27,9 @@ import SuccessMP from './Components/MercadoPago/success/SuccessMP';
 import FailureMP from './Components/MercadoPago/failure/failureMP';
 import {DashBoard} from "./Views/DashBoard/DashBoard.jsx";
 import ContactUs from './Views/ContactUs/ContactUs';
-import ResetPassword from './Components/ResetPasssword/ResetPassword';
 import ParticlesComponent from './Components/Particles/ParticlesC';
+import ResetPassword from './Components/ResetPasssword/ResetPassword';
+
 
 
 
