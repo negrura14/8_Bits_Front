@@ -33,6 +33,7 @@
   
 .single_product_details_area {
   position: relative;
+  background-color: #0f1219f9;
   z-index: 1;
   color:rgba(255, 255, 255, 0.824);
   -ms-flex-wrap: wrap;
@@ -156,7 +157,7 @@
           
 .cardTesti {
   border: solid 1px #ffffff25;
-  background-color: #01010181;
+  background-color: #0f1219f9;
   border-radius: 10px;
   color: #fff;
 }
