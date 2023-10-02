@@ -6,3 +6,12 @@
   .tabsU .nav-link:hover {
     border-color: #2cffa0;
   }
+
+  .tabsU{
+    z-index: 1;
+  }
+
+  .tabsU .nav-tabs{
+    z-index: 1;
+    background: #0f1219f9;
+  }
