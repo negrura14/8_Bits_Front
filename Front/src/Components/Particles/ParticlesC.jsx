@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 //import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 import { loadSlim } from "tsparticles-slim"
+import "./ParticlesC.css"
 
 function ParticlesComponent(){
     const particlesInit = useCallback(async engine => {
@@ -17,7 +18,7 @@ function ParticlesComponent(){
         
     }, []);
     return(
-        <div>
+        <div className="particles">
             <Particles
                 id="tsparticles"
             init={particlesInit}
