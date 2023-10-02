@@ -251,6 +251,10 @@ export default function Login() {
           You do not have an account? create it{" "}
           <Link to={"/createuser"}>here</Link>
         </p>
+        <p className="signup">
+        Did you forget your Password{" "}
+          <Link to={"/resetPassword"}>here</Link>
+        </p>
         </div>
           
         </Form>
