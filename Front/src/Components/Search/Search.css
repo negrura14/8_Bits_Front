@@ -69,7 +69,7 @@
   width: 100%;
 }
 .productS {
-    
+  background: #0f1219f9;
   display: inline-block;
   width: calc(24% - 13px);
   margin: 10px 10px 30px 10px;
