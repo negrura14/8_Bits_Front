@@ -27,7 +27,9 @@ import SuccessMP from './Components/MercadoPago/success/SuccessMP';
 import FailureMP from './Components/MercadoPago/failure/failureMP';
 import {DashBoard} from "./Views/DashBoard/DashBoard.jsx";
 import ContactUs from './Views/ContactUs/ContactUs';
+import ResetPassword from './Components/ResetPasssword/ResetPassword';
 import ParticlesComponent from './Components/Particles/ParticlesC';
+
 
 
 function App() {
@@ -70,6 +72,7 @@ function App() {
        <Route path = {ROUTES.FAILURE} element= {<FailureMP/>}/>
        <Route path = "/Dashboard" element= {<DashBoard/>}/>
        <Route path = {ROUTES.CONTACT} element= {<ContactUs/>}/>
+       <Route path = {ROUTES.RESET} element= {<ResetPassword/>}/>
       </Routes>
       {!main && <Footer/>}
     </div>

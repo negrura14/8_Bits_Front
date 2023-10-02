@@ -17,5 +17,6 @@ export const ROUTES = {
     ERROR: '*',
     LOGIN: '/Login',
     CART: '/Cart',
+    RESET: '/ResetPassword'
    
 }
