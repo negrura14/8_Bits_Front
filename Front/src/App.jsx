@@ -29,6 +29,8 @@ import {DashBoard} from "./Views/DashBoard/DashBoard.jsx";
 import ContactUs from './Views/ContactUs/ContactUs';
 import ParticlesComponent from './Components/Particles/ParticlesC';
 import ResetPassword from './Components/ResetPasssword/ResetPassword';
+import ParticlesComponent from './Components/Particles/ParticlesC';
+
 
 
 function App() {
