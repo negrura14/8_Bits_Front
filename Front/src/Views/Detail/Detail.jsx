@@ -88,12 +88,19 @@ export default function Detail() {
   let validateReview = false;
   let validatePayment = false;
 
+  console.log(validatePayment, "pay");
+  console.log(validateReview, "rew");
+
   if(auth === true) {
     const review = detail.Reviews;
 
     validateReview = review?.find(obj=> obj.userId === user.user.id)
 
     validatePayment = payment?.find(obj => obj.idUser == user.user.id );
+
+console.log(validateReview, "review");
+console.log(validatePayment, "payment");
+
    } 
 
   const handleRatingChange = (newRating) => {
@@ -237,7 +244,7 @@ export default function Detail() {
                   </div>
                 ))}
               </div>
-              {validatePayment != false  && !validateReview?(
+              {validatePayment  && !validateReview ?(
                 <div className="col-11 bgReview border-top border-primary m-3">
 
 
