@@ -14,13 +14,14 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 4000,
+      
     };
     return (
       <div>
-        <Slider {...settings}>
+        <Slider  {...settings}>
 
-        <div className="welcome_area bg-img background-overlay slider1" >
+        <div className="welcome_area bg-img background-overlay slider1" key={1}>
         <div className="container h-100">
             <div className="row h-100 align-items-center">
                 <div className="col-12">
@@ -34,7 +35,7 @@ export default class SimpleSlider extends Component {
             </div>
         </div>
         </div>
-    <div className="welcome_area bg-img background-overlay slider2" >
+    <div className="welcome_area bg-img background-overlay slider2" key={2}>
         <div className="container h-100">
             <div className="row h-100">
                 <div className="col-12 align-items-center d-flex justify-content-center ">
@@ -47,7 +48,7 @@ export default class SimpleSlider extends Component {
             </div>
         </div>
     </div>
-    <div className="welcome_area bg-img background-overlay slider3" >
+    <div className="welcome_area bg-img background-overlay slider3" key={3}>
         <div className="container h-100">
             <div className="row h-100 align-items-center">
                 <div className="col-12">
