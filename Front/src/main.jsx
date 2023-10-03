@@ -10,6 +10,8 @@ import axios from 'axios';
 import './index.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import '@sweetalert2/theme-dark/dark.css';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css"; 
 
 const persistor = persistStore(store)
 

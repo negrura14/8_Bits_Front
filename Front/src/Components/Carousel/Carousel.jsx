@@ -1,112 +1,68 @@
-import React, { useState, useEffect }  from "react";
-import { useSelector } from "react-redux";
-import './Carousel.css'
+import React, { Component } from "react";
+import Slider from "react-slick";
+import { NavLink} from 'react-router-dom';
+import { ROUTES } from '../../Helpers/RoutesPath.jsx';
+import "./Carousel.css"
 
-function Carousel() {
-    const { game } = useSelector(state => state.game);
-    const [activeIndex, setActiveIndex] = useState(0);
-  
-    const getLowestPricedGames = (count) => {
-      if (game.length === 0) {
-        return [];
-      }
-  
-      // Ordena los juegos por precio de menor a mayor
-      const sortedGames = [...game].sort((a, b) => a.price - b.price);
-      return sortedGames.slice(0, count); 
-    };
-  
-    const lowestPricedGames = getLowestPricedGames(4);
-    
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-          handleNextSlide();
-        }, 3000); // Cambia el valor 5000 a la duración deseada en milisegundos
-    
-        return () => clearInterval(interval); // Limpia el temporizador al desmontar el componente
-      }, [activeIndex]);
-  
-    const handlePrevSlide = () => {
-      setActiveIndex((prevIndex) => (prevIndex - 1 + lowestPricedGames.length) % lowestPricedGames.length);
+export default class SimpleSlider extends Component {
+  render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
     };
-  
-    const handleNextSlide = () => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % lowestPricedGames.length);
-    };
-  
     return (
-      <div className="carousel-container">
-        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            {lowestPricedGames.map((game, index) => (
-              <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`}>
-                <img className="d-block  custom-image-size" src={game.image} alt={`Slide ${index}`} />
-              </div>
-            ))}
-          </div>
-          <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" onClick={handlePrevSlide}>
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" onClick={handleNextSlide}>
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-          </a>
+      <div>
+        <Slider {...settings}>
+
+        <div className="welcome_area bg-img background-overlay slider1" >
+        <div className="container h-100">
+            <div className="row h-100 align-items-center">
+                <div className="col-12">
+                    <div className="hero-content">
+                        <h6>Immerse yourself in the gaming world!</h6>
+                        <h2>Store</h2>
+                        <NavLink className='btn essence-btn aC' onClick={() => window.scrollTo(0, 0)} to={ROUTES.STORE}>View Collection</NavLink>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
+        </div>
+    <div className="welcome_area bg-img background-overlay slider2" >
+        <div className="container h-100">
+            <div className="row h-100">
+                <div className="col-12 align-items-center d-flex justify-content-center ">
+                    <div className="hero-content text-center  d-flex  align-items-center">
+          
+                        <p className=" fs-1 text-white tc2">Forget your problems with our games as solutions.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div className="welcome_area bg-img background-overlay slider3" >
+        <div className="container h-100">
+            <div className="row h-100 align-items-center">
+                <div className="col-12">
+                    <div className="hero-content d-flex justify-content-end">
+                    <div>
+                        <h6>Not just a game, but a world.</h6>
+                        <h2 className="text-end">Store</h2>
+                        <NavLink className='btn essence-btn aC' onClick={() => window.scrollTo(0, 0)} to={ROUTES.STORE}>View Collection</NavLink>
+                    </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </Slider>
       </div>
     );
   }
-  
-  export default Carousel;
-
-// function Carousel() {
-
-// const { game } = useSelector(state => state.game);
-//   const [activeIndex, setActiveIndex] = useState(0);
-
-//   const getLowestPricedGame = (count) => {
-//     if (game.length === 0) {
-//       return [];
-//     }
-
-//     // Ordena los juegos por precio de menor a mayor
-//     const sortedGames = [...game].sort((a, b) => a.price - b.price);
-//     return sortedGames.slice(0, count); 
-//   };
-
-//   const lowestPricedGame = getLowestPricedGame(4);
-
-//   const handlePrevSlide = () => {
-//     setActiveIndex((prevIndex) => (prevIndex - 1 + lowestPricedGame.length) % lowestPricedGame.length);
-//   };
-
-//   const handleNextSlide = () => {
-//     setActiveIndex((prevIndex) => (prevIndex + 1) % lowestPricedGame.length);
-//   };
-
-//   return (
-//     <div className="carousel-container">
-//       <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-//         <div className="carousel-inner">
-//           {lowestPricedGame.map((game, index) => (
-//             <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`}>
-//               <img className="d-block w-100" src={game.image} alt={`Slide ${index}`} />
-//             </div>
-//           ))}
-//         </div>
-//         <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" onClick={handlePrevSlide}>
-//           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-//           <span className="sr-only">Previous</span>
-//         </a>
-//         <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" onClick={handleNextSlide}>
-//           <span className="carousel-control-next-icon" aria-hidden="true"></span>
-//           <span className="sr-only">Next</span>
-//         </a>
-//       </div>
-//     </div>
-//   );
-
-// }
-
-// export default Carousel;
+}
