@@ -465,7 +465,7 @@ const Landing = () => {
                   <Link to={"/createuser"}>here</Link>
                 </p> */}
                 
-                <p className="signup">
+                <p className="signup mt-2">
         Did you forget your Password{" "}
           <Link to={"/resetPassword"}>here</Link>
         </p>
