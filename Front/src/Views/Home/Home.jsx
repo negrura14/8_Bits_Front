@@ -15,7 +15,7 @@ import CardT from "../../Components/Card/CardT";
 import { clearUser, clearUsers } from "../../Redux/Reducers/userSlice";
 import { getUsersAct, swAuth } from "../../Redux/userActions";
 import { useNavigate } from "react-router-dom";
-
+import SimpleSlider from "../../Components/Carousel/Carousel";
 
 
 
@@ -110,20 +110,7 @@ function Home() {
         
             <> 
             
-    <section className="welcome_area bg-img background-overlay" >
-        <div className="container h-100">
-            <div className="row h-100 align-items-center">
-                <div className="col-12">
-                    <div className="hero-content">
-                        <h6>Immerse yourself in the gaming world!</h6>
-                        <h2>Store</h2>
-                        <NavLink className='btn essence-btn aC' onClick={() => window.scrollTo(0, 0)} to={ROUTES.STORE}>View Collection</NavLink>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <SimpleSlider/>
     
 
     

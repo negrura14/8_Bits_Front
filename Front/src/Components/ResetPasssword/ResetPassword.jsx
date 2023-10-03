@@ -1,6 +1,8 @@
 import React, { useEffect , useState} from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from "axios";
+import resetImage from "../../Img/resetImage.jpeg"
+import "./ResetPassword.css"
 
 
 function ResetPassword(){
@@ -51,48 +53,86 @@ function ResetPassword(){
     };
   
     return (
-      <div>
-        <h2>{passwordChanged ? 'Password Changed Successfully!' : 'Reset Password'}</h2>
-        {!token && !passwordChanged && (
+      
+      <div className="container">
+      <div className="row justify-content-center my-5">
+
+      <div className="col-10 login-box">
+          <div className="row">
+          <div className="col-md-6 pt-5 ">
+            
+            <img src={resetImage} alt="Image" className="img-fluid imgContact"/>
+
+          </div>
+              <div className="col-md-6 d-flex justify-content-center align-items-center mt-5">
+              <div>
+
+              <h2 className="text-center text-white">{passwordChanged ? 'Password Changed Successfully!' : 'Reset Password'}</h2>
+          <p className="textContact text-white-50">Contact our team via email</p>
+          
+          {!token && !passwordChanged && (
           <form onSubmit={handleEmailSubmit}>
-            <label>
+            <label className="form-label text-primary">
               Email:
+            </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="form-control bg-transparent text-white"
               />
-            </label>
             <br />
+            <div className='d-flex justify-content-center mt-4'>
+
             <button type="submit">Confirm Email</button>
+            </div>
           </form>
         )}
         {token && !passwordChanged  && (
           <form onSubmit={handleSubmitNewPassword}>
-            <label>
+          <div>
+
+            <label className="form-label text-primary">
               New Password:
+            </label>
               <input
                 type="password"
                 value={newPassword}
+                className="form-control bg-transparent text-white"
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
               />
-            </label>
+          </div>
             <br />
-            <label>
+            <div>
+
+            <label className="form-label text-primary">
               Confirm Password:
-              <input
+            </label>
+              <input 
                 type="password"
+                className="form-control bg-transparent text-white"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
-            </label>
+            </div>
             <br />
+            <div className='d-flex justify-content-center mt-4'>
+
             <button type="submit">Change Password</button>
+            </div>
+
           </form>
         )}
+              </div>
+
+              </div>
+                  
+              </div>
+          </div>
+      </div>
       </div>
     );
   }
